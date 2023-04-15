@@ -1,0 +1,59 @@
+
+
+.example-container {
+    width: 40px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+  }
+
+
+  .page-hold {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+
+  .top-bar-hold {
+    display: flex;
+    padding: 8px 5px 8px 30px;
+    color: #868a73;
+    background-color: #fff;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    max-height: 65px;
+  
+    .app-logo-hold {
+      display: block;
+      width: 230px;
+      height: 65px;
+      background-image: url('../assets/images/design-tribe-logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  
+    .app-menu-hold {
+      display: flex;
+      position: relative;
+  
+      .menu-item:hover {
+        color:  #B43B3D;
+  
+        .menu-item-text {
+          font-weight: bold;
+        }
+      }
+    }
+}
+
+
+.mat-menu-content {
+    .menu-item-hold {
+      display: flex;
+    }
+  }
+
+  .menu-item:hover {
+    color: #868a73;
+  }

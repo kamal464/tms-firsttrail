@@ -1,0 +1,77 @@
+<div class="top-bar-hold">
+  <div class="app-logo-hold"></div>
+  <div class="app-menu-hold" ></div>
+  <ng-container>
+    <button class="menu-item">
+      <mat-icon>person</mat-icon>
+        <span class="menu-item-text">ESS</span>
+      </button>
+    <button class="menu-item" >
+      <mat-icon>work</mat-icon>
+        <span class="menu-item-text">Projects</span>
+      </button>
+    <button class="menu-item">
+      <mat-icon>attach_money</mat-icon>
+        <span class="menu-item-text">Finance</span>
+      </button>
+    <button class="menu-item">
+      <mat-icon>people_alt</mat-icon>
+        <span class="menu-item-text">CRM</span>
+      </button>
+    <button class="menu-item">
+      <mat-icon>settings</mat-icon>
+        <span class="menu-item-text">System</span>
+      </button>
+  </ng-container>
+  <mat-menu class="navigation-menu-hold">
+    <ng-template>
+      <div  class="menu-item-hold">
+       
+      </div>
+    </ng-template>
+  </mat-menu>
+</div>
+
+<mat-toolbar class="tool-bar  " color="">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>Company Profile</span>
+
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+
+<mat-drawer mode="side" opened class="example-container">
+  <mat-card color="Accent">
+    <div mat-card-avatar class="example-header-image" alt="Avatar"></div>
+    <b>DESIGN TRIBE INDIA PVT.LTD</b><br/>
+    <a href="https://designtribeindia.com/" target="_blank"
+      >www.designtribeindia.com</a
+    >
+    <mat-list role="list">
+      <a mat-list-item (click)="showContent('field1')">Overview</a>
+      <a mat-list-item (click)="showContent('field2')">offices</a>
+      <a mat-list-item (click)="showContent('field3')">Departments</a>
+      <a mat-list-item (click)="showContent('field4')">Departments Types</a>
+      <a mat-list-item (click)="showContent('field5')">Designations</a>
+      <a mat-list-item (click)="showContent('field6')">Grades</a>
+      <a mat-list-item (click)="showContent('field7')">Identifications</a>
+    </mat-list>
+    </mat-card> 
+  </mat-drawer>
+
+<mat-card-content>
+
+</mat-card-content>
