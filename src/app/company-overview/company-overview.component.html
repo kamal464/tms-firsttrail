@@ -1,0 +1,118 @@
+<div>
+  <div class="headings">
+    <div class="title-hold">
+      <span class="title mat-display-1 primary-color-text"> Overview</span>
+      <span class="sub-title mat-small">Company's overall Information</span>
+    </div>
+    <span class="spacer"></span>
+  </div>
+  <div class="contents">
+    <!-- <div class="content-loading-hold">
+      <mat-spinner></mat-spinner>
+      <span class="mat-display-1 content-loading-text"></span>
+    </div> -->
+    <div class="content-hold">
+      <!-- tool-bar -->
+
+      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
+        (onAction)="doAction($event)"></tool-bar> -->
+      <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">OVERVIEW</span>
+        <span class="spacer"></span>
+        <button
+          mat-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Edit"
+          (click)="doAction('edit')"
+          *ngIf="hasEdit && currentAction == 'view'"
+        >
+          <mat-icon>edit</mat-icon>
+          <span class="button-label">Edit</span>
+        </button>
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="doAction('cancel')"
+          *ngIf="currentAction == 'new' || currentAction == 'edit'"
+        >
+          <mat-icon>cancel</mat-icon>
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Save Changes"
+          (click)="doAction('save')"
+          *ngIf="currentAction == 'new' || currentAction == 'edit'"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+
+      <!-- Content-view -->
+
+      <div class="company-overview-contents content-data-hold">
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Registered Company Name</mat-label>
+          <span class="entry-data">DesignTribePrivateLimited</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Short Name</mat-label>
+          <span class="entry-data">DTPL</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Country</mat-label>
+          <span class="entry-data flag-hold">
+            <mat-icon svgIcon="india"></mat-icon>
+            India
+          </span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Phone</mat-label>
+          <span class="entry-data">
+            <span>+91</span>
+            '---'</span
+          >
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Fax</mat-label>
+          <span class="entry-data">
+            <span>+91</span>
+            '---'</span
+          >
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Email</mat-label>
+          <span class="entry-data">'---'</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Website</mat-label>
+          <span class="entry-data">'---'</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">WhatsApp Support</mat-label>
+          <span class="entry-data">
+            <span>+91</span>
+            '---'</span
+          >
+        </div>
+        <div class="view-entry-hold">
+          <mat-label class="entry-label">LinkedIN</mat-label>
+          <span class="entry-data">'---'</span>
+        </div>
+        <div class="view-entry-hold">
+          <mat-label class="entry-label">Remarks</mat-label>
+          <span class="entry-data"
+            >State-of-art development center located at Hyderabad, DTPL has been
+            able to serve its clients effectively and efficiently
+            worldwide.</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

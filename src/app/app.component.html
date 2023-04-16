@@ -1,38 +1,36 @@
 <div class="top-bar-hold">
   <div class="app-logo-hold"></div>
-  <div class="app-menu-hold" ></div>
+  <div class="app-menu-hold"></div>
   <ng-container>
     <button class="menu-item">
       <mat-icon>person</mat-icon>
-        <span class="menu-item-text">ESS</span>
-      </button>
-    <button class="menu-item" >
+      <span class="menu-item-text">ESS</span>
+    </button>
+    <button class="menu-item">
       <mat-icon>work</mat-icon>
-        <span class="menu-item-text">Projects</span>
-      </button>
+      <span class="menu-item-text">Projects</span>
+    </button>
     <button class="menu-item">
       <mat-icon>attach_money</mat-icon>
-        <span class="menu-item-text">Finance</span>
-      </button>
+      <span class="menu-item-text">Finance</span>
+    </button>
     <button class="menu-item">
       <mat-icon>people_alt</mat-icon>
-        <span class="menu-item-text">CRM</span>
-      </button>
+      <span class="menu-item-text">CRM</span>
+    </button>
     <button class="menu-item">
       <mat-icon>settings</mat-icon>
-        <span class="menu-item-text">System</span>
-      </button>
+      <span class="menu-item-text">System</span>
+    </button>
   </ng-container>
   <mat-menu class="navigation-menu-hold">
     <ng-template>
-      <div  class="menu-item-hold">
-       
-      </div>
+      <div class="menu-item-hold"></div>
     </ng-template>
   </mat-menu>
 </div>
 
-<mat-toolbar class="tool-bar  " color="">
+<!-- <mat-toolbar class="tool-bar  " color="">
   <button
     mat-icon-button
     class="example-icon"
@@ -50,28 +48,156 @@
   <span>Company Profile</span>
 
   <span class="example-spacer"></span>
-</mat-toolbar>
+</mat-toolbar> -->
 
+<div class="full-view-hold">
+  <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
+    <div class="tree-top-fixed-hold">
+      <div class="tree-top-fixed-title">
+        <button
+          mat-icon-button
+          class="tree-top-fixed-close-button"
+          (click)="toggleSideNavView()"
+          matTooltip="Hide list of opened tabs."
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="tree-view-float-hold">
+      <ng-container>
+        <!-- <div class="tabbed-nav-link-item">
+          <mat-icon color="primary" class="selection_arrow"
+            >arrow_right</mat-icon
+          >
+          <div class="tabbed-nav-link-item-lead-icon">
+            <mat-icon>item</mat-icon>
+          </div>
+          <div class="tabbed-nav-link-item-label">item.label</div>
+          <div class="tabbed-nav-link-item-expand">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </div>
+        </div> -->
+      </ng-container>
+    </div>
+  </div>
+  <div class="tab-view-hold">
+    <div class="tab-view-header-hold mat-elevation-z6">
+      <button
+        mat-icon-button
+        class="tab-view-header-menu-button"
+        (click)="toggleSideNavView()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="tab-view-header-tabs">
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div class="tabbed-item-hold">
+                <div class="tabbed-item-lead-icon">
+                  <mat-icon>tab.icon</mat-icon>
+                </div>
+                <div class="tabbed-item-label">tab.label</div>
+                <button mat-icon-button class="tabbed-item-close-button">
+                  <mat-icon>highlight_off</mat-icon>
+                </button>
+              </div>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="tab-view-content-hold">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template appDynamicComponentLoader></ng-template>
+          <!-- [item]="tab.item" -->
+          <div class="multi-options-view">
+            <div class="info-and-options-view">
+              <div class="info-avatar avatar-logo-loading-hold">
+                <!-- <mat-spinner [diameter]="90" [strokeWidth]="5"></mat-spinner> -->
+              </div>
 
-<mat-drawer mode="side" opened class="example-container">
-  <mat-card color="Accent">
-    <div mat-card-avatar class="example-header-image" alt="Avatar"></div>
-    <b>DESIGN TRIBE INDIA PVT.LTD</b><br/>
-    <a href="https://designtribeindia.com/" target="_blank"
-      >www.designtribeindia.com</a
-    >
-    <mat-list role="list">
-      <a mat-list-item (click)="showContent('field1')">Overview</a>
-      <a mat-list-item (click)="showContent('field2')">offices</a>
-      <a mat-list-item (click)="showContent('field3')">Departments</a>
-      <a mat-list-item (click)="showContent('field4')">Departments Types</a>
-      <a mat-list-item (click)="showContent('field5')">Designations</a>
-      <a mat-list-item (click)="showContent('field6')">Grades</a>
-      <a mat-list-item (click)="showContent('field7')">Identifications</a>
-    </mat-list>
-    </mat-card> 
-  </mat-drawer>
+              <div class="info-options-hold mat-elevation-z4">
+                <div class="info-data-hold">
+                  <span class="mat-title info-title">DTPL</span>
+                  <span class="mat-subheading-1 info-subtitle">
+                    <a [href]="'http://'">website</a></span
+                  >
+                </div>
+                <!-- <div class="info-data-hold">
+                  <span class="mat-title info-title"></span>
+                  <span class="mat-subheading-1 info-subtitle">Loading..</span>
+                </div> -->
 
-<mat-card-content>
-
-</mat-card-content>
+                <ng-container>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    OVERVIEW
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    OFFICES
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    DEPARTMENTS
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    DEPARTMENTS TYPES
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    DESIGNATIONS
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    GRADES
+                  </button>
+                  <button
+                    mat-button
+                    class="option-item"
+                    matTooltipPosition="right"
+                  >
+                    <mat-icon>arrow_right</mat-icon>
+                    IDENTIFICATIONS
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+            <div class="contents-view">
+              <app-company-overview></app-company-overview>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
