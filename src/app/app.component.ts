@@ -9,11 +9,19 @@ export class AppComponent {
   title = 'dtpl';
   currentField: string = '';
   isSideNavEnabled = false;
-
+  _selected_option = null;
   showContent(field: string): void {
     this.currentField = field;
   }
   toggleSideNavView() {
     this.isSideNavEnabled = !this.isSideNavEnabled;
+  }
+
+
+
+doAction(action: any): void {
+ 
+  this._selected_option= action;
+ 
   }
 }

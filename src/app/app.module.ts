@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { CompanyOverviewComponent } from './company-overview/company-overview.component';
+import { CompanyOfficesComponent } from './company-offices/company-offices.component';
+import { OfficesComponent } from './company-offices/offices/offices.component';
 
 @NgModule({
-  declarations: [AppComponent, CompanyOverviewComponent],
+  declarations: [AppComponent, CompanyOverviewComponent,CompanyOfficesComponent,OfficesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

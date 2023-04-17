@@ -1,0 +1,73 @@
+<div class="offices-item-hold">
+    <!-- <div class="content-loading-hold">
+      <mat-spinner></mat-spinner>
+      <span class="mat-title content-loading-text"
+        [innerHtml]="'Please wait, while the procesing <b>Office</b>:<b class=\'primary-color-text\'>' + _officeTitle + '</b> information.'"></span>
+    </div> -->
+    <!-- <tool-bar [title]="_officeTitle" class="content-title-hold" [currentAction]="_currentAction"
+      (onAction)="doAction($event)" [hasEdit]="true" [hasDelete]="true" *ngIf="!isProcessing">
+    </tool-bar> -->
+    <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">DTPL-HYD (HEAD OFFICE)</span>
+        <span class="spacer"></span>
+        <button
+          mat-button
+          class="tool-bar-button bt-color"
+          matTooltip="Edit"
+          (click)="doAction('edit')"
+          *ngIf="hasEdit && currentAction == 'view'"
+        >
+          <mat-icon>edit</mat-icon>
+          <span class="button-label">Edit</span>
+        </button>
+        <button mat-flat-button  class="tool-bar-button bt-bg" matTooltip="Delete" (click)="doAction('delete')"
+    *ngIf="hasEdit && currentAction == 'view'">
+    <mat-icon>delete</mat-icon>
+    <span class="button-label">Delete</span>
+  </button>
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="doAction('cancel')"
+          *ngIf="currentAction == 'new' || currentAction == 'edit'"
+        >
+          <mat-icon>cancel</mat-icon>
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Save Changes"
+          (click)="doAction('save')"
+          *ngIf="currentAction == 'new' || currentAction == 'edit'"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+    <div class="office-contents content-data-hold">
+      <div class="view-entry-hold">
+        <span class="entry-text highlight-title">Design Tribe India Hyderabad</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text">3rd Floor, Raja Prasadamu,</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text">Opp Vijetha Super Market,</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text">Botanical Garden Road,</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text"> Kondapur, Hyderabad,</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text flag-hold">
+          <mat-icon></mat-icon>
+          India - 500084.
+        </span>
+      </div>
+    </div>
+    </div>

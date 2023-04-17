@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyOfficesComponent implements OnInit {
 
+  _officesInfo: any = [];
+  isNew = false;
+  _officesEditSet= "";
   constructor() { }
 
   ngOnInit(): void {

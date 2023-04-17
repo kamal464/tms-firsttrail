@@ -1,0 +1,51 @@
+
+@import '../../company-overview/company-overview.component.scss';
+
+  .office-contents {
+    display: flex;
+    flex-direction: column;
+    min-height: 195px;
+    padding: 25px !important;
+  }
+
+  .office-edit-contents {
+    flex-wrap: wrap;
+  }
+  .content-loading-hold {
+    margin: 110px 0;
+  }
+  
+  .content-loading-text {
+    max-width: 350px;
+  }
+
+  .view-entry-hold {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc(100% - 22px);
+    padding-right: 22px;
+    margin-bottom: 8px;
+
+    .entry-label {
+      color: #666;
+      padding: 0 10px;
+      margin-top: 0;
+    }
+
+    .entry-data {
+      font-weight: bold;
+      font-size: 120%;
+      padding: 4px 10px 25px;
+    }
+
+    .entry-text {
+      font-size: 1.5em;
+    }
+
+    .highlight-title {
+      font-weight: bold;
+    }
+  }
+
+  

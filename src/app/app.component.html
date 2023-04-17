@@ -1,35 +1,56 @@
-<div class="top-bar-hold">
-  <div class="app-logo-hold"></div>
-  <div class="app-menu-hold"></div>
-  <ng-container>
-    <button class="menu-item">
-      <mat-icon>person</mat-icon>
-      <span class="menu-item-text">ESS</span>
-    </button>
-    <button class="menu-item">
-      <mat-icon>work</mat-icon>
-      <span class="menu-item-text">Projects</span>
-    </button>
-    <button class="menu-item">
-      <mat-icon>attach_money</mat-icon>
-      <span class="menu-item-text">Finance</span>
-    </button>
-    <button class="menu-item">
-      <mat-icon>people_alt</mat-icon>
-      <span class="menu-item-text">CRM</span>
-    </button>
-    <button class="menu-item">
-      <mat-icon>settings</mat-icon>
-      <span class="menu-item-text">System</span>
-    </button>
-  </ng-container>
-  <mat-menu class="navigation-menu-hold">
-    <ng-template>
-      <div class="menu-item-hold"></div>
-    </ng-template>
-  </mat-menu>
-</div>
 
+<div>
+  <div class="top-bar-hold page-header-hold">
+    <div class="app-logo-hold"></div>
+    <div class="app-menu-hold"></div>
+    <ng-container>
+      <button class="menu-item">
+        <mat-icon>person</mat-icon>
+        <span class="menu-item-text">ESS</span>
+      </button>
+      <button class="menu-item">
+        <mat-icon>work</mat-icon>
+        <span class="menu-item-text">Projects</span>
+      </button>
+      <button class="menu-item">
+        <mat-icon>attach_money</mat-icon>
+        <span class="menu-item-text">Finance</span>
+      </button>
+      <button class="menu-item">
+        <mat-icon>people_alt</mat-icon>
+        <span class="menu-item-text">CRM</span>
+      </button>
+      <button class="menu-item">
+        <mat-icon>settings</mat-icon>
+        <span class="menu-item-text">System</span>
+      </button>
+    </ng-container>
+    <mat-menu class="navigation-menu-hold">
+      <ng-template>
+        <div class="menu-item-hold"></div>
+      </ng-template>
+    </mat-menu>
+    <div class="profile-hold" >
+      <div class="user-profile-info-hold">
+        <div class="user-profile-info" >
+          <span class="user-profile-title">displayname</span>
+          <span class="user-profile-sub-title mat-small">
+            title</span>
+          </div>
+          
+          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+        <mat-menu #userMenu="matMenu" class="user-profile-dropdown">
+          <a mat-menu-item>
+            <mat-icon color="warn">logout</mat-icon>
+            <span>Logout</span>
+          </a>
+        </mat-menu>
+      </div>
+    </div>
+  
 <!-- <mat-toolbar class="tool-bar  " color="">
   <button
     mat-icon-button
@@ -49,7 +70,7 @@
 
   <span class="example-spacer"></span>
 </mat-toolbar> -->
-
+<div class="page-tabs-hold">
 <div class="full-view-hold">
   <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
     <div class="tree-top-fixed-hold">
@@ -82,6 +103,7 @@
       </ng-container>
     </div>
   </div>
+
   <div class="tab-view-hold">
     <div class="tab-view-header-hold mat-elevation-z6">
       <button
@@ -137,6 +159,7 @@
                     mat-button
                     class="option-item"
                     matTooltipPosition="right"
+                    (click)="doAction('overview')"
                   >
                     <mat-icon>arrow_right</mat-icon>
                     OVERVIEW
@@ -145,6 +168,7 @@
                     mat-button
                     class="option-item"
                     matTooltipPosition="right"
+                    (click)="doAction('offices')"
                   >
                     <mat-icon>arrow_right</mat-icon>
                     OFFICES
@@ -192,12 +216,16 @@
                 </ng-container>
               </div>
             </div>
+            <div>
             <div class="contents-view">
-              <app-company-overview></app-company-overview>
+              <app-company-overview *ngIf="_selected_option == 'overview'"></app-company-overview>
+              <app-company-offices *ngIf="_selected_option == 'offices'"></app-company-offices>
             </div>
+          </div>      
           </div>
         </mat-tab>
       </mat-tab-group>
     </div>
   </div>
+</div>
 </div>

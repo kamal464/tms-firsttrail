@@ -9,17 +9,13 @@
   border: 1px solid #555;
 }
 
-.page-hold {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-}
+
+
 
 .top-bar-hold {
   display: flex;
   padding: 8px 5px 8px 30px;
-  color: #868a73;
+  color: $secondary-color;
   background-color: #fff;
   align-items: center;
   border-bottom: 1px solid #ddd;
@@ -29,7 +25,7 @@
     display: block;
     width: 230px;
     height: 65px;
-    background-image: url("../assets/images/design-tribe-logo.png");
+    background-image: url('../assets/images/design-tribe-logo.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -39,27 +35,82 @@
     position: relative;
 
     .menu-item:hover {
-      color: #b43b3d;
+      color: $primary-color;
 
       .menu-item-text {
         font-weight: bold;
       }
     }
   }
-}
 
-.mat-menu-content {
-  .menu-item-hold {
+  .search-input-hold {
     display: flex;
+    padding: 0 30px;
+    align-items: center;
+
+    .search-input-field {
+      display: flex;
+      align-items: center;
+    }
+
+    ::ng-deep {
+      .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 1em 1em;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        padding: 0;
+        width: 100%;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-prefix {
+        padding-left: 0.45em;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: $secondary-color;
+        background-color: #fff;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: $primary-color;
+        background-color: #fff;
+      }
+
+      input.mat-input-element {
+        color: #000;
+      }
+    }
   }
-}
 
-.menu-item:hover {
-  color: #868a73;
-}
+  .action-icons-hold {
+    display: flex;
+    padding-left: 30px;
+    padding-bottom: 10px;
 
-.menu-item {
-  padding: 0px 16px;
+    .action-icon-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 30px;
+      cursor: pointer;
+
+      &:hover,
+      &.opened {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .profile-hold {
+    .user-profile-info-hold {
+      display: flex;
+      margin-left: 10px;
+      padding-left: 10px;
+      border-left: 1px solid #ddd;
+      cursor: pointer;
+    }
+  }
 }
 
 .tabbed-nav-link-item {

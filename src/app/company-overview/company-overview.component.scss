@@ -8,7 +8,14 @@
   padding-right: 16px;
   flex-wrap: wrap !important;
 }
+.flag-hold {
+  display: flex;
+  align-items: center;
 
+  .mat-icon {
+    margin-right: 5px;
+  }
+}
 .spacer {
   flex-grow: 1;
 }
@@ -27,6 +34,92 @@
   @include mat-elevation(4);
   width: calc(100% - 265px);
 
+  .form-field-hold {
+    margin-top: -11px;
+  }
+  .form-field-hold {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc(100% - 22px);
+    padding: 0 22px 10px 0;
+  
+    .form-field-label {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      color: #666;
+    }
+  
+    .form-field-input {
+      ::ng-deep {
+        .mat-form-field-flex {
+          background-color: transparent;
+        }
+  
+        .mat-form-field-infix {
+          font-weight: bold;
+          font-size: 120%;
+          padding: 0 0 5px 0;
+        }
+  
+        .mat-form-field-underline {
+          width: calc(100% + 22px);
+        }
+      }
+    }
+
+  }
+
+
+  .form-field-hold {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc(100% - 40px);
+    padding: 0 22px 10px 0;
+    margin-right: 18px;
+
+    .form-field-label {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      color: #666;
+    }
+
+    .form-field-input {
+      ::ng-deep {
+        .mat-form-field-flex {
+          background-color: transparent;
+        }
+
+        .mat-form-field-prefix,
+        .mat-form-field-suffix {
+          font-weight: 700;
+          font-size: 120%;
+          padding: 0 5px 5px 0;
+        }
+
+        .mat-form-field-infix {
+          font-weight: bold;
+          font-size: 120%;
+          padding: 0 0 5px 0;
+
+          .mat-datepicker-input:disabled {
+            color: #000;
+          }
+        }
+
+        .mat-form-field-underline {
+          width: calc(100% + 22px);
+        }
+      }
+    }
+  }
+  .two-column-field {
+    flex-grow: 1;
+    width: calc(50% - 40px) !important;
+  }
   .content-data-hold {
     display: flex;
     padding: 20px 16px;
@@ -387,7 +480,13 @@
   .tool-bar-button {
     min-width: 5px;
     margin-left: 10px;
+    color: $primary-color ;
+   
 
+
+    .bt-bg{
+      background-color: $primary-color;
+    }
     .mat-icon {
       font-size: 20px;
       width: 20px;
@@ -399,3 +498,5 @@
     }
   }
 }
+
+

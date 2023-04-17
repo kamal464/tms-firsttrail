@@ -1,0 +1,14 @@
+@import '../company-overview/company-overview.component.scss';
+
+.action-padding {
+    padding-right: 270px;
+  }
+
+  .multi-options-view .contents-view .contents .multiple-content-hold {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding: 0;
+    width: calc(100% - 265px);
+}
+      
