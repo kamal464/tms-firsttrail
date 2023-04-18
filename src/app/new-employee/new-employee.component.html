@@ -1,0 +1,98 @@
+<div>
+  <div class="headings">
+    <div class="title-hold">
+      <span class="title mat-display-1 primary-color-text">New Employee</span>
+    </div>
+    <span class="spacer"></span>
+  </div>
+  <div class="contents">
+    <!-- <div class="content-loading-hold">
+      <mat-spinner></mat-spinner>
+      <span class="mat-display-1 content-loading-text"></span>
+    </div> -->
+    <div class="content-hold">
+      <!-- tool-bar -->
+
+      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
+        (onAction)="doAction($event)"></tool-bar> -->
+      <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">Employee Registration Form</span>
+        <span class="spacer"></span>
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="help"
+          (click)="doAction('help')"
+          *ngIf="hasEdit && currentAction == 'view'"
+        >
+          <mat-icon>help</mat-icon>
+          <span class="button-label">help</span>
+        </button>
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="doAction('cancel')"
+          *ngIf="currentAction == 'new' || currentAction == 'view'"
+        >
+          <mat-icon>cancel</mat-icon>
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button bt-bg"
+          matTooltip="Save Changes"
+          (click)="doAction('save')"
+          *ngIf="currentAction == 'new' || currentAction == 'view'"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+      <div
+        class="company-overview-contents content-data-hold"
+        *ngIf="currentAction == 'view'"
+      >
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">FirstName</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:Kamal"
+              formControlName="legalname"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">MiddleName</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input matInput placeholder="Ex:sai" formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">lastname</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:kollimarla"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
