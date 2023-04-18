@@ -113,7 +113,14 @@
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="tab-view-header-tabs">
+      <button
+        mat-icon-button
+        class="tab-view-header-menu-button "
+        (click)="toggleSideNavView()"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+      <div class="tab-view-header-tabs" >
         <mat-tab-group>
           <mat-tab>
             <ng-template mat-tab-label>
@@ -216,12 +223,13 @@
                 </ng-container>
               </div>
             </div>
-            <div>
+           
             <div class="contents-view">
               <app-company-overview *ngIf="_selected_option == 'overview'"></app-company-overview>
               <app-company-offices *ngIf="_selected_option == 'offices'"></app-company-offices>
+
             </div>
-          </div>      
+                
           </div>
         </mat-tab>
       </mat-tab-group>

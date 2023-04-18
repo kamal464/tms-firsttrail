@@ -116,6 +116,8 @@
       }
     }
   }
+
+
   .two-column-field {
     flex-grow: 1;
     width: calc(50% - 40px) !important;
@@ -246,50 +248,50 @@
     }
   }
 
-  .multiple-content-hold {
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    padding: 0;
-    width: calc(100% - 265px);
+  // .multiple-content-hold {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   flex-grow: 1;
+  //   padding: 0;
+  //   width: calc(100% - 265px);
 
-    .add-item-hold {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid $primary-color;
-      border-radius: 8px;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 20px 0;
-      min-height: 258px;
-      width: calc(100% - 2px);
+  //   .add-item-hold {
+  //     display: flex;
+  //     flex-direction: column;
+  //     border: 1px solid $primary-color;
+  //     border-radius: 8px;
+  //     align-items: center;
+  //     justify-content: center;
+  //     cursor: pointer;
+  //     padding: 20px 0;
+  //     min-height: 258px;
+  //     width: calc(100% - 2px);
 
-      .add-item-icon {
-        font-size: 72px;
-        width: 72px;
-        height: 72px;
-      }
+  //     .add-item-icon {
+  //       font-size: 72px;
+  //       width: 72px;
+  //       height: 72px;
+  //     }
 
-      .add-item-text {
-        margin: 0;
-      }
+  //     .add-item-text {
+  //       margin: 0;
+  //     }
 
-      .add-item-title {
-        color: $primary-color;
-      }
+  //     .add-item-title {
+  //       color: $primary-color;
+  //     }
 
-      &:hover {
-        @include mat-elevation(6);
-        color: $primary-color;
-        border-color: #666;
+  //     &:hover {
+  //       @include mat-elevation(6);
+  //       color: $primary-color;
+  //       border-color: #666;
 
-        .add-item-title {
-          color: #000;
-        }
-      }
-    }
-  }
+  //       .add-item-title {
+  //         color: #000;
+  //       }
+  //     }
+  //   }
+  // }
 
   .item-hold {
     margin: 0 15px 15px 0;
@@ -499,4 +501,7 @@
   }
 }
 
+.item-hold {
+  margin: 0 15px 15px 0;
+}
 

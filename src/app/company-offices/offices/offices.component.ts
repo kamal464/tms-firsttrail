@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./offices.component.scss']
 })
 export class OfficesComponent implements OnInit {
-  _currentAction = 'view';
+
 
   _officeTitle = '';
 

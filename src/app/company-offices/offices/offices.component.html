@@ -47,7 +47,7 @@
           <span class="button-label">Save</span>
         </button>
       </mat-toolbar>
-    <div class="office-contents content-data-hold">
+    <div class="office-contents content-data-hold" *ngIf="currentAction == 'view'">
       <div class="view-entry-hold">
         <span class="entry-text highlight-title">Design Tribe India Hyderabad</span>
       </div>
@@ -70,4 +70,92 @@
         </span>
       </div>
     </div>
+    <div class="office-edit-contents content-data-hold" 
+    *ngIf="currentAction == 'edit'">
+    <!-- <div class="error-text-hold" >
+      <mat-icon>error_outline</mat-icon>
+      <span class="error-text" [innerHtml]="errorMsg"></span>
+    </div> -->
+    <div class="form-field-hold">
+      <mat-label class="form-field-label">Office Title</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Short Code." formControlName="code">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Office Name</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="name">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Office Type</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <mat-select matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="type">
+          <mat-option >officeType.valuest
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 101, Ground floor" formControlName="flatno">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Building Name</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Building Name" formControlName="buildingname">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Road Name/Number</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Road no 1" formControlName="roadnumber">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Landmark</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Near By Landmark" formControlName="landmark">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Location</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Location" formControlName="location">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">City</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: City" formControlName="city">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Country</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <mat-select placeholder="Ex: Country" formControlName="fkcountrycode">
+          <mat-select-trigger>
+            <span class="flag-hold" >
+              <mat-icon></mat-icon>
+               offcieDetails.controls.fkcountrycode.value.name 
+            </span>
+          </mat-select-trigger>
+          <mat-option>
+            <span class="flag-hold">
+              <mat-icon ></mat-icon>country.name
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Pincode</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput type="number" placeholder="Ex: 000000" formControlName="pincode">
+      </mat-form-field>
+    </div>
+  </div>
     </div>
