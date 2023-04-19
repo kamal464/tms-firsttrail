@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+// @import "../../styles.scss";
 @import "../../styles/variables.scss";
 @import "~@angular/material/theming";
 @include mat-core();
@@ -482,13 +482,10 @@
   .tool-bar-button {
     min-width: 5px;
     margin-left: 10px;
-    color: $primary-color ;
+    // color: $primary-color ;
    
 
 
-    .bt-bg{
-      background-color: $primary-color;
-    }
     .mat-icon {
       font-size: 20px;
       width: 20px;

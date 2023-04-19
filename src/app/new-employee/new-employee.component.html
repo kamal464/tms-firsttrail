@@ -51,10 +51,9 @@
         </button>
       </mat-toolbar>
       <div
-        class="company-overview-contents content-data-hold"
-        *ngIf="currentAction == 'view'"
-      >
-        <div class="form-field-hold two-column-field">
+        class="company-overview-contents content-data-hold" [formGroup]="companyDetails"
+        *ngIf="currentAction == 'view'">
+        <div class="form-field-hold three-column-field">
           <mat-label class="form-field-label">FirstName</mat-label>
           <mat-form-field
             class="form-field-input"
@@ -64,21 +63,24 @@
             <input
               matInput
               placeholder="Ex:Kamal"
-              formControlName="legalname"
+              formControlName="firstname"
             />
+            <div class="invalid-feedback" *ngIf="companyDetails.get('text')">
+              {{ companyDetails.get('text')}}
+              </div>
           </mat-form-field>
         </div>
-        <div class="form-field-hold two-column-field">
+        <div class="form-field-hold three-column-field">
           <mat-label class="form-field-label">MiddleName</mat-label>
           <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill"
           >
-            <input matInput placeholder="Ex:sai" formControlName="name" />
+            <input matInput placeholder="Ex:sai" formControlName="middlename" />
           </mat-form-field>
         </div>
-        <div class="form-field-hold two-column-field">
+        <div class="form-field-hold three-column-field">
           <mat-label class="form-field-label">lastname</mat-label>
           <mat-form-field
             class="form-field-input"
@@ -88,10 +90,188 @@
             <input
               matInput
               placeholder="Ex:kollimarla"
-              formControlName="name"
+              formControlName="lastname"
             />
           </mat-form-field>
         </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Email</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:kamal@virinchi.com"
+              formControlName="email"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Mobile</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:xxxxxxx999"
+              formControlName="mobile"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Password</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:**********"
+              formControlName="password"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">ConfirmPassword</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:**********"
+              formControlName="confirmpassword"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Date-of-Birth</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+           
+          >
+            <input
+              matInput
+              placeholder="Ex:dd-mm-yyyy"
+              formControlName="birth"
+              [matDatepicker]="dateofbirth"
+            />
+            <mat-datepicker-toggle matSuffix [for]="dateofbirth"></mat-datepicker-toggle>
+            <mat-datepicker #dateofbirth disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Date-of-joining</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:dd-mm-yyyy"
+              formControlName="joining"
+              [matDatepicker]="joiningdate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="joiningdate"></mat-datepicker-toggle>
+            <mat-datepicker #joiningdate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Marriage-Date</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              placeholder="Ex:dd-mm-yyyy"
+              formControlName="marriage"
+              [matDatepicker]="marriagedate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="marriagedate"></mat-datepicker-toggle>
+            <mat-datepicker #marriagedate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Resignation-Date</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              [matDatepicker]="resignationdate"
+              placeholder="Ex:dd-mm-yyyy"
+              formControlName="resignation"
+            />
+            <mat-datepicker-toggle matSuffix [for]="resignationdate"></mat-datepicker-toggle>
+            <mat-datepicker #resignationdate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold ">
+          <mat-label class="form-field-label">Skills</mat-label>
+          <section class="example-section" >
+              <mat-checkbox  formControlName="skills" class="example-margin" >Angular</mat-checkbox>
+              <mat-checkbox  class="example-margin" >React</mat-checkbox>
+              <mat-checkbox  class="example-margin" >Python</mat-checkbox>
+              <mat-checkbox  class="example-margin" >MySql</mat-checkbox>
+            </section>          
+        </div>
+        <div class="form-field-hold ">
+          <mat-label class="form-field-label">Comments</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <textarea  matInput cdkTextareaAutosize cdkAutosizeMinRows="1" formControlName="comments"
+            placeholder="Ex.Max 300 lines of words"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Education</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <mat-select matInput placeholder="Ex: cse" formControlName="education">
+              <mat-option >Cse</mat-option>
+              <mat-option >Civil</mat-option>
+              <mat-option >Mechanical</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Marks</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <input
+              matInput
+              placeholder="Ex:123.00"
+              formControlName="marks"
+            />
+          </mat-form-field>
+        </div>
+          <div class="form-field-hold two-three-column-field">
+            <mat-label class="form-field-label">Rating</mat-label>
+            <mat-label class="form-field-label">{{ value}}</mat-label>
+
+            <mat-slider style="width: 400px;"
+            class="example-margin"
+            [disabled]="disabled"
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            formControlName="rating">
+          <input matSliderThumb >
+        </mat-slider>
+          </div>
       </div>
     </div>
   </div>

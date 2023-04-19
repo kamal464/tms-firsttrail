@@ -21,7 +21,7 @@
         <span class="spacer"></span>
         <button
           mat-button
-          class="tool-bar-button"
+          class="tool-bar-button "
           matTooltip="Edit"
           (click)="doAction('edit')"
           *ngIf="hasEdit && currentAction == 'view'"
@@ -42,7 +42,7 @@
         <button
           mat-raised-button
           color="primary"
-          class="tool-bar-button bt-bg"
+          class="tool-bar-button "
           matTooltip="Save Changes"
           (click)="doAction('save')"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
