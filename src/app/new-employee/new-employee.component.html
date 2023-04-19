@@ -51,8 +51,10 @@
         </button>
       </mat-toolbar>
       <div
-        class="company-overview-contents content-data-hold" [formGroup]="companyDetails"
-        *ngIf="currentAction == 'view'">
+        class="company-overview-contents content-data-hold"
+        [formGroup]="companyDetails"
+        *ngIf="currentAction == 'view'"
+      >
         <div class="form-field-hold three-column-field">
           <mat-label class="form-field-label">FirstName</mat-label>
           <mat-form-field
@@ -65,9 +67,9 @@
               placeholder="Ex:Kamal"
               formControlName="firstname"
             />
-            <div class="invalid-feedback" *ngIf="companyDetails.get('text')">
-              {{ companyDetails.get('text')}}
-              </div>
+            <div *ngIf="companyDetails.get('firstname').hasError('pattern')">
+              Input must contain the pattern 'foo'
+            </div>
           </mat-form-field>
         </div>
         <div class="form-field-hold three-column-field">
@@ -156,7 +158,6 @@
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill"
-           
           >
             <input
               matInput
@@ -164,7 +165,10 @@
               formControlName="birth"
               [matDatepicker]="dateofbirth"
             />
-            <mat-datepicker-toggle matSuffix [for]="dateofbirth"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dateofbirth"
+            ></mat-datepicker-toggle>
             <mat-datepicker #dateofbirth disabled="false"></mat-datepicker>
           </mat-form-field>
         </div>
@@ -181,7 +185,10 @@
               formControlName="joining"
               [matDatepicker]="joiningdate"
             />
-            <mat-datepicker-toggle matSuffix [for]="joiningdate"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="joiningdate"
+            ></mat-datepicker-toggle>
             <mat-datepicker #joiningdate disabled="false"></mat-datepicker>
           </mat-form-field>
         </div>
@@ -198,7 +205,10 @@
               formControlName="marriage"
               [matDatepicker]="marriagedate"
             />
-            <mat-datepicker-toggle matSuffix [for]="marriagedate"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="marriagedate"
+            ></mat-datepicker-toggle>
             <mat-datepicker #marriagedate disabled="false"></mat-datepicker>
           </mat-form-field>
         </div>
@@ -215,33 +225,55 @@
               placeholder="Ex:dd-mm-yyyy"
               formControlName="resignation"
             />
-            <mat-datepicker-toggle matSuffix [for]="resignationdate"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="resignationdate"
+            ></mat-datepicker-toggle>
             <mat-datepicker #resignationdate disabled="false"></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="form-field-hold ">
+        <div class="form-field-hold">
           <mat-label class="form-field-label">Skills</mat-label>
-          <section class="example-section" >
-              <mat-checkbox  formControlName="skills" class="example-margin" >Angular</mat-checkbox>
-              <mat-checkbox  class="example-margin" >React</mat-checkbox>
-              <mat-checkbox  class="example-margin" >Python</mat-checkbox>
-              <mat-checkbox  class="example-margin" >MySql</mat-checkbox>
-            </section>          
+          <section class="example-section">
+            <mat-checkbox formControlName="skills" class="example-margin"
+              >Angular</mat-checkbox
+            >
+            <mat-checkbox class="example-margin">React</mat-checkbox>
+            <mat-checkbox class="example-margin">Python</mat-checkbox>
+            <mat-checkbox class="example-margin">MySql</mat-checkbox>
+          </section>
         </div>
-        <div class="form-field-hold ">
+        <div class="form-field-hold">
           <mat-label class="form-field-label">Comments</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <textarea  matInput cdkTextareaAutosize cdkAutosizeMinRows="1" formControlName="comments"
-            placeholder="Ex.Max 300 lines of words"></textarea>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              formControlName="comments"
+              placeholder="Ex.Max 300 lines of words"
+            ></textarea>
           </mat-form-field>
         </div>
         <div class="form-field-hold two-column-field">
           <mat-label class="form-field-label">Education</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <mat-select matInput placeholder="Ex: cse" formControlName="education">
-              <mat-option >Cse</mat-option>
-              <mat-option >Civil</mat-option>
-              <mat-option >Mechanical</mat-option>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <mat-select
+              matInput
+              placeholder="Ex: cse"
+              formControlName="education"
+            >
+              <mat-option>Cse</mat-option>
+              <mat-option>Civil</mat-option>
+              <mat-option>Mechanical</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -250,28 +282,27 @@
           <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
-            appearance="fill">
-            <input
-              matInput
-              placeholder="Ex:123.00"
-              formControlName="marks"
-            />
+            appearance="fill"
+          >
+            <input matInput placeholder="Ex:123.00" formControlName="marks" />
           </mat-form-field>
         </div>
-          <div class="form-field-hold two-three-column-field">
-            <mat-label class="form-field-label">Rating</mat-label>
-            <mat-label class="form-field-label">{{ value}}</mat-label>
+        <div class="form-field-hold two-three-column-field">
+          <mat-label class="form-field-label">Rating</mat-label>
+          <mat-label class="form-field-label">{{ value }}</mat-label>
 
-            <mat-slider style="width: 400px;"
+          <mat-slider
+            style="width: 400px"
             class="example-margin"
             [disabled]="disabled"
             [max]="max"
             [min]="min"
             [step]="step"
-            formControlName="rating">
-          <input matSliderThumb >
-        </mat-slider>
-          </div>
+            formControlName="rating"
+          >
+            <input matSliderThumb />
+          </mat-slider>
+        </div>
       </div>
     </div>
   </div>

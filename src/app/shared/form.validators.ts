@@ -1,18 +1,11 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function textvalidator(): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
-    const regex = /^[A-Za-z]+$/;
-    const valid = regex.test(control.value);
-    // return valid ? null : { invalidFirstName: true };
-
-    if (!valid) {
-        return {
-          invalidText: {
-            message: 'Please enter only letters'
-          }
-        };
-      }
-      return null;
+export function patternValidator(pattern: RegExp): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (!control.value) {
+      return null; // no error if there is no value present
+    }
+    const valid = pattern.test(control.value);
+    return valid ? null : { pattern: { value: control.value } };
   };
 }
