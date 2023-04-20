@@ -996,6 +996,7 @@
     .bt-bg{
       background-color: $primary-color;
     }
+    
     .mat-icon {
       font-size: 20px;
       width: 20px;
@@ -1012,3 +1013,10 @@
   margin: 0 15px 15px 0;
 }
 
+.errorstyle{
+  border-color: red;
+  display: block;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}

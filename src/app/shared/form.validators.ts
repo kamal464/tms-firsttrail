@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-
+import * as moment from 'moment';
 export function patternValidator(pattern: RegExp): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     if (!control.value) {
@@ -9,3 +9,48 @@ export function patternValidator(pattern: RegExp): ValidatorFn {
     return valid ? null : { pattern: { value: control.value } };
   };
 }
+
+export function ageValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const birthdate = moment(control.get('birth')?.value);
+    const joiningDate = moment(control.get('joining')?.value);
+
+    const age = moment.duration(joiningDate.diff(birthdate)).asYears();
+
+    if (age < 18) {
+      return { ageInvalid: true };
+    }
+
+    return null;
+  };
+}
+export function marriageValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const birthdate = moment(control.get('birth')?.value);
+    const marriageDate = moment(control.get('marriage')?.value);
+
+    const age = moment.duration(marriageDate.diff(birthdate)).asYears();
+
+    if (age < 21) {
+      return { marriageInvalid: true };
+    }
+
+    return null;
+  };
+}
+export function resignationValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const joiningDate = moment(control.get('joining')?.value);
+    const resignationDate = moment(control.get('resignation')?.value);
+
+    // const age = moment.duration(resignationDate.diff(joiningDate)).asYears();
+
+    if (resignationDate < joiningDate) {
+      return { resignationInvalid: true };
+    }
+
+    return null;
+  };
+}
+
+
