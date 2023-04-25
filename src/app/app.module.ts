@@ -11,7 +11,6 @@ import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,

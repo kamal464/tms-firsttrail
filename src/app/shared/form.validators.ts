@@ -52,5 +52,3 @@ export function resignationValidator(): ValidatorFn {
     return null;
   };
 }
-
-
