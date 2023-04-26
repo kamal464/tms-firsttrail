@@ -100,7 +100,11 @@ info = 'noview'
   }
 
   onCancel() {
-    this.companyDetails.reset();
+    console.log(this.companyDetails)
+    if(this.companyDetails.value != null ){
+
+      this.companyDetails.reset();
+    }
   }
   
   doAction(action: any): void {
@@ -142,6 +146,33 @@ info = 'noview'
     }
   }
   
+
+ 
+  errorMessages: string[] = [];
+
+  populateErrorMessages() {
+    Object.keys(this.companyDetails.controls).forEach(field => {
+      const control = this.companyDetails.get(field);
+console.log(this.errorMessages)
+      if (control instanceof FormControl && control.errors) {
+        Object.keys(control.errors).forEach(error => {
+          switch (error) {
+            case 'required':
+              this.errorMessages.push(`${field} is required`);
+              break;
+            case 'pattern':
+              this.errorMessages.push(`Please check the  ${field},pattern `);
+              break;
+
+            default:
+              this.errorMessages.push(`Error: ${error}`);
+              break;
+          }
+        });
+      }
+    });
+  }
+
 
 
 }

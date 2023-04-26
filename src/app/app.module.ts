@@ -10,6 +10,7 @@ import { CompanyOfficesComponent } from './company-offices/company-offices.compo
 import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
+    KitUiTextEditComponent
   ],
   imports: [
     BrowserModule,
