@@ -41,6 +41,7 @@
           class="tool-bar-button"
           matTooltip="Save Changes"
           (click)="doAction('save')"
+          (click)="saveOff()"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
@@ -70,18 +71,18 @@
         </span>
       </div>
     </div>
-    <div class="office-edit-contents content-data-hold" 
-    *ngIf="currentAction == 'edit'">
+    <div class="office-edit-contents content-data-hold" [formGroup]="myGroup" *ngIf="currentAction == 'edit'">
     <!-- <div class="error-text-hold" >
       <mat-icon>error_outline</mat-icon>
       <span class="error-text" [innerHtml]="errorMsg"></span>
     </div> -->
-    <div class="form-field-hold">
+    <!-- <div class="form-field-hold">
       <mat-label class="form-field-label">Office Title</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Short Code." formControlName="code">
       </mat-form-field>
-    </div>
+    </div> -->
+    <kit-ui-text-edit label="office title" [placeholder]="'Ex: Short Code.'"[formControlName]="'code'"></kit-ui-text-edit>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Office Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">

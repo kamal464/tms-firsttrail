@@ -10,7 +10,12 @@ import { CompanyOfficesComponent } from './company-offices/company-offices.compo
 import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { NewOverviewComponent } from './new-overview/new-overview.component';
+=======
+import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.component';
+
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
 
 @NgModule({
   declarations: [
@@ -19,7 +24,11 @@ import { NewOverviewComponent } from './new-overview/new-overview.component';
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
+<<<<<<< HEAD
     NewOverviewComponent,
+=======
+    KitUiTextEditComponent
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
   ],
   imports: [
     BrowserModule,

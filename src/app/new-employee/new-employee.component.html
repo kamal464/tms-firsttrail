@@ -23,6 +23,8 @@
           class="tool-bar-button"
           matTooltip="help"
           (click)="inFo()"
+          (click)="populateErrorMessages()"
+
         >
           <mat-icon>help</mat-icon>
           <span class="button-label">help</span>
@@ -69,6 +71,7 @@
               [class.invalid]="companyDetails.get('firstname').invalid"
             />
           </mat-form-field>
+<<<<<<< HEAD
           <div
             class="errorstyle"
             *ngIf="submitted && companyDetails['controls']['firstname']['errors']?.['required']"
@@ -76,6 +79,9 @@
             FirstName is required
             <mat-icon matSuffix style="color: red">*</mat-icon>
           </div>
+=======
+          <div class="errorstyle" *ngIf="submitted && companyDetails['controls']['firstname']['errors']?.['required'] ">FirstName is required <mat-icon matSuffix style="color: red;">*</mat-icon></div>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
 
           <div
             class="errorstyle"
@@ -191,6 +197,7 @@
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill"
+<<<<<<< HEAD
           >
             <mat-icon matPrefix>lock</mat-icon>
             <input
@@ -207,6 +214,19 @@
             password is required.
             <mat-icon matSuffix style="color: red">*</mat-icon>
           </div>
+=======
+            >
+            <mat-icon style="color: #686868;" matPrefix>lock</mat-icon>
+          <input
+          type="password"
+          matInput
+          placeholder="Ex:**********"
+          formControlName="password"
+          />
+          
+        </mat-form-field>
+          <div class="errorstyle" *ngIf="submitted && companyDetails['controls']['password']['errors']?.['required']">password is required. <mat-icon matSuffix style="color: red;">*</mat-icon></div>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
 
           <div
             class="errorstyle"
@@ -223,7 +243,11 @@
             floatPlaceholder="never"
             appearance="fill"
           >
+<<<<<<< HEAD
             <mat-icon matPrefix>lock</mat-icon>
+=======
+          <mat-icon style="color: #686868;"matPrefix>lock</mat-icon>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
 
             <input
               type="password"
@@ -385,11 +409,19 @@
         </div>
         <div class="form-field-hold">
           <mat-label class="form-field-label">Skills</mat-label>
+<<<<<<< HEAD
           <section class="example-section">
             <mat-checkbox class="example-margin">Angular</mat-checkbox>
             <mat-checkbox class="example-margin">React</mat-checkbox>
             <mat-checkbox class="example-margin">Python</mat-checkbox>
             <mat-checkbox class="example-margin">MySql</mat-checkbox>
+=======
+          <section class="example-section" >
+            <mat-checkbox  class="example-margin">Angular</mat-checkbox>
+            <mat-checkbox  class="example-margin">React</mat-checkbox>
+            <mat-checkbox   class="example-margin">Python</mat-checkbox>
+            <mat-checkbox    class="example-margin">MySql</mat-checkbox>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
           </section>
           <div
             class="errorstyle"
@@ -449,6 +481,7 @@
             floatPlaceholder="never"
             appearance="fill"
           >
+<<<<<<< HEAD
             <input
               matInput
               placeholder="Ex:100.00"
@@ -456,6 +489,11 @@
               (keydown)="onmarksDown($event)"
             />
             <mat-icon matSuffix>percentage</mat-icon>
+=======
+            <input matInput placeholder="Ex:100.00" formControlName="marks" (keydown)="onmarksDown($event)" />
+            <mat-icon style="color: #686868;" matSuffix >percentage</mat-icon>
+
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
           </mat-form-field>
           <div
             class="errorstyle"
@@ -489,52 +527,90 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="controls-view" *ngIf="info == 'view'">
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
         <span class="help-text"
           >Click on '<b>Save</b>' button, to save the Employee information</span
         >
+=======
+    <div class="controls-view"  *ngIf="info == 'view'" >
+
+      <!-- <div>{{errorMessages}}</div> -->
+      
+       <div class="help-info-hold" *ngFor="let errorMessage of errorMessages">
+        <mat-icon>info</mat-icon>
+        <span class="help-text">{{errorMessage}}</span>
+      </div>
+      <!-- <div class="help-info-hold" >
+        <mat-icon>info</mat-icon>
+        <span class="help-text">{{errorMessages[1]}}</span>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
-        <span class="help-text">Please enter valid <b>mobile</b> number</span>
+        <span class="help-text">{{errorMessages[3]}}</span>
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
-        <span class="help-text">Please enter valid <b>email</b></span>
+        <span class="help-text">{{errorMessages[4]}}</span>
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
-        <span class="help-text">Please enter strong <b>password</b></span>
+        <span class="help-text">{{errorMessages[5]}}</span>
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
+<<<<<<< HEAD
         <span class="help-text"
           >Please enter only <b>text</b> in text-field</span
         >
+=======
+        <span class="help-text"> {{errorMessages[6]}}
+         </span>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
+<<<<<<< HEAD
         <span class="help-text"
           >pleae check <b>Joining-Date</b> should be greater than
           <b> Birth-Date </b> atleast <b>18 years</b></span
         >
+=======
+        <span class="help-text">{{errorMessages[7]}}</span>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
+<<<<<<< HEAD
         <span class="help-text"
           >pleae check <b>Marriage-Date</b> should be greater than
           <b> Birth-Date </b> atleast <b>21 years</b></span
         >
+=======
+        <span class="help-text">{{errorMessages[8]}}</span>
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
       </div>
       <div class="help-info-hold">
         <mat-icon>info</mat-icon>
+<<<<<<< HEAD
         <span class="help-text"
           >pleae check <b>Resignation-Date</b> should be greater than
           <b> Joining-Date</b></span
         >
       </div>
     </div>
+=======
+        <span class="help-text">{{errorMessages[9]}}</span>
+      </div>
+      <div class="help-info-hold" >
+        <mat-icon>info</mat-icon>
+        <span class="help-text">{{errorMessages[10]}}</span>
+      </div> -->
+  
+    
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
   </div>
 </div>

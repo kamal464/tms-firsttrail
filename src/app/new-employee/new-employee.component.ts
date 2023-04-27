@@ -124,7 +124,11 @@ export class NewEmployeeComponent implements OnInit {
   // }
 
   onCancel() {
-    this.companyDetails.reset();
+    console.log(this.companyDetails)
+    if(this.companyDetails.value != null ){
+
+      this.companyDetails.reset();
+    }
   }
 
   doAction(action: any): void {
@@ -155,6 +159,7 @@ export class NewEmployeeComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   oncharDown(event: KeyboardEvent) {
     const inputField = event.target as HTMLInputElement;
     if (
@@ -177,6 +182,35 @@ export class NewEmployeeComponent implements OnInit {
       event.preventDefault();
     }
   }
+=======
+ 
+  errorMessages: string[] = [];
+
+  populateErrorMessages() {
+    Object.keys(this.companyDetails.controls).forEach(field => {
+      const control = this.companyDetails.get(field);
+console.log(this.errorMessages)
+      if (control instanceof FormControl && control.errors) {
+        Object.keys(control.errors).forEach(error => {
+          switch (error) {
+            case 'required':
+              this.errorMessages.push(`${field} is required`);
+              break;
+            case 'pattern':
+              this.errorMessages.push(`Please check the  ${field},pattern `);
+              break;
+
+            default:
+              this.errorMessages.push(`Error: ${error}`);
+              break;
+          }
+        });
+      }
+    });
+  }
+
+
+>>>>>>> bae23cd3153db51d8b8d06ccdf04cae2605c97aa
 
   onSave() {
     this.submitted = true;
