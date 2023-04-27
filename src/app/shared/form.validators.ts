@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 export function patternValidator(pattern: RegExp): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {

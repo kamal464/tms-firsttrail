@@ -10,6 +10,7 @@ import { CompanyOfficesComponent } from './company-offices/company-offices.compo
 import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewOverviewComponent } from './new-overview/new-overview.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
+    NewOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     // FormsModule
   ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
