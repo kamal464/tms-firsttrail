@@ -6,18 +6,11 @@ import { FormControl,FormGroup } from '@angular/forms';
   styleUrls: ['./kit-ui-text-edit.component.scss']
 })
 export class KitUiTextEditComponent implements OnInit {
-  @Input() label: string;
-  @Input() placeholder: string;
-  // @Input() formControlName: any;
-  @Input() someThing: any;
-  @Input() myFormControl: FormControl;
-  // @Input() myFormControl: any;
-  @Input() FormControlNameValue :any;
+  @Input() companyname: string;
+  @Input() placeHolder: string;
 
 
-  get myFormGroup() {
-    return this.myFormControl.parent;
-  }
+ 
 
 constructor() {}
   

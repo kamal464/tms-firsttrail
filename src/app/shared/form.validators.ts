@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn,FormControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 export function patternValidator(pattern: RegExp): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -52,13 +52,3 @@ export function resignationValidator(): ValidatorFn {
     return null;
   };
 }
-
-export function matchPasswordValidator(control: FormControl): { [key: string]: boolean } | null {
-  const password = control.parent?.get('password')?.value;
-  const confirmPassword = control.value;
-  if (password !== confirmPassword) {
-    return { 'matchPassword': true };
-  }
-  return null;
-}
-

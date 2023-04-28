@@ -10,11 +10,12 @@ import { CompanyOfficesComponent } from './company-offices/company-offices.compo
 import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewOverviewComponent } from './new-overview/new-overview.component'
 import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.component';
 import { TitleComponent } from './shared/components/title/title.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
-
-
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +23,16 @@ import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.componen
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
+
     KitUiTextEditComponent,
     TitleComponent,
-    ToolBarComponent
+    ToolBarComponent,
+
+
+    NewOverviewComponent,
+
+ 
+
   ],
   imports: [
     BrowserModule,
@@ -32,10 +40,11 @@ import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.componen
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    // FormsModule
+    FormsModule,
+    HttpClientModule
   ],
- 
-  providers: [],
+
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

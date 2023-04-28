@@ -1,5 +1,7 @@
 <div>
   <div class="headings">
+
+    
     <app-title title="Overview" subTitle="Company's overall Information"></app-title>
     <span class="spacer"></span>
   </div>
@@ -111,28 +113,29 @@
         </div>
       </div>
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'edit'"  [formGroup]="companyDetails"
+      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'edit'" 
       >
       <!-- <div class="error-text-hold">
         <mat-icon>error_outline</mat-icon>
         <span class="error-text"></span>
       </div> -->
-      <div class="form-field-hold two-column-field">
+      <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Registered Company Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="legalname">
+          <input matInput placeholder="Ex: Organisation India Pvt Ltd" >
         </mat-form-field>
-      </div>
+      </div> -->
+      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"></kit-ui-text-edit>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Short Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="name">
+          <input matInput placeholder="Ex: Organisation India Pvt Ltd">
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Country</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select placeholder="Ex: Country" formControlName="fkcountrycode">
+          <mat-select placeholder="Ex: Country">
             <mat-select-trigger>
               <!-- <span class="flag-hold">
                 <mat-icon></mat-icon>
@@ -151,46 +154,46 @@
         <mat-label class="form-field-label">Phone</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" formControlName="phone">
+          <input matInput placeholder="Ex: 9876543210" >
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Fax</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 040-22558877" formControlName="fax">
+          <input matInput placeholder="Ex: 040-22558877">
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Email</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput type="email" placeholder="Ex: support@company.com" formControlName="email">
+          <input matInput type="email" placeholder="Ex: support@company.com" >
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Website</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.company.com" formControlName="website">
+          <input matInput placeholder="Ex: www.company.com" >
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">WhatsApp</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" formControlName="whatsapp">
+          <input matInput placeholder="Ex: 9876543210" >
         </mat-form-field>
       </div>
       <div class="form-field-hold">
         <mat-label class="form-field-label">LinkedIN</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.linkedin.com/company/dtpli" formControlName="linkedin">
+          <input matInput placeholder="Ex: www.linkedin.com/company/dtpli">
         </mat-form-field>
       </div>
       <div class="form-field-hold">
         <mat-label class="form-field-label">Remarks</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
-            placeholder="Ex. State-of-art development center." formControlName="remarks"></textarea>
+            placeholder="Ex. State-of-art development center."></textarea>
         </mat-form-field>
       </div>
       </div>

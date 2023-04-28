@@ -1,0 +1,24 @@
+<div class="headings">
+
+    
+  <app-title title="Overview" subTitle="Company's overall Information"></app-title>
+  <span class="spacer"></span>
+</div>
+<div class="contents">
+  <div class="content-hold">
+    <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar>
+    <div class="company-overview-contents content-data-hold">
+      <div class="form-field-hold two-column-field">
+        <form (submit)="onSubmit()">
+          <div>
+          <label for="name">Registered Company Name</label><br><br>
+          <input type="text" id="name" name="name" pattern="[A-Za-z]" [(ngModel)]="view.name"><br><br>
+          <input type="submit" value="Submit">
+        </div>
+          </form>
+        
+        <!-- <input matInput placeholder="Ex: Organisation India Pvt Ltd" /> -->
+      </div>
+    </div>
+  </div>
+</div>
