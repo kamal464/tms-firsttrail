@@ -11,6 +11,8 @@ import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.component';
+import { TitleComponent } from './shared/components/title/title.component';
+import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.comp
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
-    KitUiTextEditComponent
+    KitUiTextEditComponent,
+    TitleComponent,
+    ToolBarComponent
   ],
   imports: [
     BrowserModule,

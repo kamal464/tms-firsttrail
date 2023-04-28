@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { FormBuilder ,FormGroup,Validators} from '@angular/forms';
+import { Component, OnInit,EventEmitter, Output} from '@angular/core';
+import { FormBuilder, FormControl ,FormGroup,Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-offices',
@@ -7,8 +7,10 @@ import { FormBuilder ,FormGroup,Validators} from '@angular/forms';
   styleUrls: ['./offices.component.scss']
 })
 export class OfficesComponent implements OnInit {
-  myGroup: FormGroup;
 
+
+  myGroup: FormGroup;
+  code:string;
   _officeTitle = '';
 
   currentAction = 'view';
@@ -27,7 +29,8 @@ export class OfficesComponent implements OnInit {
       city: ['', Validators.required],
       fkcountrycode: [null, Validators.required],
       pincode: ['', Validators.required],
-    })
+    });
+    this.code = 'code';
    }
 
 

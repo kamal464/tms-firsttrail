@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-
+import { FormControl,FormGroup } from '@angular/forms';
 @Component({
   selector: 'kit-ui-text-edit',
   templateUrl: './kit-ui-text-edit.component.html',
@@ -8,10 +8,19 @@ import { Component, OnInit ,Input} from '@angular/core';
 export class KitUiTextEditComponent implements OnInit {
   @Input() label: string;
   @Input() placeholder: string;
-  @Input() formControlName: string;
+  // @Input() formControlName: any;
+  @Input() someThing: any;
+  @Input() myFormControl: FormControl;
+  // @Input() myFormControl: any;
+  @Input() FormControlNameValue :any;
 
-  constructor() { }
 
+  get myFormGroup() {
+    return this.myFormControl.parent;
+  }
+
+constructor() {}
+  
   ngOnInit(): void {
   }
 

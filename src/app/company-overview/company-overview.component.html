@@ -1,9 +1,6 @@
 <div>
   <div class="headings">
-    <div class="title-hold">
-      <span class="title mat-display-1 primary-color-text"> Overview</span>
-      <span class="sub-title mat-small">Company's overall Information</span>
-    </div>
+    <app-title title="Overview" subTitle="Company's overall Information"></app-title>
     <span class="spacer"></span>
   </div>
   <div class="contents">
@@ -12,11 +9,12 @@
       <span class="mat-display-1 content-loading-text"></span>
     </div> -->
     <div class="content-hold">
-      <!-- tool-bar -->
+      <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar>
 
       <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
         (onAction)="doAction($event)"></tool-bar> -->
-      <mat-toolbar class="tool-bar">
+       <!-- <tool-bar></tool-bar> -->
+      <!-- <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
         <button
@@ -50,11 +48,11 @@
           <mat-icon>save</mat-icon>
           <span class="button-label ">Save</span>
         </button>
-      </mat-toolbar>
+      </mat-toolbar> -->
 
       <!-- Content-view -->
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="currentAction == 'view'">
+      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'view'">
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Registered Company Name</mat-label>
           <span class="entry-data">DesignTribePrivateLimited</span>
@@ -113,7 +111,7 @@
         </div>
       </div>
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="currentAction == 'edit'"  [formGroup]="companyDetails"
+      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'edit'"  [formGroup]="companyDetails"
       >
       <!-- <div class="error-text-hold">
         <mat-icon>error_outline</mat-icon>

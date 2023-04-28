@@ -6,6 +6,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./company-overview.component.scss'],
 })
 export class CompanyOverviewComponent implements OnInit {
+countries : [
+  {"label":"ind"},
+  {"label":"us"},
+  {"label":"aus"}
+]
+
+  _currentAction = 'view';
   currentAction = 'view';
   isProcessing = false;
   hasNew = false;
@@ -36,12 +43,12 @@ export class CompanyOverviewComponent implements OnInit {
   doAction(action: any): void {
     switch (action) {
       case 'edit':
-        this.currentAction = action;
+        this._currentAction = action;
         break;
       case 'save':
         break;
       default:
-        this.currentAction = 'view';
+        this._currentAction = 'view';
     }
   }
 
