@@ -11,12 +11,12 @@
       <span class="mat-display-1 content-loading-text"></span>
     </div> -->
     <div class="content-hold">
-      <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar>
+      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar> -->
 
       <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
         (onAction)="doAction($event)"></tool-bar> -->
        <!-- <tool-bar></tool-bar> -->
-      <!-- <mat-toolbar class="tool-bar">
+      <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
         <button
@@ -45,16 +45,17 @@
           class="tool-bar-button "
           matTooltip="Save Changes"
           (click)="doAction('save')"
+          (click)="onSave()"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
           <span class="button-label ">Save</span>
         </button>
-      </mat-toolbar> -->
+      </mat-toolbar> 
 
       <!-- Content-view -->
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'view'">
+      <div class="company-overview-contents content-data-hold"  *ngIf="currentAction == 'view'">
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Registered Company Name</mat-label>
           <span class="entry-data">DesignTribePrivateLimited</span>
@@ -113,7 +114,7 @@
         </div>
       </div>
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'edit'" 
+      <div class="company-overview-contents content-data-hold"  *ngIf="currentAction == 'edit'" 
       >
       <!-- <div class="error-text-hold">
         <mat-icon>error_outline</mat-icon>
@@ -125,22 +126,25 @@
           <input matInput placeholder="Ex: Organisation India Pvt Ltd" >
         </mat-form-field>
       </div> -->
-      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"></kit-ui-text-edit>
       <div class="form-field-hold two-column-field">
+      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"  (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
+      </div>
+      <div class="form-field-hold two-column-field">
+      <kit-ui-text-edit companyname="Short Name" placeHolder = "DTPL"  (dataChanged)="onDataChanged($event)"  ></kit-ui-text-edit>
+      </div>
+      
+       <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Short Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Organisation India Pvt Ltd">
         </mat-form-field>
-      </div>
+      </div> -->
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Country</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select placeholder="Ex: Country">
             <mat-select-trigger>
-              <!-- <span class="flag-hold">
-                <mat-icon></mat-icon>
-                India
-              </span> -->
+             
             </mat-select-trigger>
             <mat-option>
               <span class="flag-hold">
