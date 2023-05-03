@@ -1,8 +1,7 @@
-import { Component,EventEmitter, OnInit ,Input,Output} from '@angular/core';
-import { FormControl,FormGroup } from '@angular/forms';
+import { Component,EventEmitter, OnInit ,Input,Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SharedService } from '../shared/shared.service';
 // import { debounceTime } from 'rxjs/operators';
+
 @Component({
   selector: 'kit-ui-text-edit',
   templateUrl: './kit-ui-text-edit.component.html',
@@ -14,14 +13,23 @@ export class KitUiTextEditComponent implements OnInit {
   @Input() companyname: string;
   @Input() placeHolder: string;
   inputData: any = [];
-
-
+  @Input() inputName:string;
+  texterr:boolean=false;
+  onInput() {
+    const lettersOnly = this.inputData.name.replace(/[^a-zA-Z ]/g, '');
+    if (this.inputData.name !== lettersOnly) {
+      this.texterr = true;
+    } else {
+      this.texterr = false;
+    }
+  }
   onInputChange() {
+    this.onInput();
     this.dataChanged.emit(this.inputData);
   }
   
 
-constructor(private http : HttpClient,private sharedService: SharedService) {}
+constructor(private http : HttpClient,) {}
 
 //   this.sharedService.getValue().subscribe((value) => {
 //     this.inputData = value;

@@ -11,8 +11,9 @@ import { HttpClient } from '@angular/common/http';
 export class CompanyOverviewComponent implements OnInit {
   @ViewChild('KitUiTextEditComponent') childComponent: KitUiTextEditComponent;
   savedData: any=[];
+ 
   onSave() {
-    this.onpost();
+    // this.onpost();
     // this.childComponent.callPostMethod();
     if(this.isvalidtext(this.savedData.name)){
       console.log(`${this.savedData.name} is valid`);
@@ -22,7 +23,7 @@ export class CompanyOverviewComponent implements OnInit {
     }
    
   }
-
+ 
 
 onpost(){
   this.http.put('http://192.168.0.58:5000/org/updateorg', this.savedData).subscribe();
@@ -44,14 +45,12 @@ countries : [
 
   _currentAction = 'view';
   currentAction = 'view';
-  isProcessing = false;
+
   hasNew = false;
   hasEdit = true;
   companyDetails: '';
-  constructor (private sharedService: SharedService,private http : HttpClient){}
-  passValue() {
-    this.sharedService.setValue(this.savedData);
-  }
+  constructor ( private http : HttpClient){}
+  
 
   doAction(action: any): void {   
     switch (action) {

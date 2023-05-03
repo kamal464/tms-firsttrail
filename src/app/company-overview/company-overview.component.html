@@ -116,6 +116,7 @@
 
       <div class="company-overview-contents content-data-hold"  *ngIf="currentAction == 'edit'" 
       >
+   
       <!-- <div class="error-text-hold">
         <mat-icon>error_outline</mat-icon>
         <span class="error-text"></span>
@@ -127,19 +128,21 @@
         </mat-form-field>
       </div> -->
       <div class="form-field-hold two-column-field">
-      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"  (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
+      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd" [inputName]="'name'" (dataChanged)="onDataChanged($event)"></kit-ui-text-edit>
       </div>
       <div class="form-field-hold two-column-field">
-      <kit-ui-text-edit companyname="Short Name" placeHolder = "DTPL"  (dataChanged)="onDataChanged($event)"  ></kit-ui-text-edit>
+      <kit-ui-text-edit companyname="Short Name" placeHolder = "DTPL"   [inputName]="'shortname'" (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
       </div>
-      
+      <div class="form-field-hold two-column-field ">
+        <app-country placeHolder="country" ></app-country>
+      </div>
        <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Short Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Organisation India Pvt Ltd">
         </mat-form-field>
       </div> -->
-      <div class="form-field-hold two-column-field">
+      <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Country</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select placeholder="Ex: Country">
@@ -153,7 +156,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
+      </div> -->
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Phone</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">

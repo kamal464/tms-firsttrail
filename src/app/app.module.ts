@@ -16,6 +16,7 @@ import { TitleComponent } from './shared/components/title/title.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
+import { CountryComponent } from './country/country.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
-
+    CountryComponent,
     KitUiTextEditComponent,
     TitleComponent,
     ToolBarComponent,
