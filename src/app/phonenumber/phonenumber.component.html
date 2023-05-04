@@ -1,0 +1,6 @@
+<div class="form-field-hold">
+<mat-label class="form-field-label">{{numbertype}}</mat-label>
+<mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+  <span matPrefix>+91</span>
+  <input matInput [placeholder]=placeHolder [(ngModel)]="inputData[inputName]" (input)="onInputChange()">
+</mat-form-field></div>

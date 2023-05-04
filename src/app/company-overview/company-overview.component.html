@@ -46,6 +46,8 @@
           matTooltip="Save Changes"
           (click)="doAction('save')"
           (click)="onSave()"
+          
+          
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
@@ -128,13 +130,13 @@
         </mat-form-field>
       </div> -->
       <div class="form-field-hold two-column-field">
-      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd" [inputName]="'name'" (dataChanged)="onDataChanged($event)"></kit-ui-text-edit>
+      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"  (newItemEvent)="addItem($event)" [inputName]="'name'" ></kit-ui-text-edit>
       </div>
       <div class="form-field-hold two-column-field">
-      <kit-ui-text-edit companyname="Short Name" placeHolder = "DTPL"   [inputName]="'shortname'" (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
+      <kit-ui-text-edit companyname="  Short Name" placeHolder = "DTPL"   [inputName]="'shortname'"   (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
       </div>
       <div class="form-field-hold two-column-field ">
-        <app-country placeHolder="country" ></app-country>
+        <app-country placeHolder="country"  (dataChanged)="onDataChanged($event)"></app-country>
       </div>
        <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Short Name</mat-label>
@@ -158,50 +160,57 @@
         </mat-form-field>
       </div> -->
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Phone</mat-label>
+        <!-- <mat-label class="form-field-label">Phone</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
           <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-phonenumber placeHolder="Ex: 9876543210"  numbertype="Phone" [inputName]="'phone'" (dataChanged)="onDataChanged($event)"></app-phonenumber>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Fax</mat-label>
+        <!-- <mat-label class="form-field-label">Fax</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
           <input matInput placeholder="Ex: 040-22558877">
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-phonenumber placeHolder="Ex: 040-22558877" numbertype="Fax" [inputName]="'fax'" (dataChanged)="onDataChanged($event)"></app-phonenumber>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Email</mat-label>
+        <!-- <mat-label class="form-field-label">Email</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput type="email" placeholder="Ex: support@company.com" >
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-email placeHolder="Ex: support@company.com" [inputName]="'email'"  (dataChanged)="onDataChanged($event)"></app-email>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Website</mat-label>
+        <!-- <mat-label class="form-field-label">Website</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: www.company.com" >
-        </mat-form-field>
+        </mat-form-field> -->
+        <kit-ui-text-edit companyname="Website" placeHolder = "Ex: www.company.com"   [inputName]="'website'"   (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">WhatsApp</mat-label>
+        <!-- <mat-label class="form-field-label">WhatsApp</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <span matPrefix>+91</span>
           <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-phonenumber placeHolder="Ex: 9876543210" numbertype="whatsapp" [inputName]="'whatsapp'"  (dataChanged)="onDataChanged($event)"></app-phonenumber>
       </div>
       <div class="form-field-hold">
-        <mat-label class="form-field-label">LinkedIN</mat-label>
+        <!-- <mat-label class="form-field-label">LinkedIN</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: www.linkedin.com/company/dtpli">
-        </mat-form-field>
+        </mat-form-field> -->
+        <kit-ui-text-edit companyname="LinkedIN" placeHolder = "Ex: www.linkedin.com/company/dtpli"   [inputName]="'website'"   (dataChanged)="onDataChanged($event)" ></kit-ui-text-edit>
       </div>
       <div class="form-field-hold">
-        <mat-label class="form-field-label">Remarks</mat-label>
+        <!-- <mat-label class="form-field-label">Remarks</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
             placeholder="Ex. State-of-art development center."></textarea>
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-textarea title="Remarks" placeHolder="Ex. State-of-art development center." [inputName]="'comments'"  (dataChanged)="onDataChanged($event)"></app-textarea>
       </div>
       </div>
     </div>

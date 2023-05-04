@@ -6,7 +6,7 @@
   [placeholder]=placeHolder
   [(ngModel)]="selectedOption"
 >
-<mat-option *ngFor="let option of options" [value]="option">{{ option.label }}</mat-option>
+<mat-option *ngFor="let option of options" [value]="option" (input)="onInputChange()">{{ option.label }}</mat-option>
 </mat-select>
 </mat-form-field>
 </div>

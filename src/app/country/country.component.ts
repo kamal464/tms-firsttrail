@@ -7,22 +7,35 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./country.component.scss']
 })
 export class CountryComponent implements OnInit {
+  @Output() dataChanged = new EventEmitter<any>();
   @Input() placeHolder: string;
-
+// inputData:any=[];
   selectedOption:any;
-  options = [{ label: 'ind' }, { label: 'us' }, { label: 'uk' }];
+  options : any= [{ label: 'ind' }, { label: 'us' }, { label: 'uk' }];
   constructor(private http: HttpClient) { }
 
+  onInputChange() {
+    this.dataChanged.emit(this.selectedOption);
+  }
 
-
-  getRecord(){
+  getCountries(){
     this.http.post('http://192.168.0.58:5000/org/getcountry',{}).subscribe((data =>{ console.log(data)
-  this.selectedOption = data;
+  this.options = data;
   
   }))
   }
   ngOnInit(): void {
-    this.getRecord();
+    this.getCountries();
+    // this.getRecord();
   }
+
+  // getRecord(){
+  //   this.http.post('http://192.168.0.58:5000/org/getorg',{}).subscribe((data =>{ console.log(data)
+  // this.inputData = data;
+  
+  // }))
+  // }
+
+
 
 }

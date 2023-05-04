@@ -11,12 +11,17 @@ import { HttpClient } from '@angular/common/http';
 export class CompanyOverviewComponent implements OnInit {
   @ViewChild('KitUiTextEditComponent') childComponent: KitUiTextEditComponent;
   savedData: any=[];
- 
+  items: string[] = [];
+  addItem(newItem: string) {
+    this.items.push(newItem);
+  }
   onSave() {
     // this.onpost();
     // this.childComponent.callPostMethod();
+    console.log(this.items)
+    console.log(this.savedData)
     if(this.isvalidtext(this.savedData.name)){
-      console.log(`${this.savedData.name} is valid`);
+      // console.log(`${this.savedData.name} is valid`);
   
     }else {
       console.log(`${this.savedData.name} is invalid`);
@@ -29,7 +34,7 @@ onpost(){
   this.http.put('http://192.168.0.58:5000/org/updateorg', this.savedData).subscribe();
 }
 
-  onDataChanged(data: string) {
+  onDataChanged(data: any) {
     this.savedData = data;
   }
 

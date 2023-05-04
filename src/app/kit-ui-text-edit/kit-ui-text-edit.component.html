@@ -3,7 +3,7 @@
   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
   <ng-container >
 
-    <input matInput [placeholder]=placeHolder #inputField   [(ngModel)]="inputData[inputName]" (input)="onInputChange()" appTextValidator>
+    <input matInput [placeholder]=placeHolder #inputField    [(ngModel)]="inputData[inputName]" (keyup.enter)="onEnter($event)" (input)="onInputChange()" appTextValidator>
   </ng-container>
   </mat-form-field>
   <p *ngIf="texterr" style="color: red;">Input must contain only letters and spaces</p>

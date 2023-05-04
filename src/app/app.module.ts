@@ -17,6 +17,9 @@ import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.componen
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
 import { CountryComponent } from './country/country.component';
+import { PhonenumberComponent } from './phonenumber/phonenumber.component';
+import { EmailComponent } from './email/email.component';
+import { TextareaComponent } from './textarea/textarea.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,9 @@ import { CountryComponent } from './country/country.component';
     KitUiTextEditComponent,
     TitleComponent,
     ToolBarComponent,
-
+PhonenumberComponent,
+EmailComponent,
+TextareaComponent,
 
     NewOverviewComponent,
 
