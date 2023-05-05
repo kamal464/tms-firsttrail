@@ -8,16 +8,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CountryComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<any>();
+  @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() placeHolder: string;
 // inputData:any=[];
   selectedOption:any;
   options : any= [{ label: 'ind' }, { label: 'us' }, { label: 'uk' }];
   constructor(private http: HttpClient) { }
 
-  onInputChange() {
-    this.dataChanged.emit(this.selectedOption);
+  addInputValue(value: string) {
+    this.inputValueEmitter.emit(this.selectedOption);
   }
 
+
+  onInputChange() {
+    this.validateDropdown();
+    this.dataChanged.emit(this.selectedOption);
+  }
+  validateDropdown() {
+    var dropdown = document.getElementById("my-dropdown");
+    var selectedValue = dropdown;
+    var errorMsg = document.getElementById("error-msg");
+    
+    if (!selectedValue) {
+      errorMsg.style.display = "block";
+      return false;
+    } else {
+      errorMsg.style.display = "none";
+      return true;
+    }
+  }
   getCountries(){
     this.http.post('http://192.168.0.58:5000/org/getcountry',{}).subscribe((data =>{ console.log(data)
   this.options = data;

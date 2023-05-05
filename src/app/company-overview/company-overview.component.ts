@@ -12,35 +12,30 @@ export class CompanyOverviewComponent implements OnInit {
   @ViewChild('KitUiTextEditComponent') childComponent: KitUiTextEditComponent;
   savedData: any=[];
   items: string[] = [];
-  addItem(newItem: string) {
-    this.items.push(newItem);
+  inputValues: string[] = [];
+
+  addInputValue(value: string) {
+    this.inputValues.push(value);
   }
   onSave() {
+    console.log(this.inputValues)
+    this.onAdd();
     // this.onpost();
     // this.childComponent.callPostMethod();
     console.log(this.items)
     console.log(this.savedData)
-    if(this.isvalidtext(this.savedData.name)){
-      // console.log(`${this.savedData.name} is valid`);
-  
-    }else {
-      console.log(`${this.savedData.name} is invalid`);
-    }
    
   }
  
-
+onAdd(){
+  this.http.post('http://192.168.0.58:5000/org/addorg',this.inputValues).subscribe();
+}
 onpost(){
-  this.http.put('http://192.168.0.58:5000/org/updateorg', this.savedData).subscribe();
+  this.http.put('http://192.168.0.58:5000/org/updateorg', this.inputValues).subscribe();
 }
 
   onDataChanged(data: any) {
     this.savedData = data;
-  }
-
-  isvalidtext(text){
-    const regex = /^[a-zA-Z]*$/;
-    return regex.test(text)
   }
 countries : [
   {"label":"ind"},

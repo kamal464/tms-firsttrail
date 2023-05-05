@@ -8,37 +8,76 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./kit-ui-text-edit.component.scss']
 })
 export class KitUiTextEditComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
-  // @Output() dataEvent = new EventEmitter<string>();
   @Output() dataChanged = new EventEmitter<any>();
+  @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() companyname: string;
   @Input() placeHolder: string;
   inputData: any = [];
   @Input() inputName:string;
   texterr:boolean=false;
+  error: string;
 
-  onEnter(event: any) {
-    const inputElement = event.target as HTMLInputElement;
-    const value = inputElement.value.trim();
-    if (value) {
-      this.newItemEvent.emit(value);
-      inputElement.value = '';
-    }
+  
+  addInputValue(value: string) {
+    this.inputValueEmitter.emit(value);
   }
-
   // onEnter(value: any) {
   //   this.newItemEvent.emit(value);
   // }
 
-  onInput() {
-    const lettersOnly = this.inputData.name.replace(/[^a-zA-Z ]/g, '');
-    if (this.inputData.name !== lettersOnly) {
-      this.texterr = true;
+  // onInput() {
+  //   const lettersOnly = this.inputData.name.replace(/[^a-zA-Z ]/g, '');
+  //   if (this.inputData.name !== lettersOnly) {
+  //     this.texterr = true;
+  //   } else {
+  //     this.texterr = false;
+  //   }
+  // }
+  
+
+onInput(){
+  if (this.inputName === 'name') {
+    if (this.inputData.name.length < 3) {
+      this.error = `${this.companyname} must be at least 3 characters long`;
+    } else if (!/^[a-zA-Z ]+$/.test(this.inputData.name)) {
+      this.error = `${this.companyname} must contain only letters and spaces`;
     } else {
-      this.texterr = false;
+      this.error = null;
+    }
+  } else if (this.inputName === 'shortname') {
+    if (this.inputData.shortname.length < 4) {
+      this.error = `${this.companyname} must be at least 4 characters long`;
+    } else if (!/^[A-Z]+$/.test(this.inputData.shortname)) {
+      this.error = `${this.companyname} must contain only capital letters`;
+    } else {
+      this.error = null;
     }
   }
+  else if (this.inputName === 'website'){
+    if (this.inputData.website.length < 10) {
+      this.error = `${this.companyname} must be at least 2 characters long`;
+    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.inputData.website)) {
+      this.error = `${this.companyname} must contain only capital letters`;
+    } else {
+      this.error = null;
+    }
+  }
+  else if (this.inputName === 'linkedin'){
+    if (this.inputData.linkedin.length < 10) {
+      this.error = `${this.companyname} must be at least 2 characters long`;
+    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.inputData.linkedin)) {
+      this.error = `${this.companyname} must contain only capital letters`;
+    } else {
+      this.error = null;
+    }
+  }
+  
+}
+
+
   onInputChange() {
+
+
     this.onInput();
     this.dataChanged.emit(this.inputData);
   }
