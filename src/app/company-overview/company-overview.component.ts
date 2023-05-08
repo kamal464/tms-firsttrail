@@ -3,35 +3,99 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { KitUiTextEditComponent } from '../kit-ui-text-edit/kit-ui-text-edit.component';
 import { SharedService } from '../shared/shared.service';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-company-overview',
   templateUrl: './company-overview.component.html',
   styleUrls: ['./company-overview.component.scss'],
 })
 export class CompanyOverviewComponent implements OnInit {
-  @ViewChild('KitUiTextEditComponent') childComponent: KitUiTextEditComponent;
+  @ViewChild('KitUiTextEditComponent') child: KitUiTextEditComponent;
   savedData: any=[];
   items: string[] = [];
   inputValues: string[] = [];
+  getData : any=[];
+  formData : any = [];
+  // formData : any = {
+  //   id:this.getData.id,
+  //   name: this.getData.name,
+  //   shortname: this.getData.shortname,
+  //   displayname: '',
+  //   fkcountrycode: this.getData.fkcountrycode,
+  //   phone: this.getData.phone,
+  //   email: this.getData.email,
+  //   fax: this.getData.fax,
+  //   website: this.getData.website,
+  //   whatsapp: this.getData.whatsapp,
+  //   linkedin: this.getData.linkedin,
+  //   comments: this.getData.comments,
+    
+  // };
+  getRecord(id: string) {
+    this.http.post('http://192.168.0.58:5000/org/getorg',{}).subscribe((data: any) => {
+      this.formData = {
+        id: data.id,
+        name: data.name,
+        shortname: data.shortname,
+        displayname: data.displayname,
+        fkcountrycode: data.fkcountrycode,
+        phone: data.phone,
+        email: data.email,
+        fax: data.fax,
+        website: data.website,
+        whatsapp: data.whatsapp,
+        linkedin: data.linkedin,
+        comments: data.comments,
+      };
+    });
+  }
+  handleInput(inputName: string, inputValue: string): void {
+    this.formData[inputName] = inputValue;
+  }
 
+  onAddData(data: string) {
+    // Call your post method here and pass the data to it
+    console.log(data);
+  }
   addInputValue(value: string) {
     this.inputValues.push(value);
   }
   onSave() {
-    console.log(this.inputValues)
-    this.onAdd();
-    // this.onpost();
+    console.log(this.inputValues.slice(-1))
+    console.log(this.formData)
+    // this.onAdd();
+    this.onpost();
     // this.childComponent.callPostMethod();
-    console.log(this.items)
-    console.log(this.savedData)
+    // console.log(this.items)
+    // console.log(this.savedData)
    
   }
+
+  // getRecord(){
+  //   this.http.post('http://192.168.0.58:5000/org/getorg',{}).subscribe((data =>{ console.log(data)
+  // this.getData = data;
+  // console.log(this.getData)
+  // console.log(this.formData)
+
+  
+  // }))
+  // }
  
 onAdd(){
-  this.http.post('http://192.168.0.58:5000/org/addorg',this.inputValues).subscribe();
+  const array = this.inputValues.slice(-1);
+  // const myObject =  {name:array}
+  const myJSON = JSON.stringify(array);
+  this.http.post('http://192.168.0.58:5000/org/addorg',this.formData).subscribe();
+  console.log(myJSON)
+
 }
 onpost(){
-  this.http.put('http://192.168.0.58:5000/org/updateorg', this.inputValues).subscribe();
+  const array = this.inputValues.slice(-1);
+  const myObject =  {name:array}
+  const myJSON = JSON.stringify(myObject);
+  console.log(myJSON)
+  console.log(this.formData.id)
+  this.http.put('http://192.168.0.58:5000/org/updateorg',this.formData).subscribe();
 }
 
   onDataChanged(data: any) {
@@ -67,5 +131,8 @@ countries : [
 
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getRecord('1683532683');
+  }
+
 }

@@ -12,12 +12,13 @@ export class EmailComponent implements OnInit {
   @Input() companyname: string;
   @Input() placeHolder: string;
   @Input() inputName:string;
+  @Input()  formData: any=[];
   inputData: any = [];
   texterr:boolean=false;
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
-    this.getRecord();
+    // this.getRecord();
   }
 
   addInputValue(value: string) {
@@ -29,7 +30,7 @@ export class EmailComponent implements OnInit {
   }
 
   onInput() {
-    const email = this.inputData.email.trim();
+    const email = this.formData.email.trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
     this.texterr = true;

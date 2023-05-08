@@ -10,6 +10,8 @@ export class CountryComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<any>();
   @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() placeHolder: string;
+  @Input() inputName:string;
+  @Input()  formData: any=[];
 // inputData:any=[];
   selectedOption:any;
   options : any= [{ label: 'ind' }, { label: 'us' }, { label: 'uk' }];

@@ -11,6 +11,7 @@ export class PhonenumberComponent implements OnInit {
   @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() numbertype: string;
   @Input() placeHolder: string;
+  @Input()  formData: any=[];
   inputData: any = [];
   @Input() inputName:any;
   error: string;
@@ -18,7 +19,7 @@ export class PhonenumberComponent implements OnInit {
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
-    this.getRecord();
+    // this.getRecord();
   }
 
 
@@ -44,25 +45,25 @@ export class PhonenumberComponent implements OnInit {
 
 onInput(){
   if (this.inputName === 'phone') {
-    if (this.inputData.phone.length < 10) {
+    if (this.formData.phone.length < 10) {
       this.error = `${this.numbertype} must be at least 10 characters long`;
-    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.inputData.phone)) {
+    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.formData.phone)) {
       this.error = `${this.numbertype} must contain only digits`;
     } else {
       this.error = null;
     }
   } else if (this.inputName === 'fax') {
-    if (this.inputData.fax.length < 10) {
+    if (this.formData.fax.length < 10) {
       this.error = `${this.numbertype} must be at least 10 characters long`;
-    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.inputData.fax)) {
+    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.formData.fax)) {
       this.error = `${this.numbertype} must contain only digits`;
     } else {
       this.error = null;
     }
   } else if (this.inputName === 'whatsapp')  {
-    if(this.inputData.whatsapp.length < 10) {
+    if(this.formData.whatsapp.length < 10) {
       this.error = `${this.numbertype} must be at least 10 characters long`;
-    }else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.inputData.whatsapp)) {
+    }else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(this.formData.whatsapp)) {
       this.error = `${this.numbertype} must contain only capital letters`;
     } else {
       this.error = null;
@@ -72,7 +73,7 @@ onInput(){
 
   onInputChange() {
     this.onInput();
-    this.dataChanged.emit(this.inputData);
+    this.dataChanged.emit(this.formData);
   }
 
 }

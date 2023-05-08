@@ -1,5 +1,6 @@
 import { Component,EventEmitter, OnInit ,Input,Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 // import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -10,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class KitUiTextEditComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<any>();
   @Output() inputValueEmitter = new EventEmitter<string>();
+  @Output() dataEvent = new EventEmitter<string>();
+  @Input()  formData: any=[];
   @Input() companyname: string;
   @Input() placeHolder: string;
   inputData: any = [];
@@ -17,7 +20,9 @@ export class KitUiTextEditComponent implements OnInit {
   texterr:boolean=false;
   error: string;
 
-  
+  sendData() {
+    this.dataEvent.emit(this.inputData);
+  }
   addInputValue(value: string) {
     this.inputValueEmitter.emit(value);
   }
@@ -37,36 +42,36 @@ export class KitUiTextEditComponent implements OnInit {
 
 onInput(){
   if (this.inputName === 'name') {
-    if (this.inputData.name.length < 3) {
+    if (this.formData.name.length < 3) {
       this.error = `${this.companyname} must be at least 3 characters long`;
-    } else if (!/^[a-zA-Z ]+$/.test(this.inputData.name)) {
+    } else if (!/^[a-zA-Z ]+$/.test(this.formData.name)) {
       this.error = `${this.companyname} must contain only letters and spaces`;
     } else {
       this.error = null;
     }
   } else if (this.inputName === 'shortname') {
-    if (this.inputData.shortname.length < 4) {
+    if (this.formData.shortname.length < 4) {
       this.error = `${this.companyname} must be at least 4 characters long`;
-    } else if (!/^[A-Z]+$/.test(this.inputData.shortname)) {
-      this.error = `${this.companyname} must contain only capital letters`;
+    } else if (!/^[a-zA-Z]+$/.test(this.formData.shortname)) {
+      this.error = `please enter correct ${this.companyname} format`;
     } else {
       this.error = null;
     }
   }
   else if (this.inputName === 'website'){
-    if (this.inputData.website.length < 10) {
-      this.error = `${this.companyname} must be at least 2 characters long`;
-    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.inputData.website)) {
-      this.error = `${this.companyname} must contain only capital letters`;
+    if (this.formData.website.length < 10) {
+      this.error = `${this.companyname} must be at least 10 characters long`;
+    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.formData.website)) {
+      this.error = `please enter correct ${this.companyname} format`;
     } else {
       this.error = null;
     }
   }
   else if (this.inputName === 'linkedin'){
-    if (this.inputData.linkedin.length < 10) {
-      this.error = `${this.companyname} must be at least 2 characters long`;
-    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.inputData.linkedin)) {
-      this.error = `${this.companyname} must contain only capital letters`;
+    if (this.formData.linkedin.length < 10) {
+      this.error = `${this.companyname} must be at least 10 characters long`;
+    } else if (!/^www\.[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(this.formData.linkedin)) {
+      this.error = `please enter correct ${this.companyname} format`;
     } else {
       this.error = null;
     }
@@ -76,10 +81,8 @@ onInput(){
 
 
   onInputChange() {
-
-
     this.onInput();
-    this.dataChanged.emit(this.inputData);
+    this.dataChanged.emit(this.formData);
   }
   
 
@@ -91,15 +94,16 @@ constructor(private http : HttpClient,) {}
 //   });
 // }
 
-callPostMethod() {
-  console.log('i got a call')
-  // Call the POST method here using the Angular HTTP service
-  this.http.post('http://192.168.0.58:5000/org/addorg', this.inputData).subscribe();
+// callPostMethod() {
+//   console.log('i got a call')
+//   // Call the POST method here using the Angular HTTP service
+//   this.http.post('http://192.168.0.58:5000/org/addorg', this.inputData).subscribe();
 
-}
+// }
 
   ngOnInit(): void {
-    this.getRecord()
+    // this.getRecord()
+    // console.log(this.formData)
   }
 
 

@@ -10,6 +10,7 @@ export class TextareaComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<string>();
   @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() title: string;
+  @Input()  formData: any=[];
   @Input() placeHolder: string;
   inputData: any = [];
   texterr:boolean=false;
@@ -17,7 +18,7 @@ export class TextareaComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getRecord();
+    // this.getRecord();
   }
 
   addInputValue(value: string) {
@@ -29,7 +30,7 @@ export class TextareaComponent implements OnInit {
   }
 
   onInput() {
-    const text = this.inputData.comments.trim();
+    const text = this.formData.comments.trim();
     if (text.length > 30) {
       this.texterr = true;
     } else {
