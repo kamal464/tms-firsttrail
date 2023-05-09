@@ -1,0 +1,8 @@
+<div class="form-field-hold">
+    <mat-label class="form-field-label">{{inttype}}</mat-label>
+    <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        
+        <input matInput [placeholder]=placeHolder #inputValue  (input)="addInputValue(inputValue.value)" [(ngModel)]="formData[inputName]" (input)="onInputChange()"  >
+      </mat-form-field>
+      <p class="error-message"  style="color: red;" *ngIf="error">{{ error }}</p>
+</div>

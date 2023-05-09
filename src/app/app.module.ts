@@ -20,6 +20,12 @@ import { CountryComponent } from './country/country.component';
 import { PhonenumberComponent } from './phonenumber/phonenumber.component';
 import { EmailComponent } from './email/email.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { IntComponent } from './int/int.component';
+import { IntDecimalComponent } from './int-decimal/int-decimal.component';
+import { ToggleComponent } from './toggle/toggle.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { DateComponent } from './date/date.component';
+import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +40,13 @@ import { TextareaComponent } from './textarea/textarea.component';
 PhonenumberComponent,
 EmailComponent,
 TextareaComponent,
-
-    NewOverviewComponent,
+IntComponent,
+IntDecimalComponent,
+ToggleComponent,
+CheckboxComponent,
+NewOverviewComponent,
+DateComponent,
+DateTimePickerComponent,
 
  
 
