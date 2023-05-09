@@ -6,11 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./company-overview.component.scss'],
 })
 export class CompanyOverviewComponent implements OnInit {
-countries : [
-  {"label":"ind"},
-  {"label":"us"},
-  {"label":"aus"}
-]
+  countries: [{ label: 'ind' }, { label: 'us' }, { label: 'aus' }];
 
   _currentAction = 'view';
   currentAction = 'view';
@@ -18,12 +14,9 @@ countries : [
   hasNew = false;
   hasEdit = true;
   companyDetails: '';
-  constructor (){}
+  constructor() {}
 
-
-
-
-  doAction(action: any): void {   
+  doAction(action: any): void {
     switch (action) {
       case 'edit':
         this._currentAction = action;
@@ -34,9 +27,6 @@ countries : [
         this._currentAction = 'view';
     }
   }
-
-
-
 
   ngOnInit(): void {}
 }

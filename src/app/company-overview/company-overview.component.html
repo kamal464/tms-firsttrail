@@ -1,8 +1,9 @@
 <div>
   <div class="headings">
-
-    
-    <app-title title="Overview" subTitle="Company's overall Information"></app-title>
+    <app-title
+      title="Overview"
+      subTitle="Company's overall Information"
+    ></app-title>
     <span class="spacer"></span>
   </div>
   <div class="contents">
@@ -11,11 +12,16 @@
       <span class="mat-display-1 content-loading-text"></span>
     </div> -->
     <div class="content-hold">
-      <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar>
+      <tool-bar
+        title="Overview"
+        class="content-title-hold"
+        [currentAction]="_currentAction"
+        (onAction)="doAction($event)"
+      ></tool-bar>
 
       <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
         (onAction)="doAction($event)"></tool-bar> -->
-       <!-- <tool-bar></tool-bar> -->
+      <!-- <tool-bar></tool-bar> -->
       <!-- <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
@@ -54,7 +60,10 @@
 
       <!-- Content-view -->
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'view'">
+      <div
+        class="company-overview-contents content-data-hold"
+        *ngIf="_currentAction == 'view'"
+      >
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Registered Company Name</mat-label>
           <span class="entry-data">DesignTribePrivateLimited</span>
@@ -113,107 +122,161 @@
         </div>
       </div>
 
-      <div class="company-overview-contents content-data-hold"  *ngIf="_currentAction == 'edit'" 
+      <div
+        class="company-overview-contents content-data-hold"
+        *ngIf="_currentAction == 'edit'"
       >
-      <!-- <div class="error-text-hold">
+        <!-- <div class="error-text-hold">
         <mat-icon>error_outline</mat-icon>
         <span class="error-text"></span>
       </div> -->
-      <!-- <div class="form-field-hold two-column-field">
+        <!-- <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Registered Company Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Organisation India Pvt Ltd" >
         </mat-form-field>
       </div> -->
-      <kit-ui-text-edit companyname="Registered Company Name" placeHolder = "Ex: Organisation India Pvt Ltd"></kit-ui-text-edit>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Short Name</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Organisation India Pvt Ltd">
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Country</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select placeholder="Ex: Country">
-            <mat-select-trigger>
-              <!-- <span class="flag-hold">
+        <kit-ui-text-edit
+          companyname="Registered Company Name"
+          placeHolder="Ex: Organisation India Pvt Ltd"
+        ></kit-ui-text-edit>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Short Name</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input matInput placeholder="Ex: Organisation India Pvt Ltd" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Country</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <mat-select placeholder="Ex: Country">
+              <mat-select-trigger>
+                <!-- <span class="flag-hold">
                 <mat-icon></mat-icon>
                 India
               </span> -->
-            </mat-select-trigger>
-            <mat-option>
-              <span class="flag-hold">
-                <mat-icon></mat-icon>country.name 
-              </span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Phone</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Fax</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 040-22558877">
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Email</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput type="email" placeholder="Ex: support@company.com" >
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Website</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.company.com" >
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">WhatsApp</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold">
-        <mat-label class="form-field-label">LinkedIN</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.linkedin.com/company/dtpli">
-        </mat-form-field>
-      </div>
-      <div class="form-field-hold">
-        <mat-label class="form-field-label">Remarks</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
-            placeholder="Ex. State-of-art development center."></textarea>
-        </mat-form-field>
-      </div>
+              </mat-select-trigger>
+              <mat-option>
+                <span class="flag-hold">
+                  <mat-icon></mat-icon>country.name
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Phone</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 9876543210" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Fax</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 040-22558877" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Email</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input
+              matInput
+              type="email"
+              placeholder="Ex: support@company.com"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Website</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input matInput placeholder="Ex: www.company.com" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">WhatsApp</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 9876543210" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">LinkedIN</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <input matInput placeholder="Ex: www.linkedin.com/company/dtpli" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">Remarks</mat-label>
+          <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+          >
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              placeholder="Ex. State-of-art development center."
+            ></textarea>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 
-      <div class="controls-view" >
-        <div class="help-info-hold" *ngIf="currentAction == 'view'">
-          <mat-icon>info</mat-icon>
-          <span class="help-text">Click on '<b>Edit</b>' button, to update the company information</span>
-        </div>
-        <!-- <div class="help-info-hold" >
+    <div class="controls-view">
+      <div class="help-info-hold" *ngIf="currentAction == 'view'">
+        <mat-icon>info</mat-icon>
+        <span class="help-text"
+          >Click on '<b>Edit</b>' button, to update the company
+          information</span
+        >
+      </div>
+      <!-- <div class="help-info-hold" >
           <mat-icon>info</mat-icon>
           <span class="help-text">Please correct the errors to proceed.</span>
         </div> -->
-        <div class="help-info-hold" *ngIf="currentAction == 'edit'">
-          <mat-icon>info</mat-icon>
-          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
-            cancel the edit, click on '<b>Cancel</b>' button.</span>
-          </div>
-      
+      <div class="help-info-hold" *ngIf="currentAction == 'edit'">
+        <mat-icon>info</mat-icon>
+        <span class="help-text"
+          >Once you finish editing, Click on '<b>Save</b>' button, to save the
+          changes.<br />To cancel the edit, click on '<b>Cancel</b>'
+          button.</span
+        >
+      </div>
+    </div>
   </div>
-</div>
 </div>
