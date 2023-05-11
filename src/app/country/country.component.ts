@@ -11,10 +11,10 @@ export class CountryComponent implements OnInit {
   @Output() inputValueEmitter = new EventEmitter<string>();
   @Input() placeHolder: string;
   @Input() inputName:string;
-  @Input()  formData: any=[];
+  @Input()  formData: any[]=[];
 // inputData:any=[];
   selectedOption:any;
-  options : any= [{ label: 'ind' }, { label: 'us' }, { label: 'uk' }];
+  options : any= [{ label: 'Ind' }, { label: 'us' }, { label: 'uk' }];
   constructor(private http: HttpClient) { }
 
   addInputValue(value: string) {

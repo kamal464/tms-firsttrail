@@ -6,9 +6,11 @@ id="my-dropdown"
   matInput
   [placeholder]=placeHolder
   [(ngModel)]="formData[inputName]"
+  
 >
-<mat-option *ngFor="let option of options" [value]="option" (input)="onInputChange()">{{ option.label }}</mat-option>
+<mat-option *ngFor="let option of options" [value]="option.id" (input)="onInputChange()">{{ option.label }}</mat-option>
 </mat-select>
+<!-- <p>{{formData[inputName]}}</p> -->
 </mat-form-field>
 <p id="error-msg" style="display:none; color:red;">Please select an option.</p>
 </div>

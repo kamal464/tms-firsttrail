@@ -65,8 +65,8 @@ export class CompanyOverviewComponent implements OnInit {
   onSave() {
     console.log(this.inputValues.slice(-1));
     console.log(this.formData);
-    this.onAdd();
-    // this.onpost();
+    // this.onAdd();
+    this.onpost();
     // this.childComponent.callPostMethod();
     // console.log(this.items)
     // console.log(this.savedData)

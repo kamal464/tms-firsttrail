@@ -1,0 +1,31 @@
+<mat-form-field>
+  <mat-select
+    placeholder="Select Employees"
+    [(ngModel)]="selectedNames"
+    multiple
+  >
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Filter Employees"
+        [(ngModel)]="filterText"
+        (input)="filterFruits()"
+      />
+    </mat-form-field>
+    <button mat-button (click)="selectAll()">Check All</button>
+    <button mat-button (click)="unselectAll()">Uncheck All</button>
+    <mat-divider></mat-divider>
+    <mat-select-trigger>
+      {{
+        selectedNames.length === 0
+          ? "Select Employees"
+          : selectedNames + "selected"
+      }}
+      <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+    </mat-select-trigger>
+    <mat-option *ngFor="let name of filteredNames" [value]="name">{{
+      name
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>

@@ -270,6 +270,7 @@
           <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
             placeholder="Ex. State-of-art development center."></textarea>
         </mat-form-field> -->
+
           <app-textarea
             title="Remarks"
             [formData]="formData"
@@ -286,6 +287,9 @@
         </div>
         <div class="form-field-hold">
           <app-date datelabel="Date" placeHolder="dd-mm-yyyy"></app-date>
+        </div>
+        <div class="form-field-hold">
+          <app-multi-select></app-multi-select>
         </div>
       </div>
     </div>
