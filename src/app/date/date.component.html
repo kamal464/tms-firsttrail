@@ -1,0 +1,22 @@
+<div class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">{{datelabel}}</mat-label>
+    <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+    >
+      <input
+        matInput
+        [placeholder]=placeHolder
+        formControlName="marriage"
+        [matDatepicker]="marriagedate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="marriagedate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #marriagedate disabled="false"></mat-datepicker>
+    </mat-form-field>
+    
+    
+    </div>

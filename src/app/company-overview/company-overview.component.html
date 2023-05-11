@@ -12,22 +12,17 @@
       <span class="mat-display-1 content-loading-text"></span>
     </div> -->
     <div class="content-hold">
-      <tool-bar
-        title="Overview"
-        class="content-title-hold"
-        [currentAction]="_currentAction"
-        (onAction)="doAction($event)"
-      ></tool-bar>
+      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar> -->
 
       <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
         (onAction)="doAction($event)"></tool-bar> -->
       <!-- <tool-bar></tool-bar> -->
-      <!-- <mat-toolbar class="tool-bar">
+      <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
         <button
           mat-button
-          class="tool-bar-button "
+          class="tool-bar-button"
           matTooltip="Edit"
           (click)="doAction('edit')"
           *ngIf="hasEdit && currentAction == 'view'"
@@ -37,7 +32,7 @@
         </button>
         <button
           mat-button
-          class="tool-bar-button "
+          class="tool-bar-button"
           matTooltip="Cancel"
           (click)="doAction('cancel')"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
@@ -48,21 +43,22 @@
         <button
           mat-raised-button
           color="primary"
-          class="tool-bar-button "
+          class="tool-bar-button"
           matTooltip="Save Changes"
           (click)="doAction('save')"
+          (click)="onSave()"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
-          <span class="button-label ">Save</span>
+          <span class="button-label">Save</span>
         </button>
-      </mat-toolbar> -->
+      </mat-toolbar>
 
       <!-- Content-view -->
 
       <div
         class="company-overview-contents content-data-hold"
-        *ngIf="_currentAction == 'view'"
+        *ngIf="currentAction == 'view'"
       >
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Registered Company Name</mat-label>
@@ -124,9 +120,10 @@
 
       <div
         class="company-overview-contents content-data-hold"
-        *ngIf="_currentAction == 'edit'"
+        *ngIf="currentAction == 'edit'"
       >
         <!-- <div class="error-text-hold">
+>>>>>>> 3372ac07e8d2d17b69ca84e11492168a39771516
         <mat-icon>error_outline</mat-icon>
         <span class="error-text"></span>
       </div> -->
@@ -136,123 +133,159 @@
           <input matInput placeholder="Ex: Organisation India Pvt Ltd" >
         </mat-form-field>
       </div> -->
-        <kit-ui-text-edit
-          companyname="Registered Company Name"
-          placeHolder="Ex: Organisation India Pvt Ltd"
-        ></kit-ui-text-edit>
+
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Short Name</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <input matInput placeholder="Ex: Organisation India Pvt Ltd" />
-          </mat-form-field>
+          <kit-ui-text-edit
+            companyname="Registered Company Name"
+            [formData]="formData"
+            placeHolder="Ex: Organisation India Pvt Ltd"
+            (inputValueEmitter)="handleInput('name', $event)"
+            [inputName]="'name'"
+          ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Country</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <mat-select placeholder="Ex: Country">
-              <mat-select-trigger>
-                <!-- <span class="flag-hold">
-                <mat-icon></mat-icon>
-                India
-              </span> -->
-              </mat-select-trigger>
-              <mat-option>
-                <span class="flag-hold">
-                  <mat-icon></mat-icon>country.name
-                </span>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <kit-ui-text-edit
+            companyname="  Short Name"
+            placeHolder="DTPL"
+            [formData]="formData"
+            [inputName]="'shortname'"
+            (inputValueEmitter)="handleInput('shortname', $event)"
+          ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Phone</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <span matPrefix>+91</span>
-            <input matInput placeholder="Ex: 9876543210" />
-          </mat-form-field>
+          <app-country
+            placeHolder="country"
+            [formData]="formData"
+            (inputValueEmitter)="handleInput('fkcountrycode', $event)"
+            [inputName]="'fkcountrycode'"
+          ></app-country>
+        </div>
+        <!-- <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Short Name</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: Organisation India Pvt Ltd">
+        </mat-form-field>
+      </div> -->
+        <!-- <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Country</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select placeholder="Ex: Country">
+            <mat-select-trigger>
+             
+            </mat-select-trigger>
+            <mat-option>
+              <span class="flag-hold">
+                <mat-icon></mat-icon>country.name 
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+        <div class="form-field-hold two-column-field">
+          <!-- <mat-label class="form-field-label">Phone</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <span matPrefix>+91</span>
+          <input matInput placeholder="Ex: 9876543210" >
+        </mat-form-field> -->
+          <!-- <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="formData" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber> -->
+          <app-int
+            placeHolder="Ex:0-9"
+            [formData]="formData"
+            inttype="inttype"
+            [inputName]="'phone'"
+            (inputValueEmitter)="handleInput('phone', $event)"
+          ></app-int>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Fax</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <span matPrefix>+91</span>
-            <input matInput placeholder="Ex: 040-22558877" />
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">Fax</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <span matPrefix>+91</span>
+          <input matInput placeholder="Ex: 040-22558877">
+        </mat-form-field> -->
+          <!-- <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="formData" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber>  -->
+          <app-int-decimal
+            placeHolder="Ex:100.00"
+            [formData]="formData"
+            inttype="int-decimal-type"
+            [inputName]="'fax'"
+            [precision]="'3'"
+            (inputValueEmitter)="handleInput('fax', $event)"
+          ></app-int-decimal>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Email</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <input
-              matInput
-              type="email"
-              placeholder="Ex: support@company.com"
-            />
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">Email</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput type="email" placeholder="Ex: support@company.com" >
+        </mat-form-field> -->
+          <app-email
+            placeHolder="sunsunnysinger@gmail.com"
+            [formData]="formData"
+            [inputName]="'email'"
+            (inputValueEmitter)="handleInput('email', $event)"
+          ></app-email>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Website</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <input matInput placeholder="Ex: www.company.com" />
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">Website</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: www.company.com" >
+        </mat-form-field> -->
+          <kit-ui-text-edit
+            companyname="Website"
+            [formData]="formData"
+            placeHolder="Ex: www.company.com"
+            (inputValueEmitter)="handleInput('website', $event)"
+            [inputName]="'website'"
+          ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">WhatsApp</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <span matPrefix>+91</span>
-            <input matInput placeholder="Ex: 9876543210" />
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">WhatsApp</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <span matPrefix>+91</span>
+          <input matInput placeholder="Ex: 9876543210" >
+        </mat-form-field> -->
+          <app-phonenumber
+            placeHolder="Ex: 9876543210"
+            numbertype="whatsapp"
+            [formData]="formData"
+            [inputName]="'whatsapp'"
+            (inputValueEmitter)="handleInput('whatsapp', $event)"
+          ></app-phonenumber>
         </div>
         <div class="form-field-hold">
-          <mat-label class="form-field-label">LinkedIN</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <input matInput placeholder="Ex: www.linkedin.com/company/dtpli" />
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">LinkedIN</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: www.linkedin.com/company/dtpli">
+        </mat-form-field> -->
+          <kit-ui-text-edit
+            companyname="LinkedIN"
+            [formData]="formData"
+            placeHolder="Ex: www.linkedin.com/company/dtpli"
+            (inputValueEmitter)="handleInput('linkedin', $event)"
+            [inputName]="'linkedin'"
+          ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold">
-          <mat-label class="form-field-label">Remarks</mat-label>
-          <mat-form-field
-            class="form-field-input"
-            floatPlaceholder="never"
-            appearance="fill"
-          >
-            <textarea
-              matInput
-              cdkTextareaAutosize
-              cdkAutosizeMinRows="1"
-              placeholder="Ex. State-of-art development center."
-            ></textarea>
-          </mat-form-field>
+          <!-- <mat-label class="form-field-label">Remarks</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
+            placeholder="Ex. State-of-art development center."></textarea>
+        </mat-form-field> -->
+          <app-textarea
+            title="Remarks"
+            [formData]="formData"
+            placeHolder="Ex. State-of-art development center."
+            (inputValueEmitter)="handleInput('comments', $event)"
+            [inputName]="'comments'"
+          ></app-textarea>
+        </div>
+        <div class="form-field-hold">
+          <app-toggle></app-toggle>
+        </div>
+        <div class="form-field-hold">
+          <app-checkbox></app-checkbox>
+        </div>
+        <div class="form-field-hold">
+          <app-date datelabel="Date" placeHolder="dd-mm-yyyy"></app-date>
         </div>
       </div>
     </div>

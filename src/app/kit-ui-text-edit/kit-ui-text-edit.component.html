@@ -5,6 +5,15 @@
     floatPlaceholder="never"
     appearance="fill"
   >
-    <input matInput [placeholder]="placeHolder" [(ngModel)]="view.name" />
+    <input
+      matInput
+      [placeholder]="placeHolder"
+      #inputValue
+      (input)="addInputValue(inputValue.value)"
+      [(ngModel)]="formData[inputName]"
+      (input)="onInputChange()"
+    />
   </mat-form-field>
+  <!-- <p *ngIf="texterr" style="color: red;">Input must contain only letters and spaces</p> -->
+  <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
 </div>

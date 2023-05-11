@@ -16,6 +16,16 @@ import { TitleComponent } from './shared/components/title/title.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
+import { CountryComponent } from './country/country.component';
+import { PhonenumberComponent } from './phonenumber/phonenumber.component';
+import { EmailComponent } from './email/email.component';
+import { TextareaComponent } from './textarea/textarea.component';
+import { IntComponent } from './int/int.component';
+import { IntDecimalComponent } from './int-decimal/int-decimal.component';
+import { ToggleComponent } from './toggle/toggle.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { DateComponent } from './date/date.component';
+import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +33,20 @@ import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
     CompanyOfficesComponent,
     OfficesComponent,
     NewEmployeeComponent,
-
+    CountryComponent,
     KitUiTextEditComponent,
     TitleComponent,
     ToolBarComponent,
-
-
-    NewOverviewComponent,
+PhonenumberComponent,
+EmailComponent,
+TextareaComponent,
+IntComponent,
+IntDecimalComponent,
+ToggleComponent,
+CheckboxComponent,
+NewOverviewComponent,
+DateComponent,
+DateTimePickerComponent,
 
  
 

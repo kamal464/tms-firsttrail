@@ -1,0 +1,9 @@
+<div class="form-field-hold">
+<mat-label class="form-field-label">{{numbertype}}</mat-label>
+<mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+  <span matPrefix>+91</span>
+  <input matInput [placeholder]=placeHolder #inputValue  (input)="addInputValue(inputValue.value)" [(ngModel)]="formData[inputName]"(input)="onInputChange()"  >
+</mat-form-field>
+<!-- <p *ngIf="texterr" style="color: red;">Input must contain only digits</p> -->
+<p class="error-message"  style="color: red;" *ngIf="error">{{ error }}</p>
+</div>
