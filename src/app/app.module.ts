@@ -26,6 +26,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DateComponent } from './date/date.component';
 import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ CheckboxComponent,
 NewOverviewComponent,
 DateComponent,
 DateTimePickerComponent,
+MultiSelectComponent,
 
  
 
