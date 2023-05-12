@@ -84,7 +84,7 @@ export class NewEmployeeComponent implements OnInit {
         education: [''],
         marks: [
           '',
-          [patternValidator(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/)],
+          [patternValidator(/^(?:100(?:\.0{1,3})?|\d{1,3}(?:\.\d{1,3})?)$/)],
         ],
         rating: ['', Validators.required],
       },
