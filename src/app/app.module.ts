@@ -10,11 +10,11 @@ import { CompanyOfficesComponent } from './company-offices/company-offices.compo
 import { OfficesComponent } from './company-offices/offices/offices.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NewOverviewComponent } from './new-overview/new-overview.component'
+import { NewOverviewComponent } from './new-overview/new-overview.component';
 import { KitUiTextEditComponent } from './kit-ui-text-edit/kit-ui-text-edit.component';
 import { TitleComponent } from './shared/components/title/title.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
 import { CountryComponent } from './country/country.component';
 import { PhonenumberComponent } from './phonenumber/phonenumber.component';
@@ -27,6 +27,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DateComponent } from './date/date.component';
 import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { RadioComponent } from './radio/radio.component';
+import { MultipleCheckboxComponent } from './multiple-checkbox/multiple-checkbox.component';
+import { SettingsComponent } from './settings/settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,20 +41,20 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
     KitUiTextEditComponent,
     TitleComponent,
     ToolBarComponent,
-PhonenumberComponent,
-EmailComponent,
-TextareaComponent,
-IntComponent,
-IntDecimalComponent,
-ToggleComponent,
-CheckboxComponent,
-NewOverviewComponent,
-DateComponent,
-DateTimePickerComponent,
-MultiSelectComponent,
-
- 
-
+    PhonenumberComponent,
+    EmailComponent,
+    TextareaComponent,
+    IntComponent,
+    IntDecimalComponent,
+    ToggleComponent,
+    CheckboxComponent,
+    NewOverviewComponent,
+    DateComponent,
+    DateTimePickerComponent,
+    MultiSelectComponent,
+    RadioComponent,
+    MultipleCheckboxComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,10 +63,16 @@ MultiSelectComponent,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
 
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorInterceptor, multi: true }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

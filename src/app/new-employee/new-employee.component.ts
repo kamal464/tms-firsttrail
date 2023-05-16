@@ -84,7 +84,7 @@ export class NewEmployeeComponent implements OnInit {
         education: [''],
         marks: [
           '',
-          [patternValidator(/^(?:100(?:\.0{1,3})?|\d{1,3}(?:\.\d{1,3})?)$/)],
+          [patternValidator(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/)],
         ],
         rating: ['', Validators.required],
       },
@@ -124,9 +124,8 @@ export class NewEmployeeComponent implements OnInit {
   // }
 
   onCancel() {
-    console.log(this.companyDetails)
-    if(this.companyDetails.value != null ){
-
+    console.log(this.companyDetails);
+    if (this.companyDetails.value != null) {
       this.companyDetails.reset();
     }
   }
@@ -159,7 +158,6 @@ export class NewEmployeeComponent implements OnInit {
     }
   }
 
-
   oncharDown(event: KeyboardEvent) {
     const inputField = event.target as HTMLInputElement;
     if (
@@ -183,15 +181,14 @@ export class NewEmployeeComponent implements OnInit {
     }
   }
 
- 
   errorMessages: string[] = [];
 
   populateErrorMessages() {
-    Object.keys(this.companyDetails.controls).forEach(field => {
+    Object.keys(this.companyDetails.controls).forEach((field) => {
       const control = this.companyDetails.get(field);
-console.log(this.errorMessages)
+      console.log(this.errorMessages);
       if (control instanceof FormControl && control.errors) {
-        Object.keys(control.errors).forEach(error => {
+        Object.keys(control.errors).forEach((error) => {
           switch (error) {
             case 'required':
               this.errorMessages.push(`${field} is required`);
@@ -208,8 +205,6 @@ console.log(this.errorMessages)
       }
     });
   }
-
-
 
   onSave() {
     this.submitted = true;
