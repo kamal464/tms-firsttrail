@@ -1,30 +1,33 @@
-import { Component, OnInit ,  Input,
+import {
+  Component,
+  OnInit,
+  Input,
   Output,
-  EventEmitter,ChangeDetectorRef,  SimpleChanges,} from '@angular/core';
+  EventEmitter,
+  ChangeDetectorRef,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'tool-bar',
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.scss'],
- 
 })
 export class ToolBarComponent implements OnInit {
   @Input() title = '';
-  @Input() hasDelete = false;
-  @Input() hasNew = false;  
+  @Input() hasDelete = true;
+  @Input() hasNew = false;
   @Input() hasEdit = true;
   @Input() noTransform = false;
   @Input() currentAction = 'view';
   @Output() onAction = new EventEmitter<any>();
 
-
-  constructor(private ref: ChangeDetectorRef) { }
+  constructor(private ref: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
   }
-  ngOnInit(): void {
-  }
-   
+  ngOnInit(): void {}
+
   _doAction(action): void {
     this.onAction.emit(action);
   }

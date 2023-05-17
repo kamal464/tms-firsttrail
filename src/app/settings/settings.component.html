@@ -1,0 +1,221 @@
+<div class="settings-view multi-options-view has-overall-heading">
+  <div class="overall-heading">
+    <app-title
+      title="Settings"
+      subTitle="List of setting/reasons configured."
+    ></app-title>
+    <span class="spacer"></span>
+    <button class="action-button" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>
+      <span class="button-text">New Reason</span>
+    </button>
+    <div class="action-padding"></div>
+  </div>
+  <div class="form-field-hold search-input-hold">
+    <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="outline"
+    >
+      <mat-icon matPrefix style="margin-top: 8px; margin-bottom: 12px"
+        >search</mat-icon
+      >
+      <input matInput placeholder="Search" />
+      <button matSuffix mat-icon-button style="margin-right: -15px">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>Enter the search input to filter the reasons.</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="overall-view">
+    <div class="info-and-options-view" style="padding: 0">
+      <!-- <app-settings-nav
+        [reasonToogle]="_reasonUpdateToggle"
+        [totalCount]="_totalCount"
+        [allReasons]="_allReasons"
+        [currentSelectedReason]="currentSelectedReason"
+        [isNew]="isNew"
+        (onReasonSelect)="selectedReason($event)"
+        style="overflow: auto"
+      >
+      </app-settings-nav> -->
+    </div>
+    <div class="contents-view">
+      <div>
+        <!-- <app-settings-entry
+          [companyId]="data.currentEmployee.fkcompanyid"
+          [currentSelectedReason]="currentSelectedReason"
+          [isNew]="isNew"
+          [reasonToogle]="_reasonUpdateToggle"
+          (onReasonAdded)="addedReason($event)"
+          (onReasonDelete)="deleteReason()"
+          (onReasonUpdate)="selectedReason($event)"
+        >
+        </app-settings-entry>
+        <app-settings-item-entry
+          [reasonToogle]="_reasonUpdateToggle"
+          [currentSelectedReason]="currentSelectedReason"
+          (onReasonUpdate)="selectedReason($event)"
+          *ngIf="
+            !isNew && currentSelectedReason && currentSelectedReason.islist
+          "
+        >
+        </app-settings-item-entry> -->
+        <div class="setting-hold">
+          <div class="contents">
+            <div class="content-loading-hold" *ngIf="isProcessing">
+              <mat-spinner></mat-spinner>
+              <span
+                class="mat-display-1 content-loading-text"
+                [innerHtml]="
+                  'Please wait, while processing the <b>Setting/Reason</b> information.'
+                "
+              ></span>
+            </div>
+            <div class="content-hold" *ngIf="!isProcessing">
+              <tool-bar
+                [title]="'ServerBaseFolder [System]'"
+                class="content-title-hold"
+                [currentAction]="_currentAction"
+                [hasNew]="false"
+                (onAction)="doAction($event)"
+              >
+              </tool-bar>
+              <div
+                class="setting-data-hold content-data-hold"
+                *ngIf="_currentAction == 'view'"
+              >
+                <div class="view-entry-hold">
+                  <mat-label class="entry-label">Code</mat-label>
+                  <span class="entry-data">Text</span>
+                </div>
+                <div class="view-entry-hold">
+                  <mat-label class="entry-label">Value</mat-label>
+                  <span class="entry-data">Text</span>
+                </div>
+                <!-- <div class="view-entry-hold">
+                  <mat-label class="entry-label">Data View</mat-label>
+                  <span class="entry-data">Text</span>
+                </div>
+                <div class="view-entry-hold">
+                  <mat-label class="entry-label">Value (Code)</mat-label>
+                  <span class="entry-data primary-color-text"
+                    >C:\TMS\Documents</span
+                  >
+                </div> -->
+              </div>
+
+              <div
+                class="setting-data-hold content-data-hold"
+                *ngIf="_currentAction == 'edit' || errorMsg"
+              >
+                <div class="error-text-hold" *ngIf="errorMsg">
+                  <mat-icon>error_outline</mat-icon>
+                  <span class="error-text" [innerHtml]="errorMsg"></span>
+                </div>
+                <div
+                  class="form-field-hold"
+                  style="max-width: calc(100% - 270px)"
+                >
+                  <mat-label class="form-field-label"
+                    >Setting/Reason Name</mat-label
+                  >
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                  >
+                    <input
+                      matInput
+                      placeholder="Ex: SettingName"
+                      formControlName="name"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="form-field-hold three-column-field">
+                  <mat-label class="form-field-label">Code</mat-label>
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                  >
+                    <mat-select
+                      formControlName="contenttype"
+                      placeholder="Click to Select"
+                      multiple
+                    >
+                      <mat-option
+                        *ngFor="let _type of _OptionsType"
+                        [value]="_type.value"
+                        >{{ _type.name }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="form-field-hold three-column-field">
+                  <mat-label class="form-field-label">value</mat-label>
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                  >
+                    <mat-select
+                      formControlName="displaytype"
+                      placeholder="Click to Select"
+                      multiple
+                    >
+                      <ng-container *ngFor="let option of _OptionsType">
+                        <mat-option [value]="option.value">{{
+                          option.name
+                        }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <!-- <div>
+              <div class="empty-setting-hold">
+                <span class="mat-display-1">No Setting/Reasons Available</span>
+                <button class="action-button" mat-raised-button color="primary">
+                  <mat-icon>add</mat-icon>
+                  <span class="button-text">New Reason</span>
+                </button>
+                <span class="mat-caption"
+                  >click on the 'New Reason' button to add a
+                  setting/reason.</span
+                >
+              </div>
+            </div> -->
+            <div class="controls-view" *ngIf="!isProcessing">
+              <!-- <div class="help-info-hold" *ngIf="!isNew">
+                <mat-icon>info</mat-icon>
+                <span class="help-text">Click on '<b>New Setting/Reason</b>' button, to add new setting/reason</span>
+              </div> -->
+              <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+                <mat-icon>info</mat-icon>
+                <span class="help-text"
+                  >Click on '<b>Edit</b>' button, to edit setting/reason</span
+                >
+              </div>
+              <!-- <div class="help-info-hold"
+                *ngIf="_currentAction == 'view' && currentSelectedReason && currentSelectedReason.group == 'User'">
+                <mat-icon>info</mat-icon>
+                <span class="help-text">Click on '<b>Delete</b>' button, to delete the setting/reason</span>
+              </div> -->
+              <div class="help-info-hold" *ngIf="_currentAction == 'edit'">
+                <mat-icon>info</mat-icon>
+                <span class="help-text"
+                  >Once you finish editing, Click on '<b>Save</b>' button, to
+                  save the changes.<br />To cancel the edit, click on
+                  '<b>Cancel</b>' button.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

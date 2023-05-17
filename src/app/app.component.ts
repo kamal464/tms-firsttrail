@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dtpl';
+  menuItems = [];
   currentField: string = '';
   isSideNavEnabled = false;
   _selected_option = null;
@@ -17,12 +18,7 @@ export class AppComponent {
     this.isSideNavEnabled = !this.isSideNavEnabled;
   }
 
-
-
-doAction(action: any): void {
- 
-  this._selected_option= action;
- 
+  doAction(action: any): void {
+    this._selected_option = action;
   }
-  
 }

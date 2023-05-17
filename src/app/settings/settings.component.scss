@@ -1,0 +1,14 @@
+.two-column-field {
+  flex-grow: 1;
+  width: calc(50% - 40px) !important;
+}
+
+.two-three-column-field {
+  flex-grow: 1;
+  width: calc(65% - 40px) !important;
+}
+
+.three-column-field {
+  flex-grow: 1;
+  width: calc(30% - 40px) !important;
+}
