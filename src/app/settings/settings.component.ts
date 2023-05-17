@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
     if (action == 'edit') {
     } else if (action == 'cancel') {
       this.errorMsg = '';
-      this._currentAction = 'cancel';
+      this._currentAction = 'view';
     } else if (action == 'save') {
       this._currentAction = 'edit';
     } else if (action == 'delete') {

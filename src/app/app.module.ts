@@ -31,6 +31,7 @@ import { RadioComponent } from './radio/radio.component';
 import { MultipleCheckboxComponent } from './multiple-checkbox/multiple-checkbox.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ReasonsComponent } from './reasons/reasons.component';
+import { SettingsitemsComponent } from './settingsitems/settingsitems.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { ReasonsComponent } from './reasons/reasons.component';
     MultipleCheckboxComponent,
     SettingsComponent,
     ReasonsComponent,
+    SettingsitemsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,100 @@
+@import '../../styles/common.scss';
+@import '../../styles/media.scss';
+@import '../../styles/theme.scss';
+@import '../../styles/variables.scss';
+
+.setting-items-view-hold {
+    position: relative;
+    padding-top: 85px;
+  
+    .new-setting-item-entry-hold {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border: 1px dashed $primary-color;
+      margin-right: 8px;
+  
+      .mat-title {
+        margin-left: 8px;
+        color: $primary-color;
+      }
+  
+      .new-setting-item-inputs {
+        display: flex;
+        flex-wrap: wrap !important;
+        overflow: hidden !important;
+      }
+  
+      .new-setting-item-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+  
+        .errors-hold {
+          display: flex;
+          align-items: center;
+          color: #ff0000;
+  
+          .error-text {
+            margin-left: 5px;
+          }
+        }
+  
+        .new-setting-item-control {
+          margin-left: 20px;
+  
+          .button-label {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  
+  
+    .setting-items-hold {
+      flex-direction: column;
+  
+  
+      app-wrapped-table {
+  
+        td {
+          span.inactive {
+            color: #888;
+            text-decoration: line-through;
+            font-weight: normal;
+          }
+  
+          &.mat-column-controls {
+            width: 90px;
+          }
+  
+          &.mat-column-order {
+            width: 65px;
+  
+            .mat-icon-button {
+              width: 20px;
+              height: 20px;
+              line-height: 20px;
+  
+              .mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                line-height: 16px;
+              }
+  
+              &:hover {
+                color: $primary-color;
+              }
+            }
+  
+            .placeholder {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }

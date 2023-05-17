@@ -1,0 +1,146 @@
+<div class="setting-items-view-hold">
+    <div class="headings">
+      <app-title title="Available Items" subTitle="List of items available for the selected reason."></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')"
+        *ngIf="_currentAction != 'add'">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Item</span>
+      </button>
+      <div class="action-padding"></div>
+    </div>
+    <div class="contents" *ngIf="_currentAction == 'add'">
+      <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold" [@slideInOut]>
+        <span class="mat-title">Adding New Reason Item</span>
+        <div class="new-setting-item-inputs content-data-hold" >
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Code</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: MD" formControlName="Code">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field" >
+            <mat-label class="form-field-label">Text</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Managing Director" formControlName="Text">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field" >
+            <mat-label class="form-field-label">Value (Integer)</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 1" formControlName="Int">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field" >
+            <mat-label class="form-field-label">Value (Decimal)</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 1.00" formControlName="Num">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="new-setting-item-controls">
+          <div class="errors-hold" *ngIf="errorMsg">
+            <mat-icon>error_outline</mat-icon>
+            <span class="error-text" [innerHtml]="errorMsg"></span>
+          </div>
+          <span class="spacer"></span>
+          <button mat-stroked-button class="new-setting-item-control" >
+            <span class="button-label">Cancel</span>
+          </button>
+          <button mat-raised-button color="primary" class="new-setting-item-control" >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+        </div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="errorMsg">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Please correct the errors to proceed.</span>
+        </div>
+        <div class="help-info-hold">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+            cancel the edit, click on '<b>Cancel</b>' button.</span>
+        </div>
+      </div>
+    </div>
+    <div class="contents">
+      <div class="content-hold">
+        <div class="setting-items-hold content-data-hold no-padding-h">
+          
+            <ng-container matColumnDef="order">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Move Up" >
+                  <mat-icon>arrow_upward</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Move Down" >
+                  <mat-icon>arrow_downward</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="serialno">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+              <td mat-cell *matCellDef="let element">
+                <span [ngClass]="{'inactive': !element.isactive}">{{element.serialno}}</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="code">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+              <td mat-cell *matCellDef="let element">
+                <span [ngClass]="{'inactive': !element.isactive}">{{element.code ? element.code : '-'}}</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="valuestr">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Text </th>
+              <td mat-cell *matCellDef="let element">
+                <span [ngClass]="{'inactive': !element.isactive}">{{element.valuestr ? element.valuestr : '-'}}</span>
+              </td>
+            </ng-container>
+            
+            
+            <ng-container matColumnDef="controls">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" matTooltip="Delete" >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+        </div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>New Item</b>' button, to add new 'Item' to the selected
+            setting/reason.</span>
+        </div>
+        <div class="help-info-hold" *ngIf="currentSelectedReason && currentSelectedReason.items.length > 0">
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Search</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">search</mat-icon>' button in the table header, to enter the
+              search
+              text to filter the
+              table entries.</span>
+          </div>
+        </div>
+        <div class="help-info-hold" *ngIf="currentSelectedReason && currentSelectedReason.items.length > 0">
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Change in Order</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">arrow_upward</mat-icon>' or '<mat-icon class="help-text-icon">
+                arrow_downward</mat-icon>' button in the table row, to change
+              the order of an entry.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
