@@ -1,30 +1,62 @@
 <mat-toolbar class="tool-bar">
-    <span class="tool-bar-title" [innerHtml]="title" [ngClass]="{'no-transform': noTransform}"></span>
-    <span class="spacer"></span>
-    <button mat-button color="primary" class="tool-bar-button" matTooltip="Edit" (click)="_doAction('edit')"
-      *ngIf="hasEdit && currentAction == 'view'">
-      <mat-icon>edit</mat-icon>
-      <span class="button-label">Edit</span>
-    </button>
-    <button mat-button class="tool-bar-button" matTooltip="Cancel" (click)="_doAction('cancel')"
-      *ngIf="currentAction == 'new' || currentAction == 'edit'">
-      <mat-icon>cancel</mat-icon>
-      <span class="button-label">Cancel</span>
-    </button>
-    <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="Save Changes"
-      (click)="_doAction('save')"  *ngIf="currentAction == 'new' || currentAction == 'edit'">
-      <mat-icon>save</mat-icon>
-      <span class="button-label">Save</span>
-    </button>
-    <button mat-flat-button color="warn" class="tool-bar-button" matTooltip="Delete" (click)="_doAction('delete')"
-      *ngIf="hasDelete && currentAction == 'view'">
-      <mat-icon>delete</mat-icon>
-      <span class="button-label">Delete</span>
-    </button>
-    <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="New" (click)="_doAction('new')"
-      *ngIf="hasNew && currentAction == 'view'">
-      <mat-icon>add</mat-icon>
-      <span class="button-label">Add</span>
-    </button>
-  </mat-toolbar>
-  
+  <span
+    class="tool-bar-title"
+    [innerHtml]="title"
+    [ngClass]="{ 'no-transform': noTransform }"
+  ></span>
+  <span class="spacer"></span>
+  <button
+    mat-button
+    color="primary"
+    class="tool-bar-button"
+    matTooltip="Edit"
+    (click)="_doAction('edit')"
+    *ngIf="hasEdit && currentAction == 'view'"
+  >
+    <mat-icon>edit</mat-icon>
+    <span class="button-label">Edit</span>
+  </button>
+  <button
+    mat-button
+    class="tool-bar-button"
+    matTooltip="Cancel"
+    (click)="_doAction('cancel')"
+    *ngIf="currentAction == 'new' || currentAction == 'edit'"
+  >
+    <mat-icon>cancel</mat-icon>
+    <span class="button-label">Cancel</span>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="tool-bar-button"
+    matTooltip="Save Changes"
+    (click)="_doAction('save')"
+    *ngIf="currentAction == 'new' || currentAction == 'edit'"
+  >
+    <mat-icon>save</mat-icon>
+    <span class="button-label">Save</span>
+  </button>
+  <button
+    mat-flat-button
+    color="warn"
+    class="tool-bar-button"
+    matTooltip="Delete"
+    (click)="_doAction('delete')"
+    *ngIf="hasDelete && currentAction == 'view'"
+  >
+    <mat-icon>delete</mat-icon>
+    <span class="button-label">Delete</span>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="tool-bar-button"
+    matTooltip="New"
+    (click)="_doAction('new')"
+    *ngIf="hasNew && currentAction == 'view'"
+  >
+    <mat-icon>add</mat-icon>
+    <span class="button-label">Add</span>
+  </button>
+</mat-toolbar>

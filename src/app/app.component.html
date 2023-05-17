@@ -247,6 +247,15 @@
                           <mat-icon>arrow_right</mat-icon>
                           settings
                         </button>
+                        <button
+                          mat-button
+                          class="option-item"
+                          matTooltipPosition="right"
+                          (click)="doAction('reasons')"
+                        >
+                          <mat-icon>arrow_right</mat-icon>
+                          Reasons
+                        </button>
                       </ng-container>
                     </div>
                   </div>
@@ -267,6 +276,9 @@
                     <app-settings
                       *ngIf="_selected_option == 'settings'"
                     ></app-settings>
+                    <app-reasons
+                      *ngIf="_selected_option == 'reasons'"
+                    ></app-reasons>
                   </div>
                 </div>
               </mat-tab>

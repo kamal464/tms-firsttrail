@@ -30,6 +30,7 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { RadioComponent } from './radio/radio.component';
 import { MultipleCheckboxComponent } from './multiple-checkbox/multiple-checkbox.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ReasonsComponent } from './reasons/reasons.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { SettingsComponent } from './settings/settings.component';
     RadioComponent,
     MultipleCheckboxComponent,
     SettingsComponent,
+    ReasonsComponent,
   ],
   imports: [
     BrowserModule,
