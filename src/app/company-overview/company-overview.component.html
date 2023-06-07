@@ -187,14 +187,14 @@
           <span matPrefix>+91</span>
           <input matInput placeholder="Ex: 9876543210" >
         </mat-form-field> -->
-          <!-- <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="formData" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber> -->
-          <app-int
+          <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="formData" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber>
+          <!-- <app-int
             placeHolder="Ex:0-9"
             [formData]="formData"
             inttype="inttype"
             [inputName]="'phone'"
             (inputValueEmitter)="handleInput('phone', $event)"
-          ></app-int>
+          ></app-int> -->
         </div>
         <div class="form-field-hold two-column-field">
           <!-- <mat-label class="form-field-label">Fax</mat-label>
@@ -202,15 +202,15 @@
           <span matPrefix>+91</span>
           <input matInput placeholder="Ex: 040-22558877">
         </mat-form-field> -->
-          <!-- <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="formData" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber>  -->
-          <app-int-decimal
+          <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="formData" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
+          <!-- <app-int-decimal
             placeHolder="Ex:100.00"
             [formData]="formData"
             inttype="int-decimal-type"
             [inputName]="'fax'"
             [precision]="'3'"
             (inputValueEmitter)="handleInput('fax', $event)"
-          ></app-int-decimal>
+          ></app-int-decimal> -->
         </div>
         <div class="form-field-hold two-column-field">
           <!-- <mat-label class="form-field-label">Email</mat-label>

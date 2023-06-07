@@ -1,0 +1,243 @@
+<div class="setting-items-view-hold">
+    <div class="headings" *ngIf="fields && fields.length > 0">
+      <app-title title="Available Items" subTitle="List of items available for the selected reason."></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('add')"
+        *ngIf="_currentAction != 'add'">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Item</span>
+      </button>
+      <span style="width:10px"></span>
+     
+      <div class="action-padding"></div>
+    </div>
+    <div class="contents" *ngIf="_currentAction == 'add'">
+      <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold" >
+        <span class="mat-title">Adding New Reason Item</span>
+        <div class="new-setting-item-inputs content-data-hold" >
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Code</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: MD" [(ngModel)]="enteredCode" >
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field" >
+            <mat-label class="form-field-label">Text</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Managing Director" [(ngModel)]="enteredText">
+            </mat-form-field>
+          </div>
+          
+         
+        </div>
+        <div class="new-setting-item-controls">
+          <div class="errors-hold" *ngIf="errorMsg">
+            <mat-icon>error_outline</mat-icon>
+            <span class="error-text" [innerHtml]="errorMsg"></span>
+          </div>
+          <span class="spacer"></span>
+          <button mat-stroked-button class="new-setting-item-control" (click)="doAction('view')">
+            <span class="button-label" >Cancel</span>
+          </button>
+          <button mat-raised-button color="primary" class="new-setting-item-control" (click)="doAction('view')" (click)="saveFieldData(enteredCode, enteredText)">
+            <mat-icon>save</mat-icon>
+            <span class="button-label"  >Save</span>
+          </button>
+        </div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="errorMsg">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Please correct the errors to proceed.</span>
+        </div>
+        <div class="help-info-hold">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+            cancel the edit, click on '<b>Cancel</b>' button.</span>
+        </div>
+      </div>
+    </div>
+    <div class="contents" *ngIf="fields && fields.length > 0">
+      <div class="content-hold" >
+        <div class="setting-items-hold content-data-hold no-padding-h"  >
+
+          <div
+          class=" content-data-hold"
+          *ngIf="_currentAction === 'view' || _currentAction === 'add'" 
+       
+        >
+       
+        <div class="view-entry-hold" >
+          <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+          <span class = "entry-value"  style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+            <span>
+          <mat-icon class = "entry-value" (click)="moveFieldUp(i)">arrow_upward</mat-icon>
+        </span>
+          <span>
+          <mat-icon class = "entry-value" (click)="moveFieldDown(i)">arrow_downward</mat-icon>
+        </span>
+        </span>
+        </div>
+          <div class="view-entry-hold" >
+            <mat-label class="entry-data" style="color:#c0433b; ">#</mat-label>
+           <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{currentIndex + i + 1}}
+  
+          </span>
+          </div>
+          <div class="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b; ">code</mat-label>
+            <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.code}}</span>
+           
+          </div>
+          <div class="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;">Text</mat-label>
+            <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.value}}</span>
+           
+          </div>
+
+          <div class ="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+            <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+             
+              <mat-icon class="delete-icon"  (click)="deleteField(i);getfield(field.id);deleteReasons()">delete</mat-icon>
+            </span>
+          </div>
+          <div class ="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+            <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+             
+              <mat-icon class="delete-icon" (click)="doAction('edit')"  (click)="getfield(field.id)">edit</mat-icon>
+            </span>
+          </div>
+          
+
+       
+         </div>
+
+
+
+         <div
+          class=" content-data-hold"
+          *ngIf="_currentAction == 'edit' "
+        >
+      
+        <div class="view-entry-hold">
+          <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+          <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+            <span *ngIf="isEditable(field.id)">
+              <mat-icon class="entry-value" (click)="moveFieldUp(i)">arrow_upward</mat-icon>
+            </span>
+            <span *ngIf="isEditable(field.id)">
+              <mat-icon class="entry-value" (click)="moveFieldDown(i)">arrow_downward</mat-icon>
+            </span>
+          </span>
+        </div>
+        
+        <div class="view-entry-hold">
+          <mat-label class="entry-data" style="color:#c0433b;">#</mat-label>
+          <ng-container *ngFor="let field of fields ; let i = index;">
+            <ng-container *ngIf="isEditable(field.id)">
+              <span class="entry-value" style="padding: 10px 15px 15px 20px;">
+                {{ currentIndex + i + 1 }}
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+        
+          <div class="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;">code</mat-label>
+            <ng-container *ngFor="let field of fields">
+              <ng-container *ngIf="isEditable(field.id)">
+                <span class="entry-value" style="padding: 10px 15px 15px 20px;">
+                  <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                    <input matInput type="text" [(ngModel)]="field.code" [readonly]="!isEditable(field.id)" />
+                  </mat-form-field>
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+          
+          <div class="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;">Text</mat-label>
+            <ng-container *ngFor="let field of fields">
+              <ng-container *ngIf="isEditable(field.id)">
+                <span class="entry-value" style="padding: 10px 15px 15px 20px;">
+                  <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                    <input matInput type="text" [(ngModel)]="field.value" [readonly]="!isEditable(field.id)" />
+                  </mat-form-field>
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+          
+
+          <div class="view-entry-hold">
+            <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+            <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+              <span *ngIf="isEditable(field.id)">
+                <mat-icon class="delete-icon" (click)="deleteField(i)">delete</mat-icon>
+              </span>
+            </span>
+          </div>
+          
+            
+          <tool-bar
+          [title]=""
+          class="content-title-hold"
+          [currentAction]="_currentAction"
+          [hasNew]="true"
+          (onAction)="doAction($event)"
+        >
+        </tool-bar>
+           
+        
+          
+        </div>
+        <!-- <div class="new-setting-item-controls" *ngIf="_currentAction == 'edit'">
+          <div class="errors-hold" *ngIf="errorMsg">
+            <mat-icon>error_outline</mat-icon>
+            <span class="error-text" [innerHtml]="errorMsg"></span>
+          </div>
+          <span class="spacer"></span>
+          <button mat-stroked-button class="new-setting-item-control" (click)="doAction('view')">
+            <span class="button-label" >Cancel</span>
+          </button>
+          <button mat-raised-button color="primary" class="new-setting-item-control" (click)="doAction('view')"  (click)="editFieldData()">
+            <mat-icon>save</mat-icon>
+            <span class="button-label"  >Save</span>
+          </button>
+        </div> -->
+
+      </div>
+  </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>New Item</b>' button, to add new 'Item' to the selected
+            setting/reason.</span>
+        </div>
+        <div class="help-info-hold" *ngIf="currentSelectedReason">
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Search</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">search</mat-icon>' button in the table header, to enter the
+              search
+              text to filter the
+              table entries.</span>
+          </div>
+        </div>
+        <div class="help-info-hold" *ngIf="currentSelectedReason">
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Change in Order</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">arrow_upward</mat-icon>' or '<mat-icon class="help-text-icon">
+                arrow_downward</mat-icon>' button in the table row, to change
+              the order of an entry.</span>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+

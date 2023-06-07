@@ -1,11 +1,11 @@
-<div class="settings-view multi-options-view has-overall-heading">
+<div class="settings-view multi-options-view has-overall-heading" >
   <div class="overall-heading">
     <app-title
-      title="Settings"
+      title="Reasons"
       subTitle="List of setting/reasons configured."
     ></app-title>
     <span class="spacer"></span>
-    <button class="action-button" mat-raised-button color="primary">
+    <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')">
       <mat-icon>add</mat-icon>
       <span class="button-text">New Reason</span>
     </button>
@@ -43,17 +43,20 @@
             <span class="spacer"></span>
             <span><b class="total-info-text primary-color-text">1</b>/</span>
             <span class="mat-small"
-              ><b>{{ 20 }}</b> items</span
+            >
+            <b>{{ 20 }}</b> items
+            </span
             >
           </div>
         </div>
-        <div class="reasons-hold info-options-hold  mat-elevation-z4">
+        <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: 500px; overflow-y: auto;">
           <div class="info-data-hold">
-            <ng-container *ngFor="let reason of filteredReasons">
+            <ng-container *ngFor="let reason of reasonData">
               <button mat-button class="option-item" [matTooltip]="reason.name" matTooltipPosition="right"
-                (click)="doReason(reason.name)"
+              
+              (click)="doReason(reason)"
                 >
-                <mat-icon  color="primary"
+                <mat-icon  *ngIf="currentSelectedReason && reason.id == currentSelectedReason.id" color="primary"
                   class="selection_arrow">arrow_right</mat-icon>
                 {{reason.name}}
               </button>
@@ -65,7 +68,7 @@
       <div class="contents-view">
         <div>
           <div class="setting-hold">
-            <div class="contents">
+            <div class="contents" >
               <div class="content-loading-hold" *ngIf="isProcessing">
                 <mat-spinner></mat-spinner>
                 <span
@@ -75,47 +78,31 @@
                   "
                 ></span>
               </div>
-              <div class="content-hold" *ngIf="!isProcessing">
+              <div class="content-hold" *ngIf="_currentAction == 'view' || 'edit'">
                 <tool-bar
                   [title]="_selected_option"
                   class="content-title-hold"
                   [currentAction]="_currentAction"
                   [hasNew]="false"
                   (onAction)="doAction($event)"
+                 
                 >
                 </tool-bar>
-                <div *ngIf="_selected_option == 'ServerBaseFolder'">
+               
+                
+                <div *ngIf="_selected_option == _selected_option">
+               
                 <div
                   class="setting-data-hold content-data-hold"
-                  *ngIf="_currentAction == 'view'"
+                  *ngIf="_currentAction == 'edit' || _currentAction == 'new' "
                 >
                  
-                  <!-- <div class="view-entry-hold">
-                    <mat-label class="entry-label">Data View</mat-label>
-                    <span class="entry-data">Text</span>
-                  </div>
-                  <div class="view-entry-hold">
-                    <mat-label class="entry-label">Value (Code)</mat-label>
-                    <span class="entry-data primary-color-text"
-                      >C:\TMS\Documents</span
-                    >
-                  </div> -->
-                </div>
-  
-                <div
-                  class="setting-data-hold content-data-hold"
-                  *ngIf="_currentAction == 'edit' || errorMsg"
-                >
-                  <div class="error-text-hold" *ngIf="errorMsg">
-                    <mat-icon>error_outline</mat-icon>
-                    <span class="error-text" [innerHtml]="errorMsg"></span>
-                  </div>
                   <div
                     class="form-field-hold"
                     style="max-width: calc(100% - 270px)"
                   >
                     <mat-label class="form-field-label"
-                      >Setting/Reason Name</mat-label
+                      >ReasonName</mat-label
                     >
                     <mat-form-field
                       class="form-field-input"
@@ -125,46 +112,14 @@
                       <input
                         matInput
                         placeholder="Ex: SettingName"
-                        formControlName="name"
+                        [(ngModel)]="input"
                       />
                     </mat-form-field>
                   </div>
   
                 </div>
                 </div>
-                <div *ngIf="_selected_option == 'DepartmentType'">
-                  
-                <div
-                class="setting-data-hold content-data-hold"
-                *ngIf="_currentAction == 'edit' || errorMsg"
-              >
-                <div class="error-text-hold" *ngIf="errorMsg">
-                  <mat-icon>error_outline</mat-icon>
-                  <span class="error-text" [innerHtml]="errorMsg"></span>
-                </div>
-                <div
-                  class="form-field-hold"
-                  style="max-width: calc(100% - 270px)"
-                >
-                  <mat-label class="form-field-label"
-                    >Setting/Reason Name</mat-label
-                  >
-                  <mat-form-field
-                    class="form-field-input"
-                    floatPlaceholder="never"
-                    appearance="fill"
-                  >
-                    <input
-                      matInput
-                      placeholder="Ex: SettingName"
-                      formControlName="name"
-                    />
-                  </mat-form-field>
-                </div>
-
-              
-              </div>
-            </div>
+                
             
           </div>
               <!-- <div>
@@ -207,7 +162,7 @@
               </div>
             </div>
           </div>
-          <app-settingsitems></app-settingsitems>
+          <app-settingsitems  [currentSelectedReason]="currentSelectedReason" (fieldsData)="receiveFieldsData($event)"></app-settingsitems>
         </div>
         
       </div>

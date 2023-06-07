@@ -1,0 +1,178 @@
+<div class="settings-view multi-options-view has-overall-heading" >
+    <div class="overall-heading">
+        <app-title
+          title="Columns"
+          subTitle="List of Columns configured."
+        ></app-title>
+        
+        <div class="action-padding"></div>
+      </div>
+      <div class="overall-view">
+        <div class="info-and-options-view" style="padding: 0">
+
+            <div class="settings-nav-hold">
+                <div class="search-and-new-hold">
+                  <div class="new-reason-hold mat-elevation-z4">
+                    <!-- <div class="reason-text-hold">
+                      <mat-icon color="primary">add</mat-icon>
+                      <span class="reason-text">New Reason/Setting</span>
+                    </div> -->
+                  </div>
+                  
+                  <div class="total-info-hold">
+                    <span class="mat-small">Available</span>
+                    <span class="spacer"></span>
+                    <span class="spacer"></span>
+                    <!-- <span><b class="total-info-text primary-color-text">1</b>/</span> -->
+                    <span class="mat-small"
+                    >
+                    <b>{{ 20 }}</b> items
+                    </span
+                    >
+                  </div>
+                </div>
+                <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: 500px; overflow-y: auto;">
+                  <div class="info-data-hold">
+                    <ng-container *ngFor="let column of coloumnRows;  let i = index">
+                      <button mat-button class="option-item" matTooltipPosition="right" (click)="selectColumn(column);selectObject(i)">
+                        <mat-icon  *ngIf="column === selectedColumn" color="primary" class="selection_arrow">arrow_right</mat-icon>
+                        {{ column }}
+                      </button>
+                    </ng-container>
+                    
+                    
+                  </div>
+                </div>
+               </div>
+            </div>
+
+            <div class="contents-view">
+              <div>
+                <div class="setting-hold">
+                  <div class="contents">
+                   
+                    <div class="content-hold">
+                      <tool-bar
+                [title]="_selected_option"
+                class="content-title-hold"
+                [currentAction]="__currentAction"
+                [hasEdit]="true"
+                [hasDelete]="false"
+                [active]="isChecked"
+                [hasActive]="true"
+                (onAction)="doAction($event)"
+              ></tool-bar>
+                    
+                       <div
+                        class="setting-data-hold content-data-hold"
+                        *ngIf="__currentAction == 'view'"
+                      >
+                        <div class="view-entry-hold two-column-field">
+                          <mat-label class="entry-label">ColumnType</mat-label>
+                          <span class="entry-data">{{SelectedColumnData.columntype}}</span>
+                        </div>
+                        <div class="view-entry-hold two-column-field">
+                          <mat-label class="entry-label">DataType</mat-label>
+                          <span class="entry-data">{{ SelectedColumnData.datatype }}</span>
+                        </div>
+                        <div class="view-entry-hold">
+                          <mat-label class="entry-label">Description</mat-label>
+                          <span class="entry-data">{{ SelectedColumnData.description }}</span>
+                        </div>
+                        <div class="view-entry-hold">
+                          <mat-label class="entry-label">Notes</mat-label>
+                          <span class="entry-data">{{ SelectedColumnData.notes }}</span>
+                        </div>
+                      </div>
+                      <div
+                        class="setting-data-hold content-data-hold"
+                        *ngIf="__currentAction == 'edit'"
+                      >
+                        <div
+                          class="form-field-hold two-column-field"
+                       
+                        >
+                          <mat-label class="form-field-label">ColumnType</mat-label>
+                          <mat-form-field
+                          class="form-field-input"
+                          floatPlaceholder="never"
+                          appearance="fill"
+                  
+                        >
+                          <mat-select
+                          
+                            placeholder="Click to Select"
+                            [(ngModel)]="columnType[0]"
+                          >
+                            <mat-option
+                              *ngFor="let _type of columnTypeDrop"
+                              [value]="_type.value"
+                              >{{ _type.id }}</mat-option
+                            >
+                          </mat-select>
+                        </mat-form-field>
+                    
+                        </div>
+                        <div
+                          class="form-field-hold two-column-field"
+                         
+                        >
+                          <mat-label class="form-field-label">DataType</mat-label>
+                          <mat-form-field
+                          class="form-field-input"
+                          floatPlaceholder="never"
+                          appearance="fill"
+                  
+                        >
+                          <mat-select
+                           
+                            placeholder="Click to Select"
+                            [(ngModel)]="dataType[0]"
+        >
+                      
+                            <mat-option
+                              *ngFor="let _type of dataTypeDrop"
+                              [value]="_type.value"
+                              >{{ _type.id }}</mat-option
+                            >
+                          </mat-select>
+                        </mat-form-field>
+         
+                        </div>
+                       
+                        <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                          <mat-label class="form-field-label">Description</mat-label>
+                          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                            <textarea matInput placeholder="Ex: Description" [(ngModel)]="description"></textarea>
+                          </mat-form-field>
+                        </div>
+                        <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                          <mat-label class="form-field-label">Notes</mat-label>
+                          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                            <textarea matInput placeholder="Ex: Notes" [(ngModel)]="notes"></textarea>
+                          </mat-form-field>
+                        </div>
+                        <div class="view-entry-hold">
+                          <mat-checkbox class="example-margin" [(ngModel)]="isChecked">IsActive</mat-checkbox>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="controls-view">
+                      <div class="help-info-hold" *ngIf="__currentAction == 'view'">
+                        <mat-icon>info</mat-icon>
+                        <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
+                      </div>
+                    </div>
+                  </div>
+                  <app-schemacolumn-attribute></app-schemacolumn-attribute>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            </div>
+
+
+</div>

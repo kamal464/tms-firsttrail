@@ -5,13 +5,21 @@
     [ngClass]="{ 'no-transform': noTransform }"
   ></span>
   <span class="spacer"></span>
+<span *ngIf="hasActive">
+  <span *ngIf="active==true">
+Active
+  </span>
+  <span *ngIf="active==false">
+Inactive
+  </span>
+  </span>
   <button
     mat-button
     color="primary"
     class="tool-bar-button"
     matTooltip="Edit"
     (click)="_doAction('edit')"
-    *ngIf="hasEdit && currentAction == 'view'"
+    *ngIf="hasEdit && currentAction !== 'edit'"
   >
     <mat-icon>edit</mat-icon>
     <span class="button-label">Edit</span>
@@ -32,6 +40,9 @@
     class="tool-bar-button"
     matTooltip="Save Changes"
     (click)="_doAction('save')"
+    (click)="onAction.emit('save')"
+    (click)="saveData()"
+    
     *ngIf="currentAction == 'new' || currentAction == 'edit'"
   >
     <mat-icon>save</mat-icon>
@@ -59,4 +70,17 @@
     <mat-icon>add</mat-icon>
     <span class="button-label">Add</span>
   </button>
+
+  <button
+  mat-raised-button
+  color="primary"
+  class="tool-bar-button"
+  matTooltip="Save Changes"
+  *ngIf="currentAction === 'add'"
+  (click)="_doAction('add')"
+  (click)="saveData()"
+>
+  <mat-icon>save</mat-icon>
+  <span class="button-label">Save</span>
+</button>
 </mat-toolbar>

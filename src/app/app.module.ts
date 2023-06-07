@@ -31,7 +31,14 @@ import { RadioComponent } from './radio/radio.component';
 import { MultipleCheckboxComponent } from './multiple-checkbox/multiple-checkbox.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ReasonsComponent } from './reasons/reasons.component';
-import { SettingsitemsComponent } from './settingsitems/settingsitems.component';
+import { ReasonitemsComponent } from './reasonitems/reasonitems.component';
+import { SchemaManagerComponent } from './schema-manager/schema-manager.component';
+import { SchemaAttributeComponent } from './schema-attribute/schema-attribute.component';
+import { SchemaColumnComponent } from './schema-column/schema-column.component';
+import { SharedServiceService } from './shared/shared-service.service';
+import { RouterModule } from '@angular/router';
+import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemacolumn-attribute.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +65,11 @@ import { SettingsitemsComponent } from './settingsitems/settingsitems.component'
     MultipleCheckboxComponent,
     SettingsComponent,
     ReasonsComponent,
-    SettingsitemsComponent,
+    ReasonitemsComponent,
+    SchemaManagerComponent,
+    SchemaAttributeComponent,
+    SchemaColumnComponent,
+    SchemacolumnAttributeComponent
   ],
   imports: [
     BrowserModule,
@@ -68,14 +79,19 @@ import { SettingsitemsComponent } from './settingsitems/settingsitems.component'
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot([])
+  
   ],
 
   providers: [
+ 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptorInterceptor,
-      multi: true,
-    },
+      multi: true
+    },SharedServiceService
+
+
   ],
   bootstrap: [AppComponent],
 })

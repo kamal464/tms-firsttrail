@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { KitUiTextEditComponent } from '../kit-ui-text-edit/kit-ui-text-edit.component';
-import { SharedService } from '../shared/shared.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -33,7 +31,7 @@ export class CompanyOverviewComponent implements OnInit {
   // };
   getRecord(id: string) {
     this.http
-      .post('http://192.168.0.58:5000/org/getorg', {})
+      .post('http://183.82.116.4:8055/api/t/org/get', {})
       .subscribe((data: any) => {
         this.formData = {
           id: data.id,
@@ -128,6 +126,6 @@ export class CompanyOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRecord('1683532683');
+    this.getRecord('1');
   }
 }

@@ -98,3 +98,9 @@
       }
     }
   }
+
+  .delete-icon{
+    display: inline-block; /* Ensures the container takes the size of the icon */
+  width: 16px; 
+  height: 16px; 
+  }

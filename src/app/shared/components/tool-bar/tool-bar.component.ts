@@ -18,17 +18,29 @@ export class ToolBarComponent implements OnInit {
   @Input() hasDelete = true;
   @Input() hasNew = false;
   @Input() hasEdit = true;
+  
+  @Input() hasActive = false;
   @Input() noTransform = false;
+  @Input() active = true;
   @Input() currentAction = 'view';
   @Output() onAction = new EventEmitter<any>();
 
+  @Output() onSave: EventEmitter<void> = new EventEmitter<void>();
   constructor(private ref: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
   }
+
+
+
+  saveData() {
+    // Emit the onSave event to notify the parent component
+    this.onSave.emit();
+  }
   ngOnInit(): void {}
 
   _doAction(action): void {
+    console.log(action)
     this.onAction.emit(action);
   }
 
