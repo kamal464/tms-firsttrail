@@ -1,1 +1,232 @@
-<p>schemacolumn-attribute works!</p>
+<div class="setting-items-view-hold">
+    <div >
+        
+        <span class="spacer"></span>
+       
+        <span class="spacer" style="padding-left: 1070px;" ></span>
+        <button *ngIf="_currentAction == 'view'" class="action-button" mat-raised-button color="primary" 
+        (click)="doAction('add')"  >
+          <mat-icon>add</mat-icon>
+          <span class="button-text">New Attribute</span>
+        </button>
+        <span style="width:10px"></span>
+       
+        <div class="action-padding"></div>
+      </div>
+
+<div class="contents" *ngIf="_currentAction == 'view' || 'add' && fields.length > 0">
+    <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold" >
+        <div class="new-setting-item-inputs content-data-hold" *ngIf="fields && fields.length > 0">
+
+            <div class="view-entry-hold" >
+                <mat-label class="entry-data" style="color:#c0433b; ">#</mat-label>
+               <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{currentIndex + i + 1}}
+      
+              </span>
+              </div>
+              <div class="view-entry-hold">
+                <mat-label class="entry-data" style="color:#c0433b; ">Type</mat-label>
+                <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.attrtype}}</span>
+               
+              </div>
+             
+              <div class="view-entry-hold">
+                <mat-label class="entry-data" style="color:#c0433b;">Description</mat-label>
+                <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.description}}</span>
+               
+              </div>
+              <div class="view-entry-hold">
+                <mat-label class="entry-data" style="color:#c0433b;">Isactive</mat-label>
+                <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{ field.isactive == '1' ?'yes':'no' }}</span>
+               
+              </div>
+              <div class ="view-entry-hold">
+                <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+                <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
+                 
+                  <mat-icon class="delete-icon" (click)="doAction('edit');" (click)="getfield(field.id)" >edit</mat-icon>
+                </span>
+              </div>
+            </div>
+            
+            
+            
+        </div>
+        <div class="controls-view" >
+            <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+                <mat-icon>info</mat-icon>
+                <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
+              </div>
+          </div>
+          </div>
+         <div class="contents" *ngIf="_currentAction === 'edit'"
+           >
+           <div class = "content-hold">
+                    <tool-bar
+                  [title]="'Edit'"
+                  class="content-title-hold"
+                  [currentAction]="'edit'"
+                  [hasNew]="false"
+                  (onAction)="doAction($event)"
+                  
+                >
+                </tool-bar>
+                <!-- (onSave)="saveData()" -->
+                <div
+                class="setting-data-hold content-data-hold"
+                *ngIf="_currentAction == 'edit'"
+              >
+              <div class="form-field-hold three-column-field">
+                <mat-label class="form-field-label">Type</mat-label>
+              
+                <ng-container *ngFor="let field of fields; let i = index;">
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                    
+                  >
+                    <mat-select
+                      placeholder="Click to Select"
+                      [(ngModel)]="field.attrtype"
+                    >
+                    <mat-option
+                    *ngFor="let _type of commentTypeDrop"
+                    [value]="_type.value"
+                    >{{ _type.id }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </ng-container>
+              </div>
+              
+
+              <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                <mat-label class="form-field-label">Description</mat-label>
+                
+                <ng-container *ngFor="let field of fields; let i = index;">
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                   
+                  >
+                    <input
+                      matInput
+                      placeholder="Ex: Description"
+                      [(ngModel)]="field.description"
+                    />
+                  </mat-form-field>
+                </ng-container>
+              </div>
+              
+           
+              <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                <ng-container *ngFor="let field of fields; let i = index;">
+                  <div class="view-entry-hold" >
+                    <mat-checkbox class="example-margin" [(ngModel)]="field.isactive">
+                      IsActive
+                    </mat-checkbox>
+                  </div>
+                </ng-container>
+              </div>
+              
+              </div>
+                </div>
+                <div class="controls-view" >
+                  <div class="help-info-hold" *ngIf="_currentAction == 'edit'">
+                    <mat-icon>info</mat-icon>
+                    <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
+                  </div>
+                </div>
+                </div>
+                
+
+                <div class="contents" *ngIf="_currentAction === 'add'"
+
+                >
+                    <div class = "content-hold">
+                      <div class="new-setting-item-controls">
+                        <mat-toolbar class="tool-bar">
+                          <span
+                            class="tool-bar-title"
+                            [innerHtml]="'Add-Attribute'"
+                            [ngClass]="{ 'no-transform': '' }"
+                          ></span>
+                         
+                        <span class="spacer"></span>
+                        <button mat-stroked-button class="new-setting-item-control" (click)="doAction('view')">
+                          <mat-icon>cancel</mat-icon>
+                          <span class="button-label" >Cancel</span>
+                        </button>
+                        <button mat-raised-button color="primary" class="new-setting-item-control" (click)="doAction('view');saveData()"  >
+                          <mat-icon>save</mat-icon>
+                          <span class="button-label"  >Save</span>
+                        </button>
+                        </mat-toolbar>
+                      </div>
+                      
+                    <!-- (onSave)="saveData()" -->
+                    <div
+                    class="setting-data-hold content-data-hold"
+                    *ngIf="_currentAction == 'add'"
+                  >
+                  <div class="form-field-hold three-column-field">
+                    <mat-label class="form-field-label">Type</mat-label>
+                    <mat-form-field
+                      class="form-field-input"
+                      floatPlaceholder="never"
+                      appearance="fill"
+                    >
+                      <mat-select
+                       
+                        placeholder="Click to Select"
+                        [(ngModel)]="enteredType"
+                        
+                      
+                      >
+                        <mat-option
+                          *ngFor="let _type of commentTypeDrop"
+                          [value]="_type.value"
+                          >{{ _type.id }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+    
+                  <div
+                  class="form-field-hold"
+                  style="max-width: calc(100% - 270px)"
+                >
+                  <mat-label class="form-field-label"
+                    >Description</mat-label
+                  >
+                  <mat-form-field
+                    class="form-field-input"
+                    floatPlaceholder="never"
+                    appearance="fill"
+                  >
+                    <input
+                    matInput
+                    placeholder="Ex: Description"
+                     [(ngModel)]="enteredDesc"
+                     />
+                    </mat-form-field>
+                </div>
+                <div class="view-entry-hold " >
+                  <mat-checkbox class="example-margin" [(ngModel)]="enteredactive" >IsActive</mat-checkbox>
+                </div>
+                
+                
+    
+                 
+                    </div>
+                    </div> 
+                    <div class="controls-view" >
+                      <div class="help-info-hold" *ngIf="_currentAction == 'add'">
+                        <mat-icon>info</mat-icon>
+                        <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+            </div>

@@ -100,14 +100,6 @@ navigateToNewTab(): void {
 
 
   saveData() {
-    
-    // const newField = {
-    //   attrtype: this.enteredType,
-    //   desc: this.enteredDesc,
-    //   active: this.enteredactive
-    // };
-    // this.fields.push(newField);
-    
     console.log(this.fields)
     this.addAttribute();
   }
@@ -157,6 +149,10 @@ updateAttribute() {
 isEditable(fieldId: number): boolean {
   return this.editid === fieldId;
 }
+
+
+
+
   getAttributes(id: string) {
     console.log(id);
   

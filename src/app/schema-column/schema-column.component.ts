@@ -9,10 +9,11 @@ import { SharedServiceService } from '../shared/shared-service.service';
   styleUrls: ['./schema-column.component.scss']
 })
 export class SchemaColumnComponent implements OnInit {
+  @Output() onAction: EventEmitter<string> = new EventEmitter<string>();
   __currentAction = 'view';
-  _selected_option:any = '';
   fkSchemaTableId :string;
   coloumnRows: any= [];
+  _selected_option:any = this.coloumnRows[0];
   SchemaColumn :any = [];
   filteredData : any = [];
 SelectedColumnData : any  =[];
@@ -26,16 +27,33 @@ SelectedColumnData : any  =[];
   dataTypeDrop:any[];
 columnname:string;
 id:string;
+selectedObject:any;
   constructor(private sharedservice: SharedServiceService,private http : HttpClient) {
     // this.coloumnRows = this.sharedservice.getColoumnRows();
     this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
     console.log(this.fkSchemaTableId)
-    this.selectedColumn = this.coloumnRows[0];
-    this._selected_option = this._selected_option;
     console.log(this.coloumnRows)
   }
   
 
+
+
+
+  
+  selectObject(index: number = 0) {
+  
+    if (this.filteredData && this.filteredData.length > index) {
+      this.selectedObject = this.filteredData[index];
+    console.log(this.selectedObject)
+      this.columnType = [this.selectedObject?.columntype] || [];
+      this.dataType = [this.selectedObject?.datatype] || [];
+      this.description = this.selectedObject?.description || '';
+      this.notes = this.selectedObject?.notes || '';
+      this.isChecked = this.selectedObject?.isactive || '';
+    }
+
+    
+  }
   // selectColumn(column: string) {
   //   console.log(column);
   //   this.SelectedColumnData = this.filteredData.find(item => item.columnname === column || item.id === column);
@@ -46,6 +64,7 @@ id:string;
     this.SelectedColumnData = this.filteredData.find(item => item.columnname === column || item.id === column);
     this.columnname = this.filteredData.some(item => item.columnname === column) ? column : '';
     this._selected_option = this.columnname
+    this.selectedColumn = column;
     if (this.SelectedColumnData) {
       this.id = this.SelectedColumnData.id 
       console.log(this.id)
@@ -84,13 +103,18 @@ getSchemaColumn(){
 this.SchemaColumn = data
 console.log(this.SchemaColumn)
  this.filteredData = this.SchemaColumn.filter(item => item.fkschematableid === this.fkSchemaTableId);
+ this.selectObject(this.filteredData[0])
 console.log(this.filteredData);
 this.coloumnRows = this.filteredData.map(item => item.columnname);
 console.log(this.coloumnRows)
 this._selected_option = this.coloumnRows[0]
+console.log(this._selected_option)
 this.selectedColumn = this.coloumnRows[0];
-this.SelectedColumnData = this.filteredData[0]
-this.selectColumn(this.filteredData[0].id)
+console.log(this.selectedColumn)
+// this.SelectedColumnData = this.filteredData[0]
+const baseid = this.filteredData[0].id
+this.selectColumn(this.coloumnRows[0])
+console.log(baseid)
       }
   })
   
@@ -115,9 +139,7 @@ console.log(requestBody)
     });
 }
 
-selectObject(index: number = 0){
-// this._selected_option = index;
-}
+
 
 
 

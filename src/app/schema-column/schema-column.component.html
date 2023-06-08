@@ -69,19 +69,19 @@
                       >
                         <div class="view-entry-hold two-column-field">
                           <mat-label class="entry-label">ColumnType</mat-label>
-                          <span class="entry-data">{{SelectedColumnData.columntype}}</span>
+                          <span class="entry-data">{{columnType}}</span>
                         </div>
                         <div class="view-entry-hold two-column-field">
                           <mat-label class="entry-label">DataType</mat-label>
-                          <span class="entry-data">{{ SelectedColumnData.datatype }}</span>
+                          <span class="entry-data">{{ dataType }}</span>
                         </div>
                         <div class="view-entry-hold">
                           <mat-label class="entry-label">Description</mat-label>
-                          <span class="entry-data">{{ SelectedColumnData.description }}</span>
+                          <span class="entry-data">{{ description }}</span>
                         </div>
                         <div class="view-entry-hold">
                           <mat-label class="entry-label">Notes</mat-label>
-                          <span class="entry-data">{{ SelectedColumnData.notes }}</span>
+                          <span class="entry-data">{{ notes }}</span>
                         </div>
                       </div>
                       <div
@@ -102,7 +102,7 @@
                           <mat-select
                           
                             placeholder="Click to Select"
-                            [(ngModel)]="columnType[0]"
+                            [(ngModel)]="columnType"
                           >
                             <mat-option
                               *ngFor="let _type of columnTypeDrop"
@@ -127,7 +127,7 @@
                           <mat-select
                            
                             placeholder="Click to Select"
-                            [(ngModel)]="dataType[0]"
+                            [(ngModel)]="dataType"
         >
                       
                             <mat-option
@@ -164,7 +164,7 @@
                       </div>
                     </div>
                   </div>
-                  <app-schemacolumn-attribute></app-schemacolumn-attribute>
+                  <app-schemacolumn-attribute  [currentSelectedReason]="selectedObject"></app-schemacolumn-attribute>
                 </div>
               </div>
             </div>

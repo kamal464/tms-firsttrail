@@ -51,8 +51,8 @@
                   </div>
                 </div>
 
+              </div>
 
-            </div>
             <div class="controls-view" >
               <div class="help-info-hold" *ngIf="_currentAction == 'view' ">
                 <mat-icon>info</mat-icon>
@@ -209,16 +209,16 @@
                     appearance="fill"
                   >
                     <input
-                      matInput
-                      placeholder="Ex: Description"
+                    matInput
+                    placeholder="Ex: Description"
                      [(ngModel)]="enteredDesc"
-                    />
-                  </mat-form-field>
+                     />
+                    </mat-form-field>
                 </div>
                 <div class="view-entry-hold " >
                   <mat-checkbox class="example-margin" [(ngModel)]="enteredactive" >IsActive</mat-checkbox>
                 </div>
-              
+                
                 
     
                  
@@ -230,5 +230,6 @@
                         <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
                       </div>
                     </div>
-</div>
-</div>
+                  </div>
+                  
+                </div>
