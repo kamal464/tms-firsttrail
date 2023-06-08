@@ -34,7 +34,8 @@
                 <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: 500px; overflow-y: auto;">
                   <div class="info-data-hold">
                     <ng-container *ngFor="let column of coloumnRows;  let i = index">
-                      <button mat-button class="option-item" matTooltipPosition="right" (click)="selectColumn(column);selectObject(i)">
+                      <button mat-button class="option-item" matTooltipPosition="right" (click)="selectObject(i); selectColumn(column);">
+                        <!-- selectColumn(column); -->
                         <mat-icon  *ngIf="column === selectedColumn" color="primary" class="selection_arrow">arrow_right</mat-icon>
                         {{ column }}
                       </button>
@@ -125,10 +126,8 @@
                   
                         >
                           <mat-select
-                           
                             placeholder="Click to Select"
-                            [(ngModel)]="dataType"
-        >
+                            [(ngModel)]="dataType">
                       
                             <mat-option
                               *ngFor="let _type of dataTypeDrop"
@@ -168,11 +167,5 @@
                 </div>
               </div>
             </div>
-
-
-
-
             </div>
-
-
 </div>

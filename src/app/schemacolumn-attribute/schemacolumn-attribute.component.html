@@ -3,7 +3,8 @@
         
         <span class="spacer"></span>
        
-        <span class="spacer" style="padding-left: 1070px;" ></span>
+        <span class="spacer" style="margin-left: 70%;"></span>
+
         <button *ngIf="_currentAction == 'view'" class="action-button" mat-raised-button color="primary" 
         (click)="doAction('add')"  >
           <mat-icon>add</mat-icon>
@@ -84,11 +85,11 @@
                     class="form-field-input"
                     floatPlaceholder="never"
                     appearance="fill"
-                    
+                    *ngIf="isEditable(field.id)"
                   >
                     <mat-select
                       placeholder="Click to Select"
-                      [(ngModel)]="field.attrtype"
+                      [(ngModel)]="field.attrtype[0] "
                     >
                     <mat-option
                     *ngFor="let _type of commentTypeDrop"
@@ -108,7 +109,7 @@
                     class="form-field-input"
                     floatPlaceholder="never"
                     appearance="fill"
-                   
+                    *ngIf="isEditable(field.id)"
                   >
                     <input
                       matInput
@@ -122,7 +123,7 @@
            
               <div class="form-field-hold" style="max-width: calc(100% - 270px)">
                 <ng-container *ngFor="let field of fields; let i = index;">
-                  <div class="view-entry-hold" >
+                  <div class="view-entry-hold"  *ngIf="isEditable(field.id)" >
                     <mat-checkbox class="example-margin" [(ngModel)]="field.isactive">
                       IsActive
                     </mat-checkbox>

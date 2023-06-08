@@ -40,31 +40,36 @@ selectedObject:any;
 
 
   
-  selectObject(index: number = 0) {
-  
+  selectObject(index: number) {
+    console.log(index);
     if (this.filteredData && this.filteredData.length > index) {
       this.selectedObject = this.filteredData[index];
-    console.log(this.selectedObject)
-      this.columnType = [this.selectedObject?.columntype] || [];
-      this.dataType = [this.selectedObject?.datatype] || [];
+      console.log(this.selectedObject);
+      this.columnType = this.selectedObject?.columntype || '';
+      this.dataType = this.selectedObject?.datatype || '';
       this.description = this.selectedObject?.description || '';
       this.notes = this.selectedObject?.notes || '';
       this.isChecked = this.selectedObject?.isactive || '';
     }
-
-    
   }
+  
   // selectColumn(column: string) {
   //   console.log(column);
   //   this.SelectedColumnData = this.filteredData.find(item => item.columnname === column || item.id === column);
   //   this.isChecked = this.SelectedColumnData.isactive;
   // }
+ 
+ 
+ 
   selectColumn(column: string) {
     console.log(column);
     this.SelectedColumnData = this.filteredData.find(item => item.columnname === column || item.id === column);
     this.columnname = this.filteredData.some(item => item.columnname === column) ? column : '';
+    console.log(this.columnname)
     this._selected_option = this.columnname
-    this.selectedColumn = column;
+    this.selectedColumn = this.columnname
+    this.__currentAction = 'view'
+    // this.selectedColumn = column;
     if (this.SelectedColumnData) {
       this.id = this.SelectedColumnData.id 
       console.log(this.id)
@@ -111,11 +116,12 @@ this._selected_option = this.coloumnRows[0]
 console.log(this._selected_option)
 this.selectedColumn = this.coloumnRows[0];
 console.log(this.selectedColumn)
-// this.SelectedColumnData = this.filteredData[0]
+// this.SelectedColumnData = this.filteredData[0];
 const baseid = this.filteredData[0].id
-this.selectColumn(this.coloumnRows[0])
 console.log(baseid)
-      }
+this.selectObject(0)
+this.selectColumn(this.coloumnRows[0])
+}
   })
   
 }

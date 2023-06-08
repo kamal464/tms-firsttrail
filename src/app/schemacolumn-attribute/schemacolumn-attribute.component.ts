@@ -19,7 +19,8 @@ export class SchemacolumnAttributeComponent implements OnInit,OnChanges {
   enteredDesc: string;
   enteredactive:boolean = true;
   commentTypeDrop :any;
-  editid:string;
+  editid:any;
+  editable: boolean;
   constructor(private http : HttpClient) { }
 fields : any= [];
   ngOnInit(): void {
@@ -122,11 +123,16 @@ ngOnChanges(changes: SimpleChanges): void {
       });
     }
   }
-
+  isEditable(fieldId: number): boolean {
+    return this.editid === fieldId;
+  }
 
   getfield(field):void{
     this.editid = field;
     console.log(field)
+    for (let field of this.fields) {
+      this.editable = field.id === field;
+    }
 
   }
 
