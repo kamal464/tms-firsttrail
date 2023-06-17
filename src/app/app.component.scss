@@ -3,11 +3,29 @@
 @import "~@angular/material/theming";
 @include mat-core();
 // @import "../styles/common.scss";
+/* Component styles */
+
+
+
+
+
+/* Component styles */
+::ng-deep .mat-menu-content.mat-menu-panel {
+  overflow-x: hidden !important;
+}
+
+
+
+
 .example-container {
   width: 40px;
   height: 200px;
   margin: 10px;
   border: 1px solid #555;
+}
+.container {
+  height: 100vh;
+  overflow-y: auto; 
 }
 
 
@@ -32,6 +50,7 @@
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  overflow-x: hidden;
   // border: 2px solid black;
   // border-radius: 4px;
   color:black;
@@ -624,6 +643,7 @@
   overflow: hidden;
   position: relative;
   height: calc(100% - 90px);
+  overflow-y: auto;
 
   &>* {
     display: flex;

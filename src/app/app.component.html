@@ -13,7 +13,7 @@
         </button>
         <!-- <button mat-icon-button [matMenuTriggerFor]="settings">
         </button> -->
-        <mat-menu #settings="matMenu" >
+        <mat-menu #settings="matMenu" class="mat-menu-content" >
           <button mat-menu-item class="menu-button" (click)="doAction('settings')">Settings</button>
           <button mat-menu-item   class="menu-button"(click)="doAction('reasons')">Reasons</button>
         </mat-menu>
@@ -28,11 +28,14 @@
        
           <span class="menu-item-text " [matMenuTriggerFor]="auth">Authorization</span>
         </button>
-        <mat-menu #auth="matMenu">
+        <div style="overflow-x: hidden;">
+        <mat-menu #auth="matMenu" class="mat-menu-content">
           <button mat-menu-item class="menu-button">Roles</button>
           <button mat-menu-item class="menu-button">Web Menu</button>
           <button mat-menu-item class="menu-button">Web Authorization</button>
         </mat-menu>
+        </div>
+        
 
       </ng-container>
     </div>
@@ -141,7 +144,7 @@
                 <ng-template appDynamicComponentLoader></ng-template>
                 <!-- [item]="tab.item" -->
                 <div >
-                  <div class="info-and-options-view" >
+                  <div class="info-and-options-view container"  >
                    
 
                     <!-- <div class="info-options-hold mat-elevation-z4">

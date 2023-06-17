@@ -1,14 +1,13 @@
 <div class="setting-items-view-hold">
     <div >
         
-        <span class="spacer"></span>
+
         <button class="action-button" mat-raised-button color="primary" (click)="sendData();">
           <!-- <mat-icon>add</mat-icon> -->
           <span class="button-text">Columns</span>
         </button>
-        <span class="spacer" style="padding-left: 1550px;" ></span>
-        <button *ngIf="_currentAction == 'view' && fields.length > 0" class="action-button" mat-raised-button color="primary" (click)="doAction('add')"
-          >
+        <span class="mat-button-spacing"></span>
+        <button *ngIf="_currentAction == 'view' && fields.length > 0" class="action-button" mat-raised-button color="primary" (click)="doAction('add')">
           <mat-icon>add</mat-icon>
           <span class="button-text">New Attribute</span>
         </button>
