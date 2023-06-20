@@ -36,7 +36,7 @@
             <span class="mat-small"><b>{{ 20 }}</b> items</span>
           </div>
         </div>
-        <div class="reasons-hold info-options-hold mat-elevation-z4">
+        <div class="reasons-hold info-options-hold mat-elevation-z4" style="max-height: calc(100vh - 310px); overflow-y: auto;">
           <div class="info-data-hold">
             <ng-container *ngFor="let reason of filteredReasons;  let i = index">
               <button
@@ -72,22 +72,22 @@
                 (onAction)="doAction($event)"
               ></tool-bar>
               <div
-                class="setting-data-hold content-data-hold"
+                class="content-data-holdss"
                 *ngIf="_currentAction == 'view'"
               >
-                <div class="view-entry-hold ">
+                <div class="view-entry-holdss two-column-field">
                   <mat-label class="entry-label">Module</mat-label>
                   <span class="entry-data">{{module}}</span>
                 </div>
-                <div class="view-entry-hold">
+                <div class="view-entry-holdss two-column-field ">
                   <mat-label class="entry-label">Feature</mat-label>
                   <span class="entry-data">{{ feature }}</span>
                 </div>
-                <div class="view-entry-hold">
+                <div class="view-entry-holdss  ">
                   <mat-label class="entry-label">Description</mat-label>
                   <span class="entry-data">{{ description }}</span>
                 </div>
-                <div class="view-entry-hold">
+                <div class="view-entry-holdss ">
                   <mat-label class="entry-label">Notes</mat-label>
                   <span class="entry-data">{{ notes }}</span>
                 </div>
@@ -100,6 +100,7 @@
                   class="form-field-hold two-column-field"
                
                 >
+              <!-- content-data-hold -->
                   <mat-label class="form-field-label">Module</mat-label>
                   <mat-form-field
                   class="form-field-input"

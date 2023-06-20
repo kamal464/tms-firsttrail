@@ -1,65 +1,29 @@
-@import "../../src/styles/variables.scss";
-@import '../styles.scss';
-@import "~@angular/material/theming";
-@include mat-core();
-// @import "../styles/common.scss";
-/* Component styles */
+@import "../styles.scss";
 
 
-
-
-
-/* Component styles */
 ::ng-deep .mat-menu-content.mat-menu-panel {
   overflow-x: hidden !important;
 }
 
 
+/* Component styles */
 
+// .top-bar-hold {
+//   .mat-menu-panel {
+//     overflow : none;
+//   }
+// }
 
-.example-container {
-  width: 40px;
-  height: 200px;
-  margin: 10px;
-  border: 1px solid #555;
-}
-.container {
-  height: 100vh;
-  overflow-y: auto; 
-}
-
-
-.button {
-  display: inline-block;
-  padding: 10;
-  margin: 25px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.menu-button{
-  display: inline-block;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  overflow-x: hidden;
-  // border: 2px solid black;
-  // border-radius: 4px;
-  color:black;
-  background: none;
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-}
-
-
+// .example-container {
+//   width: 40px;
+//   height: 200px;
+//   margin: 10px;
+//   border: 1px solid #555;
+// }
+// .container {
+//   height: 100vh;
+//   overflow-y: auto;
+// }
 
 .top-bar-hold {
   display: flex;
@@ -74,7 +38,7 @@
     display: block;
     width: 230px;
     height: 65px;
-    background-image: url('../assets/images/design-tribe-logo.png');
+    background-image: url("../assets/images/design-tribe-logo.png");
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -152,14 +116,64 @@
   }
 
   .profile-hold {
+    // .user-profile-info-hold {
+    //   display: flex;
+    //   // margin-left: 10px;
+    //   // padding-left: 10px;
+    //   // border-left: 1px solid #ddd;
+    //   // cursor: pointer;
+    // }
     .user-profile-info-hold {
       display: flex;
-      margin-left: 10px;
-      padding-left: 10px;
-      border-left: 1px solid #ddd;
-      cursor: pointer;
+
+      .user-profile-info {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        margin-top: 5px;
+
+        .user-profile-title {
+          font-size: 120%;
+          font-weight: bold;
+          color: #000;
+        }
+
+        .user-profile-sub-title {
+          color: #888;
+        }
+      }
     }
   }
+
+  // .button {
+  //   display: inline-block;
+  //   padding: 10;
+  //   margin: 25px;
+  //   font-size: 16px;
+  //   font-weight: bold;
+  //   text-align: center;
+  //   text-decoration: none;
+  //   color: black;
+  //   border: none;
+  //   background: none;
+  //   cursor: pointer;
+  // }
+
+  // .menu-button{
+  //   display: inline-block;
+  //   padding: 10px;
+  //   font-size: 16px;
+  //   font-weight: bold;
+  //   text-align: center;
+  //   text-decoration: none;
+  //   overflow-x: hidden;
+  //   // border: 2px solid black;
+  //   // border-radius: 4px;
+  //   color:black;
+  //   background: none;
+  //   transition: background-color 0.3s, color 0.3s;
+  //   cursor: pointer;
+  // }
 }
 
 .tabbed-nav-link-item {
@@ -222,8 +236,6 @@
       padding: 8px;
     }
   }
-
-  
 
   &:hover,
   &.selected {
@@ -645,7 +657,7 @@
   height: calc(100% - 90px);
   overflow-y: auto;
 
-  &>* {
+  & > * {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -779,7 +791,7 @@
           }
 
           &::before {
-            content: '';
+            content: "";
             display: block;
             height: 1px;
             width: 100%;

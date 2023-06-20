@@ -5,7 +5,7 @@
        
         <span class="spacer" style="margin-left: 70%;"></span>
 
-        <button *ngIf="_currentAction == 'view'" class="action-button" mat-raised-button color="primary" 
+        <button *ngIf="_currentAction == 'view'&& fields.length > 0" class="action-button" mat-raised-button color="primary" 
         (click)="doAction('add')"  >
           <mat-icon>add</mat-icon>
           <span class="button-text">New Attribute</span>
@@ -15,34 +15,35 @@
         <div class="action-padding"></div>
       </div>
 
-<div class="contents" *ngIf="_currentAction == 'view' || 'add' && fields.length > 0">
+<div class="contents"*ngIf="(_currentAction === 'view' || _currentAction === 'add') && fields.length > 0"
+  >
     <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold" >
         <div class="new-setting-item-inputs content-data-hold" *ngIf="fields && fields.length > 0">
 
             <div class="view-entry-hold" >
-                <mat-label class="entry-data" style="color:#c0433b; ">#</mat-label>
+                <mat-label class="entry-data" style="color:#03045e; ">#</mat-label>
                <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{currentIndex + i + 1}}
       
               </span>
               </div>
               <div class="view-entry-hold">
-                <mat-label class="entry-data" style="color:#c0433b; ">Type</mat-label>
+                <mat-label class="entry-data" style="color:#03045e; ">Type</mat-label>
                 <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.attrtype}}</span>
                
               </div>
              
               <div class="view-entry-hold">
-                <mat-label class="entry-data" style="color:#c0433b;">Description</mat-label>
+                <mat-label class="entry-data" style="color:#03045e;">Description</mat-label>
                 <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{field.description}}</span>
                
               </div>
               <div class="view-entry-hold">
-                <mat-label class="entry-data" style="color:#c0433b;">Isactive</mat-label>
+                <mat-label class="entry-data" style="color:#03045e;">Isactive</mat-label>
                 <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{ field.isactive == '1' ?'yes':'no' }}</span>
                
               </div>
               <div class ="view-entry-hold">
-                <mat-label class="entry-data" style="color:#c0433b;"></mat-label>
+                <mat-label class="entry-data" style="color:#03045e;"></mat-label>
                 <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
                  
                   <mat-icon class="delete-icon" (click)="doAction('edit');" (click)="getfield(field.id)" >edit</mat-icon>

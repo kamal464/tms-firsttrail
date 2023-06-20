@@ -1,8 +1,8 @@
-@import './styles/common.scss';
+@import "~@angular/material/theming";
+@include mat-core();
+
 @import './styles/media.scss';
 @import './styles/theme.scss';
-@import './styles/variables.scss';
-
 
 html,
 body {
@@ -10,8 +10,8 @@ body {
   padding: 0;
   border: 0;
   height: 100%;
-  overflow: hidden;
-  background: #fff5f3;
+  // overflow: hidden;
+  // background: #fff5f3;
 }
 
 ::-webkit-scrollbar {

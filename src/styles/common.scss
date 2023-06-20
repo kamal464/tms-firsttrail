@@ -1,6 +1,6 @@
 @import "@angular/material/theming";
 // @import './variables.scss';
-$primary-color: #b43b3d;
+$primary-color: #03045e;
 $secondary-color: #868a73;
 
 $background-color: #fff5f3;
@@ -575,27 +575,6 @@ input[type="file"] {
 
   .mat-icon {
     margin-right: 5px;
-  }
-}
-
-.user-profile-info-hold {
-  display: flex;
-
-  .user-profile-info {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-    margin-top: 5px;
-
-    .user-profile-title {
-      font-size: 120%;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .user-profile-sub-title {
-      color: #888;
-    }
   }
 }
 

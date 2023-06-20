@@ -31,7 +31,7 @@
                     >
                   </div>
                 </div>
-                <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: 500px; overflow-y: auto;">
+                <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: calc(100vh - 310px); overflow-y: auto;">
                   <div class="info-data-hold">
                     <ng-container *ngFor="let column of coloumnRows;  let i = index">
                       <button mat-button class="option-item" matTooltipPosition="right" (click)="selectObject(i); selectColumn(column);">

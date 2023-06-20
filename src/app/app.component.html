@@ -1,44 +1,37 @@
-
-<div >
+<div>
   <!-- *ngIf="appComponent == 'yes'" -->
-    <ng-container >
-    <div class="top-bar-hold page-header-hold"   >
+  <ng-container>
+    <div class="top-bar-hold page-header-hold">
       <div class="app-logo-hold"></div>
       <div class="app-menu-hold">
-      <ng-container >
-        <button class="menu-item button"  [matMenuTriggerFor]="settings"  >
-       
-        <span class="menu-item-text">Settings</span>
-        <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
-        </button>
-        <!-- <button mat-icon-button [matMenuTriggerFor]="settings">
+        <ng-container>
+          <!-- class="menu-item button"  -->
+          <button mat-button [matMenuTriggerFor]="settings" >
+            Settings
+            <!-- <span class="menu-item-text"></span> -->
+            <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
+          </button>
+          <!-- <button mat-icon-button [matMenuTriggerFor]="settings">
         </button> -->
-        <mat-menu #settings="matMenu" class="mat-menu-content" >
-          <button mat-menu-item class="menu-button" (click)="doAction('settings')">Settings</button>
-          <button mat-menu-item   class="menu-button"(click)="doAction('reasons')">Reasons</button>
-        </mat-menu>
+          <!-- class="mat-menu-content" -->
 
-        <button class="menu-item button" 
-        >
-       
-          <span class="menu-item-text" (click)="doAction('schema-manager')">Schema Manager</span>
-        </button>
-        <button class="menu-item button" 
-        >
-       
-          <span class="menu-item-text " [matMenuTriggerFor]="auth">Authorization</span>
-        </button>
-        <div style="overflow-x: hidden;">
-        <mat-menu #auth="matMenu" class="mat-menu-content">
-          <button mat-menu-item class="menu-button">Roles</button>
-          <button mat-menu-item class="menu-button">Web Menu</button>
-          <button mat-menu-item class="menu-button">Web Authorization</button>
-        </mat-menu>
-        </div>
-        
+          <mat-menu #settings="matMenu"  class="mat-menu-content">
+            <button mat-menu-item (click)="doAction('settings')">
+              Settings
+            </button>
+            <button mat-menu-item (click)="doAction('reasons')">Reasons</button>
+          </mat-menu>
 
-      </ng-container>
-    </div>
+          <button mat-button (click)="doAction('schema-manager')">Schema Manager</button>
+          <button mat-button [matMenuTriggerFor]="auth">Authorization</button>
+
+          <mat-menu #auth="matMenu" class="mat-menu-content">
+            <button mat-menu-item class="menu-button">Roles</button>
+            <button mat-menu-item class="menu-button">Web Menu</button>
+            <button mat-menu-item class="menu-button">Web Authorization</button>
+          </mat-menu>
+        </ng-container>
+      </div>
       <div class="spacer"></div>
       <mat-menu class="navigation-menu-hold">
         <ng-template>
@@ -48,15 +41,15 @@
       <div class="profile-hold">
         <div class="user-profile-info-hold">
           <div class="user-profile-info">
-            <span class="user-profile-title">displayname</span>
-            <span class="user-profile-sub-title mat-small"> title</span>
+            <span class="user-profile-title">Kamal</span>
+            <span class="user-profile-sub-title mat-small">Engineer</span>
           </div>
 
           <button mat-icon-button [matMenuTriggerFor]="userMenu">
             <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
         </div>
-        
+
         <mat-menu #userMenu="matMenu" class="user-profile-dropdown">
           <a mat-menu-item>
             <mat-icon color="warn">logout</mat-icon>
@@ -67,26 +60,28 @@
     </div>
   </ng-container>
 
-    <div class="page-tabs-hold" >
-      <div class="full-view-hold">
-        <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
-          <div class="tree-top-fixed-hold" *ngIf="currentRoute !== '/column'">
-            <div class="tree-top-fixed-title" *ngFor="let item of dynamicNavItems">
-
-              <button
-                mat-icon-button
-                class="tree-top-fixed-close-button"
-                (click)="toggleSideNavView()"
-                matTooltip="Hide list of opened tabs."
-              >
-                <mat-icon>close</mat-icon>
-              </button>
-              <button>{{item}}</button>
-            </div>
+  <div class="page-tabs-hold">
+    <div class="full-view-hold">
+      <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
+        <div class="tree-top-fixed-hold" *ngIf="currentRoute !== '/column'">
+          <div
+            class="tree-top-fixed-title"
+            *ngFor="let item of dynamicNavItems"
+          >
+            <button
+              mat-icon-button
+              class="tree-top-fixed-close-button"
+              (click)="toggleSideNavView()"
+              matTooltip="Hide list of opened tabs."
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <button>{{ item }}</button>
           </div>
-          <div class="tree-view-float-hold">
-            <ng-container>
-              <!-- <div class="tabbed-nav-link-item">
+        </div>
+        <div class="tree-view-float-hold">
+          <ng-container>
+            <!-- <div class="tabbed-nav-link-item">
           <mat-icon color="primary" class="selection_arrow"
             >arrow_right</mat-icon
           >
@@ -99,67 +94,67 @@
             <mat-icon>keyboard_arrow_up</mat-icon>
           </div>
         </div> -->
-            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="tab-view-hold">
+        <div class="tab-view-header-hold mat-elevation-z6">
+          <button
+            mat-icon-button
+            class="tab-view-header-menu-button"
+            (click)="toggleSideNavView()"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="tab-view-header-menu-button"
+            (click)="toggleSideNavView()"
+          >
+            <mat-icon>home</mat-icon>
+          </button>
+          <div class="tab-view-header-tabs" *ngIf="dynamicNavItems.length > 0">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div
+                    class="tabbed-item-hold"
+                    *ngFor="let item of dynamicNavItems"
+                  >
+                    <div class="tabbed-item-lead-icon">
+                      <!-- <mat-icon>tab.icon</mat-icon> -->
+                    </div>
+                    <div class="tabbed-item-label" (click)="doAction(item)">
+                      {{ item }}
+                    </div>
+                    <button mat-icon-button (click)="deleteItem(item)">
+                      <mat-icon>highlight_off</mat-icon>
+                    </button>
+                  </div>
+                </ng-template>
+              </mat-tab>
+            </mat-tab-group>
           </div>
         </div>
-
-        <div class="tab-view-hold">
-          <div class="tab-view-header-hold mat-elevation-z6" >
-            <button
-              mat-icon-button
-              class="tab-view-header-menu-button"
-              (click)="toggleSideNavView()"
-            >
-              <mat-icon>menu</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              class="tab-view-header-menu-button"
-              (click)="toggleSideNavView()"
-            >
-              <mat-icon>home</mat-icon>
-            </button>
-            <div class="tab-view-header-tabs"  *ngIf="dynamicNavItems.length > 0" >
-              <mat-tab-group>
-                <mat-tab>
-                  <ng-template mat-tab-label>
-                    <div class="tabbed-item-hold" *ngFor="let item of dynamicNavItems">
-                      <div class="tabbed-item-lead-icon">
-                        <!-- <mat-icon>tab.icon</mat-icon> -->
-                      </div>
-                      <div class="tabbed-item-label"  (click)="doAction(item); ">
-                        {{item}}
-                      </div>
-                      <button mat-icon-button (click)="deleteItem(item)">
-                        <mat-icon>highlight_off</mat-icon>
-                      </button>
-                    </div>
-                  </ng-template>
-                </mat-tab>
-              </mat-tab-group>
-            </div>
-          </div>
-          <div >
-            
-                <ng-template appDynamicComponentLoader></ng-template>
-                <!-- [item]="tab.item" -->
-                <div >
-                  <div class="info-and-options-view container"  >
-                   
-
-                    <!-- <div class="info-options-hold mat-elevation-z4">
+        <div>
+          <ng-template appDynamicComponentLoader></ng-template>
+          <!-- [item]="tab.item" -->
+          <div>
+            <div class="info-and-options-view container">
+              <!-- <div class="info-options-hold mat-elevation-z4">
                       <div class="info-data-hold">
                         <span class="mat-title info-title">DTPL</span>
                         <span class="mat-subheading-1 info-subtitle">
                           <a [href]="'http://'">website</a></span
                         >
                       </div> -->
-                      <!-- <div class="info-data-hold">
+              <!-- <div class="info-data-hold">
                   <span class="mat-title info-title"></span>
                   <span class="mat-subheading-1 info-subtitle">Loading..</span>
                 </div> -->
 
-                      <!-- <ng-container>
+              <!-- <ng-container>
                         <button
                           mat-button
                           class="option-item"
@@ -178,7 +173,7 @@
                           <mat-icon>arrow_right</mat-icon>
                           OFFICES
                         </button> -->
-                        <!-- <button
+              <!-- <button
                           mat-button
                           class="option-item"
                           matTooltipPosition="right"
@@ -218,7 +213,7 @@
                           <mat-icon>arrow_right</mat-icon>
                           IDENTIFICATIONS
                         </button> -->
-                        <!-- <button
+              <!-- <button
                           mat-button
                           class="option-item"
                           matTooltipPosition="right"
@@ -258,49 +253,55 @@
                       </ng-container>
                     </div>
                   </div> -->
-                  <router-outlet *ngIf="_selected_option == 'column'" ></router-outlet>
-                  
-                    <app-company-overview
-                      *ngIf="_selected_option == 'overview' "
-                    ></app-company-overview>
-                    <app-company-offices
-                      *ngIf="_selected_option == 'offices'  "
-                    ></app-company-offices>
-                    <app-new-employee
-                      *ngIf="_selected_option == 'new-employee'  "
-                    ></app-new-employee>
-                    <app-new-overview
-                      *ngIf="_selected_option == 'new-overview'  "
-                    ></app-new-overview>
-                    <app-settings
-                      *ngIf="_selected_option == 'settings'  "
-                    ></app-settings>
-                    <app-reasons
-                      *ngIf="_selected_option == 'reasons'  "
-                    ></app-reasons>
-                    <app-schema-manager *ngIf="_selected_option == 'schema-manager'" ></app-schema-manager>
-                    
-                    <app-schema-column  *ngIf="_selected_option == 'column'"></app-schema-column>
-                
-                </div>
-              <!-- </mat-tab> -->
+              <router-outlet
+                *ngIf="_selected_option == 'column'"
+              ></router-outlet>
+
+              <app-company-overview
+                *ngIf="_selected_option == 'overview'"
+              ></app-company-overview>
+              <app-company-offices
+                *ngIf="_selected_option == 'offices'"
+              ></app-company-offices>
+              <app-new-employee
+                *ngIf="_selected_option == 'new-employee'"
+              ></app-new-employee>
+              <app-new-overview
+                *ngIf="_selected_option == 'new-overview'"
+              ></app-new-overview>
+              <app-settings
+                *ngIf="_selected_option == 'settings'"
+              ></app-settings>
+              <app-reasons *ngIf="_selected_option == 'reasons'"></app-reasons>
+              <app-schema-manager
+                *ngIf="_selected_option == 'schema-manager'"
+              ></app-schema-manager>
+
+              <app-schema-column
+                *ngIf="_selected_option == 'column'"
+              ></app-schema-column>
+            </div>
+            <!-- </mat-tab> -->
             <!-- </mat-tab-group> -->
           </div>
-       
-        <!-- </div> -->
-      <!-- </div> -->
-    <!-- </div> -->
- </div>
- </div>
- </div>
- </div>
- </div>
- 
+
+          <!-- </div> -->
+          <!-- </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- <div *ngIf="appComponent == 'no'">
   <app-schema-column  ></app-schema-column>
 </div> -->
 <!-- <router-outlet></router-outlet> -->
 <!-- <a routerLink="column" routerLinkActive="active"></a> -->
-<a routerLink="/column" routerLinkActive="active" ariaCurrentWhenActive="page"></a>
+<a
+  routerLink="/column"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+></a>
 <router-outlet></router-outlet>
-
