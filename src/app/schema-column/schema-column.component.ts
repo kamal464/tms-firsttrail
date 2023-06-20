@@ -142,7 +142,10 @@ console.log(requestBody)
   this.http.post(`${API_BASE_URL}/t/schemacolumn/update`, requestBody)
     .subscribe(() => {
       console.log("editColumns called");
+      this.getSchemaColumn();
     });
+   
+    
 }
 
 

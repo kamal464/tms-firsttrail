@@ -72,28 +72,28 @@
                 (onAction)="doAction($event)"
               ></tool-bar>
               <div
-                class="content-data-holdss"
+                class="content-schema-view"
                 *ngIf="_currentAction == 'view'"
               >
-                <div class="view-entry-holdss two-column-field">
+                <div class="view-entry-schema two-column-field">
                   <mat-label class="entry-label">Module</mat-label>
                   <span class="entry-data">{{module}}</span>
                 </div>
-                <div class="view-entry-holdss two-column-field ">
+                <div class="view-entry-schema two-column-field ">
                   <mat-label class="entry-label">Feature</mat-label>
                   <span class="entry-data">{{ feature }}</span>
                 </div>
-                <div class="view-entry-holdss  ">
+                <div class="view-entry-schema  ">
                   <mat-label class="entry-label">Description</mat-label>
                   <span class="entry-data">{{ description }}</span>
                 </div>
-                <div class="view-entry-holdss ">
+                <div class="view-entry-schema ">
                   <mat-label class="entry-label">Notes</mat-label>
                   <span class="entry-data">{{ notes }}</span>
                 </div>
               </div>
               <div
-                class="setting-data-hold content-data-hold"
+                class="setting-data-hold content-schema-view  " style="padding-left: 20px;"
                 *ngIf="_currentAction == 'edit'"
               >
                 <div

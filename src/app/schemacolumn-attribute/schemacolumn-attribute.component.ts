@@ -24,7 +24,7 @@ export class SchemacolumnAttributeComponent implements OnInit,OnChanges {
   constructor(private http : HttpClient) { }
 fields : any= [];
   ngOnInit(): void {
-   this.getAttributes('8000002') ;
+  //  this.getAttributes('8000002') ;
    this.getDropCommentType();
   }
 ngOnChanges(changes: SimpleChanges): void {

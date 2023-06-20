@@ -28,10 +28,10 @@ export class SchemaAttributeComponent implements OnInit ,OnChanges {
  
   _OptionsType = [];
   ngOnInit(): void {
-    this.getAttributes('7000001');
+    // this.getAttributes('7000001');
     this.getDropCommentType();
     // this.getAttributes(this.newid)
-    
+    console.log(this.currentSelectedReason)
 
   }
   sendData(): void {
@@ -142,6 +142,8 @@ updateAttribute() {
 
     this.http.post(`${API_BASE_URL}/t/schematableattr/update`, updateData).subscribe(() => {
       console.log('editAttribute is called');
+      
+      
     });
   }
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit ,OnChanges, Output,Input,EventEmitter} from '@angular/core';
+import { Component, OnInit ,OnChanges, Output,Input,EventEmitter,ViewChild} from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { API_BASE_URL, Api_Base } from '../shared/api-config';
 import { SharedServiceService } from '../shared/shared-service.service';
+import { SchemaAttributeComponent } from '../schema-attribute/schema-attribute.component';
 @Component({
   selector: 'app-schema-manager',
   templateUrl: './schema-manager.component.html',
@@ -11,10 +12,11 @@ import { SharedServiceService } from '../shared/shared-service.service';
 })
 export class SchemaManagerComponent implements OnInit,OnChanges{
   @Output() onAction: EventEmitter<string> = new EventEmitter<string>();
+  // @ViewChild(SchemaAttributeComponent) schemaAttributeComponent: SchemaAttributeComponent;
   isProcessing = false;
   coloumnRows :any = [];
   _currentAction = 'view';
-  defaultSelectedReasonIndex:number = 7000001;
+  // defaultSelectedReasonIndex:number = 2;
 objindex:number;
 id : any;
   errorMsg = '';
@@ -126,6 +128,8 @@ onSave(value){
         
         console.log(this.filteredReasons,this._selected_option);
         this.selectObject(0);
+        // this.schemaAttributeComponent.currentSelectedReason = this.currentSelectedReason;
+        // this.schemaAttributeComponent.getAttributes(this.currentSelectedReason.id);
         }
        
       }) 
@@ -233,3 +237,4 @@ onSave(value){
     
   }
 }
+
