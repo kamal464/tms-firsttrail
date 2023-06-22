@@ -38,7 +38,7 @@ import { SchemaColumnComponent } from './schema-column/schema-column.component';
 import { SharedServiceService } from './shared/shared-service.service';
 import { RouterModule } from '@angular/router';
 import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemacolumn-attribute.component';
-
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +78,8 @@ import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemac
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+
     HttpClientModule,
     RouterModule.forRoot([])
   

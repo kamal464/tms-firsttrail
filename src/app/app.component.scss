@@ -1,6 +1,8 @@
 @import "../styles.scss";
 
 
+
+
 ::ng-deep .mat-menu-content.mat-menu-panel {
   overflow-x: hidden !important;
 }
@@ -24,6 +26,10 @@
 //   height: 100vh;
 //   overflow-y: auto;
 // }
+
+.top-item:hover{
+  color: red;
+}
 
 .top-bar-hold {
   display: flex;
@@ -54,7 +60,20 @@
         font-weight: bold;
       }
     }
+    .menu-item:active{
+      color: $primary-color;
+    }
+   
   }
+  .app-menu-hold .menu-item.active-menu-item {
+    color: $primary-color;
+    font-weight: bold;
+  }
+  
+  .app-menu-hold .menu-item:active{
+    color: $primary-color;
+  }
+
 
   .search-input-hold {
     display: flex;
@@ -599,7 +618,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      padding: 85px 20px 0;
+      padding: 20px 20px 0;
 
       .info-title {
         text-transform: uppercase;
@@ -1079,28 +1098,7 @@
       width: 284px;
       z-index: 0;
 
-      .info-data-hold {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        padding: 85px 20px 0;
-
-        .info-title {
-          text-transform: uppercase;
-          font-weight: bold;
-          margin-bottom: 5px;
-          line-height: 1.2;
-          padding: 0 8px;
-          text-align: center;
-        }
-
-        .info-subtitle {
-          margin-bottom: 10px;
-          padding-bottom: 20px;
-          text-align: center;
-          border-bottom: 1px solid #ccc;
-        }
-      }
+     
 
       .option-item {
         display: flex;

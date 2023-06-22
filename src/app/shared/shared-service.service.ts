@@ -8,6 +8,7 @@ export class SharedServiceService {
   private selectedOptionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   coloumnRows: string[] = [];
   fkSchemaTableId : string;
+  selectedOption:string;
   constructor() { }
   setColoumnRows(columns: string[]) {
     this.coloumnRows = columns;
@@ -42,6 +43,13 @@ this.fkSchemaTableId = id;
 return this.fkSchemaTableId;
   }
 
+  setSelectedOption(option :string) :void {
+    this.selectedOption = option;
+  }
+
+  getSelectedOption(){
+    return this.selectedOption;
+  }
   // setSelectedOption(option: string): void {
   //   this.selectedOptionSubject.next(option);
   // }

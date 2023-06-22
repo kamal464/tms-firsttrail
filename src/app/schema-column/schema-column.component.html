@@ -1,8 +1,8 @@
 <div class="settings-view multi-options-view has-overall-heading" >
     <div class="overall-heading">
         <app-title
-          title="Columns"
-          subTitle="List of Columns configured."
+          title={{title}}
+          subTitle="List of {{title}} configured."
         ></app-title>
         
         <div class="action-padding"></div>
@@ -31,7 +31,8 @@
                     >
                   </div>
                 </div>
-                <div class="reasons-hold info-options-hold  mat-elevation-z4" style="max-height: calc(100vh - 310px); overflow-y: auto;">
+                <div class="reasons-hold info-options-hold  mat-elevation-z4" >
+                  <!-- style="max-height: calc(100vh - 310px); overflow-y: auto;" -->
                   <div class="info-data-hold">
                     <ng-container *ngFor="let column of coloumnRows;  let i = index">
                       <button mat-button class="option-item" matTooltipPosition="right" (click)="selectObject(i); selectColumn(column);">
@@ -86,7 +87,7 @@
                         </div>
                       </div>
                       <div
-                        class="content-schema-view"
+                        class="content-schema-view" style="padding-left: 20px;"
                         *ngIf="__currentAction == 'edit'"
                       >
                         <div
@@ -139,19 +140,19 @@
          
                         </div>
                        
-                        <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                        <div class="form-field-hold" >
                           <mat-label class="form-field-label">Description</mat-label>
                           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                             <textarea matInput placeholder="Ex: Description" [(ngModel)]="description"></textarea>
                           </mat-form-field>
                         </div>
-                        <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                        <div class="form-field-hold" >
                           <mat-label class="form-field-label">Notes</mat-label>
                           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                             <textarea matInput placeholder="Ex: Notes" [(ngModel)]="notes"></textarea>
                           </mat-form-field>
                         </div>
-                        <div class="view-entry-hold">
+                        <div class="form-field-hold" style="padding: left 50px; ">
                           <mat-checkbox class="example-margin" [(ngModel)]="isChecked">IsActive</mat-checkbox>
                         </div>
                       </div>

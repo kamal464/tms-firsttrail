@@ -28,9 +28,12 @@ SelectedColumnData : any  =[];
 columnname:string;
 id:string;
 selectedObject:any;
+title:string;
   constructor(private sharedservice: SharedServiceService,private http : HttpClient) {
     // this.coloumnRows = this.sharedservice.getColoumnRows();
     this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
+    this.title = this.sharedservice.getSelectedOption();
+    
     console.log(this.fkSchemaTableId)
     console.log(this.coloumnRows)
   }

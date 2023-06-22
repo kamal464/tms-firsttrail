@@ -13,6 +13,9 @@ export class AppComponent   implements OnInit,AfterViewInit{
   appComponent = 'yes'
   menuItems = [];
   currentRoute: string;
+  isActive = false;
+  activeButton: string = '';
+
 
   dynamicNavItems = [];
   currentField: string = '';
@@ -39,6 +42,7 @@ ngAfterViewInit(): void {
 
     });
 }
+
 
 
   ngOnInit() {

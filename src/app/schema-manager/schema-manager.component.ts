@@ -45,8 +45,15 @@ id : any;
   columns:any=[];
 
 
+  constructor(private http : HttpClient,private router: Router,private sharedservice : SharedServiceService) { }
 
-
+  sendData(): void {
+    const data = 'column';
+    this.sharedservice.setData(data);
+    
+    const url = '/column'; 
+  
+  }
 ngOnChanges(){
 
 }
@@ -87,7 +94,6 @@ onSave(value){
 
 }
 
-  constructor(private http : HttpClient,private router: Router,private sharedservice : SharedServiceService) { }
 
   ngOnInit(): void {
     // this.getColumns()
@@ -128,6 +134,7 @@ onSave(value){
         
         console.log(this.filteredReasons,this._selected_option);
         this.selectObject(0);
+        this.sharedservice.setSelectedOption(this._selected_option)
         // this.schemaAttributeComponent.currentSelectedReason = this.currentSelectedReason;
         // this.schemaAttributeComponent.getAttributes(this.currentSelectedReason.id);
         }
@@ -173,7 +180,7 @@ onSave(value){
                 console.log('Column names:', columnNames);
                 this.coloumnRows = columnNames;
                 this.sharedservice.setColoumnRows(columnNames);
-               
+               this.sharedservice.setSelectedOption(this._selected_option)
               }
             }
           }

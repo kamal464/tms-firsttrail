@@ -6,24 +6,30 @@
       <div class="app-menu-hold">
         <ng-container>
           <!-- class="menu-item button"  -->
-          <button mat-button [matMenuTriggerFor]="settings" >
-            Settings
+          <button mat-button class="menu-item" [matMenuTriggerFor]="settings"  [ngClass]="{'active-menu-item': activeButton === 'settings'}" (click)="activeButton = 'settings'">
+
+            <span class="menu-item-text">Settings</span> 
             <!-- <span class="menu-item-text"></span> -->
-            <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
+            <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
           <!-- <button mat-icon-button [matMenuTriggerFor]="settings">
         </button> -->
           <!-- class="mat-menu-content" -->
 
           <mat-menu #settings="matMenu"  class="mat-menu-content">
-            <button mat-menu-item (click)="doAction('settings')">
-              Settings
+            <button  mat-menu-item (click)="doAction('settings')">
+            Settings
             </button>
             <button mat-menu-item (click)="doAction('reasons')">Reasons</button>
           </mat-menu>
 
-          <button mat-button (click)="doAction('schema-manager')">Schema Manager</button>
-          <button mat-button [matMenuTriggerFor]="auth">Authorization</button>
+          <button mat-button class="menu-item" (click)="doAction('schema-manager')"  [ngClass]="{'active-menu-item': activeButton === 'schema-manager'}" (click)="activeButton = 'schema-manager'">
+            <span class="menu-item-text">  Schema Manager</span>
+          </button>
+          <button mat-button class="menu-item" [matMenuTriggerFor]="auth"  [ngClass]="{'active-menu-item': activeButton === 'authorization'}" (click)="activeButton = 'authorization'">
+            <span class="menu-item-text">Authorization</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button> 
 
           <mat-menu #auth="matMenu" class="mat-menu-content">
             <button mat-menu-item class="menu-button">Roles</button>
@@ -63,7 +69,7 @@
   <div class="page-tabs-hold">
     <div class="full-view-hold">
       <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
-        <div class="tree-top-fixed-hold" *ngIf="currentRoute !== '/column'">
+        <div class="tree-top-fixed-hold" >
           <div
             class="tree-top-fixed-title"
             *ngFor="let item of dynamicNavItems"
@@ -125,7 +131,7 @@
                     <div class="tabbed-item-lead-icon">
                       <!-- <mat-icon>tab.icon</mat-icon> -->
                     </div>
-                    <div class="tabbed-item-label" (click)="doAction(item)">
+                    <div class="tabbed-item-label" (click)="doAction(item)" (click)="activeButton = (item === 'reasons' ? 'settings' : (item === 'roles' || item === 'web menu' || item === 'web authorization') ? 'authorization' : item)">
                       {{ item }}
                     </div>
                     <button mat-icon-button (click)="deleteItem(item)">

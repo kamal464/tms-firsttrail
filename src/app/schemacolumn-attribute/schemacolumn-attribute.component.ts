@@ -21,7 +21,7 @@ export class SchemacolumnAttributeComponent implements OnInit,OnChanges {
   commentTypeDrop :any;
   editid:any;
   editable: boolean;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,) { }
 fields : any= [];
   ngOnInit(): void {
   //  this.getAttributes('8000002') ;
@@ -36,6 +36,10 @@ ngOnChanges(changes: SimpleChanges): void {
     this.getAttributes(this.newid);
   }
 }
+
+
+
+
   getAttributes(id: string) {
     console.log(id);
   

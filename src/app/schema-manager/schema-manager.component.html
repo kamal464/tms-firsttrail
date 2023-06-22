@@ -36,8 +36,10 @@
             <span class="mat-small"><b>{{ 20 }}</b> items</span>
           </div>
         </div>
-        <div class="reasons-hold info-options-hold mat-elevation-z4" style="max-height: calc(100vh - 310px); overflow-y: auto;">
-          <div class="info-data-hold">
+        <div class="reasons-hold info-options-hold mat-elevation-z4" >
+          <!-- style="max-height: calc(100vh - 310px); overflow-y: auto;" -->
+          <div class="info-data-hold" >
+            <!-- class="info-data-hold" -->
             <ng-container *ngFor="let reason of filteredReasons;  let i = index">
               <button
                 mat-button
@@ -149,28 +151,36 @@
  
                 </div>
                
-                <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                <div class="form-field-hold" >
                   <mat-label class="form-field-label">Description</mat-label>
                   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                     <textarea matInput placeholder="Ex: Description" [(ngModel)]="description"></textarea>
                   </mat-form-field>
                 </div>
-                <div class="form-field-hold" style="max-width: calc(100% - 270px)">
+                <div class="form-field-hold" >
                   <mat-label class="form-field-label">Notes</mat-label>
                   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                     <textarea matInput placeholder="Ex: Notes" [(ngModel)]="notes"></textarea>
                   </mat-form-field>
                 </div>
-                <div class="view-entry-hold">
-                  <mat-checkbox class="example-margin" [(ngModel)]="isChecked">IsActive</mat-checkbox>
+                <div class="form-field-hold" style="padding: left 50px;">
+                  <mat-checkbox class="example-margin" [(ngModel)]="isChecked">
+                    <mat-label >IsActive</mat-label>
+                  </mat-checkbox>
                 </div>
               </div>
             </div>
             <div class="controls-view" *ngIf="!isProcessing">
-              <div class="help-info-hold" *ngIf="_currentAction == 'view'">
-                <mat-icon>info</mat-icon>
-                <span class="help-text">Click on '<b>Edit</b>' button to edit setting/reason</span>
-              </div>
+              <button
+              *ngIf="_currentAction == 'view'"
+                class="action-button"
+                mat-raised-button
+                color="primary"
+                (click)="sendData()"
+              >
+                <!-- <mat-icon>add</mat-icon> -->
+                <span class="button-text"> Show Columns</span>
+              </button>
             </div>
           </div>
           <app-schema-attribute  [currentSelectedReason]="currentSelectedReason"></app-schema-attribute>

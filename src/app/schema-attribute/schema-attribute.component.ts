@@ -40,12 +40,12 @@ export class SchemaAttributeComponent implements OnInit ,OnChanges {
   
     const url = '/column'; // URL for the new tab
   
-    setTimeout(() => {
-      const column = this.sharedService.getColoumnRows();
-      console.log(column);
-      this.sharedService.setColoumnRows(column);
-      // window.open(url, '_blank');
-    }, 2000);
+    // setTimeout(() => {
+    //   const column = this.sharedService.getColoumnRows();
+    //   console.log(column);
+    //   this.sharedService.setColoumnRows(column);
+    //   // window.open(url, '_blank');
+    // }, 2000);
     // this.router.navigate(['/column']);
   }
 
