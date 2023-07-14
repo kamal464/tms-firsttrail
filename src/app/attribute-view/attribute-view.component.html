@@ -1,0 +1,135 @@
+<!-- <div class="view-attri-hold">
+
+  <span *ngFor="let label of inputLabel">
+    <mat-label class="attri-data" style="color: #03045e">{{ label }}</mat-label>
+  </span>
+</div>
+
+<div class="view-attri-hold" *ngFor="let data of formData; let i = index">
+ 
+  <span>
+    <mat-icon class="entry-value" (click)="moveFieldUp(i)"
+      >arrow_upward</mat-icon
+    >
+  </span>
+  <span>
+    <mat-icon class="entry-value" (click)="moveFieldDown(i)"
+      >arrow_downward</mat-icon
+    >
+  </span>
+  <span class="attri-label">{{ currentIndex + i + 1 }}</span>
+  <span class="attri-label" *ngIf="!data.editMode">{{ data?.code }}</span>
+
+  <input
+    type="text"
+    class="attri-label"
+    *ngIf="data.editMode"
+    [(ngModel)]="data.code"
+  />
+  <span class="attri-label" *ngIf="!data.editMode">{{ data?.value }}</span>
+  <input
+    type="text"
+    class="attri-label"
+    *ngIf="data.editMode"
+    [(ngModel)]="data.value"
+  />
+  <span class="attri-label">
+    <mat-icon
+      class="delete-icon"
+      (click)="deleteField(i); getfield(data.id); deleteReasons()"
+      >delete</mat-icon
+    >
+  </span>
+  <span class="attri-label" *ngIf="!data.editMode">
+    <mat-icon class="delete-icon" (click)="toggleEditMode(data)">edit</mat-icon>
+  </span>
+</div> -->
+
+   <div style="width: 100%;"  >
+  <table class="sp-table"  *ngIf="_currentAction == 'view'">
+    <tr>
+      <th *ngFor="let label of inputLabel">
+        <mat-label style="color: #03045e">{{ label }}</mat-label>
+      </th>
+    </tr>
+    <tr *ngFor="let data of formData; let i = index">
+  
+      <td>
+        <span>
+          <mat-icon class="entry-value" (click)="moveFieldUp(i)"
+            >arrow_upward</mat-icon
+          >
+        </span>
+        <span>
+          <mat-icon class="entry-value" (click)="moveFieldDown(i)"
+            >arrow_downward</mat-icon
+          >
+        </span>
+      </td>
+      <td>
+
+        <span class="attri-label">{{ currentIndex + i + 1 }}</span>
+      </td>
+      <td>
+        <span class="attri-label" *ngIf="!data.editMode">{{ data?.code }}</span>
+        <input
+          type="text"
+          class="attri-input"
+          *ngIf="data.editMode"
+          [(ngModel)]="data.code"
+        />
+      </td>
+      <td>
+        <span class="attri-label" *ngIf="!data.editMode">{{
+          data?.value
+        }}</span>
+
+        
+        <input
+          type="text"
+          class="attri-input"
+          *ngIf="data.editMode"
+          [(ngModel)]="data.value"
+        />
+      </td>
+      <td>
+        <span class="attri-label" matTooltip="Delete">
+          <mat-icon
+            class="delete-icon"
+            (click)="deleteField(i); getfield(data.id); deleteReasons()"
+            >delete</mat-icon
+          >
+        </span>
+        <span class="attri-label" *ngIf="!data.editMode" matTooltip="edit">
+          <mat-icon class="delete-icon" (click)="toggleEditMode(data);getfield(data.id);"
+            >edit</mat-icon
+          >
+        </span>
+        <span
+        *ngIf="data.editMode"
+        (click)="toggleEditMode(data)"
+        style="width: 10px;"
+        
+        matTooltip="Cancel"
+      >
+        <mat-icon>cancel</mat-icon>
+        <!-- <span class="button-label">Cancel</span> -->
+      </span>
+      <span
+
+      *ngIf="data.editMode "
+      color="primary"
+      matTooltip="Save Changes"
+      
+     
+    >
+      <mat-icon
+      (click)="editReasonitem()"
+      (click)="toggleEditMode(data)"
+      >save</mat-icon>
+      <!-- <span class="button-label">Save</span> -->
+    </span>
+      </td>
+    </tr>
+  </table>
+</div>

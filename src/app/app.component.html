@@ -33,9 +33,13 @@
 
           <mat-menu #auth="matMenu" class="mat-menu-content">
             <button mat-menu-item class="menu-button">Roles</button>
-            <button mat-menu-item class="menu-button">Web Menu</button>
+            <button mat-menu-item class="menu-button" (click)="doAction('web-menu')">Web Menu</button>
             <button mat-menu-item class="menu-button">Web Authorization</button>
           </mat-menu>
+
+          <button mat-button class="menu-item" (click)="doAction('company-profile')"  [ngClass]="{'active-menu-item': activeButton === 'company-profile'}" (click)="activeButton = 'company-profile'">
+            <span class="menu-item-text">Company Profile</span>
+          </button>
         </ng-container>
       </div>
       <div class="spacer"></div>
@@ -269,9 +273,9 @@
               <app-company-offices
                 *ngIf="_selected_option == 'offices'"
               ></app-company-offices>
-              <app-new-employee
-                *ngIf="_selected_option == 'new-employee'"
-              ></app-new-employee>
+             <app-company-profile
+             *ngIf="_selected_option == 'company-profile'"
+             ></app-company-profile>
               <app-new-overview
                 *ngIf="_selected_option == 'new-overview'"
               ></app-new-overview>
@@ -286,6 +290,7 @@
               <app-schema-column
                 *ngIf="_selected_option == 'column'"
               ></app-schema-column>
+              <app-web-menu *ngIf="_selected_option == 'web-menu'"></app-web-menu>
             </div>
             <!-- </mat-tab> -->
             <!-- </mat-tab-group> -->

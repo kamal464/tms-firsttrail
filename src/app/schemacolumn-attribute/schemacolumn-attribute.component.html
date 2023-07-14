@@ -5,7 +5,7 @@
        
       <span style="width: calc(100% - 420px);"></span>
 
-        <button *ngIf="_currentAction == 'view'&& fields.length > 0" class="action-button" mat-raised-button color="primary" 
+        <button *ngIf="_currentAction == 'view'" class="action-button" mat-raised-button color="primary" 
         (click)="doAction('add')"  >
           <mat-icon>add</mat-icon>
           <span class="button-text">New Attribute</span>

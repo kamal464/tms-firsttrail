@@ -126,7 +126,7 @@ onSave(value){
       }).subscribe((data) =>{
         if (data !== undefined && data !== null) {
         this.filteredReasons = data;
-        this._selected_option = data[0].tablename;
+        this._selected_option = data[0]?.tablename;
         this.currentSelectedReason = data[0]
         this.id= data[0].id
         console.log(this.id)
@@ -161,7 +161,7 @@ onSave(value){
     }
     
     getColumns() {
-      const table = this._selected_option ? this._selected_option : this.filteredReasons[0].tablename;
+      const table = this._selected_option ? this._selected_option : this.filteredReasons[0]?.tablename;
 
       console.log(table);
       this.http

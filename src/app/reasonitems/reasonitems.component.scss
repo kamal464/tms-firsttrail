@@ -3,6 +3,12 @@
 @import '../../styles/theme.scss';
 @import '../../styles/variables.scss';
 
+.new-content-hold{
+  padding: 20px 16px;
+  overflow: auto;
+}
+
+
 .setting-items-view-hold {
     position: relative;
     padding-top: 85px;

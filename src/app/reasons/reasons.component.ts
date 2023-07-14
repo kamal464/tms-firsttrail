@@ -89,7 +89,7 @@ export class ReasonsComponent implements OnInit {
     const requestBody = {
       id: timestamp,
       group: '',
-      name:this.input, 
+      name: this.input ? this.input : undefined, 
       isEditable:'',
     }; 
     console.log(requestBody)

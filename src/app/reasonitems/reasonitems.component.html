@@ -59,15 +59,18 @@
     </div>
     <div class="contents" *ngIf="fields && fields.length > 0">
       <div class="content-hold" >
-        <div class="setting-items-hold content-data-hold no-padding-h"  >
+        <div  >
 
           <div
-          class=" content-data-hold"
+          class="new-content-hold"
           *ngIf="_currentAction === 'view' || _currentAction === 'add'" 
        
         >
-       
-        <div class="view-entry-hold" >
+      
+
+      <app-attribute-view [formData]="fields" [currentSelectedReason]="currentSelectedReason"></app-attribute-view>
+
+        <!-- <div class="view-entry-hold" >
           <mat-label class="entry-data" style="color:#03045e;"></mat-label>
           <span class = "entry-value"  style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
             <span>
@@ -109,7 +112,7 @@
               <mat-icon class="delete-icon" (click)="doAction('edit')"  (click)="getfield(field.id)">edit</mat-icon>
             </span>
           </div>
-          
+           -->
 
        
          </div>
@@ -121,7 +124,7 @@
           *ngIf="_currentAction == 'edit' "
         >
       
-        <div class="view-entry-hold">
+        <!-- <div class="view-entry-hold">
           <mat-label class="entry-data" style="color:#03045e;"></mat-label>
           <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
             <span *ngIf="isEditable(field.id)">
@@ -131,9 +134,9 @@
               <mat-icon class="entry-value" (click)="moveFieldDown(i)">arrow_downward</mat-icon>
             </span>
           </span>
-        </div>
+        </div> -->
         
-        <div class="view-entry-hold">
+        <!-- <div class="view-entry-hold">
           <mat-label class="entry-data" style="color:#03045e;">#</mat-label>
           <ng-container *ngFor="let field of fields ; let i = index;">
             <ng-container *ngIf="isEditable(field.id)">
@@ -142,9 +145,9 @@
               </span>
             </ng-container>
           </ng-container>
-        </div>
+        </div> -->
         
-          <div class="view-entry-hold">
+          <!-- <div class="view-entry-hold">
             <mat-label class="entry-data" style="color:#03045e;">code</mat-label>
             <ng-container *ngFor="let field of fields">
               <ng-container *ngIf="isEditable(field.id)">
@@ -155,9 +158,9 @@
                 </span>
               </ng-container>
             </ng-container>
-          </div>
+          </div> -->
           
-          <div class="view-entry-hold">
+          <!-- <div class="view-entry-hold">
             <mat-label class="entry-data" style="color:#03045e;">Text</mat-label>
             <ng-container *ngFor="let field of fields">
               <ng-container *ngIf="isEditable(field.id)">
@@ -168,20 +171,20 @@
                 </span>
               </ng-container>
             </ng-container>
-          </div>
+          </div> -->
           
 
-          <div class="view-entry-hold">
+          <!-- <div class="view-entry-hold">
             <mat-label class="entry-data" style="color:#03045e;"></mat-label>
             <span class="entry-value" style="padding: 10px 15px 10px 20px;" *ngFor="let field of fields; let i = index;">
               <span *ngIf="isEditable(field.id)">
                 <mat-icon class="delete-icon" (click)="deleteField(i)">delete</mat-icon>
               </span>
             </span>
-          </div>
+          </div> -->
           
             
-          <tool-bar
+          <!-- <tool-bar
           [title]=""
           class="content-title-hold"
           [currentAction]="_currentAction"
@@ -189,8 +192,10 @@
           (onAction)="doAction($event)"
         >
         </tool-bar>
-           
+            -->
         
+
+
           
         </div>
         <!-- <div class="new-setting-item-controls" *ngIf="_currentAction == 'edit'">

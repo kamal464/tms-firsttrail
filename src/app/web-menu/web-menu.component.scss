@@ -1,0 +1,67 @@
+.sp-table {
+    width: 100%;
+    
+    position: relative;
+    border-collapse: collapse;
+    flex-grow : 1;
+  
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 6px;
+
+      
+    }
+    td {
+  text-align: center;
+      
+    }
+  }
+
+
+.addMenu{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+ 
+  padding: 0 22px 10px 0;
+}
+.addlabel{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  color: #666;
+}
+
+.web-menu-hold{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: calc(100% - 22px);
+  padding: 0 22px 10px 0;
+}
+
+.menu-label{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  color: #666;
+}
+
+.menu-input{
+  ::ng-deep {
+    .mat-form-field-flex {
+      background-color: transparent;
+    }
+
+    .mat-form-field-infix {
+      font-weight: bold;
+      font-size: 120%;
+      padding: 0 0 5px 0;
+    }
+
+    .mat-form-field-underline {
+      width: calc(100% + 22px);
+    }
+  }
+}

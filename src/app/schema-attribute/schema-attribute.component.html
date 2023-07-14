@@ -13,7 +13,7 @@
     <span style="width: calc(100% - 420px);"></span>
     <button
     
-      *ngIf="_currentAction == 'view' && fields.length > 0"
+      *ngIf="_currentAction == 'view'"
       class="action-button"
       mat-raised-button
       color="primary"
@@ -59,10 +59,10 @@
 
       <!-- (onSave)="saveData()" -->
       <div
-        class="setting-data-hold content-data-hold"
+        class=" content-data-hold"
         *ngIf="_currentAction == 'add'"
       >
-        <div class="form-field-hold three-column-field">
+        <div class="form-field-hold ">
           <mat-label class="form-field-label">Type</mat-label>
           <mat-form-field
             class="form-field-input"
@@ -139,7 +139,7 @@
         </div>
 
         <div class="view-entry-hold">
-          <mat-label class="entry-data" style="color: #03045e"
+          <mat-label class="entry-data" style="color: #03045e"  
             >Description</mat-label
           >
           <span

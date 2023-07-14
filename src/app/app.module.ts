@@ -39,6 +39,10 @@ import { SharedServiceService } from './shared/shared-service.service';
 import { RouterModule } from '@angular/router';
 import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemacolumn-attribute.component';
 import { CommonModule } from '@angular/common';
+import { WebMenuComponent } from './web-menu/web-menu.component';
+
+import { AttributeViewComponent } from './attribute-view/attribute-view.component';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +73,10 @@ import { CommonModule } from '@angular/common';
     SchemaManagerComponent,
     SchemaAttributeComponent,
     SchemaColumnComponent,
-    SchemacolumnAttributeComponent
+    SchemacolumnAttributeComponent,
+    WebMenuComponent,
+CompanyProfileComponent,
+    AttributeViewComponent
   ],
   imports: [
     BrowserModule,

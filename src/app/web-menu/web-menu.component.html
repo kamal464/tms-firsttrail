@@ -1,0 +1,140 @@
+<div class="settings-view multi-options-view has-overall-heading" *ngIf="_currentAction== 'view' || 'add' ">
+    <div class="overall-heading">
+      <app-title
+        title="Web-menu"
+        subTitle="List of Web-menu configured."
+      ></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('add')">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Menu</span>
+      </button>
+      <div class="action-padding"></div>
+    </div>
+    </div>
+    <div class="overall-view">
+      <div class="new-setting-item-controls" style="padding: 0px 20px 0px 10px;" *ngIf="_currentAction == 'add'"> 
+        <mat-toolbar>
+          <span
+            class="tool-bar-title"
+            [innerHtml]="'Add-Menu'"
+            [ngClass]="{ 'no-transform': '' }"
+          ></span>
+
+          <span class="spacer"></span>
+          <button
+            mat-stroked-button
+            class="new-setting-item-control"
+           (click)="doAction('view')"
+          >
+            <mat-icon>cancel</mat-icon>
+            <span class="button-label">Cancel</span>
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="new-setting-item-control"
+           (click)="addMenu();doAction('view')"
+          
+          >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+        </mat-toolbar>
+
+<div class="web-menu-hold">
+   <mat-label  class="menu-label">TopMenu</mat-label>
+   <!-- <mat-label  class="form-field-label">SubMenu</mat-label> -->
+   <mat-form-field
+   class="menu-input"
+   floatPlaceholder="never"
+   appearance="fill"
+ >
+   <input
+     matInput
+     placeholder="Ex: TopMenu"
+     [(ngModel)]="topMenu"    
+   />
+ </mat-form-field>
+ </div>
+ <div class="web-menu-hold">
+   <mat-label  class="menu-label">SubMenu</mat-label>
+  <mat-form-field
+  class="menu-input"
+  floatPlaceholder="never"
+  appearance="fill"
+>
+  <input
+    matInput
+    placeholder="Ex: SubMenu"
+    [(ngModel)]="subMenu"    
+   
+  />
+</mat-form-field>
+</div>
+<div class="web-menu-hold">
+  <mat-label  class="menu-label">MenuItem</mat-label>
+  <mat-form-field
+  class="menu-input"
+  floatPlaceholder="never"
+  appearance="fill"
+>
+  <input
+    matInput
+    placeholder="Ex: MenuItem"
+    [(ngModel)]="menuItem"    
+  />
+</mat-form-field>
+</div>
+<div class="web-menu-hold">
+  <mat-label  class="menu-label">UiRoute</mat-label>
+  <mat-form-field
+  class="menu-input"
+  floatPlaceholder="never"
+  appearance="fill"
+>
+  <input
+    matInput
+    placeholder="Ex: UiRoute"
+    [(ngModel)]="uiRoute"    
+  />
+</mat-form-field> 
+
+</div>
+      </div>
+        <div style="width: 100%;"  >
+            <table class="sp-table"  >
+              <tr>
+                <th *ngFor="let label of inputLabel">
+                  <mat-label style="color: #03045e">{{ label }}</mat-label>
+                </th>
+              </tr>
+              <tr *ngFor="let item of menuData let i = index;" >
+                <td>
+                  <span class="attri-label" >{{  currentIndex + i + 1}}</span>
+                 
+                </td>
+                <td>
+                  <span class="attri-label" >{{ item.topmenuitem}}</span>
+                 
+                </td>
+                <td>
+                  <span class="attri-label" >{{ item.level1menuitem}}</span>
+                 
+                </td>
+                <td>
+                  <span class="attri-label" >{{ item.level2menuitem}}</span>
+                 
+                </td>
+                <td>
+                  <span class="attri-label" >{{ item.uiroute}}</span>
+                 
+                </td>
+              </tr>
+
+
+
+
+            </table>
+          </div>
+        </div>
