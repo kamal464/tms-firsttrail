@@ -18,7 +18,7 @@ export class AttributeViewComponent implements OnInit {
   editMode: false 
   inputLabel: any = [ "", "#","Code","Text", "Actions"];
   constructor( private http : HttpClient) { 
-    ;
+    
    }
 
    doAction(action): void {
@@ -32,10 +32,7 @@ export class AttributeViewComponent implements OnInit {
   toggleEditMode(data: any) {
     data.editMode = !data.editMode;
   }
-  toggleEditable(data: any) {
-    data.editableCode = !data.editableCode;
-    data.editableValue = !data.editableValue;
-  }
+
 
   getfield(field):void{
     this.editid = field;
@@ -55,11 +52,12 @@ export class AttributeViewComponent implements OnInit {
   }
 
 
-  moveFieldUp(index: number) {
+  
+  moveFieldUp(index: number) {  
     if (index > 0) {
       const temp = this.formData.splice(index, 1)[0];
       this.formData.splice(index - 1, 0, temp);
-      // this.currentIndex = Math.max(1, this.currentIndex - 1); // Decrement currentIndex and ensure it's at least 1
+     
     }
   }
   moveFieldDown(index: number) {
@@ -88,7 +86,6 @@ export class AttributeViewComponent implements OnInit {
   editReasonitem() {
     const fieldId = this.editid;
     const fieldToUpdate = this.formData.find((field) => field.id === fieldId);
-  
  if(fieldToUpdate){
     const requestBody = {
       id: this.editid,
@@ -102,5 +99,9 @@ export class AttributeViewComponent implements OnInit {
     });
   } 
   }
+
+
+
+
 
 }

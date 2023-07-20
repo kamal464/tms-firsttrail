@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -41,8 +41,19 @@ import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemac
 import { CommonModule } from '@angular/common';
 import { WebMenuComponent } from './web-menu/web-menu.component';
 
-import { AttributeViewComponent } from './attribute-view/attribute-view.component';
+import { AttributeViewComponent } from './reason-attribute/attribute-view.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { OverviewComponent } from './overview/overview.component';
+import { CompanyDepartmentsComponent } from './company-departments/company-departments.component';
+import { CompanyDepartmentsEntryComponent } from './company-departments/company-departments-entry/company-departments-entry.component';
+import { CompanyDepartmentsTypesComponent } from './company-departments-types/company-departments-types.component';
+import { CompanyDesignationsComponent } from './company-designations/company-designations.component';
+import { CompanyGradesComponent } from './company-grades/company-grades.component';
+import { CompanyIdentificationsComponent } from './company-identifications/company-identifications.component';
+import { CompanyIdentificationEntryComponent } from './company-identifications/company-identification-entry/company-identification-entry.component';
+import { SchemaAttributeTableComponent } from './schema-attribute-table/schema-attribute-table.component';
+import { SchemaColumnAttributeTableComponent } from './schema-column-attribute-table/schema-column-attribute-table.component';
+import { DepartmentAttributesComponent } from './company-departments-types/department-attributes/department-attributes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,9 +86,22 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
     SchemaColumnComponent,
     SchemacolumnAttributeComponent,
     WebMenuComponent,
-CompanyProfileComponent,
-    AttributeViewComponent
+  CompanyProfileComponent,
+  AttributeViewComponent,
+    OverviewComponent,
+    CompanyDepartmentsComponent,
+    CompanyDepartmentsEntryComponent,
+    CompanyDepartmentsTypesComponent,
+    CompanyDesignationsComponent,
+    CompanyGradesComponent,
+    CompanyIdentificationsComponent,
+    CompanyIdentificationEntryComponent,
+    SchemaAttributeTableComponent,
+    SchemaColumnAttributeTableComponent,
+    OfficesComponent,
+    DepartmentAttributesComponent,
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,

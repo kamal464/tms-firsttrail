@@ -1,6 +1,6 @@
 import { Component,EventEmitter, OnInit ,Input,Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Api_Base,API_BASE_URL } from '../shared/api-config';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -14,7 +14,7 @@ export class CountryComponent implements OnInit {
   @Input()  formData: any[]=[];
 // inputData:any=[];
   selectedOption:any;
-  options : any= [{ label: 'Ind' }, { label: 'us' }, { label: 'uk' }];
+  options : any= [];
   constructor(private http: HttpClient) { }
 
   addInputValue(value: string) {
@@ -40,7 +40,7 @@ export class CountryComponent implements OnInit {
     }
   }
   getCountries(){
-    this.http.post('http://192.168.0.58:5000/org/getcountry',{}).subscribe((data =>{ console.log(data)
+    this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
   this.options = data;
   
   }))

@@ -1,4 +1,5 @@
-<div class="offices-item-hold">
+<!-- <ng-container *ngFor="let office of officesArray"> -->
+    <div class="offices-item-hold">
     <!-- <div class="content-loading-hold">
       <mat-spinner></mat-spinner>
       <span class="mat-title content-loading-text"
@@ -8,7 +9,8 @@
       (onAction)="doAction($event)" [hasEdit]="true" [hasDelete]="true" *ngIf="!isProcessing">
     </tool-bar> -->
     <mat-toolbar class="tool-bar">
-        <span class="tool-bar-title">DTPL-HYD (HEAD OFFICE)</span>
+        <span class="tool-bar-title" [innerHtml]="offices.office?.code" ></span>
+        <span class="sub-title mat-small"> {{ offices.office?.type}}</span>
         <span class="spacer"></span>
         <button
           mat-button
@@ -20,7 +22,7 @@
           <mat-icon>edit</mat-icon>
           <span class="button-label">Edit</span>
         </button>
-        <button mat-flat-button  class="tool-bar-button bt-bg" matTooltip="Delete" (click)="doAction('delete')"
+        <button mat-flat-button  class="tool-bar-button bt-bg" matTooltip="Delete" (click)="doAction('delete');_doDelete()"
     *ngIf="hasEdit && currentAction == 'view'">
     <mat-icon>delete</mat-icon>
     <span class="button-label">Delete</span>
@@ -40,62 +42,61 @@
           color="primary"
           class="tool-bar-button"
           matTooltip="Save Changes"
-          (click)="doAction('save')"
+          (click)="doAction('view')"
           (click)="saveOff()"
+          (click)="updateOffice()"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
           <span class="button-label">Save</span>
         </button>
       </mat-toolbar>
+      
     <div class="office-contents content-data-hold" *ngIf="currentAction == 'view'">
       <div class="view-entry-hold">
-        <span class="entry-text highlight-title">Design Tribe India Hyderabad</span>
+        <span class="entry-text highlight-title">{{offices?.office?.name}}</span>
+      </div>
+      
+      <div class="view-entry-hold">
+        <span class="entry-text">{{offices?.address?.houseno + ',' + offices.address?.building}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text">3rd Floor, Raja Prasadamu,</span>
+        <span class="entry-text">{{offices?.address?.landmark}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text">Opp Vijetha Super Market,</span>
+        <span class="entry-text">{{offices?.address?.street}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text">Botanical Garden Road,</span>
+        <span class="entry-text"> {{offices?.address?.area + ',' + offices?.address?.city}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text"> Kondapur, Hyderabad,</span>
-      </div>
-      <div class="view-entry-hold">
-        <span class="entry-text flag-hold">
+        <span class="entry-text flag-hold" *ngFor="let country of countries">
           <mat-icon></mat-icon>
-          India - 500084.
+          {{(offices?.address?.fkcountrycode == country.id ? country.value : null) + '-' + offices?.address?.postalcode}}
         </span>
       </div>
     </div>
-    <div class="office-edit-contents content-data-hold" [formGroup]="myGroup" *ngIf="currentAction == 'edit'">
-    <!-- <div class="error-text-hold" >
-      <mat-icon>error_outline</mat-icon>
-      <span class="error-text" [innerHtml]="errorMsg"></span>
-    </div> -->
+ 
+    <div class="office-edit-contents content-data-hold"  *ngIf="currentAction == 'edit'">
+  <!-- <ng-container *ngFor="let office of offices"> -->
     <div class="form-field-hold">
       <mat-label class="form-field-label">Office Title</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Short Code." formControlName="code">
+        <input matInput placeholder="Ex: Short Code." [(ngModel)]="offices.office.code">
       </mat-form-field>
     </div>
-    <!-- <kit-ui-text-edit label="office title" [placeholder]="'Ex: Short Code.'" > -->
-      <!-- <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="name"> -->
-    <!-- </kit-ui-text-edit> -->
+   
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Office Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="name">
+        <input matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="offices.office.name">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Office Type</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <mat-select matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="type">
-          <mat-option >officeType.valuest
+        <mat-select matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="offices.office.type" >
+          <mat-option *ngFor="let type of officeTypeArray" [value]="type.value">{{type.value}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -103,62 +104,65 @@
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: 101, Ground floor" formControlName="flatno">
+        <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="offices.address.houseno">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Building Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Building Name" formControlName="buildingname">
+        <input matInput placeholder="Ex: Building Name" [(ngModel)]="offices.address.building">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Road Name/Number</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Road no 1" formControlName="roadnumber">
+        <input matInput placeholder="Ex: Road no 1" [(ngModel)]="offices.address.street">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Landmark</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Near By Landmark" formControlName="landmark">
+        <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="offices.address.area">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Location</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: Location" formControlName="location">
+        <input matInput placeholder="Ex: Location" [(ngModel)]="offices.address.location">
       </mat-form-field>
     </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">City</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput placeholder="Ex: City" formControlName="city">
+        <input matInput placeholder="Ex: City" [(ngModel)]="offices.address.city">
       </mat-form-field>
     </div>
-    <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Country</mat-label>
-      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <mat-select placeholder="Ex: Country" formControlName="fkcountrycode">
-          <mat-select-trigger>
-            <span class="flag-hold" >
-              <mat-icon></mat-icon>
-               offcieDetails.controls.fkcountrycode.value.name 
-            </span>
-          </mat-select-trigger>
-          <mat-option>
-            <span class="flag-hold">
-              <mat-icon ></mat-icon>country.name
-            </span>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+     <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Country</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
+                <mat-select placeholder="Ex: Country" [(ngModel)]="offices.address.fkcountrycode " >
+                  <mat-select-trigger>
+                    <span class="flag-hold" *ngFor="let country of countries">
+                      <mat-icon></mat-icon>
+                    {{offices.address.fkcountrycode == country.id?country.value:null}}
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let country of countries" [value]="country.id">
+                    <span class="flag-hold">
+                      <mat-icon ></mat-icon>{{country.value}}
+                    </span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
     <div class="form-field-hold two-column-field">
       <mat-label class="form-field-label">Pincode</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-        <input matInput type="number" placeholder="Ex: 000000" formControlName="pincode">
+        <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="offices.address.postalcode">
       </mat-form-field>
     </div>
+  <!-- </ng-container> -->
   </div>
-    </div>
+</div>
+<!-- </ng-container> -->
+

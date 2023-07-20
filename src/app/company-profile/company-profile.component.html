@@ -33,7 +33,16 @@
       </div>
     </div>
     <div class="contents-view">
-       
+       <!-- <app-overview 
+       *ngIf="_selected_option == 'OVERVIEW'"
+       ></app-overview> -->
+       <app-company-overview  *ngIf="_selected_option == 'OVERVIEW'"></app-company-overview>
+       <app-company-offices *ngIf="_selected_option == 'OFFICES'"></app-company-offices>
+       <app-company-departments  *ngIf="_selected_option == 'DEPARTMENTS'"></app-company-departments>
+       <app-company-departments-types *ngIf="_selected_option == 'DEPARTMENT-TYPES'"></app-company-departments-types>
+       <app-company-designations *ngIf="_selected_option == 'DESIGNATION'"></app-company-designations>
+       <app-company-grades *ngIf="_selected_option == 'GRADES'"></app-company-grades>
+       <app-company-identifications *ngIf="_selected_option == 'IDENTIFICATIONS'"></app-company-identifications>
     </div>
   </div>
   

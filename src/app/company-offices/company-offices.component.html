@@ -17,11 +17,146 @@
       
       <div class="contents">
         <div class="multiple-content-hold">
-          <ng-container >
-            <app-offices class="content-hold item-hold">
+
+<ng-container *ngFor="let merged of mergedArray">
+  <app-offices [offices]="merged" class="content-hold item-hold" [officeTypeArray]="officeTypeArray" [countries]="countries" (onDelete)="_onDeleteOffice($event)"></app-offices>
+</ng-container>
+
+
+          <!-- <ng-container *ngFor="let address of addressArray"> -->
+              <!-- <ng-container  *ngFor="let office of officesArray">
+            <app-offices [offices]="office" [address]="address" class="content-hold item-hold" [officeTypeArray]="officeTypeArray" [countries]="countries">
             </app-offices>
-            
-          </ng-container>
+          </ng-container> -->
+          <!-- </ng-container> -->
+          <!-- <ng-container *ngFor="let address of addressArray">
+            <ng-container *ngIf="officesArray">
+              <app-offices
+                [offices]="findOfficeById(address.officeid)"
+                [address]="address"
+                class="content-hold item-hold"
+                [officeTypeArray]="officeTypeArray"
+                [countries]="countries"
+              ></app-offices>
+            </ng-container>
+          </ng-container> -->
+          
+          <div class="content-hold item-hold" *ngIf="isNew" >
+          
+          <mat-toolbar class="tool-bar" *ngIf="isNew">
+            <span class="tool-bar-title">New Office</span>
+            <span class="spacer"></span>
+          
+            <button
+              mat-button
+              class="tool-bar-button"
+              matTooltip="Cancel"
+              (click)="isNew = false;"
+              
+            >
+              <mat-icon>cancel</mat-icon>
+              <span class="button-label">Cancel</span>
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+              (click)="isNew = false; addOffice();"
+              
+              
+            >
+              <mat-icon>save</mat-icon>
+              <span class="button-label">Save</span>
+            </button>
+          </mat-toolbar>
+         
+          <div class="office-edit-contents content-data-hold" style="flex-wrap: wrap;">
+  
+            <div class="form-field-hold">
+              <mat-label class="form-field-label">Office Title</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Short Code."[(ngModel)]="officeTitle">
+              </mat-form-field>
+            </div>
+           
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Office Name</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Organisation India Pvt Ltd"[(ngModel)]="officeName" >
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Office Type</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <mat-select matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="officeType">
+                  <mat-option *ngFor="let office of officeTypeArray"  [value]="office.value" >{{office.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: 101, Ground floor" [(ngModel)]="flatNo">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Building Name</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Building Name" [(ngModel)]="buildingName">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Road Name/Number</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Road no 1" [(ngModel)]="roadName">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Landmark</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="landMark">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Location</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Location" [(ngModel)]="location">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">City</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: City" [(ngModel)]="city">
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Country</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  *ngFor="let country of countries">
+                <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry" >
+                  <mat-select-trigger>
+                    <span class="flag-hold" >
+                      <mat-icon></mat-icon>
+                      {{country.value}}
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option [value]="country.id">
+                    <span class="flag-hold">
+                      <mat-icon ></mat-icon>{{country.value}}
+                    </span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Pincode</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="pincode">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
           <!-- <div class="item-hold two-column-field" *ngIf="!isNew">
             <div class="add-item-hold" (click)="isNew = true;">
               <mat-icon class="add-item-icon">add</mat-icon>
@@ -38,6 +173,9 @@
               <span class="add-item-title mat-display-3">Office</span>
               <span class="add-item-help-text mat-small">Click to add '<b class="add-item-title">Office</b>' to the
                 company.</span>
+              </div>
+              </div>
+              <div class="item-hold two-column-field"></div>
               </div>
               <div class="controls-view">
                 <div class="help-info-hold">
@@ -56,8 +194,8 @@
                 </div>
                 
             </div>
-              </div>
+            
             </div>
-            </div>
+          
 
   

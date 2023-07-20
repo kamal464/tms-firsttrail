@@ -1,0 +1,169 @@
+<div class="identifications-item-hold">
+    <div class="content-loading-hold" *ngIf="isProcessing">
+      <mat-spinner></mat-spinner>
+      <span class="mat-title content-loading-text"
+        [innerHtml]="'Please wait, while the procesing <b>Identification</b>:<b class=\'primary-color-text\'>' + _identificationTitle + '</b> information.'"></span>
+    </div>
+    <tool-bar [title]="_identificationTitle" class="content-title-hold" [currentAction]="_currentAction"
+      (onAction)="doAction($event)" [hasEdit]="true" [hasDelete]="true" *ngIf="!isProcessing">
+    </tool-bar>
+    <div class="identification-contents content-data-hold no-padding-h" *ngIf="_currentAction == 'view' && !isProcessing">
+      <div style="display: flex;padding:0 25px;">
+        <div class="view-entry-hold two-three-column-field">
+          <span class="entry-text"> identification.idtype</span>
+          <span class="entry-text" style="margin-top: 8px;"> 'By ' + identification.idissuedby</span>
+        </div>
+        <div class="view-entry-hold three-column-field">
+          <span class="entry-text flag-hold" style="justify-content: flex-end;">
+            <!-- <mat-icon [svgIcon]="identification.fkcountrycode" *ngIf="identification.fkcountry"></mat-icon> -->
+            identification.fkcountry.name .
+          </span>
+        </div>
+      </div>
+      <div class="view-entry-hold identification-number-hold">
+        <span class="mat-display-1 primary-color-text" style="margin: 20px 0 0 10px;">identification.idnumber</span>
+      </div>
+      <div class="view-entry-hold identification-name-hold">
+        <span class="entry-text primary-color-text highlight-title"
+          style="margin: 0 0 20px 10px;"> identification.idname </span>
+      </div>
+      <div class="spacer" style="display: flex;padding:0 25px;">
+        <div class="view-entry-hold three-column-field">
+          <mat-label class="entry-label">Issued Date</mat-label>
+          <span class="entry-data"> identification.issuedate</span>
+        </div>
+        <div class="view-entry-hold three-column-field" style="align-items: flex-end;">
+          <mat-label class="entry-label">Valid From</mat-label>
+          <span class="entry-data "> identification.validfrom</span>
+        </div>
+        <div class="view-entry-hold three-column-field" style="align-items: flex-end;" >
+          <mat-label class="entry-label">Valid Upto</mat-label>
+          <span class="entry-data"> identification.validupto </span>
+        </div>
+      </div>
+      <div class="view-entry-hold">
+        <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+            [innerHtml]="_attachments.length > 0 ? 'Attachements : <b>' + _attachments.length + '</b>' : 'No Attachements'"></span>
+        </div>
+        <div class="attachments-hold" *ngIf="_attachments.length > 0">
+          <ng-container *ngFor="let attachment of _attachments">
+            <!-- <app-attachment [attachment]="attachment"></app-attachment> -->
+          </ng-container>
+          <span class="spacer"></span>
+          <button mat-stroked-button color="primary" >
+            <mat-icon>download</mat-icon>
+            Download All
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="identification-edit-contents content-data-hold" 
+      *ngIf="(_currentAction == 'edit' || errorMsg) && !isProcessing">
+      <div class="error-text-hold" *ngIf="errorMsg">
+        <mat-icon>error_outline</mat-icon>
+        <span class="error-text" [innerHtml]="errorMsg"></span>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Country</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select placeholder="Ex: Country" >
+            <mat-select-trigger>
+              <span class="flag-hold" >
+                <!-- <mat-icon [svgIcon]="identificationDetails.controls.fkcountrycode.value.code"></mat-icon> -->
+                identificationDetails.controls.fkcountrycode.value.name 
+              </span>
+            </mat-select-trigger>
+            <mat-option >
+              <span class="flag-hold">
+                <mat-icon ></mat-icon> country.name 
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Identity Type</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select matInput placeholder="Ex: PAN" >
+            <mat-option *ngFor="let identityType of _identificationTypes" [value]="identityType.valuestr">
+              {{identityType.valuestr}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Issued By</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select matInput placeholder="Ex: Income-Tax Department">
+            <mat-option *ngFor="let identityIssued of _identificationIssuedBy" [value]="identityIssued.valuestr">
+              {{identityIssued.valuestr}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Issued Date</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="issuedate" 
+            (click)="issuedate.open()" [disabled]="true">
+          <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
+          <mat-datepicker #issuedate disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Identity Number</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: ABCDE 1234A." >
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Identity Name</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: Full Name" >
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Valid From</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: 11 Mar 2021" 
+            [matDatepicker]="validfrom" (click)="validfrom.open()" [disabled]="true">
+          <mat-datepicker-toggle matSuffix [for]="validfrom"></mat-datepicker-toggle>
+          <mat-datepicker #validfrom disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Valid Upto</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: 11 Mar 2021" 
+            [matDatepicker]="validupto" (click)="validupto.open()" [disabled]="true">
+          <mat-datepicker-toggle matSuffix [for]="validupto"></mat-datepicker-toggle>
+          <mat-datepicker #validupto disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="view-entry-hold">
+        <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+            [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
+        </div>
+        <div class="attachments-hold">
+          <ng-container *ngFor="let attachment of _attachments">
+            <!-- <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing"
+              (onDelete)="removeAttachment(attachment)">
+            </app-attachment> -->
+          </ng-container>
+          <ng-container *ngFor="let selectedFile of _selectedAttachments; let idx = index">
+            <!-- <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"
+              (onDelete)="removeSelectedAttachment(idx)">
+            </app-attachment> -->
+          </ng-container>
+          <span class="spacer"></span>
+          <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf"
+            >
+          <button mat-stroked-button color="primary" (click)="file.click()">
+            <mat-icon>upload</mat-icon>
+            Add Attachments
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

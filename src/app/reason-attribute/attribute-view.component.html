@@ -56,12 +56,12 @@
   
       <td>
         <span>
-          <mat-icon class="entry-value" (click)="moveFieldUp(i)"
+          <mat-icon class="entry-value" (click)="moveFieldUp(i); getfield(data.id);"
             >arrow_upward</mat-icon
           >
         </span>
         <span>
-          <mat-icon class="entry-value" (click)="moveFieldDown(i)"
+          <mat-icon class="entry-value" (click)="moveFieldDown(i); getfield(data.id)"
             >arrow_downward</mat-icon
           >
         </span>
@@ -101,7 +101,7 @@
           >
         </span>
         <span class="attri-label" *ngIf="!data.editMode" matTooltip="edit">
-          <mat-icon class="delete-icon" (click)="toggleEditMode(data);getfield(data.id);"
+          <mat-icon  (click)="toggleEditMode(data);getfield(data.id);"
             >edit</mat-icon
           >
         </span>

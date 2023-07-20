@@ -77,6 +77,14 @@
                           <mat-label class="entry-label">DataType</mat-label>
                           <span class="entry-data">{{ dataType }}</span>
                         </div>
+                        <div class="view-entry-schema two-column-field">
+                          <mat-label class="entry-label">Isnull</mat-label>
+                          <span class="entry-data">{{ isnull  }}</span>
+                        </div>  
+                        <div class="view-entry-schema two-column-field">
+                          <mat-label class="entry-label">Defaulvalue</mat-label>
+                          <span class="entry-data">{{ defaultvalue }}</span>
+                        </div>
                         <div class="view-entry-schema">
                           <mat-label class="entry-label">Description</mat-label>
                           <span class="entry-data">{{ description }}</span>
@@ -139,7 +147,18 @@
                         </mat-form-field>
          
                         </div>
-                       
+                        <div class="form-field-hold two-column-field" >
+                          <mat-label class="form-field-label">Isnull</mat-label>
+                          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                            <input matInput placeholder="Ex: Isnull" [(ngModel)]="isnull"/>
+                          </mat-form-field>
+                        </div>
+                        <div class="form-field-hold two-column-field" >
+                          <mat-label class="form-field-label">DefaultValue</mat-label>
+                          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                            <input matInput placeholder="Ex: DefaultValue" [(ngModel)]="defaultvalue"/>
+                          </mat-form-field>
+                        </div>
                         <div class="form-field-hold" >
                           <mat-label class="form-field-label">Description</mat-label>
                           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">

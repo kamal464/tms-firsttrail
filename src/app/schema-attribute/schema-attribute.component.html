@@ -111,10 +111,17 @@
   </div>
   <div
     class="contents"
-    *ngIf="(_currentAction === 'view' || _currentAction === 'add') && fields.length > 0"
+   
 
   >
-    <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold">
+  <div class="content-hold" >
+    <div
+    class="new-content-hold"  *ngIf="(_currentAction === 'view' || _currentAction === 'add') && fields.length > 0">
+
+  <app-schema-attribute-table [formData]="fields" [currentSelectedReason]="currentSelectedReason"
+    [commentTypeDrop]="commentTypeDrop"></app-schema-attribute-table>
+</div>
+    <!-- <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold">
       <div
         class="new-setting-item-inputs content-data-hold"
         *ngIf="fields && fields.length > 0"
@@ -176,8 +183,8 @@
           </span>
         </div>
       </div>
-    </div>
-
+    </div> -->
+</div>
     <div class="controls-view">
       <div class="help-info-hold" *ngIf="_currentAction == 'view'">
         <mat-icon>info</mat-icon>

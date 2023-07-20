@@ -1,0 +1,184 @@
+<div>
+    <div class="headings">
+      <app-title title="Overview" subTitle="Company's overall Information"></app-title>
+      <span class="spacer"></span>
+    </div>
+    <div class="contents">
+        <!-- <div class="content-loading-hold" >
+          <mat-spinner></mat-spinner>
+          <span class="mat-display-1 content-loading-text"
+            [innerHtml]="'Please wait, while ' + ( ? 'processing' : 'loading') + ' the <b>Company</b> information.'"></span>
+        </div> -->
+        
+
+
+        <div class="content-hold" >
+            <tool-bar title="Overview" class="content-title-hold" 
+            
+            (onAction)="doAction($event)"
+              ></tool-bar>
+              <!-- [currentAction]="_currentAction" -->
+            <div class="company-overview-contents content-data-hold" *ngIf="_currentAction == 'view'">
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Registered Company Name</mat-label>
+                <span class="entry-data">name</span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Short Name</mat-label>
+                <span class="entry-data">shortname</span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Country</mat-label>
+                <span class="entry-data flag-hold">
+                  <!-- <mat-icon [svgIcon]="companyInfo.fkcountrycode" *ngIf="companyInfo.fkcountry"></mat-icon> -->
+                  <!-- {{companyInfo.fkcountry ? companyInfo.fkcountry.name : '---'}} -->
+                  country
+                </span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Phone</mat-label>
+                <span class="entry-data">
+                  <!-- <span *ngIf="companyInfo.fkcountry">{{'+' + companyInfo.fkcountry.isdcode + ' '}}</span> -->
+                  <!-- {{companyInfo.phone ? companyInfo.phone : '---'}}</span> -->
+                  868686878686
+                  </span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Fax</mat-label>
+                <span class="entry-data">
+                  <!-- <span *ngIf="companyInfo.fkcountry">{{'+' + companyInfo.fkcountry.isdcode + ' '}}</span>
+                  {{companyInfo.fax ? companyInfo.fax : '---'}}</span> -->
+                  897987987799
+                  </span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Email</mat-label>
+                <!-- <span class="entry-data">{{companyInfo.email ? companyInfo.email : '---'}}</span> -->
+                <span  class="entry-data">sunsunnysinger@gmail.com</span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">Website</mat-label>
+                <!-- <span class="entry-data">{{companyInfo.website ? companyInfo.website : '---'}}</span> -->
+                <span class="entry-data">
+                    kamal.com
+                </span>
+              </div>
+              <div class="view-entry-hold two-column-field">
+                <mat-label class="entry-label">WhatsApp Support</mat-label>
+                <span class="entry-data">
+                  <!-- <span *ngIf="companyInfo.fkcountry">{{'+' + companyInfo.fkcountry.isdcode + ' '}}</span>
+                  {{companyInfo.whatsapp ? companyInfo.whatsapp : '---'}}</span> -->
+                  9024834084
+                  </span>
+              </div>
+              <div class="view-entry-hold">
+                <mat-label class="entry-label">LinkedIN</mat-label>
+                <!-- <span class="entry-data">{{companyInfo.linkedin ? companyInfo.linkedin : '---'}}</span> -->
+                <span class="entry-data">kamallinkenin</span>
+              </div>
+              <div class="view-entry-hold">
+                <mat-label class="entry-label">Remarks</mat-label>
+                <!-- <span class="entry-data">{{companyInfo.remarks ? companyInfo.remarks : '---'}}</span> -->
+                <span class="entry-data">comments</span>
+              </div>
+            </div>
+            <div class="company-overview-contents content-data-hold" 
+        *ngIf="_currentAction == 'edit' ">
+        <!-- <div class="error-text-hold">
+          <mat-icon>error_outline</mat-icon>
+          <span class="error-text" [innerHtml]="errorMsg"></span>
+        </div> -->
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Registered Company Name</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="legalname">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Short Name</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: Organisation India Pvt Ltd" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Country</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <mat-select placeholder="Ex: Country" formControlName="fkcountrycode">
+              <mat-select-trigger>
+                <!-- <span class="flag-hold" *ngIf="companyDetails.controls.fkcountrycode.value">
+                  <mat-icon [svgIcon]="companyDetails.controls.fkcountrycode.value.code"></mat-icon>
+                  {{ companyDetails.controls.fkcountrycode.value.name }}
+                </span> -->
+              </mat-select-trigger>
+              <mat-option *ngFor="let country of _countries.values()" [value]="country">
+                <span class="flag-hold">
+                  <mat-icon [svgIcon]="country.code"></mat-icon>{{ country.name }}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Phone</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 9876543210" formControlName="phone">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Fax</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 040-22558877" formControlName="fax">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Email</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput type="email" placeholder="Ex: support@company.com" formControlName="email">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">Website</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: www.company.com" formControlName="website">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <mat-label class="form-field-label">WhatsApp</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <span matPrefix>+91</span>
+            <input matInput placeholder="Ex: 9876543210" formControlName="whatsapp">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">LinkedIN</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: www.linkedin.com/company/dtpli" formControlName="linkedin">
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">Remarks</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
+              placeholder="Ex. State-of-art development center." formControlName="remarks"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+        </div>
+        <div class="controls-view">
+            <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+              <mat-icon>info</mat-icon>
+              <span class="help-text">Click on '<b>Edit</b>' button, to update the company information</span>
+            </div>
+            <div class="help-info-hold">
+              <mat-icon>info</mat-icon>
+              <span class="help-text">Please correct the errors to proceed.</span>
+            </div>
+            <div class="help-info-hold" *ngIf="_currentAction == 'edit'">
+              <mat-icon>info</mat-icon>
+              <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+                cancel the edit, click on '<b>Cancel</b>' button.</span>
+            </div>
+          </div>
+          </div>

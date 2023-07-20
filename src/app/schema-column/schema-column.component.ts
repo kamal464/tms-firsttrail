@@ -23,6 +23,8 @@ SelectedColumnData : any  =[];
   notes: string;
   columnType: string[]= [];
   dataType: string[]= [];
+  isnull: any;
+  defaultvalue: string[]=[];
   columnTypeDrop:any[];
   dataTypeDrop:any[];
 columnname:string;
@@ -31,7 +33,7 @@ selectedObject:any;
 title:string;
   constructor(private sharedservice: SharedServiceService,private http : HttpClient) {
     // this.coloumnRows = this.sharedservice.getColoumnRows();
-    this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
+     this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
     this.title = this.sharedservice.getSelectedOption();
     
     console.log(this.fkSchemaTableId)
@@ -50,6 +52,8 @@ title:string;
       console.log(this.selectedObject);
       this.columnType = this.selectedObject?.columntype || '';
       this.dataType = this.selectedObject?.datatype || '';
+      this.isnull = this.selectedObject?.isnull == "1" ? 'yes' : 'no'|| '';
+      this.defaultvalue = this.selectedObject?.defaultvalue || '';
       this.description = this.selectedObject?.description || '';
       this.notes = this.selectedObject?.notes || '';
       this.isChecked = this.selectedObject?.isactive || '';

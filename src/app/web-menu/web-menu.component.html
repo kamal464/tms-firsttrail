@@ -41,8 +41,8 @@
             <span class="button-label">Save</span>
           </button>
         </mat-toolbar>
-
-<div class="web-menu-hold">
+<div class="holder">
+<div class="web-menu-hold two-column-field">
    <mat-label  class="menu-label">TopMenu</mat-label>
    <!-- <mat-label  class="form-field-label">SubMenu</mat-label> -->
    <mat-form-field
@@ -57,7 +57,7 @@
    />
  </mat-form-field>
  </div>
- <div class="web-menu-hold">
+ <div class="web-menu-hold two-column-field">
    <mat-label  class="menu-label">SubMenu</mat-label>
   <mat-form-field
   class="menu-input"
@@ -72,7 +72,7 @@
   />
 </mat-form-field>
 </div>
-<div class="web-menu-hold">
+<div class="web-menu-hold two-column-field">
   <mat-label  class="menu-label">MenuItem</mat-label>
   <mat-form-field
   class="menu-input"
@@ -86,7 +86,7 @@
   />
 </mat-form-field>
 </div>
-<div class="web-menu-hold">
+<div class="web-menu-hold two-column-field">
   <mat-label  class="menu-label">UiRoute</mat-label>
   <mat-form-field
   class="menu-input"
@@ -99,7 +99,7 @@
     [(ngModel)]="uiRoute"    
   />
 </mat-form-field> 
-
+</div>
 </div>
       </div>
         <div style="width: 100%;"  >
@@ -115,25 +115,69 @@
                  
                 </td>
                 <td>
-                  <span class="attri-label" >{{ item.topmenuitem}}</span>
-                 
+                  <span class="attri-label"  *ngIf="!item.editMode">{{ item.topmenuitem}}</span>
+                  <input
+            type="text"
+            class="attri-input"
+            *ngIf="item.editMode"
+            [(ngModel)]="item.topmenuitem"
+          />
                 </td>
                 <td>
-                  <span class="attri-label" >{{ item.level1menuitem}}</span>
-                 
+                  <span class="attri-label" *ngIf="!item.editMode">{{ item.level1menuitem}}</span>
+                  <input
+                  type="text"
+                  class="attri-input"
+                  *ngIf="item.editMode"
+                  [(ngModel)]="item.level1menuitem"
+                />
                 </td>
                 <td>
-                  <span class="attri-label" >{{ item.level2menuitem}}</span>
-                 
+                  <span class="attri-label" *ngIf="!item.editMode">{{ item.level2menuitem}}</span>
+                  <input
+                  type="text"
+                  class="attri-input"
+                  *ngIf="item.editMode"
+                  [(ngModel)]="item.level2menuitem"
+                />
                 </td>
                 <td>
-                  <span class="attri-label" >{{ item.uiroute}}</span>
+                  <span class="attri-label" *ngIf="!item.editMode">{{ item.uiroute}}</span>
+                  <input
+                  type="text"
+                  class="attri-input"
+                  *ngIf="item.editMode"
+                  [(ngModel)]="item.uiroute"
+                />
+                </td>
+                <td>
+                  <span
+                  *ngIf="!item.editMode"
+                  style="width: 10px;"
+                  matTooltip="delete"
+                >
+                  <mat-icon (click)="deleteField(i);getfield(item.id);deleteMenuItem();">delete</mat-icon>
+                </span>
+                  <span class="attri-label" *ngIf="!item.editMode" matTooltip="edit" >
+                    <mat-icon  (click)="toggleEditMode(item);getfield(item.id);">edit</mat-icon>
+                  </span>
+                  <span
+                  *ngIf="item.editMode"
                  
+                  style="width: 10px;"  
+                  matTooltip="Cancel"
+                >
+                  <mat-icon  (click)="toggleEditMode(item)">cancel</mat-icon>
+                </span>
+                <span
+                *ngIf="item.editMode "
+                color="primary"
+                matTooltip="Save Changes">
+                <mat-icon 
+                (click)="updateMenu();toggleEditMode(item)" >save</mat-icon>
+              </span>
                 </td>
               </tr>
-
-
-
 
             </table>
           </div>

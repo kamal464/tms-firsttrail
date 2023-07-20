@@ -1,15 +1,44 @@
 @import '../company-overview/company-overview.component.scss';
 @import "~@angular/material/theming";
 // @import '../styles.scss';
+.offices-item-hold {
 
+  .office-contents {
+    display: flex;
+    flex-direction: column;
+    min-height: 195px;
+    padding: 25px !important;
+  }
+  .tool-bar {
+    width: calc(100% - 32px);
+    border-bottom: 1px solid #ddd;
+  
+    .tool-bar-title {
+      font-weight: bold;
+      text-transform: uppercase;
+  
+      &.no-transform {
+        text-transform: none;
+      }
+    }
+  
+    
+  }
+  .office-edit-contents {
+    flex-wrap: wrap;
+  }
+
+  .content-loading-hold {
+    margin: 110px 0;
+
+    .content-loading-text {
+      max-width: 350px;
+    }
+  }
+}
 .action-padding {
     padding-right: 270px;
   }
-
-  
-      
-  
-  
 
   .contents {
     display: flex;
@@ -335,3 +364,4 @@
       }
     }
   }
+  

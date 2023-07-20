@@ -1,0 +1,86 @@
+<div style="width: 100%;"  >
+    <table class="sp-table"  *ngIf="_currentAction == 'view'">
+      <tr>
+        <th *ngFor="let label of inputLabel">
+          <mat-label style="color: #03045e">{{ label }}</mat-label>
+        </th>
+      </tr>
+      <tr *ngFor="let data of formData; let i = index">
+    
+      
+        <td>
+  
+          <span class="attri-label">{{ currentIndex + i + 1 }}</span>
+        </td>
+        <td>
+          <span class="attri-label" *ngIf="!data.editMode">{{ data?.attrtype }}</span>
+          <span
+          class="attri-input"
+          floatPlaceholder="never"
+          appearance="fill"
+          *ngIf="data.editMode"
+        >
+          <mat-select
+            placeholder="Click to Select"
+            [(ngModel)]="data.attrtype"
+          >
+            <mat-option
+              *ngFor="let _type of commentTypeDrop"
+              [value]="_type.value"
+              >{{ _type.id }}</mat-option
+            >
+          </mat-select>
+        </span>
+        </td>
+        <td>
+          <span class="attri-label" *ngIf="!data.editMode">{{
+            data?.description
+          }}</span>
+  
+          
+          <textarea
+            type="text"
+            class="attri-input"
+            *ngIf="data.editMode"
+            [(ngModel)]="data.description"
+          ></textarea>
+        </td>
+        <td>
+        <span class="attri-label"  *ngIf="!data.editMode">{{ data?.isactive == "1" ? "yes" : "no" }}</span
+          >
+          <mat-checkbox
+          type="text"
+          class="attri-input"
+          *ngIf="data.editMode"
+          [(ngModel)]="data.isactive"
+        ></mat-checkbox>
+        </td>
+    <td>
+        <span class="attri-label" *ngIf="!data.editMode" matTooltip="edit"  (click)="toggleEditMode(data);getfield(data.id);">
+            <mat-icon>edit</mat-icon>
+          </span>
+          <span
+          *ngIf="data.editMode"
+          (click)="toggleEditMode(data)"
+          style="width: 10px;"
+          
+          matTooltip="Cancel"
+        >
+          <mat-icon>cancel</mat-icon>
+        </span>
+        <span
+
+        *ngIf="data.editMode "
+        color="primary"
+        matTooltip="Save Changes"
+        
+       
+      >
+        <mat-icon (click)="updateAttribute();toggleEditMode(data)"
+        >save</mat-icon>
+        <!-- <span class="button-label">Save</span> -->
+      </span>
+    </td>
+    </tr>
+    </table>
+  </div>

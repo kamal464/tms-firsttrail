@@ -7,16 +7,9 @@
     <span class="spacer"></span>
   </div>
   <div class="contents">
-    <!-- <div class="content-loading-hold">
-      <mat-spinner></mat-spinner>
-      <span class="mat-display-1 content-loading-text"></span>
-    </div> -->
+  
     <div class="content-hold">
-      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction" (onAction)="doAction($event)"></tool-bar> -->
-
-      <!-- <tool-bar title="Overview" class="content-title-hold" [currentAction]="_currentAction"
-        (onAction)="doAction($event)"></tool-bar> -->
-      <!-- <tool-bar></tool-bar> -->
+      
       <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
@@ -46,7 +39,7 @@
           class="tool-bar-button"
           matTooltip="Save Changes"
           (click)="doAction('save')"
-          (click)="onSave()"
+          (click)="onUpdate()"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
@@ -58,248 +51,164 @@
 
       <div
         class="company-overview-contents content-data-hold"
-        *ngIf="currentAction == 'view'"
+        *ngIf="currentAction == 'view'" 
       >
-        <div class="view-entry-hold two-column-field">
+      <ng-container *ngFor="let get of getall">
+        <div class="view-entry-hold two-column-field" >
           <mat-label class="entry-label">Registered Company Name</mat-label>
-          <span class="entry-data">DesignTribePrivateLimited</span>
+          <span class="entry-data">{{ get.legalname }}</span>
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Short Name</mat-label>
-          <span class="entry-data">DTPL</span>
+          <span class="entry-data">{{get.code}}</span>
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Country</mat-label>
-          <span class="entry-data flag-hold">
+          <span class="entry-data flag-hold" *ngFor="let country of countries">
             <!-- <mat-icon svgIcon="india"></mat-icon> -->
-            India
+            {{get.fkcountrycode == country.id ? country.value : null}}
+
           </span>
-        </div>
+        </div>  
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Phone</mat-label>
           <span class="entry-data">
             <span>+91</span>
-            '---'</span
+            {{get.phone}}</span
           >
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Fax</mat-label>
           <span class="entry-data">
             <span>+91</span>
-            '---'</span
+            {{get.fax}}</span
           >
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Email</mat-label>
-          <span class="entry-data">'---'</span>
+          <span class="entry-data">{{get.email}}</span>
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Website</mat-label>
-          <span class="entry-data">'---'</span>
+          <span class="entry-data">{{get.website}}</span>
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">WhatsApp Support</mat-label>
           <span class="entry-data">
             <span>+91</span>
-            '---'</span
+            {{get.whatsapp}}</span
           >
         </div>
         <div class="view-entry-hold">
           <mat-label class="entry-label">LinkedIN</mat-label>
-          <span class="entry-data">'---'</span>
+          <span class="entry-data">{{get.linkedin}}</span>
         </div>
         <div class="view-entry-hold">
           <mat-label class="entry-label">Remarks</mat-label>
           <span class="entry-data"
-            >State-of-art development center located at Hyderabad, DTPL has been
-            able to serve its clients effectively and efficiently
-            worldwide.</span
+            >{{get.remarks}}</span
           >
         </div>
+      </ng-container>
       </div>
 
       <div
         class="company-overview-contents content-data-hold"
         *ngIf="currentAction == 'edit'"
+       
       >
-        <!-- <div class="error-text-hold">
->>>>>>> 3372ac07e8d2d17b69ca84e11492168a39771516
-        <mat-icon>error_outline</mat-icon>
-        <span class="error-text"></span>
-      </div> -->
-        <!-- <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Registered Company Name</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Organisation India Pvt Ltd" >
-        </mat-form-field>
-      </div> -->
-
+       <ng-container *ngFor="let get of getall">
         <div class="form-field-hold two-column-field">
           <kit-ui-text-edit
             companyname="Registered Company Name"
-            [formData]="formData"
+            [formData]="get"
             placeHolder="Ex: Organisation India Pvt Ltd"
-            (inputValueEmitter)="handleInput('name', $event)"
-            [inputName]="'name'"
+            (inputValueEmitter)="handleInput('legalname', $event)"
+            [inputName]="'legalname'"
           ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
           <kit-ui-text-edit
             companyname="  Short Name"
             placeHolder="DTPL"
-            [formData]="formData"
-            [inputName]="'shortname'"
-            (inputValueEmitter)="handleInput('shortname', $event)"
+            [formData]="get"
+            [inputName]="'code'"
+            (inputValueEmitter)="handleInput('code', $event)"
           ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
           <app-country
             placeHolder="country"
-            [formData]="formData"
+            [formData]="get"
             (inputValueEmitter)="handleInput('fkcountrycode', $event)"
             [inputName]="'fkcountrycode'"
           ></app-country>
-        </div>
-        <!-- <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Short Name</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Organisation India Pvt Ltd">
-        </mat-form-field>
-      </div> -->
-        <!-- <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Country</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select placeholder="Ex: Country">
-            <mat-select-trigger>
-             
-            </mat-select-trigger>
-            <mat-option>
-              <span class="flag-hold">
-                <mat-icon></mat-icon>country.name 
-              </span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div> -->
+       
         <div class="form-field-hold two-column-field">
-          <!-- <mat-label class="form-field-label">Phone</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field> -->
-          <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="formData" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber>
-          <!-- <app-int
-            placeHolder="Ex:0-9"
-            [formData]="formData"
-            inttype="inttype"
-            [inputName]="'phone'"
-            (inputValueEmitter)="handleInput('phone', $event)"
-          ></app-int> -->
+         
+          <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="get" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber>
+         
         </div>
         <div class="form-field-hold two-column-field">
-          <!-- <mat-label class="form-field-label">Fax</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 040-22558877">
-        </mat-form-field> -->
-          <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="formData" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
-          <!-- <app-int-decimal
-            placeHolder="Ex:100.00"
-            [formData]="formData"
-            inttype="int-decimal-type"
-            [inputName]="'fax'"
-            [precision]="'3'"
-            (inputValueEmitter)="handleInput('fax', $event)"
-          ></app-int-decimal> -->
+         
+          <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="get" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
+        
         </div>
         <div class="form-field-hold two-column-field">
-          <!-- <mat-label class="form-field-label">Email</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput type="email" placeholder="Ex: support@company.com" >
-        </mat-form-field> -->
+       
           <app-email
             placeHolder="sunsunnysinger@gmail.com"
-            [formData]="formData"
+            [formData]="get"
             [inputName]="'email'"
             (inputValueEmitter)="handleInput('email', $event)"
           ></app-email>
         </div>
         <div class="form-field-hold two-column-field">
-          <!-- <mat-label class="form-field-label">Website</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.company.com" >
-        </mat-form-field> -->
+         
           <kit-ui-text-edit
             companyname="Website"
-            [formData]="formData"
+            [formData]="get"
             placeHolder="Ex: www.company.com"
             (inputValueEmitter)="handleInput('website', $event)"
             [inputName]="'website'"
           ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold two-column-field">
-          <!-- <mat-label class="form-field-label">WhatsApp</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <span matPrefix>+91</span>
-          <input matInput placeholder="Ex: 9876543210" >
-        </mat-form-field> -->
+        
           <app-phonenumber
             placeHolder="Ex: 9876543210"
             numbertype="whatsapp"
-            [formData]="formData"
+            [formData]="get"
             [inputName]="'whatsapp'"
             (inputValueEmitter)="handleInput('whatsapp', $event)"
           ></app-phonenumber>
         </div>
         <div class="form-field-hold">
-          <!-- <mat-label class="form-field-label">LinkedIN</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: www.linkedin.com/company/dtpli">
-        </mat-form-field> -->
+         
           <kit-ui-text-edit
             companyname="LinkedIN"
-            [formData]="formData"
+            [formData]="get"
             placeHolder="Ex: www.linkedin.com/company/dtpli"
             (inputValueEmitter)="handleInput('linkedin', $event)"
             [inputName]="'linkedin'"
           ></kit-ui-text-edit>
         </div>
         <div class="form-field-hold">
-          <!-- <mat-label class="form-field-label">Remarks</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
-            placeholder="Ex. State-of-art development center."></textarea>
-        </mat-form-field> -->
+         
 
           <app-textarea
             title="Remarks"
-            [formData]="formData"
+            [formData]="get"
             placeHolder="Ex. State-of-art development center."
-            (inputValueEmitter)="handleInput('comments', $event)"
-            [inputName]="'comments'"
+            (inputValueEmitter)="handleInput('remarks', $event)"
+            [inputName]="'remarks'"
           ></app-textarea>
         </div>
-        <div class="form-field-hold">
-          <app-toggle></app-toggle>
-        </div>
-        <div class="form-field-hold">
-          <app-checkbox></app-checkbox>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <app-date datelabel="Date" placeHolder="dd-mm-yyyy"></app-date>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <app-multi-select></app-multi-select>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <app-radio></app-radio>
-        </div>
-        <div class="form-field-hold two-column-field" style="max-width: 400px">
-          <app-multiple-checkbox> </app-multiple-checkbox>
-        </div>
+      
       </div>
+       </ng-container>
     </div>
-
+</div>
     <div class="controls-view">
       <div class="help-info-hold" *ngIf="currentAction == 'view'">
         <mat-icon>info</mat-icon>
@@ -308,10 +217,7 @@
           information</span
         >
       </div>
-      <!-- <div class="help-info-hold" >
-          <mat-icon>info</mat-icon>
-          <span class="help-text">Please correct the errors to proceed.</span>
-        </div> -->
+      
       <div class="help-info-hold" *ngIf="currentAction == 'edit'">
         <mat-icon>info</mat-icon>
         <span class="help-text"
@@ -321,5 +227,6 @@
         >
       </div>
     </div>
-  </div>
+  
+</div>
 </div>

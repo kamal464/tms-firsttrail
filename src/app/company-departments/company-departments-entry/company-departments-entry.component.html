@@ -1,0 +1,112 @@
+<div class="departments-item-hold">
+    <!-- <div class="content-loading-hold" *ngIf="isProcessing">
+      <mat-spinner></mat-spinner>
+      <span class="mat-title content-loading-text"
+        [innerHtml]="'Please wait, while the procesing <b>Department</b>:<b class=\'primary-color-text\'>' + _departmentTitle + '</b> information.'"></span>
+    </div> -->
+    <mat-toolbar class="tool-bar">
+      <span class="tool-bar-title">Department</span>
+      <span class="spacer"></span>
+      <button
+        mat-button
+        class="tool-bar-button"
+        matTooltip="Edit"
+        (click)="doAction('edit')"
+        *ngIf=" _currentAction == 'view'"
+      >
+        <mat-icon>edit</mat-icon>
+        <span class="button-label">Edit</span>
+      </button>
+      <button
+      mat-flat-button
+      color="primary"
+      class="tool-bar-button"
+      matTooltip="Delete"
+      (click)="doAction('delete')"
+      *ngIf="_currentAction == 'view'"
+    >
+      <mat-icon>delete</mat-icon>
+      <span class="button-label">Delete</span>
+    </button>
+      <button
+        mat-button
+        class="tool-bar-button"
+        matTooltip="Cancel"
+        (click)="doAction('view')"
+        *ngIf="_currentAction == 'new' || _currentAction == 'edit'"
+      >
+        <mat-icon>cancel</mat-icon>
+        <span class="button-label">Cancel</span>
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="tool-bar-button"
+        matTooltip="Save Changes"
+        
+        *ngIf="_currentAction == 'new' || _currentAction == 'edit'"
+      >
+        <mat-icon>save</mat-icon>
+        <span class="button-label">Save</span>
+      </button>
+    </mat-toolbar>
+    <div class="department-contents content-data-hold" *ngIf="_currentAction == 'view' ">
+      <div class="view-entry-hold">
+        <span class="entry-text highlight-title">Department-Type</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text">Department-type</span>
+      </div>
+      <div class="view-entry-hold" >
+        <span
+          class="entry-text">Department</span>
+      </div>
+      <div class="view-entry-hold">
+        <span class="entry-text">something</span>
+      </div>
+    </div>
+    <div class="department-edit-contents content-data-hold" 
+      *ngIf="_currentAction == 'edit' ">
+      
+      <div class="form-field-hold">
+        <mat-label class="form-field-label">Department Name</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: Civil-02" >
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold">
+        <mat-label class="form-field-label">Department Type</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select matInput placeholder="Ex: Civil" >
+            <mat-option *ngFor="let departmentType of _departmentTypes" [value]="departmentType.valuestr">
+              {{departmentType.valuestr}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold">
+        <mat-label class="form-field-label">Office</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <mat-select placeholder="Ex: Office" >
+            <mat-select-trigger>
+              <!-- <span *ngIf="departmentDetails.controls.fkofficeid.value">
+                {{ departmentDetails.controls.fkofficeid.value.code + '(' + departmentDetails.controls.fkofficeid.value.type + ')' }}
+              </span> -->
+            </mat-select-trigger>
+            <mat-option *ngFor="let office of _offices.values()" [value]="office">
+              <span>
+                {{ office.code + ' (' + office.type + ')' }}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- <div class="form-field-hold">
+        <mat-label class="form-field-label">Head of the Department</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput type="number" placeholder="Ex: 000000" formControlName="hodfkempid">
+        </mat-form-field>
+      </div> -->
+    </div>
+  </div>
+  

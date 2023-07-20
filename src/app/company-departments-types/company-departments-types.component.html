@@ -1,0 +1,92 @@
+<div>
+    <div class="headings">
+      <app-title title="Department Types" subTitle="Different types of departments"></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')"
+        *ngIf="_currentAction != 'add'">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Department Type</span>
+      </button>
+      <div class="action-padding"></div>
+    </div>
+    <div class="contents" *ngIf="_currentAction == 'add'">
+      <div class="content-hold mat-elevation-z6 new-department-type-entry-hold" [@slideInOut]>
+        <span class="mat-title">Adding New Department Type</span>
+        <div class="new-department-type-inputs content-data-hold" >
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Code</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: HR" >
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Name</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Humar Resources" >
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="new-department-type-controls">
+          <div class="errors-hold" *ngIf="errorMsg">
+            <mat-icon>error_outline</mat-icon>
+            <span class="error-text" [innerHtml]="errorMsg"></span>
+          </div>
+          <span class="spacer"></span>
+          <button mat-stroked-button class="new-department-type-control" >
+            <span class="button-label" (click)="cancelAdd()">Cancel</span>
+          </button>
+          <button mat-raised-button color="primary" class="new-department-type-control" >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+        </div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="errorMsg">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Please correct the errors to proceed.</span>
+        </div>
+        <div class="help-info-hold">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+            cancel the edit, click on '<b>Cancel</b>' button.</span>
+        </div>
+      </div>
+    </div>
+    <div class="contents">
+      <div class="content-hold">
+        <tool-bar title="Department Types" class="content-title-hold" [currentAction]="_currentAction" [hasEdit]="false" [hasDelete]="false">
+        </tool-bar>
+        <div class="department-types-hold  no-padding-h">
+          <div  class="new-content-hold">
+          <app-department-attributes [formData]="departmentTypes"></app-department-attributes>
+        </div>
+        </div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="_currentAction == 'view'">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>New Department Type</b>' button, to add new 'Department Type'</span>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Search</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">search</mat-icon>' button in the table header, to enter the
+              search text to filter the table entries.</span>
+          </div>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <div class="help-info">
+            <span class="help-title">Change in Order</span>
+            <span class="help-text">
+              Click on '<mat-icon class="help-text-icon">arrow_upward</mat-icon>' or '<mat-icon class="help-text-icon">
+                arrow_downward</mat-icon>' button in the table row, to change the order of an entry.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

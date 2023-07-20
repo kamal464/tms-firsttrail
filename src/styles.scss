@@ -19,6 +19,12 @@ body {
   height: 8px;
 }
 
+
+.holder{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $full-white;
+}
 ::-webkit-scrollbar-thumb {
   background: #868a73;
 }

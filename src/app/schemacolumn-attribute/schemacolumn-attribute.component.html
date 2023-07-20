@@ -104,10 +104,16 @@
         </div>
 <div class="contents"*ngIf="(_currentAction === 'view' || _currentAction === 'add') && fields.length > 0"
   >
-    <div class="content-hold mat-elevation-z6 new-setting-item-entry-hold" >
-        <div class="new-setting-item-inputs content-data-hold" *ngIf="fields && fields.length > 0">
-
-            <div class="view-entry-hold" >
+ 
+      
+          <div class="content-hold" >
+            <div
+    class="new-content-hold" *ngIf="fields && fields.length > 0">
+<app-schema-column-attribute-table [formData]="fields" [currentSelectedReason]="currentSelectedReason"
+[commentTypeDrop]="commentTypeDrop"></app-schema-column-attribute-table>
+</div>
+</div>
+            <!-- <div class="view-entry-hold" >
                 <mat-label class="entry-data" style="color:#03045e; ">#</mat-label>
                <span class="entry-value" style="padding: 10px 15px 15px 20px;" *ngFor="let field of fields; let i = index;">{{currentIndex + i + 1}}
       
@@ -135,12 +141,14 @@
                  
                   <mat-icon class="delete-icon" (click)="doAction('edit');" (click)="getfield(field.id)" >edit</mat-icon>
                 </span>
-              </div>
-            </div>
+              </div> -->
+
+
+           
             
             
             
-        </div>
+       
         <div class="controls-view" >
             <div class="help-info-hold" *ngIf="_currentAction == 'view'">
                 <mat-icon>info</mat-icon>

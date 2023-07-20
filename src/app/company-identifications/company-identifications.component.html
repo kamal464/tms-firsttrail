@@ -1,0 +1,46 @@
+<div>
+    <div class="headings">
+      <app-title title="Identifications" subTitle="List of identities of a company"></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary" (click)="isNew = true;" style="margin-right: 16px;"
+        *ngIf="isNew != true">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Identity</span>
+      </button>
+      <div class="action-padding"></div>
+    </div>
+    <div class="contents">
+      <div class="multiple-content-hold">
+        <ng-container>
+        <app-company-identification-entry class="content-hold item-hold"></app-company-identification-entry>
+      </ng-container>
+      <app-company-identification-entry class="content-hold item-hold" ></app-company-identification-entry>
+        <div class="item-hold two-column-field" *ngIf="!isNew">
+          <div class="add-item-hold" (click)="isNew = true;">
+            <mat-icon class="add-item-icon">add</mat-icon>
+            <span class="add-item-text mat-display-1">New</span>
+            <span class="add-item-title mat-display-3">Identity</span>
+            <span class="add-item-help-text mat-small">Click to add '<b class="add-item-title">Identity</b>' to the
+              company.</span>
+          </div>
+        </div>
+        <div class="item-hold two-column-field"></div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="!isNew">
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>New Identity</b>' button, to add new identification information</span>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>Edit</b>' button, to edit identification information</span>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+            cancel the edit, click on '<b>Cancel</b>' button.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

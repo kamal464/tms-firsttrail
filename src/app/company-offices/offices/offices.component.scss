@@ -1,7 +1,20 @@
 
 @import '../../company-overview/company-overview.component.scss';
 
+.title-hold {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+  overflow: hidden;
 
+  .title {
+    margin: 0;
+  }
+
+  .sub-title {
+    margin: 0;
+  }
+}
 
   .offices-item-hold {
 

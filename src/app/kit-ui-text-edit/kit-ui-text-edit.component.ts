@@ -23,6 +23,7 @@ export class KitUiTextEditComponent implements OnInit {
 
   sendData() {
     this.dataEvent.emit(this.inputData);
+    console.log(this.inputData)
   }
   addInputValue(value: string) {
     this.inputValueEmitter.emit(value);
@@ -87,30 +88,13 @@ export class KitUiTextEditComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  //   this.sharedService.getValue().subscribe((value) => {
-  //     this.inputData = value;
-  //     this.callPostMethod();
-  //   });
-  // }
-
-  // callPostMethod() {
-  //   console.log('i got a call')
-  //   // Call the POST method here using the Angular HTTP service
-  //   this.http.post('http://192.168.0.58:5000/org/addorg', this.inputData).subscribe();
-
-  // }
+ 
 
   ngOnInit(): void {
     // this.getRecord()
-    // console.log(this.formData)
+
+    console.log(this.formData[this.inputName])
   }
 
-  getRecord() {
-    this.http
-      .post('http://192.168.0.58:5000/org/getorg', {})
-      .subscribe((data) => {
-        console.log(data);
-        this.inputData = data;
-      });
-  }
+ 
 }

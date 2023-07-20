@@ -1,0 +1,126 @@
+<div>
+    <div class="headings">
+      <app-title title="Departments" subTitle="List of departments of a company"></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary"  style="margin-right: 16px;"
+      *ngIf="isNew != true" (click)="isNew = true;">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">New Department</span>
+      </button>
+      <div class="action-padding"></div>
+    </div>
+    <div class="contents">
+      <div class="multiple-content-hold">
+        <ng-container >
+            <app-company-departments-entry [department]="departments" class="content-hold item-hold two-column-field"></app-company-departments-entry>
+          <!-- <app-company-department-entry [department]="department" [companyId]="companyId"
+            class="content-hold item-hold two-column-field" (onDelete)="_onDeleteDepartment($event)"
+            (onSave)="_onSaveDepartment($event)" (onEdit)="_onEditDepartment($event)"
+            (onCancel)="_onCancelDepartment($event)">
+          </app-company-department-entry> -->
+        </ng-container>
+        <!-- <app-company-departments-entry  class="content-hold item-hold two-column-field"></app-company-departments-entry> -->
+        <!-- <app-company-department-entry class="content-hold item-hold two-column-field" [companyId]="companyId"
+          *ngIf="isNew" (onSave)="_onSaveDepartment($event)" (onCancel)="isNew = false;">
+        </app-company-department-entry> -->
+        <div class="item-hold two-column-field" (click)="isNew = true;">
+          <div class="add-item-hold" >
+            <mat-icon class="add-item-icon">add</mat-icon>
+            <span class="add-item-text mat-display-1">New</span>
+            <span class="add-item-title mat-display-3">Department</span>
+            <span class="add-item-help-text mat-small">Click to add '<b class="add-item-title">Department</b>' to the
+              company.</span>
+          </div>
+        </div>
+        <div class="departments-item-hold" *ngIf="isNew">
+        
+        <mat-toolbar class="tool-bar">
+          <span class="tool-bar-title">New Department</span>
+          <span class="spacer"></span>
+          
+         
+          <button
+            mat-button
+            class="tool-bar-button"
+            matTooltip="Cancel"
+            (click)="isNew = false;"
+           
+          >
+            <mat-icon>cancel</mat-icon>
+            <span class="button-label">Cancel</span>
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="tool-bar-button"
+            matTooltip="Save Changes"
+            
+            
+          >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+        </mat-toolbar>
+        <div class="content-data-hold"  
+       >
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">Department Name</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: Civil-02" [(ngModel)]="departmentName" >
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">Department Type</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <mat-select matInput placeholder="Ex: Civil"  [(ngModel)]="departmentType">
+              <mat-option *ngFor="let departmentType of departmentTypeArray" [value]="departmentType.value">
+                {{departmentType.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-field-hold">
+          <mat-label class="form-field-label">Office</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <mat-select placeholder="Ex: Office" [(ngModel)]="selectedOffice">
+              <!-- <mat-select-trigger>
+                <span *ngIf="departmentDetails.controls.fkofficeid.value">
+                  {{ departmentDetails.controls.fkofficeid.value.code + '(' + departmentDetails.controls.fkofficeid.value.type + ')' }}
+                </span>
+              </mat-select-trigger> -->
+              <mat-option *ngFor="let office of officeType" [value]="office">
+                <span>
+                  {{ office.code + ' (' + office.type + ')' }}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- <div class="form-field-hold">
+          <mat-label class="form-field-label">Head of the Department</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput type="number" placeholder="Ex: 000000" formControlName="hodfkempid">
+          </mat-form-field>
+        </div> -->
+      </div>
+    </div>
+        <div class="item-hold two-column-field"></div>
+      </div>
+      <div class="controls-view">
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>New Department</b>' button, to add new department information</span>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Click on '<b>Edit</b>' button, to edit department information</span>
+        </div>
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text">Once you finish editing, Click on '<b>Save</b>' button, to save the changes.<br />To
+            cancel the edit, click on '<b>Cancel</b>' button.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

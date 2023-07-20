@@ -19,7 +19,7 @@ export class PhonenumberComponent implements OnInit {
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
-    // this.getRecord();
+   
   }
 
 
@@ -27,12 +27,6 @@ export class PhonenumberComponent implements OnInit {
     this.inputValueEmitter.emit(value);
   }
 
-  getRecord(){
-    this.http.post('http://192.168.0.58:5000/org/getorg',{}).subscribe((data =>{ console.log(data)
-  this.inputData = data;
-  
-  }))
-  }
 
   // onInput() {
   //   const digits = this.inputData.phone.replace(/[^0-9]/g,' ');

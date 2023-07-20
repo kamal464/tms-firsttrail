@@ -1,0 +1,77 @@
+.view-attri-hold {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: calc(100% - 22px);
+    padding-right: 22px;
+  
+    .attri-label {
+      color: #666;
+      padding-left: 10px;
+      margin-top: 0;
+    }
+  
+    .attri-data {
+      font-weight: bold;
+      font-size: 120%;
+      padding: 4px 10px 25px;
+      
+    }
+  }
+  
+
+  .attri-input{
+    // font-weight: bold;
+        font-size: 120%;
+        padding: 0 0 5px 0;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid grey;
+        text-align: center;
+        // background-color: #ede7e7;
+  }
+
+  .custom-button {
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+  }
+  // background-color: blue;
+  // color: white;
+  // font-size: 16px;
+  // padding: 10px 20px;
+
+  .sp-table {
+    width: 100%;
+    
+    position: relative;
+    border-collapse: collapse;
+    flex-grow : 1;
+  
+    td,
+    th {
+    //   border: 1px solid #ddd;
+      padding: 6px;
+
+      
+    }
+    td {
+  text-align: center;
+      
+    }
+  }
