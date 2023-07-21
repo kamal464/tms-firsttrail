@@ -1,4 +1,4 @@
-import { NgModule , NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule ,NO_ERRORS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -54,6 +54,8 @@ import { CompanyIdentificationEntryComponent } from './company-identifications/c
 import { SchemaAttributeTableComponent } from './schema-attribute-table/schema-attribute-table.component';
 import { SchemaColumnAttributeTableComponent } from './schema-column-attribute-table/schema-column-attribute-table.component';
 import { DepartmentAttributesComponent } from './company-departments-types/department-attributes/department-attributes.component';
+import { DesignationAttributeComponent } from './company-designations/designation-attribute/designation-attribute.component';
+import { GradesAttributesComponent } from './company-grades/grades-attributes/grades-attributes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,8 +102,11 @@ import { DepartmentAttributesComponent } from './company-departments-types/depar
     SchemaColumnAttributeTableComponent,
     OfficesComponent,
     DepartmentAttributesComponent,
+    DesignationAttributeComponent,
+    GradesAttributesComponent,
+
   ],
-  schemas: [NO_ERRORS_SCHEMA],
+  // schemas: [NO_ERRORS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,

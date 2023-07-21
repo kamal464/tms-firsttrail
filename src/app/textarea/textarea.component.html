@@ -2,6 +2,6 @@
 <mat-label class="form-field-label">{{title}}</mat-label>
 <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
   <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
-    [placeholder]=placeHolder  #inputValue  (input)="addInputValue(inputValue.value)" [(ngModel)]="formData[inputName]" (input)="onInputChange()"></textarea>
+    [placeholder]=placeHolder  #inputValue  (input)="addInputValue(inputValue.value)" [(ngModel)]="formData[inputName]" (input)="onInputChange();onInput()"></textarea>
 </mat-form-field>
 <p *ngIf="texterr" style="color: red;">Max 30 characters only</p></div>

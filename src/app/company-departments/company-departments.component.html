@@ -1,4 +1,4 @@
-<div>
+
     <div class="headings">
       <app-title title="Departments" subTitle="List of departments of a company"></app-title>
       <span class="spacer"></span>
@@ -11,8 +11,10 @@
     </div>
     <div class="contents">
       <div class="multiple-content-hold">
-        <ng-container >
-            <app-company-departments-entry [department]="departments" class="content-hold item-hold two-column-field"></app-company-departments-entry>
+        <ng-container *ngFor="let department of departments">
+            <app-company-departments-entry [department]="department" [officeType]="officeType" [departmentTypeArray]="departmentTypeArray"  (onDelete)="_onDeleteOffice($event)"
+            class="content-hold item-hold "></app-company-departments-entry>
+          
           <!-- <app-company-department-entry [department]="department" [companyId]="companyId"
             class="content-hold item-hold two-column-field" (onDelete)="_onDeleteDepartment($event)"
             (onSave)="_onSaveDepartment($event)" (onEdit)="_onEditDepartment($event)"
@@ -23,7 +25,7 @@
         <!-- <app-company-department-entry class="content-hold item-hold two-column-field" [companyId]="companyId"
           *ngIf="isNew" (onSave)="_onSaveDepartment($event)" (onCancel)="isNew = false;">
         </app-company-department-entry> -->
-        <div class="item-hold two-column-field" (click)="isNew = true;">
+        <div class="item-hold two-column-field" *ngIf="isNew != true" (click)="isNew = true;">
           <div class="add-item-hold" >
             <mat-icon class="add-item-icon">add</mat-icon>
             <span class="add-item-text mat-display-1">New</span>
@@ -32,7 +34,9 @@
               company.</span>
           </div>
         </div>
-        <div class="departments-item-hold" *ngIf="isNew">
+        <div  *ngIf="isNew">
+        <div class="departments-item-hold " >
+       
         
         <mat-toolbar class="tool-bar">
           <span class="tool-bar-title">New Department</span>
@@ -54,7 +58,7 @@
             color="primary"
             class="tool-bar-button"
             matTooltip="Save Changes"
-            
+            (click)="addDepartment();isNew = false;"
             
           >
             <mat-icon>save</mat-icon>
@@ -84,8 +88,8 @@
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <mat-select placeholder="Ex: Office" [(ngModel)]="selectedOffice">
               <!-- <mat-select-trigger>
-                <span *ngIf="departmentDetails.controls.fkofficeid.value">
-                  {{ departmentDetails.controls.fkofficeid.value.code + '(' + departmentDetails.controls.fkofficeid.value.type + ')' }}
+                <span  *ngFor="let office of officeType">
+                  {{ office.code + ' (' + office.type + ')' }}
                 </span>
               </mat-select-trigger> -->
               <mat-option *ngFor="let office of officeType" [value]="office">
@@ -99,10 +103,12 @@
         <!-- <div class="form-field-hold">
           <mat-label class="form-field-label">Head of the Department</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput type="number" placeholder="Ex: 000000" formControlName="hodfkempid">
+            <input matInput type="number" placeholder="Ex: 000000"  [(ngModel)]="headOfDepartment" >
           </mat-form-field>
         </div> -->
       </div>
+    </div>
+   
     </div>
         <div class="item-hold two-column-field"></div>
       </div>
@@ -122,5 +128,5 @@
         </div>
       </div>
     </div>
-  </div>
+ 
   

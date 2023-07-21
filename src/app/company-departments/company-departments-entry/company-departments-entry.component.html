@@ -22,7 +22,7 @@
       color="primary"
       class="tool-bar-button"
       matTooltip="Delete"
-      (click)="doAction('delete')"
+      (click)="doAction('delete');_doDelete()"
       *ngIf="_currentAction == 'view'"
     >
       <mat-icon>delete</mat-icon>
@@ -43,7 +43,7 @@
         color="primary"
         class="tool-bar-button"
         matTooltip="Save Changes"
-        
+        (click)="updateDepartment();doAction('view')"
         *ngIf="_currentAction == 'new' || _currentAction == 'edit'"
       >
         <mat-icon>save</mat-icon>
@@ -52,17 +52,16 @@
     </mat-toolbar>
     <div class="department-contents content-data-hold" *ngIf="_currentAction == 'view' ">
       <div class="view-entry-hold">
-        <span class="entry-text highlight-title">Department-Type</span>
+        <span class="entry-text highlight-title">{{department.name}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text">Department-type</span>
+        <span class="entry-text">{{department.type}},</span>
       </div>
-      <div class="view-entry-hold" >
-        <span
-          class="entry-text">Department</span>
+      <div class="view-entry-hold"  *ngIf="department.fkofficeid">
+        <span  class="entry-text">{{ 'Office: ' + getOfficeCode(department.fkofficeid) + ' (' + getOfficeType(department.fkofficeid) + ')' }}</span>
       </div>
-      <div class="view-entry-hold">
-        <span class="entry-text">something</span>
+      <div class="view-entry-hold" *ngIf="department.hodfkempid">
+        <span class="entry-text">{{ 'HoD : ' + department.hodfkempid }}</span>
       </div>
     </div>
     <div class="department-edit-contents content-data-hold" 
@@ -71,15 +70,15 @@
       <div class="form-field-hold">
         <mat-label class="form-field-label">Department Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput placeholder="Ex: Civil-02" >
+          <input matInput placeholder="Ex: Civil-02" [(ngModel)]="department.name">
         </mat-form-field>
       </div>
       <div class="form-field-hold">
         <mat-label class="form-field-label">Department Type</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select matInput placeholder="Ex: Civil" >
-            <mat-option *ngFor="let departmentType of _departmentTypes" [value]="departmentType.valuestr">
-              {{departmentType.valuestr}}
+          <mat-select matInput placeholder="Ex: Civil"  [(ngModel)]="department.type">
+            <mat-option *ngFor="let departmentType of departmentTypeArray" [value]="departmentType.value">
+              {{departmentType.value}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -87,13 +86,13 @@
       <div class="form-field-hold">
         <mat-label class="form-field-label">Office</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select placeholder="Ex: Office" >
-            <mat-select-trigger>
-              <!-- <span *ngIf="departmentDetails.controls.fkofficeid.value">
-                {{ departmentDetails.controls.fkofficeid.value.code + '(' + departmentDetails.controls.fkofficeid.value.type + ')' }}
-              </span> -->
-            </mat-select-trigger>
-            <mat-option *ngFor="let office of _offices.values()" [value]="office">
+          <mat-select placeholder="Ex: Office"  [(ngModel)]="selectedOffice">
+            <!-- <mat-select-trigger>
+              <span  *ngFor="let office of officeType">
+                {{ office.code + ' (' + office.type + ')' }}
+              </span>
+            </mat-select-trigger> -->
+            <mat-option *ngFor="let office of officeType" [value]="office">
               <span>
                 {{ office.code + ' (' + office.type + ')' }}
               </span>
@@ -104,7 +103,7 @@
       <!-- <div class="form-field-hold">
         <mat-label class="form-field-label">Head of the Department</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <input matInput type="number" placeholder="Ex: 000000" formControlName="hodfkempid">
+          <input matInput type="number" placeholder="Ex: 000000" >
         </mat-form-field>
       </div> -->
     </div>

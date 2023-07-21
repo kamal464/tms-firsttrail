@@ -1,12 +1,14 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
-import { HttpClient ,HttpHeaders} from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+
 @Component({
-  selector: 'app-department-attributes',
-  templateUrl: './department-attributes.component.html',
-  styleUrls: ['./department-attributes.component.scss']
+  selector: 'app-grades-attributes',
+  templateUrl: './grades-attributes.component.html',
+  styleUrls: ['./grades-attributes.component.scss']
 })
-export class DepartmentAttributesComponent implements OnInit {
+export class GradesAttributesComponent implements OnInit {
+
   @Input() formData: any = [];
 
   @Output() customEvent = new EventEmitter<string>();
@@ -90,7 +92,7 @@ export class DepartmentAttributesComponent implements OnInit {
  if(fieldToUpdate){
     const requestBody = {
       id: this.editid,
-      fkreasonid:1689749905408,
+      fkreasonid:1689922248200,
      code:fieldToUpdate.code,
     value:fieldToUpdate.value,
 
@@ -100,9 +102,6 @@ export class DepartmentAttributesComponent implements OnInit {
     });
   } 
   }
-
-
-
 
 
 }

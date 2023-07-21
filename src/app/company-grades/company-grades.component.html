@@ -10,19 +10,19 @@
       <div class="action-padding"></div>
     </div>
     <div class="contents" *ngIf="_currentAction == 'add'">
-      <div class="content-hold mat-elevation-z6 new-grade-entry-hold" [@slideInOut]>
+      <div class="content-hold mat-elevation-z6 new-grade-entry-hold" >
         <span class="mat-title">Adding New Grade</span>
         <div class="new-grade-inputs content-data-hold" >
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Code</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: MD" >
+              <input matInput placeholder="Ex: MD" [(ngModel)]="code">
             </mat-form-field>
           </div>
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Name</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: Managing Director" >
+              <input matInput placeholder="Ex: Managing Director"  [(ngModel)]="name">
             </mat-form-field>
           </div>
         </div>
@@ -32,10 +32,10 @@
             <span class="error-text" [innerHtml]="errorMsg"></span>
           </div>
           <span class="spacer"></span>
-          <button mat-stroked-button class="new-grade-control" (click)="cancelAdd()">
+          <button mat-stroked-button class="new-grade-control" (click)="doAction('view')">
             <span class="button-label">Cancel</span>
           </button>
-          <button mat-raised-button color="primary" class="new-grade-control">
+          <button mat-raised-button color="primary" class="new-grade-control" (click)="addGrades();doAction('view');">
             <mat-icon>save</mat-icon>
             <span class="button-label">Save</span>
           </button>
@@ -55,55 +55,11 @@
     </div>
     <div class="contents">
       <div class="content-hold">
-        <tool-bar title="Grades" class="content-title-hold" [currentAction]="_currentAction" [hasEdit]="false" [hasDelete]="false"></tool-bar>
+        <tool-bar title="Grades" class="content-title-hold" [hasEdit]="false" [hasDelete]="false"></tool-bar>
         <div class="grades-hold content-data-hold no-padding-h">
-         
-            <ng-container matColumnDef="order">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-icon-button matTooltip="Move Up" >
-                  <mat-icon>arrow_upward</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="Move Down" >
-                  <mat-icon>arrow_downward</mat-icon>
-                </button>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="serialno">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-              <td mat-cell *matCellDef="let element">
-                <span [ngClass]="{'inactive': !element.isactive}">{{element.serialno}}</span>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="code">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
-              <td mat-cell *matCellDef="let element">
-                <span [ngClass]="{'inactive': !element.isactive}">{{element.code}}</span>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="valuestr">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td mat-cell *matCellDef="let element">
-                <span [ngClass]="{'inactive': !element.isactive}">{{element.valuestr}}</span>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="controls">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" matTooltip="Delete" >
-                  <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Deactivate" *ngIf="element.isactive"
-                  >
-                  <mat-icon>toggle_on</mat-icon>
-                </button>
-                <button mat-icon-button color="secondary" matTooltip="Activate" *ngIf="!element.isactive"
-                 >
-                  <mat-icon>toggle_off</mat-icon>
-                </button>
-              </td>
-            </ng-container>
-        
+          <div  class="new-content-hold">
+         <app-grades-attributes [formData]="grades"></app-grades-attributes>
+            </div>
         </div>
       </div>
       <div class="controls-view">

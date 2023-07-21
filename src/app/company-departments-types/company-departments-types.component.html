@@ -2,7 +2,7 @@
     <div class="headings">
       <app-title title="Department Types" subTitle="Different types of departments"></app-title>
       <span class="spacer"></span>
-      <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')"
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('add')"
         *ngIf="_currentAction != 'add'">
         <mat-icon>add</mat-icon>
         <span class="button-text">New Department Type</span>
@@ -10,19 +10,19 @@
       <div class="action-padding"></div>
     </div>
     <div class="contents" *ngIf="_currentAction == 'add'">
-      <div class="content-hold mat-elevation-z6 new-department-type-entry-hold" [@slideInOut]>
+      <div class="content-hold mat-elevation-z6 new-department-type-entry-hold">
         <span class="mat-title">Adding New Department Type</span>
         <div class="new-department-type-inputs content-data-hold" >
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Code</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: HR" >
+              <input matInput placeholder="Ex: HR" [(ngModel)]="code" >
             </mat-form-field>
           </div>
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Name</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: Humar Resources" >
+              <input matInput placeholder="Ex: Humar Resources" [(ngModel)]="name" >
             </mat-form-field>
           </div>
         </div>
@@ -33,9 +33,9 @@
           </div>
           <span class="spacer"></span>
           <button mat-stroked-button class="new-department-type-control" >
-            <span class="button-label" (click)="cancelAdd()">Cancel</span>
+            <span class="button-label" (click)="doAction('view')">Cancel</span>
           </button>
-          <button mat-raised-button color="primary" class="new-department-type-control" >
+          <button mat-raised-button color="primary" class="new-department-type-control" (click)="addDepartmentType();doAction('view');" >
             <mat-icon>save</mat-icon>
             <span class="button-label">Save</span>
           </button>
@@ -53,9 +53,9 @@
         </div>
       </div>
     </div>
-    <div class="contents">
+    <div class="contents" *ngIf="_currentAction == 'view' || 'add'">
       <div class="content-hold">
-        <tool-bar title="Department Types" class="content-title-hold" [currentAction]="_currentAction" [hasEdit]="false" [hasDelete]="false">
+        <tool-bar title="Department Types" class="content-title-hold"  [hasEdit]="false" [hasDelete]="false">
         </tool-bar>
         <div class="department-types-hold  no-padding-h">
           <div  class="new-content-hold">

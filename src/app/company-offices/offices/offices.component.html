@@ -22,7 +22,7 @@
           <mat-icon>edit</mat-icon>
           <span class="button-label">Edit</span>
         </button>
-        <button mat-flat-button  class="tool-bar-button bt-bg" matTooltip="Delete" (click)="doAction('delete');_doDelete()"
+        <button mat-flat-button   color="primary" class="tool-bar-button" matTooltip="Delete" (click)="doAction('delete');_doDelete()"
     *ngIf="hasEdit && currentAction == 'view'">
     <mat-icon>delete</mat-icon>
     <span class="button-label">Delete</span>

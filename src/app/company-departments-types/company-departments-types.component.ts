@@ -11,21 +11,22 @@ export class CompanyDepartmentsTypesComponent implements OnInit {
   errorMsg = '';
 departmentTypes :any = [];
   isProcessing = false;
+  code : string;
+  name: string;
+
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
     this.getDepartmentTypes();
   }
   doAction(action): void {
+    this._currentAction = action;
     if (action == 'new') {
       this._currentAction = 'add';
      
     }
   }
-  cancelAdd(): void {
-    this._currentAction = 'view';
   
-  }
 
   getDepartmentTypes() {
     const headers = new HttpHeaders()
@@ -55,5 +56,22 @@ departmentTypes :any = [];
       });
   }
 
+addDepartmentType(){
+  const timestamp = new Date().getTime(); 
+    const requestBody = {
+      id: timestamp,
+      fkreasonid:1689749905408,
+      serialno:'3',
+      iseditable:'1',
+      isactive:'0',
+      code: this.code,
+      value:this.name, 
+    }; 
+
+    this.http.post(`${API_BASE_URL}/t/reasonitem/add` , requestBody).subscribe((data)=>{
+      this.departmentTypes.push(data);
+      console.log('departmentType is added', requestBody)
+    })
+}
 
 }

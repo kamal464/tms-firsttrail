@@ -117,36 +117,6 @@ this.countries = data;
 
 
   
-  // getOffice() {
-  //   this.http.post(`${API_BASE_URL}/t/office/getall`, {}).subscribe(
-  //     (data) => {
-  //       this.officesArray = data;
-  //       console.log(data);
-  //     },
-  //     (error) => {
-  //       console.error('Error retrieving office data:', error);
-  //     }
-  //   );
-  // }
-
-  // getAddress() {
-  //   this.http.post(`${API_BASE_URL}/t/address/getall`, {}).subscribe((data) => {
-  //     this.addressArray = data;
-  // console.log(data)
-      
-  //   });
-  // }
-  
-// // Fetch associated office data for each address
-      // this.addressArray.forEach((address) => {
-      //   const officeId = address.officeId;
-  
-      //   // Find the associated office using officeId
-      //   const associatedOffice = this.officesArray.find((office) => office.id === officeId);
-  
-      //   // Assign the associated office to the address
-      //   address.office = associatedOffice;
-      // });
 addOffice(){
   const timestamp = new Date().getTime(); 
   const requestBody = {
@@ -170,14 +140,6 @@ addOffice(){
   console.log('office added' ,requestBody)
   this.addOfficeAddress(requestBody.id)
 }
-
-// findOfficeById(officeId: number): any {
-//   console.log(officeId);
-//   if (this.officesArray) {
-//     return this.officesArray.find((office) => office.id === officeId);
-//   }
-//   return null;
-// }
 
 addOfficeAddress(fkofficeid){
   const timestamp = new Date().getTime(); 
@@ -224,39 +186,9 @@ addOfficeAddress(fkofficeid){
 }
 
 
-// deleteAddress() {
-//   if (this.offices && this.offices.address && this.offices.address.id) {
-//     const headers = new HttpHeaders()
-//       .set('Content-Type', 'application/json')
-//       .set('id', this.offices.address.id.toString());
-
-//     console.log(this.offices.address.id);
-
-//     this.http.post(`${API_BASE_URL}/t/address/delete`, {}, { headers }).subscribe(
-//       (data) => {
-//         console.log('Address is deleted', this.offices.address.id);
-//         this.deleteOffice();
-
-//         // Remove the deleted address from this.offices
-//         delete this.offices.address;
-//       }
-//     );
-//   }
-// }
 
 
-// deleteOffice(){
-// const headers = new HttpHeaders()
-//     .set('Content-Type', 'application/json')
-//     .set('id', [this.offices.office.id]);
-//     console.log(this.offices.office.id) 
-// this.http.post(`${API_BASE_URL}/t/office/delete`,{},{headers}).subscribe(
-//   (data) => {
-//     delete this.offices.office;
-//   }
-// )
-// console.log('office is deleted',this.offices.id)
-// }
+
 
 _onDeleteOffice($event): void {
   this.deleteAddress($event)

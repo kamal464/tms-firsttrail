@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from '../shared/api-config';
 @Component({
@@ -12,6 +12,7 @@ departmentTypeArray : any;
 departmentName :any;
 departmentType : any;
 selectedOffice : any;
+headOfDepartment : any;
 officeType:any;
 _currentAction = 'view';
 isNew = false;
@@ -53,6 +54,45 @@ getOfficeType(){
     this.officeType = data;
   })
 }
+
+addDepartment(){
+  const timestamp = new Date().getTime(); 
+  const requestBody = {
+    id:timestamp,
+    fkofficeid:this.selectedOffice.id,
+    fkorgid:1,
+    type:this.departmentType,
+    name:this.departmentName,
+    hodfkempid:null
+  }
+  this.http.post(`${API_BASE_URL}/t/department/add` , requestBody).subscribe((data)=> {
+console.log(requestBody)
+this.departments.push(data)
+this.selectedOffice = '',
+this.departmentType = '',
+this.departmentName = ''
+  })
+}
+_onDeleteOffice($event): void {
+  console.log($event)
+  this.deleteDepartment($event);
+   
+}
+
+
+deleteDepartment(depid){
+  console.log(depid)
+  const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('id', depid.toString());
+  this.http.post(`${API_BASE_URL}/t/department/delete`,{},{ headers }).subscribe((data)=>{
+    console.log(data,"department is delete")
+  
+    this.departments = this.departments.filter((item) => item.id !== depid);
+    console.log(this.departments)
+  })
+}
+
 
 
 doAction(action): void {
