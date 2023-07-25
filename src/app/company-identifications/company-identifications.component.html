@@ -3,7 +3,7 @@
       <app-title title="Identifications" subTitle="List of identities of a company"></app-title>
       <span class="spacer"></span>
       <button class="action-button" mat-raised-button color="primary" (click)="isNew = true;" style="margin-right: 16px;"
-        *ngIf="isNew != true">
+        *ngIf="isNew != true" (click)="doAction('add')">
         <mat-icon>add</mat-icon>
         <span class="button-text">New Identity</span>
       </button>
@@ -11,10 +11,150 @@
     </div>
     <div class="contents">
       <div class="multiple-content-hold">
-        <ng-container>
-        <app-company-identification-entry class="content-hold item-hold"></app-company-identification-entry>
+        <ng-container *ngFor="let identification of identificationsInfo">
+        <app-company-identification-entry class="content-hold item-hold" [identificationsInfo]="identification"
+       [identityIssuedByDropdown]="identityIssuedByDropdown" [identityTypeDropdown]="identityTypeDropdown" [countries]="countries"></app-company-identification-entry>
       </ng-container>
-      <app-company-identification-entry class="content-hold item-hold" ></app-company-identification-entry>
+      <div  class="content-hold item-hold">
+      <div class="identifications-item-hold"   *ngIf="isNew">
+   
+        <mat-toolbar class="tool-bar" *ngIf="isNew">
+          <span class="tool-bar-title">New identity</span>
+          <span class="spacer"></span>
+        
+          <button
+            mat-button
+            class="tool-bar-button"
+            matTooltip="Cancel"
+            (click)="isNew = false;"
+            
+          >
+            <mat-icon>cancel</mat-icon>
+            <span class="button-label">Cancel</span>
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="tool-bar-button"
+            matTooltip="Save Changes"
+            (click)="isNew = false; addIdentity();"
+            
+            
+          >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+        </mat-toolbar>
+       
+       
+        <div class="identification-edit-contents content-data-hold" 
+          >
+         
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Country</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  *ngFor="let country of countries">
+              <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry" >
+                <mat-select-trigger>
+                  <span class="flag-hold" >
+                    <mat-icon></mat-icon>
+                    {{country.value}}
+                  </span>
+                </mat-select-trigger>
+                <mat-option [value]="country.id">
+                  <span class="flag-hold">
+                    <mat-icon ></mat-icon>{{country.value}}
+                  </span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Identity Type</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <mat-select matInput placeholder="Ex: PAN"  [(ngModel)]="idType">
+                <mat-option *ngFor="let identityType of identityTypeDropdown" [value]="identityType.value">
+                  {{identityType.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Issued By</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <mat-select matInput placeholder="Ex: Income-Tax Department" [(ngModel)]="idIssuedBy">
+                <mat-option *ngFor="let identityIssued of identityIssuedByDropdown" [value]="identityIssued.value">
+                  {{identityIssued.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Issued Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="issuedate" [(ngModel)]="idIssuedDate"
+                (click)="issuedate.open()" [disabled]="false">
+              <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
+              <mat-datepicker #issuedate disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Identity Number</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: ABCDE 1234A."  [(ngModel)]="idNumber" >
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Identity Name</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Full Name"  [(ngModel)]="idName">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Valid From</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" 
+                [matDatepicker]="validfrom" (click)="validfrom.open()" [disabled]="false" [(ngModel)]="idValidFromDate">
+              <mat-datepicker-toggle matSuffix [for]="validfrom"></mat-datepicker-toggle>
+              <mat-datepicker #validfrom disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Valid Upto</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" 
+                [matDatepicker]="validupto" (click)="validupto.open()" [disabled]="false" [(ngModel)]="idValidUptoDate">
+              <mat-datepicker-toggle matSuffix [for]="validupto"></mat-datepicker-toggle>
+              <mat-datepicker #validupto disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="view-entry-hold">
+            <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+                [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
+            </div> -->
+            <div class="attachments-hold">
+              <ng-container *ngFor="let attachment of _attachments">
+                <!-- <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing"
+                  (onDelete)="removeAttachment(attachment)">
+                </app-attachment> -->
+              </ng-container>
+              <ng-container *ngFor="let selectedFile of _selectedAttachments; let idx = index">
+                <!-- <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"
+                  (onDelete)="removeSelectedAttachment(idx)">
+                </app-attachment> -->
+              </ng-container>
+              <span class="spacer"></span>
+              <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf"
+                >
+              <button mat-stroked-button color="primary" (click)="file.click()">
+                <mat-icon>upload</mat-icon>
+                Add Attachments
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
         <div class="item-hold two-column-field" *ngIf="!isNew">
           <div class="add-item-hold" (click)="isNew = true;">
             <mat-icon class="add-item-icon">add</mat-icon>

@@ -1,13 +1,6 @@
 <!-- <ng-container *ngFor="let office of officesArray"> -->
     <div class="offices-item-hold">
-    <!-- <div class="content-loading-hold">
-      <mat-spinner></mat-spinner>
-      <span class="mat-title content-loading-text"
-        [innerHtml]="'Please wait, while the procesing <b>Office</b>:<b class=\'primary-color-text\'>' + _officeTitle + '</b> information.'"></span>
-    </div> -->
-    <!-- <tool-bar [title]="_officeTitle" class="content-title-hold" [currentAction]="_currentAction"
-      (onAction)="doAction($event)" [hasEdit]="true" [hasDelete]="true" *ngIf="!isProcessing">
-    </tool-bar> -->
+   
     <mat-toolbar class="tool-bar">
         <span class="tool-bar-title" [innerHtml]="offices.office?.code" ></span>
         <span class="sub-title mat-small"> {{ offices.office?.type}}</span>

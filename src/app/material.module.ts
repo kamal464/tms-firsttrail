@@ -106,6 +106,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    MatIconModule,
     
   
   ],

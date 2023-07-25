@@ -7,9 +7,26 @@ export class SharedServiceService {
   private dataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private selectedOptionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   coloumnRows: string[] = [];
+  private actionParameter: any;
   fkSchemaTableId : string;
   selectedOption:string;
+  private actionName: string = '';
   constructor() { }
+  setActionParameter(action: any): void {
+    console.log('data is set', action)
+    this.actionParameter = action;
+  }
+
+    getActionParameter(): any {
+      console.log('data is sent')
+      return this.actionParameter;
+    }
+  setActionName(actionName: string): void {
+    this.actionName = actionName;
+  }
+  getActionName(): string {
+    return this.actionName;
+  }
   setColoumnRows(columns: string[]) {
     this.coloumnRows = columns;
     console.log(this.coloumnRows)
@@ -50,10 +67,5 @@ return this.fkSchemaTableId;
   getSelectedOption(){
     return this.selectedOption;
   }
-  // setSelectedOption(option: string): void {
-  //   this.selectedOptionSubject.next(option);
-  // }
-  // getSelectedOption(): string {
-  //   return this.selectedOptionSubject.value;
-  // }
+  
 }

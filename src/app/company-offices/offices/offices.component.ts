@@ -64,8 +64,39 @@ saveOff(){
       console.log(data)
       
     })
+    this.updateAddress();
   }
-
+updateAddress(){
+  const requestbody = {
+    id: this.offices.address.id,
+    fkorgid : 1,
+    fkofficeid : this.offices.address.fkofficeid,
+    type: null ,
+    contactname: null,
+    description : null,
+    houseno:this.offices.address.houseno,
+    building :this.offices.address.building,
+    street:this.offices.address.street,
+    locality:null,
+    landmark:this.offices.address.landmark,
+    area:this.offices.address.area,
+    city:this.offices.address.city,
+    postalcode:this.offices.address.postalcode,
+    region:null,
+    zone:null,
+    fkcountrycode:'IN',
+    latitude:null,
+    longitude:null,
+    phone:null,
+    email:null,
+    fax:null,
+    isactive:1
+  
+  }
+  this.http.post(`${API_BASE_URL}/t/address/update` , requestbody).subscribe((data)=>{
+    console.log(data,'updated')
+  })
+}
 
   
 }

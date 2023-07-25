@@ -35,7 +35,7 @@
                   <!-- style="max-height: calc(100vh - 310px); overflow-y: auto;" -->
                   <div class="info-data-hold">
                     <ng-container *ngFor="let column of coloumnRows;  let i = index">
-                      <button mat-button class="option-item" matTooltipPosition="right" (click)="selectObject(i); selectColumn(column);">
+                      <button mat-button class="option-item" matTooltipPosition="right" (click)="selectColumn(column);selectObject(i);">
                         <!-- selectColumn(column); -->
                         <mat-icon  *ngIf="column === selectedColumn" color="primary" class="selection_arrow">arrow_right</mat-icon>
                         {{ column }}

@@ -1,4 +1,4 @@
-import { NgModule ,NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +40,6 @@ import { RouterModule } from '@angular/router';
 import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemacolumn-attribute.component';
 import { CommonModule } from '@angular/common';
 import { WebMenuComponent } from './web-menu/web-menu.component';
-
 import { AttributeViewComponent } from './reason-attribute/attribute-view.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -56,8 +55,12 @@ import { SchemaColumnAttributeTableComponent } from './schema-column-attribute-t
 import { DepartmentAttributesComponent } from './company-departments-types/department-attributes/department-attributes.component';
 import { DesignationAttributeComponent } from './company-designations/designation-attribute/designation-attribute.component';
 import { GradesAttributesComponent } from './company-grades/grades-attributes/grades-attributes.component';
+import { HomeComponent } from './home/home.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { StringdatePipe } from './shared/stringdate.pipe';
 @NgModule({
   declarations: [
+    StringdatePipe,
     AppComponent,
     CompanyOverviewComponent,
     CompanyOfficesComponent,
@@ -88,8 +91,8 @@ import { GradesAttributesComponent } from './company-grades/grades-attributes/gr
     SchemaColumnComponent,
     SchemacolumnAttributeComponent,
     WebMenuComponent,
-  CompanyProfileComponent,
-  AttributeViewComponent,
+    CompanyProfileComponent,
+    AttributeViewComponent,
     OverviewComponent,
     CompanyDepartmentsComponent,
     CompanyDepartmentsEntryComponent,
@@ -104,7 +107,8 @@ import { GradesAttributesComponent } from './company-grades/grades-attributes/gr
     DepartmentAttributesComponent,
     DesignationAttributeComponent,
     GradesAttributesComponent,
-
+    HomeComponent,
+    EmployeeComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -117,19 +121,22 @@ import { GradesAttributesComponent } from './company-grades/grades-attributes/gr
     CommonModule,
 
     HttpClientModule,
-    RouterModule.forRoot([])
-  
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      // { path: 'meta-table', component: SchemaColumnComponent },
+    ]),
   ],
 
   providers: [
- 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptorInterceptor,
-      multi: true
-    },SharedServiceService
-
-
+      multi: true,
+    },
+    SharedServiceService,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,95 @@
+@import '../../styles.scss';
+.employee-content-hold {
+    flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          background-color: $full-white;
+          @include mat-elevation(4);
+
+        //   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);;
+        //   width: calc(100% - 265px);
+        width: calc(100% - 20px);
+
+}
+
+.employee-content-data-hold{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+    overflow: 0;
+}
+
+.entry-label {
+    color: #666;
+    padding: 0 10px;
+    margin-top: 0;
+  }
+
+  .entry-data {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 4px 10px 25px;
+  }
+
+  .entry-text {
+    font-size: 1.5em;
+  }
+
+
+  
+  .name-info {
+    display: flex; /* To align the name and sub-title horizontally */
+    align-items: center; /* To vertically center the name and sub-title */
+    margin-left: 10px; /* Add some spacing between the avatar and the name info */
+  }
+
+  /* Style the container to display avatar and employee info */
+.avatar-container {
+    display: flex;
+    align-items: center;
+    // padding: 10px;
+    // border: 1px solid #ccc;
+    border-radius: 20px; /* Set a base radius for the container */
+  }
+  
+
+  /* Style the employee name */
+  .employee-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+
+  
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    // padding: 10px;
+    // border: 1px solid #ccc;
+    border-radius: 20px;    
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .employee-info {
+    display: flex;
+    flex-direction: row;
+  }
+  
+ 
+  .employee-id {
+    margin-left: 10px; /* Add some space between the employee name and ID */
+  }
+  
+  .employee-designation {
+    font-size: 1rem;
+    margin: 0;
+    color: #777;
+  }
+  
