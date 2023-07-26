@@ -84,17 +84,17 @@ console.log(this.identityIssuedByDropdown)
 
 
 addIdentity(){
-  const timestamp = new Date().getTime(); 
+  // const timestamp = new Date().getTime(); 
     const requestBody = {
-    id:timestamp,
+    id:1234,
     type:this.idType,
-    issuedby:this.idIssuedBy,
-    issuedate:this.idIssuedDate.getTime(),
-    number:this.idNumber,
-    name:this.idName,
-    validfromdate:this.idValidFromDate.getTime(),
-    validuptodate:this.idValidUptoDate.getTime(),
-    fkcountrycode:this.selectedCountry,
+    issuedby:this.idIssuedBy|| null,
+    issuedate:this.idIssuedDate?  this.idIssuedDate.getTime() : null,
+    number:this.idNumber|| null,
+    name:this.idName|| null,
+    validfromdate:this.idValidFromDate? this.idValidFromDate.getTime() : null,
+    validuptodate:this.idValidUptoDate?  this.idValidUptoDate.getTime() :  null,
+    fkcountrycode:this.selectedCountry|| null,
     fkorgid:1,
     fkempid:null,
     sid:0,
@@ -107,6 +107,15 @@ addIdentity(){
   console.log(requestBody)
   this.http.post(`${API_BASE_URL}/t/identification/add`,requestBody).subscribe((data)=>{
     console.log('identity is added')
+    this.identificationsInfo.push(data);
+    this.idType = '',
+    this.idIssuedBy = '',
+    this.idIssuedDate = '',
+    this.idNumber = '',
+    this.idName = '',
+    this.idValidFromDate = '',
+    this.idValidUptoDate = '',
+    this.selectedCountry = ''
   })
 }
 
@@ -132,7 +141,19 @@ doAction(action): void {
   }
 
 }
+deleteIdentity(deleteid:number){
+  const deletefield = this.identificationsInfo.find((item)=>item.id === deleteid);
+  console.log(deletefield)
+  const headers = new HttpHeaders()
+  .set('Content-Type', 'application/json')
+  .set('id', deletefield.id.toString());
 
+this.http.post(`${API_BASE_URL}/t/identification/delete`,{},{headers}).subscribe((data)=>{
+  console.log('identity is deleted',data)
+  this.identificationsInfo.pop(data);
+})
+
+}
 
 
 

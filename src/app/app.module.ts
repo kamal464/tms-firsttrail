@@ -58,6 +58,8 @@ import { GradesAttributesComponent } from './company-grades/grades-attributes/gr
 import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { StringdatePipe } from './shared/stringdate.pipe';
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { EmployeeProfileEntryComponent } from './employee-profile-entry/employee-profile-entry.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -109,6 +111,8 @@ import { StringdatePipe } from './shared/stringdate.pipe';
     GradesAttributesComponent,
     HomeComponent,
     EmployeeComponent,
+    EmployeeProfileComponent,
+    EmployeeProfileEntryComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

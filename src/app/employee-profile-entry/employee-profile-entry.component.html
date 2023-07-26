@@ -1,0 +1,106 @@
+<div>
+    <div class="headings">
+      <app-title
+        title="Profile"
+      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
+        
+      ></app-title>
+      <span class="spacer"></span>
+    </div>
+    <div class="contents">
+    
+        <div class="content-hold content-hold-height">
+            <tool-bar
+                [title]="_selected_option"
+                class="content-title-hold"
+               
+                [hasEdit]="true"
+                [hasDelete]="false" 
+             
+                [hasActive]="true"
+                          ></tool-bar>
+              <div  class="content-schema-view">
+                <span class="entry-data entry-text">KVP-Phanindra</span>
+                <span class="entry-label">(12ab34-5688)</span>
+              </div>
+              
+        </div>
+        <div class="content-hold content-hold-height">
+            <tool-bar
+                [title]="_selected_option"
+                class="content-title-hold"
+               
+                [hasEdit]="true"
+                [hasDelete]="false" 
+             
+                [hasActive]="true"
+                          ></tool-bar>
+              <div  class="content-schema-view">
+                <span class="entry-data entry-text">KVP-Phanindra</span>
+                <span class="entry-label">(12ab34-5688)</span>
+              </div>
+              
+        </div>
+        <div class="content-hold content-hold-height">
+            <tool-bar
+                [title]="_selected_option"
+                class="content-title-hold"
+               
+                [hasEdit]="true"
+                [hasDelete]="false" 
+             
+                [hasActive]="true"
+                          ></tool-bar>
+              <div  class="content-schema-view">
+                <span class="entry-data entry-text">KVP-Phanindra</span>
+                <span class="entry-label">(12ab34-5688)</span>
+              </div>
+              
+        </div>
+       
+      
+      <!-- <div class="controls-view">
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text"
+            >Click on '<b>Edit</b>' button, to update the company
+            information</span
+          >
+        </div>
+        
+        <div class="help-info-hold" >
+          <mat-icon>info</mat-icon>
+          <span class="help-text"
+            >Once you finish editing, Click on '<b>Save</b>' button, to save the
+            changes.<br />To cancel the edit, click on '<b>Cancel</b>'
+            button.</span
+          >
+        </div>
+    </div> -->
+   
+    
+    </div>
+    <div class="multi-options-view">
+        <div class="info-and-options-view">
+      <div class="info-options-hold mat-elevation-z4">
+        <!-- <div class="info-data-hold">
+            <span class="mat-title info-title"></span>
+            <span class="mat-subheading-1 info-subtitle">
+            </span>
+        </div> -->
+        <!-- <div class="info-data-hold" >
+            <span class="mat-title info-title"></span>
+            <span class="mat-subheading-1 info-subtitle">Loading..</span>
+        </div> -->
+        <ng-container *ngFor="let option of _available_options">
+           
+            <button mat-button class="option-item" [matTooltip]="option" matTooltipPosition="right"  >
+          <mat-icon *ngIf="option == _selected_option" color="primary" class="selection_arrow">arrow_right</mat-icon>
+          {{option}}
+          </button>
+        </ng-container>
+    </div>
+    </div>
+    </div>
+  </div>
+ 

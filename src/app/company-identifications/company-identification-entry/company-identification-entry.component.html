@@ -26,15 +26,18 @@
       <div class="spacer" style="display: flex;padding:0 25px;">
         <div class="view-entry-hold three-column-field">
           <mat-label class="entry-label">Issued Date</mat-label>
-          <span class="entry-data">{{ identificationsInfo.issuedate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY' }}</span>
+          <span class="entry-data">{{ identificationsInfo.issuedate ? (identificationsInfo.issuedate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          </span>
         </div>
         <div class="view-entry-hold three-column-field" style="align-items: flex-end;">
           <mat-label class="entry-label">Valid From</mat-label>
-          <span class="entry-data "> {{identificationsInfo.validfromdate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY'}}</span>
+          <span class="entry-data ">{{ identificationsInfo.validfromdate ? (identificationsInfo.validfromdate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          </span>
         </div>
         <div class="view-entry-hold three-column-field" style="align-items: flex-end;" >
           <mat-label class="entry-label">Valid Upto</mat-label>
-          <span class="entry-data">{{identificationsInfo.validuptodate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY'}} </span>
+          <span class="entry-data">{{ identificationsInfo.validuptodate ? (identificationsInfo.validuptodate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          </span>
         </div>
       </div>
       <div class="view-entry-hold">
@@ -58,22 +61,23 @@
      
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Country</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-          <mat-select placeholder="Ex: Country" >
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  *ngFor="let country of countries">
+          <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry" >
             <mat-select-trigger>
               <span class="flag-hold" >
-                <!-- <mat-icon [svgIcon]="identificationDetails.controls.fkcountrycode.value.code"></mat-icon> -->
-                identificationDetails.controls.fkcountrycode.value.name 
+                <mat-icon></mat-icon>
+                {{country.value}}
               </span>
             </mat-select-trigger>
-            <mat-option >
+            <mat-option [value]="country.id">
               <span class="flag-hold">
-                <mat-icon ></mat-icon> country.name 
+                <mat-icon ></mat-icon>{{country.value}}
               </span>
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+     
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Identity Type</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">

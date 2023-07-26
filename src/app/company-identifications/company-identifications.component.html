@@ -13,7 +13,8 @@
       <div class="multiple-content-hold">
         <ng-container *ngFor="let identification of identificationsInfo">
         <app-company-identification-entry class="content-hold item-hold" [identificationsInfo]="identification"
-       [identityIssuedByDropdown]="identityIssuedByDropdown" [identityTypeDropdown]="identityTypeDropdown" [countries]="countries"></app-company-identification-entry>
+       [identityIssuedByDropdown]="identityIssuedByDropdown" [identityTypeDropdown]="identityTypeDropdown" [countries]="countries" 
+       (onDelete)="deleteIdentity($event)"></app-company-identification-entry>
       </ng-container>
       <div  class="content-hold item-hold">
       <div class="identifications-item-hold"   *ngIf="isNew">

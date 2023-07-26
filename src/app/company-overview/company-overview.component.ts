@@ -16,7 +16,12 @@ export class CompanyOverviewComponent implements OnInit {
   inputValues: string[] = [];
   getData: any = [];
   formData: any = [];
- 
+  _currentAction = 'view';
+  currentAction = 'view';
+
+  hasNew = false;
+  hasEdit = true;
+  companyDetails: '';
   getRecord() {
     this.http
       .post(`${API_BASE_URL}/t/org/getall`, {})
@@ -119,12 +124,7 @@ console.log(requestbody)
   }
  
 
-  _currentAction = 'view';
-  currentAction = 'view';
-
-  hasNew = false;
-  hasEdit = true;
-  companyDetails: '';
+ 
 
   constructor(private http: HttpClient) {}
 

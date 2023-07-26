@@ -15,6 +15,7 @@ export class CompanyIdentificationEntryComponent implements OnInit {
 @Output() onDelete = new EventEmitter<any>();
   _currentAction = 'view';
   _identificationTitle = '';
+  selectedCountry:string;
   errorMsg = '';
   isProcessing = false;
   _identificationTypes = [];
@@ -33,29 +34,29 @@ export class CompanyIdentificationEntryComponent implements OnInit {
   }
  
   _doDelete(): void {
-    this.onDelete.emit(this.identificationsInfo.office.id);
+    console.log(this.identificationsInfo.id)
+    this.onDelete.emit(this.identificationsInfo.id);
   }
 
 
-
+  // const issueDate = this.idissueDate;
+  //   const validFromDate = this.idFromDate;
+  //   const validUpToDate = this.idValidUpto;
   updateIdentification(){
-    const issueDate = this.idissueDate;
-    const validFromDate = this.idFromDate;
-    const validUpToDate = this.idValidUpto;
+  
     const requestBody = {
-      id:this.identificationsInfo.id,
-      type:this.identificationsInfo.type,
-      issuedby:this.identificationsInfo.issuedby,
-      issuedate:issueDate.getTime(),
-      number:this.identificationsInfo.number,
-      name:this.identificationsInfo.name,
-      validfromdate:validFromDate.getTime(),
-      validuptodate:validUpToDate.getTime(),
-      fkcountrycode:'d',
-      fkorgid:1,
-      fkempid:null
-      
-    }
+      id: this.identificationsInfo.id,
+      fkcountrycode:this.selectedCountry,
+      type: this.identificationsInfo.type,
+      issuedby: this.identificationsInfo.issuedby,
+      issuedate: new Date(this.idissueDate).getTime(),
+      number: this.identificationsInfo.number,
+      name: this.identificationsInfo.name,
+      validfromdate: new Date(this.idFromDate).getTime(),
+      validuptodate: new Date(this.idValidUpto).getTime(),
+      fkorgid: 1,
+      fkempid: null,
+    };
     this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
       console.log(data, 'data is updated')
     })
@@ -67,6 +68,7 @@ export class CompanyIdentificationEntryComponent implements OnInit {
     this.errorMsg = '';
     switch (action) {
       case 'delete':
+        this. _doDelete();
         break;
       case 'edit':
         this._currentAction = action;

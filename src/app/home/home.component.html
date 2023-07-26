@@ -43,6 +43,9 @@
             <button mat-button class="menu-item" (click)="doAction('Find Employee')"  [ngClass]="{'active-menu-item': activeButton === 'employee'}" (click)="activeButton = 'employee'">
               <span class="menu-item-text">Find Employee</span>
             </button>
+            <button mat-button class="menu-item" (click)="doAction('employee-profile')"  [ngClass]="{'active-menu-item': activeButton === 'employee-profile'}" (click)="activeButton = 'employee-profile'">
+              <span class="menu-item-text"> Employee Profile</span>
+            </button>
           </ng-container>
         </div>
         <div class="spacer"></div>
@@ -136,7 +139,7 @@
                       *ngFor="let item of dynamicNavItems"
                     >
                       <div class="tabbed-item-lead-icon">
-                        <!-- <mat-icon>tab.icon</mat-icon> -->
+                        
                       </div>
                       <div class="tabbed-item-label" (click)="doAction(item)" (click)="activeButton = (item === 'reasons' ? 'settings' : (item === 'roles' || item === 'web menu' || item === 'web authorization') ? 'authorization' : item)">
                         {{ item }}
@@ -178,10 +181,11 @@
                 ></app-schema-manager>
   
                 <app-schema-column
-                  *ngIf="_selected_option == 'column'"
+                *ngIf="_selected_option == 'column'"
                 ></app-schema-column>
                 <app-web-menu *ngIf="_selected_option == 'web-menu'"></app-web-menu>
                 <app-employee *ngIf="_selected_option == 'Find Employee'"></app-employee>
+                <app-employee-profile *ngIf="_selected_option == 'employee-profile'" ></app-employee-profile>
               </div>
               <!-- </mat-tab> -->
               <!-- </mat-tab-group> -->

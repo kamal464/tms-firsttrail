@@ -26,6 +26,7 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
   isProcessing = false;
   coloumnRows: any = [];
   _currentAction = 'view';
+  activeButton :string
   // defaultSelectedReasonIndex:number = 2;
   objindex: number;
   id: any;
@@ -73,12 +74,14 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
 //   }
 
   triggerDoAction(): void {
-    this.sharedservice.setActionParameter('column');
-    this.callDoActionInComponentA();
+    this.sharedservice.addNavItem('column');
+    
+    //this.callDoActionInComponentA();
   }
   private callDoActionInComponentA(): void {
-    const componentAInstance = new HomeComponent(null,this.sharedservice);
-    componentAInstance.callDoAction();
+    // const componentAInstance = new HomeComponent(null,this.sharedservice,null);
+    // componentAInstance.callDoAction();
+    
   }
   ngOnChanges() {}
 
