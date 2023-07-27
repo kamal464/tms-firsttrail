@@ -1,12 +1,6 @@
 <div>
-    <div class="headings">
-      <app-title
-        title="Profile"
-      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
-        
-      ></app-title>
-      <span class="spacer"></span>
-    </div>
+   
+    <!-- <div class="content-view">
     <div class="contents">
     
         <div class="content-hold content-hold-height">
@@ -41,57 +35,16 @@
               </div>
               
         </div>
-        <div class="content-hold content-hold-height">
-            <tool-bar
-                [title]="_selected_option"
-                class="content-title-hold"
-               
-                [hasEdit]="true"
-                [hasDelete]="false" 
-             
-                [hasActive]="true"
-                          ></tool-bar>
-              <div  class="content-schema-view">
-                <span class="entry-data entry-text">KVP-Phanindra</span>
-                <span class="entry-label">(12ab34-5688)</span>
-              </div>
-              
-        </div>
+       
        
       
-      <!-- <div class="controls-view">
-        <div class="help-info-hold" >
-          <mat-icon>info</mat-icon>
-          <span class="help-text"
-            >Click on '<b>Edit</b>' button, to update the company
-            information</span
-          >
-        </div>
-        
-        <div class="help-info-hold" >
-          <mat-icon>info</mat-icon>
-          <span class="help-text"
-            >Once you finish editing, Click on '<b>Save</b>' button, to save the
-            changes.<br />To cancel the edit, click on '<b>Cancel</b>'
-            button.</span
-          >
-        </div>
-    </div> -->
+     
    
-    
-    </div>
+    <div class="contents">
     <div class="multi-options-view">
-        <div class="info-and-options-view">
+      <div class="info-and-options-view">
       <div class="info-options-hold mat-elevation-z4">
-        <!-- <div class="info-data-hold">
-            <span class="mat-title info-title"></span>
-            <span class="mat-subheading-1 info-subtitle">
-            </span>
-        </div> -->
-        <!-- <div class="info-data-hold" >
-            <span class="mat-title info-title"></span>
-            <span class="mat-subheading-1 info-subtitle">Loading..</span>
-        </div> -->
+     
         <ng-container *ngFor="let option of _available_options">
            
             <button mat-button class="option-item" [matTooltip]="option" matTooltipPosition="right"  >
@@ -102,5 +55,214 @@
     </div>
     </div>
     </div>
+  </div>
+  </div>
+  </div> -->
+
+
+    <div>
+      <div class="headings">
+        <app-title
+          title="Profile"
+        subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
+          
+        ></app-title>
+        <span class="spacer"></span>
+      </div>
+      <div class="setting-hold">
+        
+       <div  class="contents" style="overflow: hidden;flex-direction: column;">
+          <div class="content-hold" style="width: 100%;margin-bottom: 20px;">
+            <tool-bar
+              [title]="'Profile'"
+              class="content-title-hold"
+              [hasEdit]="false"
+              [hasDelete]="false"
+             
+            ></tool-bar> 
+            <div  class="content-schema-view">
+              <span class="entry-data entry-text">KVP-Phanindra</span>
+              <span class="entry-label">(12ab34-5688)</span>
+            </div>
+          </div>
+ <div class = "content-hold " style="width: 100%;margin-bottom: 20px;">
+        
+            <tool-bar
+              [title]="'Personal Info'"
+              class="content-title-hold"
+              [hasEdit]="true"
+              [hasDelete]="false"
+               ></tool-bar>
+            <div
+              class="content-schema-view ">  
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Gender</mat-label>
+                <span class="entry-data">Male</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Date Of Birth</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Date Of Marriage</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Date Of Joining</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Date Of Resignation</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Date Of Exit</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Grade</mat-label>
+                <span class="entry-data">L3G3</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Monthly CTC</mat-label>
+                <span class="entry-data">75,576</span>
+              </div>
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Effective Date</mat-label>
+                <span class="entry-data">23-05-2001</span>
+              </div>
+            </div>
+           
+        
+          </div>
+
+          <div class = "content-hold " style="width: 100%;margin-bottom: 20px;">
+            <tool-bar
+            [title]="'Profile'"
+            class="content-title-hold"
+            [hasEdit]="false"
+            [hasDelete]="false"
+           
+          ></tool-bar>
+          <div
+          class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
+          <div class="form-field-hold two-column-field">
+       
+            <mat-label class="form-field-label">Gender</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+    
+          >
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Date Of Birth</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
+              <mat-datepicker #Birth disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Date Of Marriage</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Marriage" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Marriage"></mat-datepicker-toggle>
+              <mat-datepicker #Marriage disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Date Of Joining</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Joining" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Joining"></mat-datepicker-toggle>
+              <mat-datepicker #Joining disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Date Of Resignation</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Resignation" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Resignation"></mat-datepicker-toggle>
+              <mat-datepicker #Resignation disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Date Of Exit</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Exit" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Exit"></mat-datepicker-toggle>
+              <mat-datepicker #Exit disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-hold two-column-field">
+       
+            <mat-label class="form-field-label">Grade</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Monthly CTC</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               
+              />
+            </mat-form-field>
+           
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Effective Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Effective" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="Effective"></mat-datepicker-toggle>
+              <mat-datepicker #Effective disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+         
+        </div>
+        </div>
+
+
+        
+       
+<app-employee-addemployee></app-employee-addemployee>
+
+
+        </div>
+         
+
+        <!-- <app-schema-attribute  [currentSelectedReason]="currentSelectedReason"></app-schema-attribute> -->
+      </div>
+    </div>
+  
   </div>
  

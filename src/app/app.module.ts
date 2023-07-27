@@ -60,6 +60,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { StringdatePipe } from './shared/stringdate.pipe';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { EmployeeProfileEntryComponent } from './employee-profile-entry/employee-profile-entry.component';
+import { EmployeeProfileEntryRightsidenavComponent } from './employee-profile-entry-rightsidenav/employee-profile-entry-rightsidenav.component';
+import { EmployeeAddemployeeComponent } from './employee-addemployee/employee-addemployee.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -113,6 +115,8 @@ import { EmployeeProfileEntryComponent } from './employee-profile-entry/employee
     EmployeeComponent,
     EmployeeProfileComponent,
     EmployeeProfileEntryComponent,
+    EmployeeProfileEntryRightsidenavComponent,
+    EmployeeAddemployeeComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

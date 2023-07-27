@@ -32,8 +32,11 @@
         </ng-container>
       </div>
     </div>
-    <div class="contents-view">
+    <div class="contents-view" >
 <app-employee-profile-entry *ngIf="_selected_option == 'PROFILE'"></app-employee-profile-entry>
+    </div>
+    <div>
+<app-employee-profile-entry-rightsidenav *ngIf="_selected_option == 'PROFILE'"></app-employee-profile-entry-rightsidenav>
     </div>
   </div>
   
