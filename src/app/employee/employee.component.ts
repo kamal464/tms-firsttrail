@@ -9,24 +9,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent implements OnInit ,OnDestroy{
+export class EmployeeComponent implements OnInit {
 _currentAction = 'view';
 @Input() empData :any = [];
-private changeSubscription: Subscription;
+
 
 constructor(private sharedservice: SharedServiceService, private http: HttpClient) {
-  this.changeSubscription = this.sharedservice.changeOccurred$.subscribe(() => {
-    console.log('getEmployees called');
-    this.getEmployees();
-  });
+  
 }
 
   ngOnInit(): void {
     this.getEmployees();
   }
-  ngOnDestroy() {
-    this.changeSubscription.unsubscribe();
-  }
+ 
 
 
   triggerDoAction(): void {

@@ -20,8 +20,8 @@ export class EmployeeAddSuccessPopupComponent implements OnInit {
 closeTab(){
   this.sharedService.removeItem('addemployee');
 //  this.sharedService.addReRender('Find Employee')
-  this.sharedService.triggerChange();
-  this.getEmployees();
+  // this.sharedService.triggerChange();
+  
 
 }
 

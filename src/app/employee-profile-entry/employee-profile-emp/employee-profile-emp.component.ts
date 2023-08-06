@@ -78,7 +78,7 @@ export class EmployeeProfileEmpComponent implements OnInit,OnChanges {
   }
 ngOnChanges(changes: SimpleChanges): void {
     console.log(this._currentAction)
-   this.doAction(this._currentAction); 
+  //  this.doAction(this._currentAction); 
 }
 
 

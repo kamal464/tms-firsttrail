@@ -9,9 +9,8 @@ import { SharedServiceService } from 'src/app/shared/shared-service.service';
   styleUrls: ['./employee-add.component.scss']
 })
 export class EmployeeAddComponent implements OnInit {
-  
 _currentAction = 'new';
-
+private isSaveFormDataCalled = false;
 formData: any = [];
   constructor(private dialog: MatDialog ) {}
 
@@ -21,7 +20,8 @@ formData: any = [];
   
   doAction(action): void {
     this._currentAction = action;
-    console.log(action)
+  
+    if (!this.isSaveFormDataCalled) {
       switch (action) {
         case 'delete':
           break;
@@ -30,22 +30,22 @@ formData: any = [];
           break;
         case 'save':
           this._currentAction = action;
-        this.saveFormData();
-         
+          this.saveFormData();
+          console.log(action);
+          this.isSaveFormDataCalled = true; // Set the flag to true after calling saveFormData()
           break;
         case 'cancel':
           this._currentAction = 'view';
-
           break;
-          case 'new':
-          
-            this._currentAction = 'new'
-            break;
+        case 'new':
+          this._currentAction = 'new';
+          break;
         default:
       }
     }
+  }
   saveFormData() {
-    console.log('sdfsdfs')
+  
     // Perform any additional validation if required before saving the data
     if (this.formData.name && this.formData.email) {
       // Save the data or perform other actions here
