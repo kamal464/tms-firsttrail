@@ -1,0 +1,48 @@
+<div>
+    <div class="headings">
+      <app-title
+        title="Dependants"
+      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
+        
+      ></app-title>
+      <span class="spacer"></span>
+      <button class="action-button" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon>
+        <span class="button-text">Add New Dependant</span>
+      </button>
+    </div>
+    <div class="setting-hold">
+      
+     <div  class="contents" style="overflow: hidden;flex-direction: column;">
+       <app-employee-add-depandant></app-employee-add-depandant>
+        <div class="content-hold" style="width: 100%;margin-bottom: 20px;">
+          <tool-bar
+            [title]="'Mother'"
+            class="content-title-hold"
+            [hasEdit]="true"
+            [hasDelete]="false"
+           
+          ></tool-bar> 
+          <div
+              class="content-schema-view ">  
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label">Contact Number</mat-label>
+                <span class="entry-data">9642140587</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label">E-mail id</mat-label>
+                <span class="entry-data">sunsunnysinge@gmail.com</span>
+              </div>
+            </div>
+        </div>
+      
+      
+     
+<!-- <app-employee-addemployee></app-employee-addemployee> -->
+
+
+      </div>
+       
+
+    </div>
+  </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,6 +15,16 @@ export class SharedServiceService {
   fkSchemaTableId: string;
   selectedOption: string;
   private actionName: string = '';
+
+
+  
+  private changeSubject = new Subject<void>();
+  changeOccurred$ = this.changeSubject.asObservable();
+
+  triggerChange() {
+    console.log('this is triggered')
+    this.changeSubject.next();
+  }
   constructor() {}
   setActionParameter(action: any): void {
     console.log('data is set', action);

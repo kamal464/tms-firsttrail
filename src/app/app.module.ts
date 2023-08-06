@@ -62,6 +62,24 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { EmployeeProfileEntryComponent } from './employee-profile-entry/employee-profile-entry.component';
 import { EmployeeProfileEntryRightsidenavComponent } from './employee-profile-entry-rightsidenav/employee-profile-entry-rightsidenav.component';
 import { EmployeeAddemployeeComponent } from './employee-addemployee/employee-addemployee.component';
+import { EmployeeAddressesComponent } from './employee-addresses/employee-addresses.component';
+import { EmployeeAddAddressComponent } from './employee-addresses/employee-add-address/employee-add-address.component';
+import { EmployeeContactComponent } from './employee-contact/employee-contact.component';
+import { EmployeeAddContactComponent } from './employee-contact/employee-add-contact/employee-add-contact.component';
+import { EmployeeDepandantsComponent } from './employee-depandants/employee-depandants.component';
+import { EmployeeAddDepandantComponent } from './employee-depandants/employee-add-depandant/employee-add-depandant.component';
+import { EmployeeWorkExperienceComponent } from './employee-work-experience/employee-work-experience.component';
+import { EmployeeAddWorkExperienceComponent } from './employee-work-experience/employee-add-work-experience/employee-add-work-experience.component';
+import { EmployeeIdentitiesComponent } from './employee-identities/employee-identities.component';
+import { EmployeeAddIdentitiesComponent } from './employee-identities/employee-add-identities/employee-add-identities.component';
+import { EmployeeEducationComponent } from './employee-education/employee-education.component';
+import { EmployeeAddEducationComponent } from './employee-education/employee-add-education/employee-add-education.component';
+import { EmployeeHistoryComponent } from './employee-history/employee-history.component';
+import { EmployeeAddHistoryComponent } from './employee-history/employee-add-history/employee-add-history.component';
+import { EmployeeProfileEmpComponent } from './employee-profile-entry/employee-profile-emp/employee-profile-emp.component';
+import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
+import { EmployeeAddSuccessPopupComponent } from './employee/employee-add/employee-add-success-popup/employee-add-success-popup.component';
+
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -117,6 +135,25 @@ import { EmployeeAddemployeeComponent } from './employee-addemployee/employee-ad
     EmployeeProfileEntryComponent,
     EmployeeProfileEntryRightsidenavComponent,
     EmployeeAddemployeeComponent,
+    EmployeeAddressesComponent,
+    EmployeeAddAddressComponent,
+    EmployeeContactComponent,
+    EmployeeAddContactComponent,
+    EmployeeDepandantsComponent,
+    EmployeeAddDepandantComponent,
+    EmployeeWorkExperienceComponent,
+    EmployeeAddWorkExperienceComponent,
+    EmployeeIdentitiesComponent,
+    EmployeeAddIdentitiesComponent,
+    EmployeeEducationComponent,
+    EmployeeAddEducationComponent,
+    EmployeeHistoryComponent,
+    EmployeeAddHistoryComponent,
+    EmployeeProfileEmpComponent,
+   EmployeeAddComponent,
+   EmployeeAddSuccessPopupComponent,
+   
+  
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

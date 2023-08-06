@@ -1,0 +1,481 @@
+
+
+<div class="setting-data-hold content-schema-view " style="padding-top: 20px;">
+
+
+    <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">SurName</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+            [(ngModel)]="empSurname"
+           
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">GiveName</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'sunny'"
+            #inputValue
+            [(ngModel)]="empGivename"
+           
+          />
+        </mat-form-field>
+       
+      </div>
+     <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">DisplayName</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamal'"
+            #inputValue
+            [(ngModel)]="empDisplayname"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+       
+        <mat-label class="form-field-label">Title</mat-label>
+        <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+
+      >
+        <mat-select placeholder="Click to Select" >
+          <mat-option></mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+  
+      </div> 
+
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">EmpCode</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           [(ngModel)]="empCode"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">EmpNo</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           [(ngModel)]="empNo"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">OfficialEmail</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           [(ngModel)]="empOfficialemail"
+          />
+        </mat-form-field>
+       
+      </div>
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">PersonalEmail</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           [(ngModel)]="empPersonalemail"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Mobile1</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+            [(ngModel)]="empMobileone"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Mobile2</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+            [(ngModel)]="empMobiletwo"
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Status</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+            [readonly]="true"
+            [value]="'active'"
+           
+          />
+        </mat-form-field>
+       
+      </div>
+<div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Gender</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+    
+          >
+            <mat-select placeholder="Click to Select" [(ngModel)]="empGender">
+              <mat-option *ngFor="let gender of fetchedGender" [value]="gender.id">{{gender.value}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+      
+          </div> 
+<div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Country</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill"
+    
+          >
+            <mat-select placeholder="Click to Select" [(ngModel)]="empFkcountrycode">
+              <mat-option *ngFor="let country of fetchedCountries" [value]="country.id">{{country.value}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+      
+          </div> 
+
+          
+         
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Date Of Joining</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Joining" 
+                 [disabled]="false" [(ngModel)]="empJoiningdate">
+              <mat-datepicker-toggle matSuffix [for]="Joining"></mat-datepicker-toggle>
+              <mat-datepicker #Joining disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+         
+         
+
+          
+
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Supervisor</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Manager</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Designation</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select" [(ngModel)]="empDesignation">
+              <mat-option *ngFor="let designation of fetchedDesignation" [value]="designation.id">{{designation.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Office</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Department</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+         
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Grade</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select" [(ngModel)]="empGrade">
+              <mat-option *ngFor="let grade of fetchedGrade" [value]="grade.id">{{grade.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div>
+
+          <div class="form-field-hold two-column-fields">
+       
+            <mat-label class="form-field-label">Type</mat-label>
+            <mat-form-field
+            class="form-field-input"
+            floatPlaceholder="never"
+            appearance="fill">
+            <mat-select placeholder="Click to Select" [(ngModel)]="empType">
+              <mat-option *ngFor="let type of fetchedType" [value]="type.id">{{type.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          </div>
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Effective Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Effective" 
+                 [disabled]="false" [(ngModel)]="empEffectiveDate" >
+              <mat-datepicker-toggle matSuffix [for]="Effective"></mat-datepicker-toggle>
+              <mat-datepicker #Effective disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Date Of Birth</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="dob" 
+                 [disabled]="false" [(ngModel)]="empDateOfBirth" >
+              <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+              <mat-datepicker #dob disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Date Of Marriage</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="dom" 
+                 [disabled]="false" [(ngModel)]="empDateOfMarriage" >
+              <mat-datepicker-toggle matSuffix [for]="dom"></mat-datepicker-toggle>
+              <mat-datepicker #dom disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          
+
+         
+
+          
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Monthly CTC</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empMonthlyCtc"
+              />
+            </mat-form-field>
+           
+          </div>
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">LinkedIn</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empLinkedIn"
+              />
+            </mat-form-field>
+           
+          </div>
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Twitter</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empTwitter"
+              />
+            </mat-form-field>
+           
+          </div>
+
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Instagram</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empInstagram"
+              />
+            </mat-form-field>
+           
+          </div>
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Facebook</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empFacebook"
+              />
+            </mat-form-field>
+           
+          </div>
+
+          <div class="form-field-hold two-column-fields">
+            <mat-label class="form-field-label">Website</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empWebsite"
+              />
+            </mat-form-field>
+           
+          </div>
+
+          <div class="form-field-hold " >
+            <mat-label class="form-field-label">Remarks</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <textarea matInput placeholder="Ex: Notes" [(ngModel)]="empRemarks" ></textarea>
+            </mat-form-field>
+          </div>
+ 
+
+         
+         
+        
+</div>

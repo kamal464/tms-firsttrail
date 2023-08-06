@@ -74,7 +74,7 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
 //   }
 
   triggerDoAction(): void {
-    this.sharedservice.addNavItem('column');
+    this.sharedservice.addNavItem('column');  
     
     //this.callDoActionInComponentA();
   }

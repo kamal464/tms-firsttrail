@@ -1,3 +1,4 @@
+
 <div class="multi-options-view">
     <div class="info-and-options-view">
       <div class="info-avatar avatar-logo-loading-hold" >
@@ -13,7 +14,7 @@
         </button>
       </div>
        -->
-      <div class="info-options-hold mat-elevation-z4">
+      <div class="info-options-hold mat-elevation-z4"  *ngIf="_currentAction !== 'new'">
         <div class="info-data-hold">
           <span class="mat-title info-title"></span>
           <span class="mat-subheading-1 info-subtitle">
@@ -23,7 +24,7 @@
           <span class="mat-title info-title"></span>
           <span class="mat-subheading-1 info-subtitle">Loading..</span>
         </div> -->
-        <ng-container *ngFor="let option of _available_options">
+        <ng-container *ngFor="let option of _available_options" >
           <button mat-button class="option-item" [matTooltip]="option" matTooltipPosition="right" (click)="selectOption(option)" [ngClass]="{'selected': option == _selected_option}"
           >
           <mat-icon *ngIf="option == _selected_option" color="primary" class="selection_arrow">arrow_right</mat-icon>
@@ -32,11 +33,39 @@
         </ng-container>
       </div>
     </div>
-    <div class="contents-view" >
-<app-employee-profile-entry *ngIf="_selected_option == 'PROFILE'"></app-employee-profile-entry>
+    <div class="contents-view"  *ngIf="_selected_option == 'PROFILE'">
+<app-employee-profile-entry (onAction)="doAction($event)"></app-employee-profile-entry>
     </div>
+   
+    <div class="contents-view" *ngIf="_selected_option == 'ADDRESS'">
+    <app-employee-addresses ></app-employee-addresses>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'CONTACTS'">
+   <app-employee-contact></app-employee-contact>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'DEPANDANTS'">
+   <app-employee-depandants></app-employee-depandants>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'WORK EXPERIENCE'">
+   <app-employee-work-experience></app-employee-work-experience>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'IDENTITIES'">
+      <app-employee-identities></app-employee-identities>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'EDUCATION'">
+      <app-employee-education></app-employee-education>
+    </div>
+    <div class="contents-view" *ngIf="_selected_option == 'HISTORY'">
+    <app-employee-history></app-employee-history>
+    </div>
+    
     <div>
-<app-employee-profile-entry-rightsidenav *ngIf="_selected_option == 'PROFILE'"></app-employee-profile-entry-rightsidenav>
-    </div>
+      
+      <app-employee-profile-entry-rightsidenav [_currentAction] = "_currentAction" ></app-employee-profile-entry-rightsidenav>
+          </div>
+
+
+
+
   </div>
   

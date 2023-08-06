@@ -1,0 +1,49 @@
+<div class="settings-views multi-options-view has-overall-heading">
+    <div class="overall-heading">
+        <app-title
+          title="Add Employee"
+          subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est ex modi architecto accusamus vitae laborum minima et, eaque dolore!
+             "
+        ></app-title>
+        
+        <span class="spacer"></span>
+       
+        <div class="action-padding"></div>
+      </div>
+      <div class="setting-hold" >
+        
+        <div  class="contents" style="overflow: hidden;flex-direction: column;">
+          
+          
+           <div class = "content-hold " style="width: 100%;margin-bottom: 20px;" >
+             <tool-bar
+             [title]="'Profile'"
+             class="content-title-hold"
+             [hasEdit]="false"
+             [hasDelete]="false"
+            [currentAction]="_currentAction"
+            (onAction)="doAction($event)"
+            
+           ></tool-bar>
+           
+           <div
+           class="setting-data-hold   " style="padding-left: 20px;">
+                 <app-employee-profile-emp [_currentAction]="_currentAction" ></app-employee-profile-emp>
+           
+         </div>
+
+
+         </div>
+ 
+ 
+         
+        
+
+ 
+ 
+         </div>
+          
+ 
+         <!-- <app-schema-attribute  [currentSelectedReason]="currentSelectedReason"></app-schema-attribute> -->
+       </div>
+</div>

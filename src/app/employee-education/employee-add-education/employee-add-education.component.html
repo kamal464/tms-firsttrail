@@ -1,0 +1,162 @@
+<div class="content-hold" style="width: 100%;margin-bottom: 20px;">
+         
+
+    <tool-bar
+      [title]="'ADDING NEW EDUCATION'"
+      class="content-title-hold"
+      [hasEdit]="false"
+      [hasDelete]="false"
+      [currentAction]="'new'"
+      
+     
+    ></tool-bar>
+    <div
+      class="content-schema-view" style="padding-left: 20px;"
+    >
+    <div
+    class="form-field-hold two-column-field">
+
+    <mat-label class="form-field-label">Education Type</mat-label>
+    <mat-form-field
+    class="form-field-input"
+    floatPlaceholder="never"
+    appearance="fill"
+
+  >
+    <mat-select
+    
+      placeholder="Click to Select"
+     
+    >
+      <mat-option></mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  </div> 
+  <div  class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">College/Institute Name</mat-label>
+    <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+    >
+      <input
+        matInput
+        [placeholder]=""
+        #inputValue
+       
+      />
+    </mat-form-field>
+   
+  </div> 
+  <div  class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">Degree/Certification Name</mat-label>
+    <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+    >
+      <input
+        matInput
+        [placeholder]=""
+        #inputValue
+       
+      />
+    </mat-form-field>
+   
+  </div> 
+  <div  class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">Issued Authority</mat-label>
+    <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+    >
+      <input
+        matInput
+        [placeholder]=""
+        #inputValue
+       
+      />
+    </mat-form-field>
+   
+  </div> 
+
+<div class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">Issued Date</mat-label>
+    <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="issuedate" 
+         [disabled]="false" >
+      <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
+      <mat-datepicker #issuedate disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+     
+  
+
+        
+        <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">City/Place</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               
+              />
+            </mat-form-field>
+           
+          </div> 
+      
+         
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">From Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+              <mat-datepicker #fromdate disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+     
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">To Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+              <mat-datepicker #todate disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+     
+          <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Rank/GPA/Marks Percent</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               
+              />
+            </mat-form-field>
+           
+          </div> 
+          <div class="form-field-hold" >
+            <mat-label class="form-field-label">Comments</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <textarea matInput placeholder="Ex: Notes" ></textarea>
+            </mat-form-field>
+          </div>
+    </div>
+   
+ 
+  </div> 

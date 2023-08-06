@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit, DoCheck {
   ngAfterViewInit(): void {}
 
   ngDoCheck() {
+  
     let navItemToBeAdd = null;
 
     if (
@@ -60,8 +61,9 @@ export class HomeComponent implements OnInit, DoCheck {
         const index = this.dynamicNavItems.indexOf(removedItem);
         if (index !== -1) {
           this.dynamicNavItems.splice(index, 1);
+          
           if (this.dynamicNavItems.length > 0) {
-            this._selected_option =
+            this._selected_option = '';
               this.dynamicNavItems[this.dynamicNavItems.length - 1];
           } else {
             this._selected_option = null; // or assign a default value if needed
@@ -102,7 +104,9 @@ export class HomeComponent implements OnInit, DoCheck {
     this.isSideNavEnabled = !this.isSideNavEnabled;
   }
   deleteItem(item: string): void {
+    
     this.sharedService. removeItem(item);
+    this._selected_option = this.dynamicNavItems[this.dynamicNavItems.length - 1];
   }
 
   // doAction(action: any): void {

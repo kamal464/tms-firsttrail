@@ -1,0 +1,178 @@
+<div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction == 'new'" >
+         
+
+    <tool-bar
+      [title]="'ADDING NEW Address'"
+      class="content-title-hold"
+      [hasEdit]="false"
+      [hasDelete]="false"
+      [currentAction]="_currentAction"
+      (onAction)="doAction($event)"
+      
+     
+    ></tool-bar>
+    <div
+      class="content-schema-view"
+    >
+    <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
+        
+       
+         
+      <div
+      class="form-field-hold two-column-field">
+ 
+      <mat-label class="form-field-label">Address Type</mat-label>
+      <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+
+    >
+      <mat-select
+      
+        placeholder="Click to Select"
+       
+      >
+        <mat-option></mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    </div> 
+         
+    <div  class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Line#1</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Line#2</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+          />
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Line#3</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+          />
+        </mat-form-field>
+      </div>
+
+
+    <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Location</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Village/City Name</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">District</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue
+           
+          />
+        </mat-form-field>
+       
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">State</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue        
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <mat-label class="form-field-label">Pincode</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]=""
+            #inputValue     
+          />
+        </mat-form-field>
+       
+      </div>
+
+
+
+
+
+</div>
+
+    </div>
+   
+ 
+  </div> 

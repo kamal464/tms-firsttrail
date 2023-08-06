@@ -181,11 +181,14 @@
                 ></app-schema-manager>
   
                 <app-schema-column
-                *ngIf="_selected_option == 'column'"
+                *ngIf="_selected_option == 'column' "
                 ></app-schema-column>
                 <app-web-menu *ngIf="_selected_option == 'web-menu'"></app-web-menu>
                 <app-employee *ngIf="_selected_option == 'Find Employee'"></app-employee>
                 <app-employee-profile *ngIf="_selected_option == 'employee-profile'" ></app-employee-profile>
+                <app-employee-add *ngIf="_selected_option == 'addemployee'"></app-employee-add>
+               
+           
               </div>
               <!-- </mat-tab> -->
               <!-- </mat-tab-group> -->

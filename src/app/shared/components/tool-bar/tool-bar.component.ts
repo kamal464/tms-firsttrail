@@ -18,7 +18,7 @@ export class ToolBarComponent implements OnInit {
   @Input() hasDelete = true;
   @Input() hasNew = false;
   @Input() hasEdit = true;
-  
+  @Input() hasDate = true;
   @Input() hasActive = false;
   @Input() noTransform = false;
   @Input() active = true;
@@ -39,10 +39,10 @@ export class ToolBarComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  _doAction(action): void {
-    console.log(action)
-    this.onAction.emit(action);
-  }
+    _doAction(action): void {
+      console.log(action)
+      this.onAction.emit(action);
+    }
 
   refreshView(): void {
     setTimeout(() => {
