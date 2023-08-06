@@ -12,7 +12,7 @@ export class EmployeeAddComponent implements OnInit {
 _currentAction = 'new';
 private isSaveFormDataCalled = false;
 formData: any = [];
-  constructor(private dialog: MatDialog ) {}
+  constructor(private dialog: MatDialog , private sharedService : SharedServiceService) {}
 
   ngOnInit(): void {
   }
@@ -21,7 +21,7 @@ formData: any = [];
   doAction(action): void {
     this._currentAction = action;
   
-    if (!this.isSaveFormDataCalled) {
+     
       switch (action) {
         case 'delete':
           break;
@@ -29,19 +29,23 @@ formData: any = [];
           this._currentAction = action;
           break;
         case 'save':
+          if (!this.isSaveFormDataCalled){
           this._currentAction = action;
+
           this.saveFormData();
           console.log(action);
-          this.isSaveFormDataCalled = true; // Set the flag to true after calling saveFormData()
+          this.isSaveFormDataCalled = true;
+          } // Set the flag to true after calling saveFormData()
           break;
         case 'cancel':
-          this._currentAction = 'view';
+          
+        this.sharedService.removeItem('addemployee');
           break;
         case 'new':
           this._currentAction = 'new';
           break;
         default:
-      }
+      
     }
   }
   saveFormData() {

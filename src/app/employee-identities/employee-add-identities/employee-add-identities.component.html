@@ -59,10 +59,10 @@
 <div class="form-field-hold two-column-field">
     <mat-label class="form-field-label">Issued Date</mat-label>
     <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate" 
+      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Issued" 
          [disabled]="false" >
-      <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
-      <mat-datepicker #fromdate disabled="false"></mat-datepicker>
+      <mat-datepicker-toggle matSuffix [for]="Issued"></mat-datepicker-toggle>
+      <mat-datepicker #Issued disabled="false"></mat-datepicker>
     </mat-form-field>
   </div>
      
@@ -125,20 +125,20 @@
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Valid From</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="From" 
                  [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
-              <mat-datepicker #todate disabled="false"></mat-datepicker>
+              <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
+              <mat-datepicker #From disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>
      
           <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Valid Upto</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Upto" 
                  [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
-              <mat-datepicker #todate disabled="false"></mat-datepicker>
+              <mat-datepicker-toggle matSuffix [for]="Upto"></mat-datepicker-toggle>
+              <mat-datepicker #Upto disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>
      
