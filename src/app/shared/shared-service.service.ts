@@ -17,11 +17,12 @@ export class SharedServiceService {
   private actionName: string = '';
 
 
-  
+ rendertoggle = false;
   private changeSubject = new Subject<void>();
   changeOccurred$ = this.changeSubject.asObservable();
 
   triggerChange() {
+    this.rendertoggle = true;
     console.log('this is triggered')
     this.changeSubject.next();
   }
@@ -81,6 +82,8 @@ export class SharedServiceService {
   }
 
   addNavItem(action) {
+   
+    
     if (!this.dynamicNavItems.includes(action)) {
       this.dynamicNavItems = [
         ...this.dynamicNavItems,
@@ -88,6 +91,8 @@ export class SharedServiceService {
       ];
     }
   }
+
+  
   removeItem(item) {
     const index = this.dynamicNavItems.indexOf(item);
     if (index !== -1) {

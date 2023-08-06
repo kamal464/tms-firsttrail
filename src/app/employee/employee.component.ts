@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnDestroy, OnInit } from '@angular/core';
 import { SharedServiceService } from '../shared/shared-service.service';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../shared/api-config';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class EmployeeComponent implements OnInit ,OnDestroy{
 _currentAction = 'view';
-empData :any = [];
+@Input() empData :any = [];
 private changeSubscription: Subscription;
 
 constructor(private sharedservice: SharedServiceService, private http: HttpClient) {
@@ -20,7 +20,6 @@ constructor(private sharedservice: SharedServiceService, private http: HttpClien
     this.getEmployees();
   });
 }
-
 
   ngOnInit(): void {
     this.getEmployees();
