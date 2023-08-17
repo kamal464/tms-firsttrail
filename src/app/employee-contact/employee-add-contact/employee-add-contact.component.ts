@@ -1,41 +1,63 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
+import { Subscription } from 'rxjs';
+import { SharedServiceService } from 'src/app/shared/shared-service.service';
 @Component({
   selector: 'app-employee-add-contact',
   templateUrl: './employee-add-contact.component.html',
   styleUrls: ['./employee-add-contact.component.scss']
 })
 export class EmployeeAddContactComponent implements OnInit {
-  _currentAction = 'add';
+  private subscription: Subscription;
+@Input() contactsArray :any =[];
+  @Input() _currentAction = 'new';
   @Output() onAction = new EventEmitter<any>();
-  constructor(private http : HttpClient) { }
+ @Input() empRelationTypeArray :any;
+employeeId :any ;
+empContactName:any;
+empRelation:any;
+empPhoneNumber:any;
+empEmail:any;
+isSaveFormDataCalled:any;
+  constructor(private http : HttpClient,private sharedService :SharedServiceService) { }
 
   ngOnInit(): void {
+
+    this.subscription = this.sharedService.employeeId$.subscribe((empid) => {
+      this.employeeId = empid;
+      if (this.employeeId) {
+        console.log('Employee ID in Component B:', this.employeeId);
+        // You can perform further actions with the employee ID here
+      } else {
+        console.log('Employee ID not set in Component B');
+      }
+    });
   }
 
   addContact(){
     const timestamp = new Date().getTime(); 
     const requestBody = {
       id:timestamp,
-       fkempid:98898,
-        contactname:'kamal',
-         relationtype:'mother',
-          phonenumber:90348504504,
-           email:'ksjdfdskfjsfjl.com',
-            remarks:null,
-             sid:null,
-              rss:null,
-               lct:null,
-                lmt:null,
-                 sct:null,
-                  smt:null
+       fkempid:this.employeeId,
+        contactname:this.empContactName,
+         relationtype:this.empRelation,
+          phonenumber:this.empPhoneNumber,
+           email:this.empEmail,
+            remarks:null
+            
     }
+    
     this.http.post(`${API_BASE_URL}/t/empcontact/add`,requestBody).subscribe((data)=>{
-      console.log(data)
+      // this.contactsArray = data;
+      this.contactsArray.push(data);
+      console.log(this.contactsArray)
+
+      
     })
     
   }
+ 
 
 
   doAction(action): void {
@@ -48,12 +70,16 @@ export class EmployeeAddContactComponent implements OnInit {
           this._currentAction = action;
           break;
         case 'save':
+          if (!this.isSaveFormDataCalled){
+            this.isSaveFormDataCalled = true;
           this.addContact();
           this._currentAction = 'view';
           this.onAction.emit(action);
+          }
           break;
         case 'cancel':
           this._currentAction = 'view';
+          this.onAction.emit(action);
           break;
         default:
       }

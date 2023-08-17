@@ -12,7 +12,7 @@
       <div class="setting-hold" >
         
        <div  class="contents" style="overflow: hidden;flex-direction: column;">
-          <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction == 'view'">
+          <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction == 'view' || 'edit'">
             <tool-bar
               [title]="'Profile'"
               class="content-title-hold"
@@ -23,7 +23,7 @@
             <div  class="content-schema-view" >
             
               <div class="view-entry-schema two-column-field ">
-                 <span class="entry-data entry-text" style="font-size: 150%;">KVP-Phanindra <span class="entry-label">(12ab34-5688)</span></span>
+                 <span class="entry-data entry-text" style="font-size: 150%;"> {{employeeDetails?.displayname}}<span class="entry-label">{{employeeDetails?.empno}}</span></span>
              
               </div>
             
@@ -32,8 +32,8 @@
                 <span class="entry-data">phanindra</span>
               </div>
               <div class="view-entry-schema two-column-field ">
-                <span class="entry-data">data</span>
-                <span class="entry-data">loading</span>
+                <span class="entry-data">{{employeeDetails?.personalemail}}</span>
+                <span class="entry-data">{{employeeDetails?.mobile1}}</span>
                 <span class="entry-data">DTPL-HYD <span class="entry-data" style="padding-left: 40px;">Kondapur</span></span>
 
               </div>
@@ -44,62 +44,260 @@
 
             </div>
           </div>
-           <!-- <div class = "content-hold " style="width: 100%;margin-bottom: 20px;"  *ngIf="_currentAction == 'view'">
+            <div class = "content-hold " style="width: 100%;margin-bottom: 20px;"  >
         
             <tool-bar
               [title]="'Personal Info'"
               class="content-title-hold"
               [hasEdit]="true"
               [hasDelete]="false"
+              [currentAction]="_currentAction"
+              (onAction)="doAction($event)"
                ></tool-bar>
             <div
-              class="content-schema-view ">  
-              <div class="view-entry-schema three-column-field ">
+              class="content-schema-view "  *ngIf="_currentAction == 'view'">  
+              <div class="view-entry-schema three-column-field "  >
                 <mat-label class="entry-label">Gender</mat-label>
-                <span class="entry-data">Male</span>
+                <span class="entry-data">{{employeeDetails?.gender === 'M'? 'Male':'Female'}}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
                 <mat-label class="entry-label">Date Of Birth</mat-label>
-                <span class="entry-data">23-05-2001</span>
+                <span class="entry-data">{{ employeeDetails?.personalData?.dateofbirth ? (employeeDetails.personalData.dateofbirth | stringToDate) : '' }}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
                 <mat-label class="entry-label">Date Of Marriage</mat-label>
-                <span class="entry-data">23-05-2001</span>
+                <span class="entry-data">{{ employeeDetails?.personalData?.dateofmarriage ? (employeeDetails.personalData.dateofmarriage | stringToDate) : '' }}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Date Of Joining</mat-label>
-                <span class="entry-data">23-05-2001</span>
+                <mat-label class="entry-label">Email</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.email}}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Date Of Resignation</mat-label>
-                <span class="entry-data">23-05-2001</span>
+                <mat-label class="entry-label">Mobile</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.mobile }}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Date Of Exit</mat-label>
-                <span class="entry-data">23-05-2001</span>
+                <mat-label class="entry-label">LinkedIn</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.linkedin}}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Grade</mat-label>
-                <span class="entry-data">L3G3</span>
+                <mat-label class="entry-label">Twitter</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.twitter }}</span>
+              </div>
+             
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Instagram</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.instagram }}</span>
+              </div>
+             
+              <div class="view-entry-schema three-column-field ">
+                <mat-label class="entry-label">Facebook</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.facebook }}</span>
               </div>
               <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Monthly CTC</mat-label>
-                <span class="entry-data">75,576</span>
+                <mat-label class="entry-label">Website</mat-label>
+                <span class="entry-data">{{ employeeDetails?.personalData?.website }}</span>
               </div>
-              <div class="view-entry-schema three-column-field ">
-                <mat-label class="entry-label">Effective Date</mat-label>
-                <span class="entry-data">23-05-2001</span>
-              </div>
+             
+            
+             
+             
             </div>
            
+            <div class="setting-data-hold" style="padding-left: 20px;"  *ngIf="_currentAction == 'edit'" >
+              <!-- <app-employee-profile-personal-add [empDetails]="employeeDetails"   ></app-employee-profile-personal-add> -->
+              
+
+<div class="setting-data-hold content-schema-view " style="padding-top: 20px;">
+
+
+  <div class="form-field-hold two-column-fields">
+     
+      <mat-label class="form-field-label">Gender</mat-label>
+      <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill">
+      <mat-select placeholder="Click to Select" [(ngModel)]="employeeDetails.gender">
+        <mat-option *ngFor="let gender of genderArray" [value]="gender.id" >{{gender.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    </div>
+
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Date Of Birth</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
+           [disabled]="false" [(ngModel)]="empPersonaldob" >
+        <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
+        <mat-datepicker #Birth disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Date Of Marriage</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Marriage" 
+           [disabled]="false"  [(ngModel)]="empPersonalDateOfMarriage" >
+        <mat-datepicker-toggle matSuffix [for]="Marriage"></mat-datepicker-toggle>
+        <mat-datepicker #Marriage disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Email</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+        [(ngModel)]="employeeDetails.personalData.email"
+        />
+      </mat-form-field>
+     
+    </div>
+
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Mobile</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+          [(ngModel)]="employeeDetails.personalData.mobile"
         
-          </div> -->
+        />
+      </mat-form-field>
+     
+    </div>
+
+    
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">linkedIn</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+          [(ngModel)]="employeeDetails.personalData.linkedin"
+        
+        />
+      </mat-form-field>
+     
+    </div>
+
+    
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Twitter</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+          [(ngModel)]="employeeDetails.personalData.twitter"
+        
+        />
+      </mat-form-field>
+     
+    </div>
+
+    
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Instagram</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+        [(ngModel)]="employeeDetails.personalData.instagram"
+        />
+      </mat-form-field>
+     
+    </div>
+
+    
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Facebook</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+        [(ngModel)]="employeeDetails.personalData.facebook"
+        />
+      </mat-form-field>
+     
+    </div>
+
+    <div class="form-field-hold two-column-fields">
+      <mat-label class="form-field-label">Website</mat-label>
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill"
+      >
+        <input
+          matInput
+          [placeholder]="'kamalakar'"
+          #inputValue
+          [(ngModel)]="employeeDetails.personalData.website"
+        />
+      </mat-form-field>
+     
+    </div>
+
+
+    
+   
+
+
+
+
+   
+</div>
+              </div>
+          </div>
+            
+            
+          <!-- <div class = "content-hold" style="width: 100%;margin-bottom: 20px;" >
+           
+        </div>  -->
+
+
+       
 
 
 
         
        
-<!-- <app-employee-addemployee *ngIf="_currentAction !== 'view'"></app-employee-addemployee> -->
+
 
 
         </div>

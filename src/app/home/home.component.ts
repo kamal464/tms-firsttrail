@@ -61,6 +61,9 @@ export class HomeComponent implements OnInit, DoCheck {
           const index = this.dynamicNavItems.indexOf(removedItem);
       this.doAction('Find Employee')
         }
+        if(removedItem == 'employee-profile'){
+          this.doAction('Find Employee')
+        }
         console.log(removedItem);
         const index = this.dynamicNavItems.indexOf(removedItem);
         if (index !== -1) {

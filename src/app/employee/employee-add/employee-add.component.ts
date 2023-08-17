@@ -35,11 +35,12 @@ formData: any = [];
           this.saveFormData();
           console.log(action);
           this.isSaveFormDataCalled = true;
-          } // Set the flag to true after calling saveFormData()
+          } 
           break;
         case 'cancel':
-          
+      
         this.sharedService.removeItem('addemployee');
+      
           break;
         case 'new':
           this._currentAction = 'new';

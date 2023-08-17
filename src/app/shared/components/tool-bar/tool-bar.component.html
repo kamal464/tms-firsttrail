@@ -18,7 +18,7 @@ Inactive
     color="primary"
     class="tool-bar-button"
     matTooltip="Edit"
-    (click)="_doAction('edit')"
+    (click)="_doAction('edit'); _editIndex();"
     *ngIf="hasEdit && currentAction !== 'edit'"
   >
     <mat-icon>edit</mat-icon>

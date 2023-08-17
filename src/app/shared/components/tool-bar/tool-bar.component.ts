@@ -24,14 +24,12 @@ export class ToolBarComponent implements OnInit {
   @Input() active = true;
   @Input() currentAction = 'view';
   @Output() onAction = new EventEmitter<any>();
-
+  @Output() onEdit  = new EventEmitter<any>();
   @Output() onSave: EventEmitter<void> = new EventEmitter<void>();
   constructor(private ref: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
   }
-
-
 
   saveData() {
     // Emit the onSave event to notify the parent component
@@ -42,6 +40,10 @@ export class ToolBarComponent implements OnInit {
     _doAction(action): void {
       console.log(action)
       this.onAction.emit(action);
+    }
+    _editIndex():void {
+      console.log('editindex')
+      this.onEdit.emit()
     }
 
   refreshView(): void {

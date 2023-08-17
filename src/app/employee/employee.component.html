@@ -41,13 +41,13 @@
     </div> 
     
 <div class="contents" *ngIf="_currentAction=='view'" style="overflow: hidden;" >
-    <div class="employee-content-hold "  *ngFor="let emp of empData" style="margin: 15px;">
-        <div class="employee-content-data-hold"  >
-          <div >
+    <div class="employee-content-hold "  *ngFor="let emp of empData ; let i = index;" style="margin: 15px;">
+        <div class="employee-content-data-hold" >
+          <div  (click)="sendEmployeeId(emp.id)" >
             <span class="entry-data entry-text">{{emp.displayname}}</span>
             <span class="entry-label">{{emp.empno}}</span>
           </div>
-          </div>
+        </div>
           
     </div>
 </div>

@@ -34,6 +34,11 @@ this._currentAction = action;
     
   }
 
+sendEmployeeId(id){
+  this.sharedservice.setEmployeeid(id)
+  this.sharedservice.addNavItem('employee-profile');
+}
+
 
   getEmployees(){
     this.http.post(`${API_BASE_URL}/t/emp/getall`,{}).subscribe((data)=>{

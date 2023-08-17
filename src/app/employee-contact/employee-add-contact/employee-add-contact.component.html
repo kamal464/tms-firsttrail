@@ -1,4 +1,4 @@
-<div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction == 'add'">
+<div class="content-hold" style="width: 100%;margin-bottom: 20px;">
          
 
     <tool-bar
@@ -11,7 +11,7 @@
       
     ></tool-bar>
     <div
-      class="content-schema-view"
+     
     >
     <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
         
@@ -26,7 +26,7 @@
                 matInput
                 [placeholder]=""
                 #inputValue
-               
+               [(ngModel)]="empContactName"
               />
             </mat-form-field>
            
@@ -45,9 +45,9 @@
       <mat-select
       
         placeholder="Click to Select"
-       
+       [(ngModel)]="empRelation"
       >
-        <mat-option></mat-option
+        <mat-option *ngFor="let relation of empRelationTypeArray" [value]="relation.value">{{relation.value}}</mat-option
         >
       </mat-select>
     </mat-form-field>
@@ -66,7 +66,7 @@
             matInput
             [placeholder]=""
             #inputValue
-           
+           [(ngModel)]="empPhoneNumber"
           />
         </mat-form-field>
        
@@ -84,7 +84,7 @@
             matInput
             [placeholder]=""
             #inputValue
-           
+           [(ngModel)]="empEmail"
           />
         </mat-form-field>
        

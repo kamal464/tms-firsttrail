@@ -1,7 +1,7 @@
 import { Component, OnInit,Input,Output,EventEmitter, OnChanges, SimpleChanges ,OnDestroy } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
-
+import { Subscription } from 'rxjs';
 import { SharedServiceService } from 'src/app/shared/shared-service.service';
 
 
@@ -11,15 +11,16 @@ import { SharedServiceService } from 'src/app/shared/shared-service.service';
   styleUrls: ['./employee-profile-emp.component.scss']
 })
 export class EmployeeProfileEmpComponent implements OnInit,OnChanges {
-  
+  private subscription: Subscription;
 
   @Input() _currentAction = 'view';
   
-  CombinedEmployee : any;
+  
   fetchEmpOfficial:any;
   fetchEmpPersonal:any;
   _selected_option = '';
   fetchedCountries:any=[];
+  fetchedTitle:any=[];
   fetchedGender:any = [];
   fetchedType:any = [];
   fetchedDesignation :any = [];
@@ -29,6 +30,7 @@ export class EmployeeProfileEmpComponent implements OnInit,OnChanges {
   empDesignation:any;
   empGrade:any;
   empType:any;
+
   empEffectiveDate:any;
   empMonthlyCtc:any;
   empRemarks:any;
@@ -59,15 +61,21 @@ export class EmployeeProfileEmpComponent implements OnInit,OnChanges {
  empResignationdate:any;
  empExitdate:any;
  empLatestfkempofficialid:any;
-
-
-
+empOffice:any;
+empDepartment:any;
+ officesDropdown :any;
+ departmentsDropdown : any;
+ selectedOfficeId : any;
+updateGender:any;
 
   @Output() onAction = new EventEmitter<any>();
 
 
-  constructor(private http : HttpClient){}
+  constructor(private http : HttpClient,private sharedService : SharedServiceService){}
   ngOnInit(): void {
+   
+    
+
     this.getDesignation();
     this.getEmpOfficial();
     this.getEmpPersonal();
@@ -75,6 +83,9 @@ export class EmployeeProfileEmpComponent implements OnInit,OnChanges {
     this.getGenders();
     this.getCountries();
     this.getType();
+   this.getTitle();
+    this.getOffices();
+    this.getEmployee();
   }
 ngOnChanges(changes: SimpleChanges): void {
     console.log(this._currentAction)
@@ -109,16 +120,19 @@ ngOnChanges(changes: SimpleChanges): void {
       }
     }
 
+
+   
+
 addEmp(){
   const timestamp = new Date().getTime();
-  let dateNumbers = null;
-  if(this.empJoiningdate) {
-    const dateobj = new Date(this.empJoiningdate);
-    const year = dateobj.getFullYear();
-    const month = dateobj.getMonth() + 1;
-    const day = dateobj.getDate();
-    dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  }
+  // let dateNumbers = null;
+  // if(this.empJoiningdate) {
+  //   const dateobj = new Date(this.empJoiningdate);
+  //   const year = dateobj.getFullYear();
+  //   const month = dateobj.getMonth() + 1;
+  //   const day = dateobj.getDate();
+  //   dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  // }
   const requestBody = {
     id:timestamp,
     fkorgid:1,
@@ -135,7 +149,7 @@ addEmp(){
     mobile1:this.empMobileone,
     mobile2:this.empMobiletwo,
     status:0,
-    joiningdate:dateNumbers,
+    joiningdate:new Date(this.empJoiningdate).getTime(),
     confirmationdate:this.empConfirmationdate,
     resignationdate:this.empResignationdate,
     exitdate:this.empExitdate,
@@ -158,25 +172,25 @@ addEmp(){
 
 addEmpOfficial(empid){
   const timestamp = new Date().getTime(); 
-  let dateNumbers = null;
-  if (this.empEffectiveDate) {
-    const dateObj = new Date(this.empEffectiveDate);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-    const day = dateObj.getDate();
-    dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  }
+  // let dateNumbers = null;
+  // if (this.empEffectiveDate) {
+  //   const dateObj = new Date(this.empEffectiveDate);
+  //   const year = dateObj.getFullYear();
+  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
+  //   const day = dateObj.getDate();
+  //   dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  // }
   const requestBody = {
     id: timestamp,
     fkempid:empid,
     supervisorfkempid:null,
     managerfkempid:null,
     designation:this.empDesignation,
-    fkofficeid:null,
+    fkofficeid:this.empOffice,
     fkdepartmentid:null,
     grade:this.empGrade,
     type:this.empType,
-    effectivedate:this.empEffectiveDate? dateNumbers : null,
+    effectivedate:new Date(this.empEffectiveDate).getTime(),
     monthlyctc:this.empMonthlyCtc,
     remarks:this.empRemarks,
     approvalstatus:0,
@@ -190,28 +204,28 @@ this.addEmpPersonal(requestBody.fkempid);
 
 addEmpPersonal(empid){
   const timestamp = new Date().getTime(); 
-  let dob = null;
-  let dom = null;
-  if (this.empDateOfBirth) {
-    const dateObj = new Date(this.empDateOfBirth);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-    const day = dateObj.getDate();
-    dob = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  }
+  // let dob = null;
+  // let dom = null;
+  // if (this.empDateOfBirth) {
+  //   const dateObj = new Date(this.empDateOfBirth);
+  //   const year = dateObj.getFullYear();
+  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
+  //   const day = dateObj.getDate();
+  //   dob = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  // }
 
-  if (this.empDateOfMarriage) {
-    const dateObj = new Date(this.empDateOfMarriage);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-    const day = dateObj.getDate();
-    dom = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  }
+  // if (this.empDateOfMarriage) {
+  //   const dateObj = new Date(this.empDateOfMarriage);
+  //   const year = dateObj.getFullYear();
+  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
+  //   const day = dateObj.getDate();
+  //   dom = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  // }
   const requestBody = {
     id: timestamp,
     fkempid:  empid,
-    dateofbirth:dob,
-    dateofmarriage:dom,
+    dateofbirth:new Date(this.empDateOfBirth).getTime(),
+    dateofmarriage:new Date(this.empDateOfBirth).getTime(),
     email:this.empPersonalemail,
     mobile:this.empMobileone,
     linkedin:this.empLinkedIn,
@@ -285,6 +299,21 @@ console.log(this.fetchedType)
               })
     }
 
+  getTitle(){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('reason','EmpTitle');
+    this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data)=>{
+      this.fetchedTitle = data;
+      console.log(this.fetchedTitle)
+    })
+  }
+
+
+
+
+
+
     getCountries(){
       this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
   this.fetchedCountries = data;
@@ -292,7 +321,53 @@ console.log(this.fetchedType)
     }))
   }
 
+  getOffices(){
+    const headers = new HttpHeaders()
+
+    .set('Content-Type', 'application/json')
+    .set('fkorgid', '1');
+    this.http.post(`${Api_Base}/utils/dropdown/office`,{},{headers}).subscribe((data) => {
+      this.officesDropdown = data;
+      console.log(this.officesDropdown)
+            })
+  }
 
 
+  onOfficeSelect(event: any): void {
+    this.selectedOfficeId = event.value; 
+    this.getDepartments()
+   
+  }
 
+getDepartments(){
+  console.log(this.selectedOfficeId);
+  const headers = new HttpHeaders()
+  .set('Content-Type', 'application/json')
+    .set('fkofficeid', [this.selectedOfficeId]);
+    this.http.post(`${Api_Base}/utils/dropdown/department`,{},{headers}).subscribe((data) => {
+    this.departmentsDropdown = data;
+      console.log(data)
+            })
 }
+
+
+getEmployee(){
+  const headers = new HttpHeaders()
+  .set('Content-Type', 'application/json')
+    .set('fkorgid', '1');
+    this.http.post(`${Api_Base}/utils/dropdown/employee`,{},{headers}).subscribe((data) => {
+     
+      console.log(data)
+            }) 
+}
+
+
+
+
+
+  }
+
+
+
+
+

@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="contents-view"  *ngIf="_selected_option == 'PROFILE'">
-<app-employee-profile-entry (onAction)="doAction($event)"></app-employee-profile-entry>
+<app-employee-profile-entry (onAction)="doAction($event)" [employeeDetails]='employeeDetails'></app-employee-profile-entry>
     </div>
    
     <div class="contents-view" *ngIf="_selected_option == 'ADDRESS'">

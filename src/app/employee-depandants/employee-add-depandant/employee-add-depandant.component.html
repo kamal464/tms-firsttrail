@@ -7,11 +7,11 @@
       [hasEdit]="false"
       [hasDelete]="false"
       [currentAction]="'new'"
-      
+      (onAction)="doAction($event)"
      
     ></tool-bar>
     <div
-      class="content-schema-view"
+      
     >
     <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
         
@@ -26,7 +26,7 @@
                 matInput
                 [placeholder]=""
                 #inputValue
-               
+               [(ngModel)]="empDependentName"
               />
             </mat-form-field>
            
@@ -45,9 +45,9 @@
       <mat-select
       
         placeholder="Click to Select"
-       
+       [(ngModel)]="empGender"
       >
-        <mat-option></mat-option
+        <mat-option *ngFor="let gender of genderArray" [value]="gender.id">{{gender.value}}</mat-option
         >
       </mat-select>
     </mat-form-field>
@@ -58,7 +58,7 @@
         <mat-label class="form-field-label">Date Of Birth</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
-             [disabled]="false" >
+             [disabled]="false" [(ngModel)]="empDob">
           <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
           <mat-datepicker #Birth disabled="false"></mat-datepicker>
         </mat-form-field>
@@ -78,9 +78,9 @@
       <mat-select
       
         placeholder="Click to Select"
-       
+       [(ngModel)]="empRelation"
       >
-        <mat-option></mat-option
+        <mat-option *ngFor="let relation of relationArray" [value]="relation.value">{{relation.value}}</mat-option
         >
       </mat-select>
     </mat-form-field>

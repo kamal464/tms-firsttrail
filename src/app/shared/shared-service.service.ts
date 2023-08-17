@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject ,Observable} from 'rxjs';
 import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,9 @@ export class SharedServiceService {
   private dataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private selectedOptionSubject: BehaviorSubject<string> =
     new BehaviorSubject<string>('');
+    private employeeIdSubject = new BehaviorSubject<any>(null);
+    employeeId$: Observable<any> = this.employeeIdSubject.asObservable();
+   
   coloumnRows: string[] = [];
   dynamicNavItems: any[] = [];
   _selected_option: any;
@@ -15,7 +18,18 @@ export class SharedServiceService {
   fkSchemaTableId: string;
   selectedOption: string;
   private actionName: string = '';
+  employeeid :number;
 
+
+
+
+  setEmployeeid(empid : any) : void {
+    this.employeeIdSubject.next(empid);
+  }
+
+  getEmployeeid() {
+    return this.employeeid;
+  }
 
  rendertoggle = false;
   private changeSubject = new Subject<void>();
@@ -98,10 +112,10 @@ export class SharedServiceService {
     if (index !== -1) {
       this.dynamicNavItems.splice(index, 1);
       if (this.dynamicNavItems.length > 0) {
-        this._selected_option =
+        this._selected_option = item
           this.dynamicNavItems[this.dynamicNavItems.length - 1];
       } else {
-        this._selected_option = null; // or assign a default value if needed
+        this._selected_option = null;
       }
     }
   }

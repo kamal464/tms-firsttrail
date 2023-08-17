@@ -1,0 +1,176 @@
+
+
+<div class="setting-data-hold content-schema-view " style="padding-top: 20px;">
+
+
+    <div class="form-field-hold two-column-fields">
+       
+        <mat-label class="form-field-label">Gender</mat-label>
+        <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="fill">
+        <mat-select placeholder="Click to Select" [(ngModel)]="empGender">
+          <mat-option *ngFor="let gender of genderArray" [value]="gender.id" >{{gender.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      </div>
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Date Of Birth</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
+             [disabled]="false" [(ngModel)]="empPersonaldob" >
+          <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
+          <mat-datepicker #Birth disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Date Of Marriage</mat-label>
+        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+          <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Marriage" 
+             [disabled]="false"  [(ngModel)]="empPersonalDateOfMarriage" >
+          <mat-datepicker-toggle matSuffix [for]="Marriage"></mat-datepicker-toggle>
+          <mat-datepicker #Marriage disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Email</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+          [(ngModel)]="empPersonalEmail"
+          />
+        </mat-form-field>
+       
+      </div>
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Mobile</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+            [(ngModel)]="empPersonalMobile"
+          
+          />
+        </mat-form-field>
+       
+      </div>
+
+      
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">linkedIn</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+            [(ngModel)]="empPersonalLinkedIn"
+          
+          />
+        </mat-form-field>
+       
+      </div>
+
+      
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Twitter</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+            [(ngModel)]="empPersonalTwitter"
+          
+          />
+        </mat-form-field>
+       
+      </div>
+
+      
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Instagram</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+          [(ngModel)]="empPersonalInstagram"
+          />
+        </mat-form-field>
+       
+      </div>
+
+      
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Facebook</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+          [(ngModel)]="empPersonalFacebook"
+          />
+        </mat-form-field>
+       
+      </div>
+
+      <div class="form-field-hold two-column-fields">
+        <mat-label class="form-field-label">Website</mat-label>
+        <mat-form-field
+          class="form-field-input"
+          floatPlaceholder="never"
+          appearance="fill"
+        >
+          <input
+            matInput
+            [placeholder]="'kamalakar'"
+            #inputValue
+            [(ngModel)]="empPersonalWebsite"
+          />
+        </mat-form-field>
+       
+      </div>
+
+
+      
+     
+
+
+
+
+     
+</div>

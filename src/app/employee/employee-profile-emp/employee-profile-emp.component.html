@@ -62,8 +62,8 @@
         appearance="fill"
 
       >
-        <mat-select placeholder="Click to Select" >
-          <mat-option></mat-option
+        <mat-select placeholder="Click to Select" [(ngModel)]="empTitle">
+          <mat-option *ngFor="let title of fetchedTitle" [value]="title.id">{{title.value}} </mat-option
           >
         </mat-select>
       </mat-form-field>
@@ -279,8 +279,8 @@
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill">
-            <mat-select placeholder="Click to Select">
-              <mat-option></mat-option>
+            <mat-select placeholder="Click to Select" [(ngModel)]="empOffice" (selectionChange)="onOfficeSelect($event)">
+              <mat-option *ngFor="let office of officesDropdown" [value]="office.id">{{office.value}}</mat-option>
             </mat-select>
           </mat-form-field>
       
@@ -292,8 +292,8 @@
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill">
-            <mat-select placeholder="Click to Select">
-              <mat-option></mat-option>
+            <mat-select placeholder="Click to Select" [(ngModel)]="empDepartment">
+              <mat-option *ngFor="let department of departmentsDropdown" [value]="department.id">{{department.value}}</mat-option>
             </mat-select>
           </mat-form-field>
       

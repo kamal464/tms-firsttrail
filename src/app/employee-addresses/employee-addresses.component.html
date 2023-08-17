@@ -13,389 +13,191 @@
     </div>
     <div class="setting-hold">
       
+      <ng-container >
      <div  class="contents" style="overflow: hidden;flex-direction: column;">
-        <app-employee-add-address *ngIf="_currentAction == 'new'" [_currentAction]="_currentAction"  (onAction)="doAction($event)"></app-employee-add-address>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction=='view'">
-          <tool-bar
+        <app-employee-add-address *ngIf="_currentAction == 'new'" [_currentAction]="_currentAction" [countries]="countriesArray" [addressArray]="addressArray"   (onAction)="doAction($event)"></app-employee-add-address>
+        <div class="content-hold" style="width: 100%;margin-bottom: 20px;"  *ngFor="let address of addressArray ;let i = index" >
+          <!-- <tool-bar
             [title]="'Current Address'"
             class="content-title-hold"
             [hasEdit]="true"
             [hasDelete]="false"
-            [currentAction]="_currentAction"
+            [currentAction]="_currentAction"    
             (onAction)="doAction($event)"
-          ></tool-bar> 
-          <div  class="office-contents content-schema-view">
+            (onEdit)="startEdit(i)"
+          ></tool-bar>  -->
+          <mat-toolbar class="tool-bar">
+            <span class="tool-bar-title" [innerHtml]="address.type === 'TA' ? 'Temporary Address' : (address.type === 'PA' ? 'Permanent Address' : address.type) "></span>
+            <span class="sub-title mat-small"></span>
+            <span class="spacer"></span>
+            <!-- View Mode -->
+            <ng-container *ngIf="i !== _editIndex; else editMode">
+              <button
+                mat-button
+                class="tool-bar-button bt-color"
+                matTooltip="Edit"
+                (click)="doAction('edit'); startEdit(i,address.id)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span class="button-label">Edit</span>
+              </button>
+              <button
+                mat-flat-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Delete"
+                (click)="doAction('delete');doDelete(address.id)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span class="button-label">Delete</span>
+              </button>
+            </ng-container>
+            <!-- Edit Mode -->
+            <ng-template #editMode>
+              <button
+                mat-button
+                class="tool-bar-button"
+                matTooltip="Cancel"
+                (click)="doAction('cancel')"
+              >
+                <mat-icon>cancel</mat-icon>
+                <span class="button-label">Cancel</span>
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Save Changes"
+                (click)="doAction('save');"
+                (click)="updateAddress(address)"
+              >
+                <mat-icon>save</mat-icon>
+                <span class="button-label">Save</span>
+              </button>
+            </ng-template>
+          </mat-toolbar>
+          <div  class="office-contents content-schema-view" *ngIf="_currentAction=='view' || i !== _editIndex">
             <div class="view-entry-hold">
-                <span class="entry-text">PlotNo.58,</span>
-              </div>
-              <div class="view-entry-hold">
-                <span class="entry-text">Srilatha Apartments,</span>
-              </div>
-              <div class="view-entry-hold">
-                <span class="entry-text">KrishnamRaju Road,</span>
-              </div>
-              <div class="view-entry-hold">
-                <span class="entry-text">Kothaguda Cross Roads,Kondapur,</span>
-              </div>
-              <div class="view-entry-hold">
-                <span class="entry-text">Hyderabad-500084</span>
-              </div>
+              <span class="entry-text">{{'Plot No.' + address?.houseno }}</span>
+            </div>
+            <div class="view-entry-hold">
+              <span class="entry-text">{{ address?.building}}</span>
+            </div>
+            <div class="view-entry-hold">
+              <span class="entry-text">{{address?.landmark}}</span>
+            </div>
+            <div class="view-entry-hold">
+              <span class="entry-text">{{address?.street}}</span>
+            </div>
+            <div class="view-entry-hold">
+              <span class="entry-text"> {{address?.area + ',' + address?.city}}</span>
+            </div>
+            <div class="view-entry-hold">
+              <span class="entry-text flag-hold" *ngFor="let country of countriesArray">
+                <mat-icon></mat-icon>
+                {{(address?.fkcountrycode == country.id ? country.value : null) + '-' + address?.postalcode}}
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngIf="_currentAction=='edit'">
-          <tool-bar
-            [title]="'Current Address'"
-            class="content-title-hold"
-            [hasEdit]="false"
-            [hasDelete]="false"
-            [currentAction]="_currentAction"
-            (onAction)="doAction($event)"
-            
-          ></tool-bar> 
-          <div
-          class="content-schema-view"
-        >
-        <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
+          <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;" *ngIf="_currentAction=='edit' && i == _editIndex">
             
            
              
-          <div
-          class="form-field-hold two-column-field">
-     
-          <mat-label class="form-field-label">Address Type</mat-label>
-          <mat-form-field
-          class="form-field-input"
-          floatPlaceholder="never"
-          appearance="fill"
-    
-        >
-          <mat-select
-          
-            placeholder="Click to Select"
-           
-          >
-            <mat-option></mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-    
-        </div> 
-             
-        <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Line#1</mat-label>
+            <div
+            class="form-field-hold two-column-field">
+       
+            <mat-label class="form-field-label">Address Type</mat-label>
             <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Line#2</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-    
-    
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Line#3</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-    
-    
-        <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Location</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Village/City Name</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">District</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">State</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Pincode</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
-          </div>
-    
-    
-    
-    
-    
-    </div>
-    
-        </div>
-        </div>
-<!-- <div class = "content-hold " style="width: 100%;margin-bottom: 20px;">
-      
-          <tool-bar
-            [title]="'Personal Info'"
-            class="content-title-hold"
-            [hasEdit]="true"
-            [hasDelete]="false"
-             ></tool-bar>
-          <div
-            class="content-schema-view ">  
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Gender</mat-label>
-              <span class="entry-data">Male</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Date Of Birth</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Date Of Marriage</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Date Of Joining</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Date Of Resignation</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Date Of Exit</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Grade</mat-label>
-              <span class="entry-data">L3G3</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Monthly CTC</mat-label>
-              <span class="entry-data">75,576</span>
-            </div>
-            <div class="view-entry-schema three-column-field ">
-              <mat-label class="entry-label">Effective Date</mat-label>
-              <span class="entry-data">23-05-2001</span>
-            </div>
-          </div>
-         
-      
-        </div>
-
-        <div class = "content-hold " style="width: 100%;margin-bottom: 20px;">
-          <tool-bar
-          [title]="'Profile'"
-          class="content-title-hold"
-          [hasEdit]="false"
-          [hasDelete]="false"
-         
-        ></tool-bar>
-        <div
-        class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
-        <div class="form-field-hold two-column-field">
-     
-          <mat-label class="form-field-label">Gender</mat-label>
-          <mat-form-field
-          class="form-field-input"
-          floatPlaceholder="never"
-          appearance="fill"
-  
-        >
-          <mat-select placeholder="Click to Select">
-            <mat-option></mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-    
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Date Of Birth</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
-            <mat-datepicker #Birth disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Date Of Marriage</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Marriage" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Marriage"></mat-datepicker-toggle>
-            <mat-datepicker #Marriage disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Date Of Joining</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Joining" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Joining"></mat-datepicker-toggle>
-            <mat-datepicker #Joining disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Date Of Resignation</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Resignation" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Resignation"></mat-datepicker-toggle>
-            <mat-datepicker #Resignation disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Date Of Exit</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Exit" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Exit"></mat-datepicker-toggle>
-            <mat-datepicker #Exit disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-        <div class="form-field-hold two-column-field">
-     
-          <mat-label class="form-field-label">Grade</mat-label>
-          <mat-form-field
-          class="form-field-input"
-          floatPlaceholder="never"
-          appearance="fill">
-          <mat-select placeholder="Click to Select">
-            <mat-option></mat-option>
-          </mat-select>
-        </mat-form-field>
-    
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Monthly CTC</mat-label>
-          <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
             appearance="fill"
-          >
-            <input
-              matInput
-              [placeholder]=""
-              #inputValue
-             
-            />
-          </mat-form-field>
-         
-        </div>
-        <div class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Effective Date</mat-label>
-          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-            <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Effective" 
-               [disabled]="false" >
-            <mat-datepicker-toggle matSuffix [for]="Effective"></mat-datepicker-toggle>
-            <mat-datepicker #Effective disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-       
-      </div>
-      </div> -->
-
-
       
-     
-<!-- <app-employee-addemployee></app-employee-addemployee> -->
-
+          >
+            <mat-select
+            
+              placeholder="Click to Select"
+             [(ngModel)]="selectedAddress"
+            >
+              <mat-option *ngFor="let type of addressTypeArray" [value]="type.id">{{type.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          </div> 
+               
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="address.houseno">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Building Name</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Building Name" [(ngModel)]="address.building">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Road Name/Number</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Road no 1" [(ngModel)]="address.street">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Landmark</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="address.landmark">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Location</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: Location" [(ngModel)]="address.location">
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">City</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: City" [(ngModel)]="address.city">
+            </mat-form-field>
+          </div>
+           <div class="form-field-hold two-column-field">
+                    <mat-label class="form-field-label">Country</mat-label>
+                    <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
+                      <mat-select placeholder="Ex: Country" [(ngModel)]="address.fkcountrycode " >
+                        <mat-select-trigger>
+                          <span class="flag-hold" *ngFor="let country of countriesArray">
+                            <mat-icon></mat-icon>
+                          {{address.fkcountrycode == country.id?country.value:null}}
+                          </span>
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let country of countriesArray" [value]="country.id">
+                          <span class="flag-hold">
+                            <mat-icon ></mat-icon>{{country.value}}
+                          </span>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Pincode</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="address.postalcode">
+            </mat-form-field>
+          </div>
+       
+      
+      
+      
+      
+      </div>
+      
+        </div>
+    
+       
 
       </div>
        
 
+    </ng-container>
     </div>
   </div>

@@ -38,7 +38,7 @@ import { SchemaColumnComponent } from './schema-column/schema-column.component';
 import { SharedServiceService } from './shared/shared-service.service';
 import { RouterModule } from '@angular/router';
 import { SchemacolumnAttributeComponent } from './schemacolumn-attribute/schemacolumn-attribute.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { WebMenuComponent } from './web-menu/web-menu.component';
 import { AttributeViewComponent } from './reason-attribute/attribute-view.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
@@ -76,10 +76,12 @@ import { EmployeeEducationComponent } from './employee-education/employee-educat
 import { EmployeeAddEducationComponent } from './employee-education/employee-add-education/employee-add-education.component';
 import { EmployeeHistoryComponent } from './employee-history/employee-history.component';
 import { EmployeeAddHistoryComponent } from './employee-history/employee-add-history/employee-add-history.component';
-import { EmployeeProfileEmpComponent } from './employee-profile-entry/employee-profile-emp/employee-profile-emp.component';
+import { EmployeeProfileEmpComponent } from './employee/employee-profile-emp/employee-profile-emp.component';
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
 import { EmployeeAddSuccessPopupComponent } from './employee/employee-add/employee-add-success-popup/employee-add-success-popup.component';
-
+import { EmployeeProfilePersonalAddComponent } from './employee-profile-entry/employee-profile-personal-update/employee-profile-personal-add.component';
+import { StringToDatePipe } from './shared/pipes/stringtodate';
+EmployeeProfilePersonalAddComponent
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -152,7 +154,8 @@ import { EmployeeAddSuccessPopupComponent } from './employee/employee-add/employ
     EmployeeProfileEmpComponent,
    EmployeeAddComponent,
    EmployeeAddSuccessPopupComponent,
-   
+   EmployeeProfilePersonalAddComponent,
+   StringToDatePipe
   
   ],
   // schemas: [NO_ERRORS_SCHEMA],
@@ -182,6 +185,7 @@ import { EmployeeAddSuccessPopupComponent } from './employee/employee-add/employ
       multi: true,
     },
     SharedServiceService,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })
