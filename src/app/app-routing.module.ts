@@ -4,8 +4,8 @@ import { SchemaColumnComponent } from './schema-column/schema-column.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: 'column', component: SchemaColumnComponent },
-  {path: ' **', component: AppComponent}
+  // { path: 'column', component: SchemaColumnComponent },
+  // {path: ' **', component: AppComponent}
 ];
 
 @NgModule({

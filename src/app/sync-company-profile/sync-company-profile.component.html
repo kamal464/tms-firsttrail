@@ -1,0 +1,49 @@
+<div class="multi-options-view">
+    <div class="info-and-options-view">
+      <div class="info-avatar avatar-logo-loading-hold" >
+        <!-- <mat-spinner [diameter]="90" [strokeWidth]="5"></mat-spinner> -->
+      </div>
+      <!-- <app-avatar>
+      </app-avatar> -->
+      <!-- <div class="avatar-hold" >
+        <div class="alpha-avatar" >avatarText</div>
+        <div class="img-avatar"></div>
+        <button mat-mini-fab  matTooltip="Click to change the avatar" class="change-button">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+       -->
+      <div class="info-options-hold mat-elevation-z4">
+        <div class="info-data-hold">
+          <span class="mat-title info-title"></span>
+          <span class="mat-subheading-1 info-subtitle">
+           </span>
+        </div>
+        <!-- <div class="info-data-hold" >
+          <span class="mat-title info-title"></span>
+          <span class="mat-subheading-1 info-subtitle">Loading..</span>
+        </div> -->
+        <ng-container *ngFor="let option of _available_options">
+          <button mat-button class="option-item" [matTooltip]="option" matTooltipPosition="right" (click)="selectOption(option)" [ngClass]="{'selected': option == _selected_option}"
+          >
+          <mat-icon *ngIf="option == _selected_option" color="primary" class="selection_arrow">arrow_right</mat-icon>
+          {{option}}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <div class="contents-view">
+       <!-- <app-overview 
+       *ngIf="_selected_option == 'OVERVIEW'"
+       ></app-overview> -->
+       <!-- <app-company-overview  *ngIf="_selected_option == 'OVERVIEW'"></app-company-overview> -->
+       <app-sync-company-overview *ngIf="_selected_option == 'OVERVIEW'"></app-sync-company-overview>
+       <app-company-offices *ngIf="_selected_option == 'OFFICES'"></app-company-offices>
+       <app-company-departments  *ngIf="_selected_option == 'DEPARTMENTS'"></app-company-departments>
+       <app-company-departments-types *ngIf="_selected_option == 'DEPARTMENT-TYPES'"></app-company-departments-types>
+       <app-company-designations *ngIf="_selected_option == 'DESIGNATION'"></app-company-designations>
+       <app-company-grades *ngIf="_selected_option == 'GRADES'"></app-company-grades>
+       <app-company-identifications *ngIf="_selected_option == 'IDENTIFICATIONS'"></app-company-identifications>
+    </div>
+  </div>
+  

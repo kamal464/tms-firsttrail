@@ -81,7 +81,12 @@ import { EmployeeAddComponent } from './employee/employee-add/employee-add.compo
 import { EmployeeAddSuccessPopupComponent } from './employee/employee-add/employee-add-success-popup/employee-add-success-popup.component';
 import { EmployeeProfilePersonalAddComponent } from './employee-profile-entry/employee-profile-personal-update/employee-profile-personal-add.component';
 import { StringToDatePipe } from './shared/pipes/stringtodate';
-EmployeeProfilePersonalAddComponent
+import { SyncCompanyProfileComponent } from './sync-company-profile/sync-company-profile.component';
+import { SyncCompanyOverviewComponent } from './sync-company-profile/sync-company-overview/sync-company-overview.component';
+import { TextBoxModule,MaskedTextBoxModule } from '@syncfusion/ej2-angular-inputs';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -155,8 +160,10 @@ EmployeeProfilePersonalAddComponent
    EmployeeAddComponent,
    EmployeeAddSuccessPopupComponent,
    EmployeeProfilePersonalAddComponent,
-   StringToDatePipe
-  
+   StringToDatePipe,
+   SyncCompanyProfileComponent,
+   SyncCompanyOverviewComponent,
+ 
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -167,6 +174,7 @@ EmployeeProfilePersonalAddComponent
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    ButtonModule,TextBoxModule,MaskedTextBoxModule,DropDownListModule,
 
     HttpClientModule,
     RouterModule.forRoot([
@@ -174,6 +182,10 @@ EmployeeProfilePersonalAddComponent
         path: '',
         component: HomeComponent,
       },
+      {
+path: 'sync',
+component:SyncCompanyProfileComponent,
+      }
       // { path: 'meta-table', component: SchemaColumnComponent },
     ]),
   ],
