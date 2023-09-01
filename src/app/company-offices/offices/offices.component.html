@@ -3,9 +3,11 @@
    
     <mat-toolbar class="tool-bar">
         <span class="tool-bar-title" [innerHtml]="offices.office?.code" ></span>
-        <span class="sub-title mat-small"> {{ offices.office?.type}}</span>
+        <div  *ngFor="let office of officeTypeArray" >
+          <span class="sub-title mat-small"> {{ offices.office?.type == office.id ? office.value : null }}</span>
+        </div>
         <span class="spacer"></span>
-        <button
+        <!-- <button
           mat-button
           class="tool-bar-button bt-color"
           matTooltip="Edit"
@@ -14,7 +16,17 @@
         >
           <mat-icon>edit</mat-icon>
           <span class="button-label">Edit</span>
-        </button>
+        </button> -->
+        <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
+        (click)="doAction('edit')" 
+        matTooltip="Edit"
+        *ngIf="hasEdit && currentAction == 'view'"
+        >
+        <!-- <button ejs-button cssClass="e-flat" iconCss="bg-icons e-btngrp-watch"></button> -->
+        <span class="e-icons e-edit"></span>
+       
+        <!-- <mat-icon>edit</mat-icon> -->
+        Edit</button>
         <button mat-flat-button   color="primary" class="tool-bar-button" matTooltip="Delete" (click)="doAction('delete');_doDelete()"
     *ngIf="hasEdit && currentAction == 'view'">
     <mat-icon>delete</mat-icon>
@@ -37,7 +49,7 @@
           matTooltip="Save Changes"
           (click)="doAction('view')"
           (click)="saveOff()"
-          (click)="updateOffice()"
+          (click)="updateOffice(offices.office)"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
           <mat-icon>save</mat-icon>
@@ -63,9 +75,9 @@
         <span class="entry-text"> {{offices?.address?.area + ',' + offices?.address?.city}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text flag-hold" *ngFor="let country of countries">
+        <span class="entry-text flag-hold">
           <mat-icon></mat-icon>
-          {{(offices?.address?.fkcountrycode == country.id ? country.value : null) + '-' + offices?.address?.postalcode}}
+          {{(offices?.address?.fkcountrycode) + '-' + offices?.address?.postalcode}}
         </span>
       </div>
     </div>
@@ -73,65 +85,94 @@
     <div class="office-edit-contents content-data-hold"  *ngIf="currentAction == 'edit'">
   <!-- <ng-container *ngFor="let office of offices"> -->
     <div class="form-field-hold">
-      <mat-label class="form-field-label">Office Title</mat-label>
+      <!-- <mat-label class="form-field-label">Office Title</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Short Code." [(ngModel)]="offices.office.code">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Office Title</div>
+      <input  class="e-input" type="text" placeholder="Office Title" 
+       [(ngModel)]="offices.office.code" />
+      
+
     </div>
    
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Office Name</mat-label>
+      <!-- <mat-label class="form-field-label">Office Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="offices.office.name">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Office Name</div>
+      <input  class="e-input" type="text" placeholder="Office Name" 
+       [(ngModel)]="offices.office.name" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Office Type</mat-label>
+      <!-- <mat-label class="form-field-label">Office Type</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <mat-select matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="offices.office.type" >
           <mat-option *ngFor="let type of officeTypeArray" [value]="type.value">{{type.value}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Office Type</div>
+      <ejs-dropdownlist id='games' [dataSource]='officeType' [fields]='localFields' [placeholder]='localWaterMark'
+       [popupHeight]='localheight'[(ngModel)]="offices.office.type" ></ejs-dropdownlist>
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
+      <!-- <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="offices.address.houseno">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Flat No/Plot No/Floor</div>
+      <input  class="e-input" type="text" placeholder="Flat No/Plot No/Floor" 
+       [(ngModel)]="offices.address.houseno" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Building Name</mat-label>
+      <!-- <mat-label class="form-field-label">Building Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Building Name" [(ngModel)]="offices.address.building">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Building Name</div>
+      <input  class="e-input" type="text" placeholder="Building Name" 
+       [(ngModel)]="offices.address.building" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Road Name/Number</mat-label>
+      <!-- <mat-label class="form-field-label">Road Name/Number</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Road no 1" [(ngModel)]="offices.address.street">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Road Name/Number</div>
+      <input  class="e-input" type="text" placeholder="Road Name/Number" 
+       [(ngModel)]="offices.address.street" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Landmark</mat-label>
+      <!-- <mat-label class="form-field-label">Landmark</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="offices.address.area">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Landmark</div>
+      <input  class="e-input" type="text" placeholder="Landmark" 
+       [(ngModel)]="offices.address.area" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Location</mat-label>
+      <!-- <mat-label class="form-field-label">Location</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Location" [(ngModel)]="offices.address.location">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Location</div>
+      <input  class="e-input" type="text" placeholder="Location" 
+       [(ngModel)]="offices.address.location" />
     </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">City</mat-label>
+      <!-- <mat-label class="form-field-label">City</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: City" [(ngModel)]="offices.address.city">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">City</div>
+      <input  class="e-input" type="text" placeholder="City" 
+       [(ngModel)]="offices.address.city" />
     </div>
      <div class="form-field-hold two-column-field">
-              <mat-label class="form-field-label">Country</mat-label>
+              <!-- <mat-label class="form-field-label">Country</mat-label>
               <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
                 <mat-select placeholder="Ex: Country" [(ngModel)]="offices.address.fkcountrycode " >
                   <mat-select-trigger>
@@ -146,13 +187,20 @@
                     </span>
                   </mat-option>
                 </mat-select>
-              </mat-form-field>
+              </mat-form-field> -->
+              <div class="control-label" >country</div>
+          <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="offices.address.fkcountrycode" > </ejs-dropdownlist>
             </div>
     <div class="form-field-hold two-column-field">
-      <mat-label class="form-field-label">Pincode</mat-label>
+      <!-- <mat-label class="form-field-label">Pincode</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="offices.address.postalcode">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="control-label">Pincode</div>
+      <input  class="e-input" type="text" placeholder="Pincode" 
+       [(ngModel)]="offices.address.postalcode" />
+
     </div>
   <!-- </ng-container> -->
   </div>

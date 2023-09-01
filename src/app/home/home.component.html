@@ -1,20 +1,18 @@
-<div>
+<div class="page-hold">
     <!-- *ngIf="appComponent == 'yes'" -->
-    <ng-container>
+    <!-- <ng-container>
       <div class="top-bar-hold page-header-hold">
         <div class="app-logo-hold"></div>
         <div class="app-menu-hold">
           <ng-container>
-            <!-- class="menu-item button"  -->
+           
             <button mat-button class="menu-item" [matMenuTriggerFor]="settings"  [ngClass]="{'active-menu-item': activeButton === 'settings'}" (click)="activeButton = 'settings'">
   
               <span class="menu-item-text">Settings</span> 
-              <!-- <span class="menu-item-text"></span> -->
+             
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
-            <!-- <button mat-icon-button [matMenuTriggerFor]="settings">
-          </button> -->
-            <!-- class="mat-menu-content" -->
+          
   
             <mat-menu #settings="matMenu"  class="mat-menu-content">
               <button  mat-menu-item (click)="doAction('settings')">
@@ -75,9 +73,10 @@
         </div>
       </div>
     </ng-container>
-  
+   -->
+<app-top-bar class="page-header-hold" [tabEvent]="tabEventSubject"></app-top-bar>
     <div class="page-tabs-hold">
-      <div class="full-view-hold">
+      <!-- <div class="full-view-hold">
         <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
           <div class="tree-top-fixed-hold" >
             <div
@@ -97,19 +96,7 @@
           </div>
           <div class="tree-view-float-hold">
             <ng-container>
-              <!-- <div class="tabbed-nav-link-item">
-            <mat-icon color="primary" class="selection_arrow"
-              >arrow_right</mat-icon
-            >
-            <div class="tabbed-nav-link-item-lead-icon">
-              <mat-icon>item</mat-icon>
-            </div>
-            <div class="tabbed-nav-link-item-label">item.label</div>
-            <div class="tabbed-nav-link-item-expand">
-              <mat-icon>keyboard_arrow_down</mat-icon>
-              <mat-icon>keyboard_arrow_up</mat-icon>
-            </div>
-          </div> -->
+  
             </ng-container>
           </div>
         </div>
@@ -190,22 +177,17 @@
                
            
               </div>
-              <!-- </mat-tab> -->
-              <!-- </mat-tab-group> -->
+             
             </div>
   
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
+           
           </div>
         </div>
-      </div>
+      </div> -->
+
+
+      <app-dynamic-tab ></app-dynamic-tab>
+
+
     </div>
   </div>
-  
-  <!-- <div *ngIf="appComponent == 'no'">
-    <app-schema-column  ></app-schema-column>
-  </div> -->
-  <!-- <router-outlet></router-outlet> -->
-  <!-- <a routerLink="column" routerLinkActive="active"></a> -->
-  <!-- <app-schema-column></app-schema-column> -->

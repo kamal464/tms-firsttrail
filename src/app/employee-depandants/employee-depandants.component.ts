@@ -1,5 +1,5 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { Api_Base,API_BASE_URL } from '../shared/api-config';
 @Component({
   selector: 'app-employee-depandants',
@@ -13,7 +13,7 @@ export class EmployeeDepandantsComponent implements OnInit {
   dependantArray:any=[];
   relationsArray:any = [];
   gendersArray:any = [];
-  constructor(private http : HttpClient ) { }
+  constructor(private http : HttpClient, private cdr:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getGenders();
@@ -97,7 +97,7 @@ updateDependent(dependent){
   }
   const timestamp = new Date().getTime();
   const requestBody ={
-    id:timestamp,
+    id:dependent.id,
     fkempid:dependent.fkempid,
     dependentname:dependent.dependentname,
     gender:dependent.gender,
@@ -105,6 +105,10 @@ updateDependent(dependent){
     relationtype:dependent.relationtype,
     remarks:null,
   }
+  this.http.post(`${API_BASE_URL}/t/empdependent/update`,requestBody).subscribe((data)=>{
+    console.log(data)
+  })
+  this.cdr.detectChanges();
 }
 
 doDelete(id){

@@ -7,11 +7,7 @@ import { Query } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 
-interface Country {
-  value: string;
-  id: string;
-  // Other properties specific to the country
-}
+
 @Component({
   selector: 'app-sync-company-overview',
   templateUrl: './sync-company-overview.component.html',
@@ -30,7 +26,7 @@ export class SyncCompanyOverviewComponent implements OnInit {
   formData: any = [];
   _currentAction = 'view';
   currentAction = 'view';
-
+  error: string;
   hasNew = false;
   hasEdit = true;
   companyDetails: '';
@@ -171,7 +167,19 @@ console.log(requestbody)
   }
  
 
- 
+  onInputChange(get: any) {
+    console.log(get);
+    if (get.length < 3) {
+      this.error = 'Legal name must be at least 3 characters long';
+    } else if (!/^[a-zA-Z ]+$/.test(get)) {
+      this.error = 'Legal name must contain only letters and spaces';
+    } else {
+      this.error = null;
+    }
+
+
+  }
+  
 
   constructor(private http: HttpClient) {}
 

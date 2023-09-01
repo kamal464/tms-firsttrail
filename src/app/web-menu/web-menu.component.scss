@@ -5,7 +5,11 @@
   width: calc(50% - 40px) !important;
 }
 
-
+.webmenu {
+  display: flex;
+ 
+  flex-direction: column;
+}
 
 .sp-table {
     width: 100%;

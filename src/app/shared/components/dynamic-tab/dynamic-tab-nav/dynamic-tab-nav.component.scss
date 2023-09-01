@@ -1,0 +1,79 @@
+@import '../../../../../styles.scss';
+
+.tabbed-nav-link-item {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  border-left: 4px solid $background-color;
+  margin-bottom: 8px;
+  width: calc(100% - 28px);
+  padding-left: 20px;
+  border-bottom: 1px solid #eeeeee;
+  height: 38px;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  .selection_arrow {
+    position: absolute;
+    left: -7px;
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .tabbed-nav-link-item-lead-icon {
+    height: 25px;
+    color: $secondary-color;
+    padding: 6px;
+  }
+
+  .tabbed-nav-link-item-lead-space {
+    display: block;
+    width: 44px;
+    height: 28px;
+    padding: 4px 8px;
+  }
+
+  .tabbed-nav-link-item-label {
+    margin: 0px;
+    padding-left: 8px;
+    border-left: 1px solid $primary-color;
+  }
+
+  .tabbed-nav-link-item-expand {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  &.sub-item {
+    width: calc(100% - 48px);
+    margin-left: 40px;
+
+    .tabbed-nav-link-item-label {
+      width: calc(100% - 60px);
+      font-size: 90%;
+      padding: 8px;
+    }
+  }
+
+  &:hover,
+  &.selected {
+    color: $primary-color;
+    border-bottom-color: $primary-color;
+
+    .tabbed-nav-link-item-lead-icon {
+      color: $primary-color;
+    }
+  }
+
+  &.selected {
+    .tabbed-nav-link-item-label {
+      font-weight: bold;
+    }
+  }
+}

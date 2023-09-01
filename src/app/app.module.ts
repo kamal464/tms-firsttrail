@@ -83,9 +83,14 @@ import { EmployeeProfilePersonalAddComponent } from './employee-profile-entry/em
 import { StringToDatePipe } from './shared/pipes/stringtodate';
 import { SyncCompanyProfileComponent } from './sync-company-profile/sync-company-profile.component';
 import { SyncCompanyOverviewComponent } from './sync-company-profile/sync-company-overview/sync-company-overview.component';
-import { TextBoxModule,MaskedTextBoxModule } from '@syncfusion/ej2-angular-inputs';
-import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
-import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { SyncModule } from './sync.module';
+import { CompanyIdentificationUploaderComponent } from './company-identifications/company-identification-entry/company-identification-uploader/company-identification-uploader.component';
+import { DynamicTabComponent } from './shared/components/dynamic-tab/dynamic-tab.component';
+import { DynamicTabNavComponent } from './shared/components/dynamic-tab/dynamic-tab-nav/dynamic-tab-nav.component';
+import { DynamicComponentLoaderDirective } from './shared/components/dynamic-tab/dynamic-component-loader.directive';
+import { TopBarComponent } from './shared/components/top-bar/top-bar.component';
+import { TabeventserviceService } from './shared/tabeventservice.service';
+
 
 @NgModule({
   declarations: [
@@ -163,7 +168,11 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
    StringToDatePipe,
    SyncCompanyProfileComponent,
    SyncCompanyOverviewComponent,
- 
+   CompanyIdentificationUploaderComponent,
+   DynamicTabComponent,
+   DynamicTabNavComponent,
+   DynamicComponentLoaderDirective,
+   TopBarComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -174,8 +183,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    ButtonModule,TextBoxModule,MaskedTextBoxModule,DropDownListModule,
-
+    SyncModule,
     HttpClientModule,
     RouterModule.forRoot([
       {
@@ -197,6 +205,7 @@ component:SyncCompanyProfileComponent,
       multi: true,
     },
     SharedServiceService,
+    TabeventserviceService,
     DatePipe
   ],
   bootstrap: [AppComponent],

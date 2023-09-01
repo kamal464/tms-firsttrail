@@ -1,0 +1,97 @@
+<div class="top-bar-hold">
+    <div class="app-logo-hold"></div>
+    <div class="app-menu-hold" *ngIf="menuItems.length > 0">
+      <ng-container *ngFor="let menuItem of menuItems">
+        <button class="menu-item" mat-button *ngIf="menuItem.children.length > 0" [matMenuTriggerFor]="appMenu"
+          [matMenuTriggerData]="{ menuitems : menuItem.children }" [matTooltip]="menuItem.tooltip">
+          <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+          <span class="menu-item-text">{{menuItem.label}}</span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <button class="menu-item" mat-button *ngIf="menuItem.children.length == 0" (click)="openMenu(menuItem);"
+          [matTooltip]="menuItem.tooltip">
+          <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+          <span class="menu-item-text">{{menuItem.label}}</span>
+        </button>
+      </ng-container>
+      <mat-menu #appMenu="matMenu" class="navigation-menu-hold">
+        <ng-template matMenuContent let-menuitems="menuitems">
+          <div *ngFor="let menuItem of menuitems;" class="menu-item-hold">
+            <button mat-menu-item class="menu-item" *ngIf="menuItem.children.length > 0" [matMenuTriggerFor]="childMenu"
+              [matMenuTriggerData]="{ menuitems : menuItem.children }" [matTooltip]="menuItem.tooltip">
+              <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+              <span class="menu-item-text">{{menuItem.label}}</span>
+            </button>
+            <button mat-menu-item class="menu-item" *ngIf="menuItem.children.length == 0" (click)="openMenu(menuItem);"
+              [matTooltip]="menuItem.tooltip">
+              <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+              <span class="menu-item-text">{{menuItem.label}}</span>
+            </button>
+          </div>
+        </ng-template>
+      </mat-menu>
+      <mat-menu #childMenu="matMenu" class="navigation-menu-hold">
+        <ng-template matMenuContent let-menuitems="menuitems">
+          <div *ngFor="let menuItem of menuitems;" class="menu-item-hold">
+            <button mat-menu-item class="menu-item" *ngIf="menuItem.children.length > 0" [matMenuTriggerFor]="appMenu"
+              [matMenuTriggerData]="{ menuitems : menuItem.children }" [matTooltip]="menuItem.tooltip">
+              <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+              <span class="menu-item-text">{{menuItem.label}}</span>
+            </button>
+            <button mat-menu-item class="menu-item" *ngIf="menuItem.children.length == 0" (click)="openMenu(menuItem);"
+              [matTooltip]="menuItem.tooltip">
+              <mat-icon *ngIf="menuItem.iconfile">{{menuItem.iconfile}}</mat-icon>
+              <span class="menu-item-text">{{menuItem.label}}</span>
+            </button>
+          </div>
+        </ng-template>
+      </mat-menu>
+    </div>
+    <div class="spacer"></div>
+    <!-- <div class="search-input-hold">
+      <mat-form-field class="search-input-field" appearance="fill">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput [formControl]="searchInput" placeholder="Search">
+        <button *ngIf="searchInput.value" matSuffix mat-icon-button aria-label="Clear"
+          (click)="searchInput.setValue('');">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div> -->
+    <div class="action-icons-hold">
+      <div class="action-icon-item">
+        <mat-icon>search</mat-icon>
+      </div>
+      <!-- <div class="action-icon-item" [class.opened]="_openView == 'messages'" (click)="openQuickView('messages');">
+        <mat-icon>messages</mat-icon>
+      </div> -->
+      <div class="action-icon-item">
+        <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+      </div>
+      <!-- <div class="action-icon-item" [class.opened]="_openView == 'help'" (click)="openQuickView('help');">
+        <mat-icon>help</mat-icon>
+      </div> -->
+    </div>
+    <div class="profile-hold" *ngIf="currentEmployee">
+      <div class="user-profile-info-hold">
+        <div class="user-profile-info" >
+            <!-- (click)="openEmployeeProfile()" -->
+          <span class="user-profile-title">{{currentEmployee.displayname}}</span>
+          <span class="user-profile-sub-title mat-small" *ngIf="currentEmployee.latestfkempofficial">
+            {{currentEmployee.latestfkempofficial.designation + ' : ' + currentEmployee.latestfkempofficial.grade}}</span>
+        </div>
+        <!-- <app-avatar [size]=50 [text]="currentEmployee.displayname" [avatar]="currentEmployee.avatar" (click)="openEmployeeProfile()"></app-avatar> -->
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+      <mat-menu #userMenu="matMenu" class="user-profile-dropdown">
+        <a mat-menu-item >
+            <!-- (click)="_doLogout();" -->
+          <mat-icon color="warn">logout</mat-icon>
+          <span>Logout</span>
+        </a>
+      </mat-menu>
+    </div>
+  </div>
+  

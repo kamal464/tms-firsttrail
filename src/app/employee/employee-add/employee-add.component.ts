@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges,OnDestroy } from '@angular/
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeAddSuccessPopupComponent } from './employee-add-success-popup/employee-add-success-popup.component';
 import { SharedServiceService } from 'src/app/shared/shared-service.service';
+import { TabeventserviceService } from 'src/app/shared/tabeventservice.service';
 
 @Component({
   selector: 'app-employee-add',
@@ -12,7 +13,8 @@ export class EmployeeAddComponent implements OnInit {
 _currentAction = 'new';
 private isSaveFormDataCalled = false;
 formData: any = [];
-  constructor(private dialog: MatDialog , private sharedService : SharedServiceService) {}
+  constructor(private dialog: MatDialog , private sharedService : SharedServiceService,
+    private tabeventservice :TabeventserviceService) {}
 
   ngOnInit(): void {
   }
@@ -38,7 +40,7 @@ formData: any = [];
           } 
           break;
         case 'cancel':
-      
+          this.tabeventservice.triggerRemoveTab(-1);
         this.sharedService.removeItem('addemployee');
       
           break;

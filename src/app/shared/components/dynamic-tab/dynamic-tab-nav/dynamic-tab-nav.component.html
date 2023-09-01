@@ -1,0 +1,15 @@
+<ng-container *ngFor="let item of navItems;">
+    <div (click)="selectedNavLink(item.id);" class="tabbed-nav-link-item" *ngIf="!item.is_hidden"
+      [ngClass]="{'selected': item.is_selected, 'sub-item': item.is_child}">
+      <mat-icon *ngIf="item.is_selected" color="primary" class="selection_arrow">arrow_right</mat-icon>
+      <div class="tabbed-nav-link-item-lead-icon" *ngIf="item.icon && item.icon != ''">
+        <mat-icon>{{item.icon}}</mat-icon>
+      </div>
+      <div class="tabbed-nav-link-item-label" *ngIf="item.label">{{item.label}}</div>
+      <div class="tabbed-nav-link-item-expand" *ngIf="item.has_children">
+        <mat-icon *ngIf="!item.is_expanded">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="item.is_expanded">keyboard_arrow_up</mat-icon>
+      </div>
+    </div>
+  </ng-container>
+  

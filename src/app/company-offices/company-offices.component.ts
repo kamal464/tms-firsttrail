@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from '../shared/api-config';
+import { Query } from '@syncfusion/ej2-data';
+import { EmitType } from '@syncfusion/ej2-base';
+import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 @Component({
   selector: 'app-company-offices',
   templateUrl: './company-offices.component.html',
@@ -39,8 +42,47 @@ export class CompanyOfficesComponent implements OnInit {
     this.getCountries();
     this.getOffice();
     this.getAddress();
+      this.OfficesArray =  this.OfficesArray.concat(this.officeTypeArray);
+    this.countrydata  = this.countrydata.concat(this.countries);
   }
 
+
+  public countrydata: any = [
+   
+  ];
+
+  // maps the appropriate column to fields property
+  public fields: Object = { text: 'value', value: 'id' };
+  // set the height of the popup element
+  public height: string = '220px';
+  // set the placeholder to DropDownList input element
+  public watermark: string = 'Select a country';
+  // set the placeholder to filter search box input element
+  public filterPlaceholder: string = 'Search';
+  // filtering event handler to filter a Country
+  public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
+      let query: Query = new Query();
+      //frame the query based on search string with filter type.
+      query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+      //pass the filter data source, filter query to updateData method.
+      e.updateData(this.countrydata, query);
+  }
+
+
+
+
+
+  public OfficesArray:any= [
+    
+  ];
+  
+  
+    public localFields: Object = { text: 'value', value: 'id' };
+      // set the placeholder to DropDownList input element
+      public localWaterMark: string = 'Select a type';
+      // set the height of the popup element
+      public localheight: string = '200px';
+    
 
   doAction(action: any): void {
     switch (action) {
@@ -60,18 +102,34 @@ export class CompanyOfficesComponent implements OnInit {
       .set('filtername', 'fkreasonid')
       .set('filtervalue', '1689662340365');
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
       .subscribe(
-        (data)=> {
-          this.officeTypeArray = data;
-        
+        (data) => {
+          this.officeTypeArray = [];
+    
+          // Loop through the properties of the data object
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              const item = data[key];
+              if (item.id && item.value) {
+                this.officeTypeArray.push({
+                  id: item.id,
+                  value: item.value
+                });
+              }
+            }
+          }
+    this.OfficesArray = this.officeTypeArray;
+          console.log(this.officeTypeArray, 'officetypearray');
         }
-      )
+      );
+    
   }
 
   getCountries(){
     this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
 this.countries = data;
+this.countrydata =data;
   
   }))
   }
@@ -96,7 +154,7 @@ this.countries = data;
     });
   }
   combineData() {
-    if (this.officesArray && this.addressArray) {
+    if (this.officesArray) {
       const combinedArray = [];
       for (const address of this.addressArray) {
         console.log(address.fkofficeid);

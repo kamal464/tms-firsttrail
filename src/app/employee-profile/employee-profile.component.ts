@@ -14,7 +14,7 @@ export class EmployeeProfileComponent implements OnInit {
   _selected_option = 'PROFILE';
   employeeId:number;
   employeeDetails:any;
-  _currentAction = '';
+  _currentAction = 'view';
   mergedArray :any  [];
   employeeArray:any = [];
   employeeOfficalArray  :any = [];

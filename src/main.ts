@@ -5,7 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
   
 
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhBYVF1WmFZfV1gd19FYlZRRmYuP1ZhSXxQdk1iX39dc3ZVRGBbVUA=');
+registerLicense('ORg4AjUWIQA/Gnt2V1hhQlJAfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5bdEdjW3pXc3ddRWNY');
 if (environment.production) {
   enableProdMode();
 }

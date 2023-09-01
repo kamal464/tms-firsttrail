@@ -6,24 +6,34 @@ import {
   Input,
   EventEmitter,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { API_BASE_URL, Api_Base } from '../shared/api-config';
+import { API_BASE_URL, Api_Base } from '../shared/api-config';  
 import { SharedServiceService } from '../shared/shared-service.service';
 import { SchemaAttributeComponent } from '../schema-attribute/schema-attribute.component';
 import { HomeComponent } from '../home/home.component';
+import { Subject } from 'rxjs';
+import { DynamicTabComponent,TabbedItem } from '../shared/components/dynamic-tab/dynamic-tab.component';
+import { DynamicComponent } from '../shared/components/dynamic-tab/dynamic-component-loader.directive';
+import { SchemaColumnComponent } from '../schema-column/schema-column.component';
+import { TabeventserviceService } from '../shared/tabeventservice.service';
 @Component({
   selector: 'app-schema-manager',
   templateUrl: './schema-manager.component.html',
   styleUrls: ['./schema-manager.component.scss'],
 })
-export class SchemaManagerComponent implements OnInit, OnChanges {
+export class SchemaManagerComponent implements OnInit {
+  @ViewChild(DynamicTabComponent, { static: false })
   @Output() onAction: EventEmitter<string> = new EventEmitter<string>();
  
   // @ViewChild(SchemaAttributeComponent) schemaAttributeComponent: SchemaAttributeComponent;
   isProcessing = false;
+
+ 
+  currentEmployee = null;
   coloumnRows: any = [];
   _currentAction = 'view';
   activeButton :string
@@ -57,10 +67,13 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private sharedservice: SharedServiceService
-  ) {}
+    private sharedservice: SharedServiceService,
+    private tabeventservice : TabeventserviceService
+  ) {
 
+    
+  }
+ 
   // sendData(): void {
   //   let tableName = this._selected_option;
   //   let field = this.id
@@ -74,16 +87,26 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
 //   }
 
   triggerDoAction(): void {
-    this.sharedservice.addNavItem('column');  
-    
-    //this.callDoActionInComponentA();
+    // this.sharedservice.addNavItem('column'); 
+    const tabItem: TabbedItem = {
+      id: 'schemacolumn',
+      icon: '',
+      label: 'Schema-Column',
+      isClosable: true,
+      item: new DynamicComponent(SchemaColumnComponent, {
+        currentEmployee: this.currentEmployee,
+        tabEvent: this.tabeventservice.tabEventSubject,
+      }),
+    };
+
+    this.tabeventservice.openOrAddTab(tabItem)
+    this.sharedservice.setFkSchemaTableId(this.id);
+    this.sharedservice.setSelectedOption(this._selected_option);
+  
   }
-  private callDoActionInComponentA(): void {
-    // const componentAInstance = new HomeComponent(null,this.sharedservice,null);
-    // componentAInstance.callDoAction();
-    
-  }
-  ngOnChanges() {}
+
+
+ 
 
   selectObject(index: number = 0) {
     if (this.filteredReasons && this.filteredReasons.length > index) {
@@ -128,7 +151,7 @@ export class SchemaManagerComponent implements OnInit, OnChanges {
     this.currentSelectedReason = action;
     console.log(this.currentSelectedReason);
     this._currentAction = 'view';
-    this.sharedservice.setFkSchemaTableId(this.id);
+    
   }
 
   getReasons() {

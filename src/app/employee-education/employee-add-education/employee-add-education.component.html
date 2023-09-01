@@ -7,13 +7,13 @@
       [hasEdit]="false"
       [hasDelete]="false"
       [currentAction]="'new'"
-      
+      (onAction)="doAction($event)"
      
     ></tool-bar>
     <div
       class="content-schema-view" style="padding-left: 20px;"
     >
-    <div
+    <!-- <div
     class="form-field-hold two-column-field">
 
     <mat-label class="form-field-label">Education Type</mat-label>
@@ -33,7 +33,7 @@
     </mat-select>
   </mat-form-field>
 
-  </div> 
+  </div>  -->
   <div  class="form-field-hold two-column-field">
     <mat-label class="form-field-label">College/Institute Name</mat-label>
     <mat-form-field
@@ -45,13 +45,13 @@
         matInput
         [placeholder]=""
         #inputValue
-       
+       [(ngModel)]="empInstitute"
       />
     </mat-form-field>
    
   </div> 
   <div  class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Degree/Certification Name</mat-label>
+    <mat-label class="form-field-label">Course</mat-label>
     <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -61,13 +61,13 @@
         matInput
         [placeholder]=""
         #inputValue
-       
+       [(ngModel)]="empCourse"
       />
     </mat-form-field>
    
   </div> 
   <div  class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Issued Authority</mat-label>
+    <mat-label class="form-field-label">Specification</mat-label>
     <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -77,19 +77,29 @@
         matInput
         [placeholder]=""
         #inputValue
-       
+       [(ngModel)]="empSpecialization"
       />
     </mat-form-field>
    
   </div> 
 
-<div class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Issued Date</mat-label>
+  <div class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">From Date</mat-label>
     <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="issuedate" 
-         [disabled]="false" >
-      <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
-      <mat-datepicker #issuedate disabled="false"></mat-datepicker>
+      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate" 
+         [disabled]="false"  [(ngModel)]="empFromDate">
+      <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+      <mat-datepicker #fromdate disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-hold two-column-field">
+    <mat-label class="form-field-label">To Date</mat-label>
+    <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
+         [disabled]="false"  [(ngModel)]="empToDate">
+      <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+      <mat-datepicker #todate disabled="false"></mat-datepicker>
     </mat-form-field>
   </div>
      
@@ -97,7 +107,7 @@
 
         
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">City/Place</mat-label>
+            <mat-label class="form-field-label">Score</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -107,35 +117,49 @@
                 matInput
                 [placeholder]=""
                 #inputValue
-               
+               [(ngModel)]="empScore"
+              />
+            </mat-form-field>
+           
+          </div> 
+        <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">ScoreMax</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empScoreMax"
+              />
+            </mat-form-field>
+           
+          </div> 
+        <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">ScoreMetric</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="empScoreMetric"
               />
             </mat-form-field>
            
           </div> 
       
          
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">From Date</mat-label>
-            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate" 
-                 [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
-              <mat-datepicker #fromdate disabled="false"></mat-datepicker>
-            </mat-form-field>
-          </div>
-     
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">To Date</mat-label>
-            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
-                 [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
-              <mat-datepicker #todate disabled="false"></mat-datepicker>
-            </mat-form-field>
-          </div>
+          
      
           <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Rank/GPA/Marks Percent</mat-label>
+            <mat-label class="form-field-label">Type</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -145,15 +169,15 @@
                 matInput
                 [placeholder]=""
                 #inputValue
-               
+               [(ngModel)]="empScoreType"
               />
             </mat-form-field>
            
           </div> 
           <div class="form-field-hold" >
-            <mat-label class="form-field-label">Comments</mat-label>
+            <mat-label class="form-field-label">Remarks</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <textarea matInput placeholder="Ex: Notes" ></textarea>
+              <textarea matInput placeholder="Ex: Notes" [(ngModel)]="empRemarks" ></textarea>
             </mat-form-field>
           </div>
     </div>

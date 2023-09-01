@@ -3,10 +3,10 @@
 @include mat-core();
 // @import '../../../../node_modules/@syncfusion/ej2-base/styles/material.css';
 // @import '../../../../node_modules/@syncfusion/ej2-buttons/styles/material.css';
-
+// @import './styles/syncimport.scss';
 @import "./styles/media.scss";
 @import "./styles/theme.scss";
-
+@import './styles/variables.scss';
 html,
 body {
   margin: 0;

@@ -51,7 +51,7 @@
         <div class="identification-edit-contents content-data-hold" 
           >
          
-          <div class="form-field-hold two-column-field">
+          <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Country</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  *ngFor="let country of countries">
               <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry" >
@@ -128,29 +128,73 @@
               <mat-datepicker #validupto disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>
+
+ -->
+
+
+
+
+          <div class="form-field-hold two-column-field">
+            <div class="control-label" >country</div>
+             <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+             [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
+         </div>
+        
+         <div class="form-field-hold two-column-field">
+          
+           <div class="control-label">Identity Type</div>
+           <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
+           [popupHeight]='typeheight'[(ngModel)]="idType" ></ejs-dropdownlist>
+         </div>
+         <div class="form-field-hold two-column-field">
+          
+           <div class="control-label">Issued By</div>
+           <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
+           [popupHeight]='issudbyHeight'[(ngModel)]="idIssuedBy" ></ejs-dropdownlist>
+         </div>
+         <div class="form-field-hold two-column-field">
+          
+           <div class="control-label">Issued Date</div>
+           <ejs-datepicker [(ngModel)]="idIssuedDate" ></ejs-datepicker>
+         </div>
+         
+         <div class="form-field-hold two-column-field">
+           <mat-label class="form-field-label">Identity Number</mat-label>
+           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+             <input matInput placeholder="Ex: ABCDE 1234A." [(ngModel)]="idNumber" >
+           </mat-form-field>
+         </div>
+         <div class="form-field-hold two-column-field">
+           <mat-label class="form-field-label">Identity Name</mat-label>
+           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+             <input matInput placeholder="Ex: Full Name"  [(ngModel)]="idName">
+           </mat-form-field>
+         </div>
+         <div class="form-field-hold two-column-field">
+           
+           <div class="control-label">Valid From</div>
+           <ejs-datepicker [(ngModel)]="idValidFromDate" ></ejs-datepicker>
+        
+         </div>
+         <div class="form-field-hold two-column-field">
+        
+           <div class="control-label">Valid Upto</div>
+           <ejs-datepicker [(ngModel)]="idValidUptoDate" ></ejs-datepicker>
+         </div>
+
+
+
+
+
+
+
           <div class="view-entry-hold">
             <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
                 [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
             </div> -->
-            <div class="attachments-hold">
-              <ng-container *ngFor="let attachment of _attachments">
-                <!-- <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing"
-                  (onDelete)="removeAttachment(attachment)">
-                </app-attachment> -->
-              </ng-container>
-              <ng-container *ngFor="let selectedFile of _selectedAttachments; let idx = index">
-                <!-- <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"
-                  (onDelete)="removeSelectedAttachment(idx)">
-                </app-attachment> -->
-              </ng-container>
-              <span class="spacer"></span>
-              <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf"
-                >
-              <button mat-stroked-button color="primary" (click)="file.click()">
-                <mat-icon>upload</mat-icon>
-                Add Attachments
-              </button>
-            </div>
+           
+              <app-company-identification-uploader></app-company-identification-uploader>
+            
           </div>
         </div>
       </div>

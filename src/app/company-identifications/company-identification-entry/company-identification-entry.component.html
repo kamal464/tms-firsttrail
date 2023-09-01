@@ -26,17 +26,17 @@
       <div class="spacer" style="display: flex;padding:0 25px;">
         <div class="view-entry-hold three-column-field">
           <mat-label class="entry-label">Issued Date</mat-label>
-          <span class="entry-data">{{ identificationsInfo.issuedate ? (identificationsInfo.issuedate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          <span class="entry-data">{{ identificationsInfo.issuedate ? (identificationsInfo.issuedate | stringToDate) : '' }}
           </span>
         </div>
         <div class="view-entry-hold three-column-field" style="align-items: flex-end;">
           <mat-label class="entry-label">Valid From</mat-label>
-          <span class="entry-data ">{{ identificationsInfo.validfromdate ? (identificationsInfo.validfromdate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          <span class="entry-data ">{{ identificationsInfo.validfromdate ? (identificationsInfo.validfromdate | stringToDate) : '' }}
           </span>
         </div>
         <div class="view-entry-hold three-column-field" style="align-items: flex-end;" >
           <mat-label class="entry-label">Valid Upto</mat-label>
-          <span class="entry-data">{{ identificationsInfo.validuptodate ? (identificationsInfo.validuptodate | stringdate:'YYYY-MM-DD':'DD MMMM YYYY') : '' }}
+          <span class="entry-data">{{ identificationsInfo.validuptodate ? (identificationsInfo.validuptodate |stringToDate) : '' }}
           </span>
         </div>
       </div>
@@ -60,53 +60,49 @@
       *ngIf="_currentAction == 'edit'">
      
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Country</mat-label>
-        <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  *ngFor="let country of countries">
-          <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry" >
-            <mat-select-trigger>
-              <span class="flag-hold" >
-                <mat-icon></mat-icon>
-                {{country.value}}
-              </span>
-            </mat-select-trigger>
-            <mat-option [value]="country.id">
-              <span class="flag-hold">
-                <mat-icon ></mat-icon>{{country.value}}
-              </span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+         <div class="control-label" >country</div>
+          <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
       </div>
      
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Identity Type</mat-label>
+        <!-- <mat-label class="form-field-label">Identity Type</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select matInput placeholder="Ex: PAN"  [(ngModel)]="identificationsInfo.type">
             <mat-option *ngFor="let identityType of identityTypeDropdown" [value]="identityType.value">
               {{identityType.value}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Identity Type</div>
+        <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
+        [popupHeight]='typeheight'[(ngModel)]="identificationsInfo.type" ></ejs-dropdownlist>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Issued By</mat-label>
+        <!-- <mat-label class="form-field-label">Issued By</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select matInput placeholder="Ex: Income-Tax Department">
             <mat-option *ngFor="let identityIssued of identityIssuedByDropdown" [value]="identityIssued.value">
               {{identityIssued.value}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Issued By</div>
+        <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
+        [popupHeight]='issudbyHeight' [(ngModel)]="identificationsInfo.issuedby" ></ejs-dropdownlist>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Issued Date</mat-label>
+        <!-- <mat-label class="form-field-label">Issued Date</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="issuedate" 
              [disabled]="false"  [(ngModel)]="idissueDate">
           <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
           <mat-datepicker #issuedate disabled="false"></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Issued Date</div>
+        <ejs-datepicker [(ngModel)]="idissueDate" ></ejs-datepicker>
       </div>
+      
       <div class="form-field-hold two-column-field">
         <mat-label class="form-field-label">Identity Number</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
@@ -120,46 +116,33 @@
         </mat-form-field>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Valid From</mat-label>
+        <!-- <mat-label class="form-field-label">Valid From</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: 11 Mar 2021" 
             [matDatepicker]="validfrom"  [disabled]="false" [(ngModel)]="idFromDate">
           <mat-datepicker-toggle matSuffix [for]="validfrom"></mat-datepicker-toggle>
           <mat-datepicker #validfrom disabled="false"></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Valid From</div>
+        <ejs-datepicker [(ngModel)]="idFromDate" ></ejs-datepicker>
+     
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Valid Upto</mat-label>
+        <!-- <mat-label class="form-field-label">Valid Upto</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: 11 Mar 2021" 
             [matDatepicker]="validupto" [disabled]="false" [(ngModel)]="idValidUpto">
           <mat-datepicker-toggle matSuffix [for]="validupto"></mat-datepicker-toggle>
           <mat-datepicker #validupto disabled="false"></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Valid Upto</div>
+        <ejs-datepicker [(ngModel)]="idValidUpto" ></ejs-datepicker>
       </div>
       <div class="view-entry-hold">
         <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
             [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
         </div> -->
-        <div class="attachments-hold">
-          <ng-container *ngFor="let attachment of _attachments">
-            <!-- <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing"
-              (onDelete)="removeAttachment(attachment)">
-            </app-attachment> -->
-          </ng-container>
-          <ng-container *ngFor="let selectedFile of _selectedAttachments; let idx = index">
-            <!-- <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"
-              (onDelete)="removeSelectedAttachment(idx)">
-            </app-attachment> -->
-          </ng-container>
-          <span class="spacer"></span>
-          <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf"
-            >
-          <button mat-stroked-button color="primary" (click)="file.click()">
-            <mat-icon>upload</mat-icon>
-            Add Attachments
-          </button>
-        </div>
+        <app-company-identification-uploader></app-company-identification-uploader>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@ Active
 Inactive
   </span>
   </span>
-  <button
+  <!-- <button
     mat-button
     color="primary"
     class="tool-bar-button"
@@ -23,8 +23,17 @@ Inactive
   >
     <mat-icon>edit</mat-icon>
     <span class="button-label">Edit</span>
-  </button>
-  <button
+  </button> -->
+  <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
+  matTooltip="Edit"
+  (click)="_doAction('edit'); _editIndex();"
+    *ngIf="hasEdit && currentAction !== 'edit'">
+  <span class="e-icons e-edit"></span>
+  Edit</button>
+ 
+ 
+ 
+  <!-- <button
     mat-button
     class="tool-bar-button"
     matTooltip="Cancel"
@@ -33,7 +42,14 @@ Inactive
   >
     <mat-icon>cancel</mat-icon>
     <span class="button-label">Cancel</span>
-  </button>
+  </button> -->
+  <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
+  matTooltip="Edit"
+  (click)="_doAction('cancel')"
+  *ngIf="currentAction == 'new' || currentAction == 'edit'">
+  <span class="e-icons e-circle-close"></span>
+  Cancel</button>
+
   <button
     mat-raised-button
     color="primary"

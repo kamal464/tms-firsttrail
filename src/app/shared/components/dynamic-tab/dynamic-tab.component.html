@@ -1,0 +1,51 @@
+<div class="full-view-hold">
+    <div class="tree-view-hold mat-elevation-z6" *ngIf="isSideNavEnabled">
+      <div class="tree-top-fixed-hold">
+        <div class="tree-top-fixed-title">
+          <button mat-icon-button class="tree-top-fixed-close-button" (click)="toggleSideNavView()"
+            matTooltip="Hide list of opened tabs.">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="tree-view-float-hold">
+        <app-dynamic-tab-nav [selectedId]="selectedId" [navItemsMap]="navItemsMap" [changed]="tabChanged"
+          (selected)="updateSelectedId($event)">
+        </app-dynamic-tab-nav>
+      </div>
+    </div>
+    <div class="tab-view-hold">
+      <div class="tab-view-header-hold mat-elevation-z6">
+        <button mat-icon-button class="tab-view-header-menu-button" color="accent" (click)="toggleSideNavView()"
+          *ngIf="!this.isSideNavEnabled" matTooltip="Show list of opened tabs.">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="tab-view-header-tabs" [ngClass]="{'has-side-nav': this.isSideNavEnabled}">
+          <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="selectTabIndex($event);">
+            <mat-tab *ngFor="let tab of viewTabs; let index = index">
+              <ng-template mat-tab-label>
+                <div class="tabbed-item-hold" [ngClass]="{'is-closable': tab.isClosable}">
+                  <div class="tabbed-item-lead-icon" *ngIf="tab.icon != ''">
+                    <mat-icon>{{tab.icon}}</mat-icon>
+                  </div>
+                  <div class="tabbed-item-label" *ngIf="tab.label && !tab.hideLabel">{{tab.label}}</div>
+                  <button mat-icon-button class="tabbed-item-close-button" *ngIf="tab.isClosable" matTooltip="Close tab."
+                    (click)="removeTab(index);" >
+                    <mat-icon>highlight_off</mat-icon>
+                  </button>
+                </div>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+      <div class="tab-view-content-hold">
+        <mat-tab-group [selectedIndex]="selectedTabIndex">
+          <mat-tab *ngFor="let tab of viewTabs;">
+            <ng-template appDynamicComponentLoader [item]="tab.item"></ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+  

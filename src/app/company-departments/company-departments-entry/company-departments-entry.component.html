@@ -1,22 +1,16 @@
 <div class="departments-item-hold">
-    <!-- <div class="content-loading-hold" *ngIf="isProcessing">
-      <mat-spinner></mat-spinner>
-      <span class="mat-title content-loading-text"
-        [innerHtml]="'Please wait, while the procesing <b>Department</b>:<b class=\'primary-color-text\'>' + _departmentTitle + '</b> information.'"></span>
-    </div> -->
+   
     <mat-toolbar class="tool-bar">
       <span class="tool-bar-title">{{department.name}}</span>
       <span class="spacer"></span>
-      <button
-        mat-button
-        class="tool-bar-button"
-        matTooltip="Edit"
-        (click)="doAction('edit')"
-        *ngIf=" _currentAction == 'view'"
+     
+      <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
+      (click)="doAction('edit')" 
+      matTooltip="Edit"
+      *ngIf=" _currentAction == 'view'"
       >
-        <mat-icon>edit</mat-icon>
-        <span class="button-label">Edit</span>
-      </button>
+      <span class="e-icons e-edit"></span>
+      Edit</button>
       <button
       mat-flat-button
       color="primary"
@@ -68,37 +62,43 @@
       *ngIf="_currentAction == 'edit' ">
       
       <div class="form-field-hold">
-        <mat-label class="form-field-label">Department Name</mat-label>
+        <!-- <mat-label class="form-field-label">Department Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Civil-02" [(ngModel)]="department.name">
-        </mat-form-field>
+        </mat-form-field> --><div class="control-label">Department Name</div>
+          <input  class="e-input" type="text" placeholder="Ex: Civil-02" [(ngModel)]="department.name"  />
+         
+
       </div>
       <div class="form-field-hold">
-        <mat-label class="form-field-label">Department Type</mat-label>
+        <!-- <mat-label class="form-field-label">Department Type</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select matInput placeholder="Ex: Civil"  [(ngModel)]="department.type">
             <mat-option *ngFor="let departmentType of departmentTypeArray" [value]="departmentType.value">
               {{departmentType.value}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Department Type</div>
+        <ejs-dropdownlist id='games' [dataSource]='departmentArray' [fields]='localFields' [placeholder]='localWaterMark'
+        [popupHeight]='localheight'[(ngModel)]="department.type" ></ejs-dropdownlist>
       </div>
       <div class="form-field-hold">
-        <mat-label class="form-field-label">Office</mat-label>
+        <!-- <mat-label class="form-field-label">Office</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <mat-select placeholder="Ex: Office"  [(ngModel)]="selectedOffice">
-            <!-- <mat-select-trigger>
-              <span  *ngFor="let office of officeType">
-                {{ office.code + ' (' + office.type + ')' }}
-              </span>
-            </mat-select-trigger> -->
+          
             <mat-option *ngFor="let office of officeType" [value]="office">
               <span>
                 {{ office.code + ' (' + office.type + ')' }}
               </span>
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="control-label">Office</div>
+        <ejs-dropdownlist id='games' [dataSource]='officeArray' [fields]='officeFields' [placeholder]='OfficewaterMark'
+        [popupHeight]='officeHeight'[(ngModel)]="selectedOffice" ></ejs-dropdownlist>
+
       </div>
       <!-- <div class="form-field-hold">
         <mat-label class="form-field-label">Head of the Department</mat-label>

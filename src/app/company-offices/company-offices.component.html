@@ -73,7 +73,7 @@
          
           <div class="office-edit-contents content-data-hold" style="flex-wrap: wrap;">
   
-            <div class="form-field-hold">
+            <!-- <div class="form-field-hold">
               <mat-label class="form-field-label">Office Title</mat-label>
               <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                 <input matInput placeholder="Ex: Short Code."[(ngModel)]="officeTitle">
@@ -154,7 +154,96 @@
               <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                 <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="pincode">
               </mat-form-field>
+            </div> -->
+
+
+
+
+
+            <div class="form-field-hold">
+              <div class="control-label">Office Title</div>
+              <input  class="e-input" type="text" placeholder="Office Title" 
+               [(ngModel)]="officeTitle" />
+              
+        
             </div>
+           
+            <div class="form-field-hold two-column-field">
+            
+              <div class="control-label">Office Name</div>
+              <input  class="e-input" type="text" placeholder="Office Name" 
+               [(ngModel)]="officeName" />
+            </div>
+            <div class="form-field-hold two-column-field">
+           
+              <div class="control-label">Office Type</div>
+              <ejs-dropdownlist id='games' [dataSource]='OfficesArray' [fields]='localFields' [placeholder]='localWaterMark'
+               [popupHeight]='localheight'[(ngModel)]="officeType" ></ejs-dropdownlist>
+               
+            </div>
+            <div class="form-field-hold two-column-field">
+            
+              <div class="control-label">Flat No/Plot No/Floor</div>
+              <input  class="e-input" type="text" placeholder="Flat No/Plot No/Floor" 
+               [(ngModel)]="flatNo" />
+            </div>
+            <div class="form-field-hold two-column-field">
+            
+              <div class="control-label">Building Name</div>
+              <input  class="e-input" type="text" placeholder="Building Name" 
+               [(ngModel)]="buildingName" />
+            </div>
+            <div class="form-field-hold two-column-field">
+            
+              <div class="control-label">Road Name/Number</div>
+              <input  class="e-input" type="text" placeholder="Road Name/Number" 
+               [(ngModel)]="roadName" />
+            </div>
+            <div class="form-field-hold two-column-field">
+             
+              <div class="control-label">Landmark</div>
+              <input  class="e-input" type="text" placeholder="Landmark" 
+               [(ngModel)]="landMark" />
+            </div>
+            <div class="form-field-hold two-column-field">
+             
+              <div class="control-label">Location</div>
+              <input  class="e-input" type="text" placeholder="Location" 
+               [(ngModel)]="location" />
+            </div>
+            <div class="form-field-hold two-column-field">
+           
+              <div class="control-label">City</div>
+              <input  class="e-input" type="text" placeholder="City" 
+               [(ngModel)]="city" />
+            </div>
+             <div class="form-field-hold two-column-field">
+                  <div class="control-label" >country</div>
+                  <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)'
+                   [filterBarPlaceholder]="filterPlaceholder"
+                  [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
+                    </div>
+                   
+            <div class="form-field-hold two-column-field">
+              
+              <div class="control-label">Pincode</div>
+              <input  class="e-input" type="text" placeholder="Pincode" 
+               [(ngModel)]="pincode" />
+        
+            </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
           <!-- <div class="item-hold two-column-field" *ngIf="!isNew">

@@ -1,3 +1,13 @@
+@import '../../../styles/syncimport.scss';
+
+#control_wrapper {
+  max-width: 246px;
+  margin: 30px auto;
+  padding-top: 50px;
+}
+.control-section {
+  margin: 25px auto;
+}
 .identifications-item-hold {
 
     .hr-inline-text-hold {

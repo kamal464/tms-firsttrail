@@ -1,11 +1,16 @@
-import { Component, OnInit,Input,EventEmitter, Output} from '@angular/core';
+import { Component, OnInit,Input,EventEmitter, Output,ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormControl ,FormGroup,Validators} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
+import { Query } from '@syncfusion/ej2-data';
+import { EmitType } from '@syncfusion/ej2-base';
+import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+
 @Component({
   selector: 'app-offices',
   templateUrl: './offices.component.html',
-  styleUrls: ['./offices.component.scss']
+  styleUrls: ['./offices.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OfficesComponent implements OnInit {
 @Input() officeTypeArray :any = [];
@@ -20,9 +25,11 @@ officesArray:any = [];
   currentAction = 'view';
   hasNew = false;
   hasEdit = true;
+  idToValueMap: any = {};
 
 
-  constructor(  private http: HttpClient) {}
+  constructor(  private http: HttpClient) {
+  }
 
 
 saveOff(){
@@ -48,16 +55,72 @@ saveOff(){
 
   ngOnInit(): void {
   //  console.log(this.address)
-   console.log(this.offices)
+  this.getCountries();
+   console.log(this.officeTypeArray,'officeType')
+   this.officeType = this.officeType.concat(this.officeTypeArray);
+   console.log(this.officeType)
+
+   this.createIdToValueMap();
+  }
+  
+  createIdToValueMap() {
+    this.idToValueMap = {};
+    this.officeTypeArray.forEach(item => {
+      this.idToValueMap[item.id] = item.value;
+    });
   }
 
-  updateOffice(){
+
+  public countrydata: any = [ ];
+
+  // maps the appropriate column to fields property
+
+  public fields: Object = { text: 'value', value: 'id' };
+  // set the height of the popup element
+  public height: string = '220px';
+  // set the placeholder to DropDownList input element
+  public watermark: string = 'Select a country';
+  // set the placeholder to filter search box input element
+  public filterPlaceholder: string = 'Search';
+  // filtering event handler to filter a Country
+  public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
+      let query: Query = new Query();
+      //frame the query based on search string with filter type.
+      query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+      //pass the filter data source, filter query to updateData method.
+      e.updateData(this.countrydata, query);
+  }
+
+
+  getCountries(){
+    this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data  =>{
+ 
+  this.countrydata = data
+
+  
+  }))
+  }
+
+  
+  public officeType:any= [];
+  public localFields: Object = { text: 'value', value: 'id' };
+  
+    // set the placeholder to DropDownList input element
+    public localWaterMark: string = 'Select a type';
+    // set the height of the popup element
+    public localheight: string = '200px';
+  
+  
+
+
+
+  updateOffice(offices){
     const requestBody = {
-     id:this.offices.id,
-     code:this.offices.code,
-     name:this.offices.name,
-     type:this.offices.type,
-     fkorgid:this.offices.fkorgid
+     id:offices.id,
+     code:offices.code,
+     name:offices.name,
+     type:offices.type,
+     fkorgid:offices.fkorgid
 
     }
     this.http.post(`${API_BASE_URL}/t/office/update`, requestBody).subscribe((data)=>{
@@ -84,7 +147,7 @@ updateAddress(){
     postalcode:this.offices.address.postalcode,
     region:null,
     zone:null,
-    fkcountrycode:'IN',
+    fkcountrycode:this.offices.address.fkcountrycode,
     latitude:null,
     longitude:null,
     phone:null,

@@ -7,7 +7,7 @@
       [hasEdit]="false"
       [hasDelete]="false"
       [currentAction]="'new'"
-      
+      (onAction)="doAction($event)"
      
     ></tool-bar>
     <div
@@ -16,135 +16,78 @@
     <div
     class="form-field-hold two-column-field">
 
-    <mat-label class="form-field-label">Identity Type</mat-label>
-    <mat-form-field
-    class="form-field-input"
-    floatPlaceholder="never"
-    appearance="fill"
-
-  >
-    <mat-select
-    
-      placeholder="Click to Select"
-     
-    >
-      <mat-option></mat-option
-      >
-    </mat-select>
-  </mat-form-field>
+    <div class="control-label">Identity Type</div>
+           <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
+           [popupHeight]='typeheight'[(ngModel)]="idType" ></ejs-dropdownlist>
 
   </div> 
   <div
   class="form-field-hold two-column-field">
 
-  <mat-label class="form-field-label">Issued By</mat-label>
-  <mat-form-field
-  class="form-field-input"
-  floatPlaceholder="never"
-  appearance="fill"
-
->
-  <mat-select
-  
-    placeholder="Click to Select"
-   
-  >
-    <mat-option></mat-option
-    >
-  </mat-select>
-</mat-form-field>
-
+  <div class="control-label">Issued By</div>
+           <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
+           [popupHeight]='issudbyHeight'[(ngModel)]="idIssuedBy" ></ejs-dropdownlist>
 </div> 
 
 <div class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Issued Date</mat-label>
-    <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-      <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Issued" 
-         [disabled]="false" >
-      <mat-datepicker-toggle matSuffix [for]="Issued"></mat-datepicker-toggle>
-      <mat-datepicker #Issued disabled="false"></mat-datepicker>
-    </mat-form-field>
-  </div>
+  <mat-label class="form-field-label">Issued Date</mat-label>
+  <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+    <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Issued" 
+       [disabled]="false" [(ngModel)]="idIssuedDate">
+    <mat-datepicker-toggle matSuffix [for]="Issued"></mat-datepicker-toggle>
+    <mat-datepicker #Issued disabled="false"></mat-datepicker>
+  </mat-form-field>
+</div>
      
   <div
   class="form-field-hold two-column-field">
 
-  <mat-label class="form-field-label">Country</mat-label>
-  <mat-form-field
-  class="form-field-input"
-  floatPlaceholder="never"
-  appearance="fill"
-
->
-  <mat-select
-  
-    placeholder="Click to Select"
-   
-  >
-    <mat-option></mat-option
-    >
-  </mat-select>
-</mat-form-field>
+  <div class="control-label" >country</div>
+  <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+  [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
 
 </div> 
 
         
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Identity Number</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
+          <mat-label class="form-field-label">Identity Number</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: ABCDE 1234A." [(ngModel)]="idNumber" >
+          </mat-form-field>
           </div> 
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Identity Name</mat-label>
-            <mat-form-field
-              class="form-field-input"
-              floatPlaceholder="never"
-              appearance="fill"
-            >
-              <input
-                matInput
-                [placeholder]=""
-                #inputValue
-               
-              />
-            </mat-form-field>
-           
+          <mat-label class="form-field-label">Identity Name</mat-label>
+          <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+            <input matInput placeholder="Ex: Full Name"  [(ngModel)]="idName">
+          </mat-form-field>
           </div> 
          
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Valid From</mat-label>
-            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="From" 
-                 [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
-              <mat-datepicker #From disabled="false"></mat-datepicker>
-            </mat-form-field>
-          </div>
+        <div class="form-field-hold two-column-field">
+  <mat-label class="form-field-label">valid From</mat-label>
+  <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+    <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="From" 
+       [disabled]="false" [(ngModel)]="idValidFromDate">
+    <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
+    <mat-datepicker #From disabled="false"></mat-datepicker>
+  </mat-form-field>
+</div>
      
-          <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Valid Upto</mat-label>
-            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
-              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Upto" 
-                 [disabled]="false" >
-              <mat-datepicker-toggle matSuffix [for]="Upto"></mat-datepicker-toggle>
-              <mat-datepicker #Upto disabled="false"></mat-datepicker>
-            </mat-form-field>
-          </div>
+<div class="form-field-hold two-column-field">
+  <mat-label class="form-field-label">valid Upto</mat-label>
+  <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+    <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Upto" 
+       [disabled]="false" [(ngModel)]="idValidUptoDate" >
+    <mat-datepicker-toggle matSuffix [for]="Upto"></mat-datepicker-toggle>
+    <mat-datepicker #Upto disabled="false"></mat-datepicker>
+  </mat-form-field>
+</div>
      
          
 
-      
+<div class="view-entry-hold">
+ 
+  <app-company-identification-uploader></app-company-identification-uploader>
+</div>
       
        
 

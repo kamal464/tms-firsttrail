@@ -6,41 +6,180 @@
         
       ></app-title>
       <span class="spacer"></span>
-      <button class="action-button" mat-raised-button color="primary">
+      <button class="action-button" mat-raised-button color="primary"  (click)="doAction('new')" *ngIf="_currentAction == 'view'">
         <mat-icon>add</mat-icon>
         <span class="button-text">Add New Work Experience</span>
       </button>
     </div>
     <div class="setting-hold">
       
-     <div  class="contents" style="overflow: hidden;flex-direction: column;">
-       <app-employee-add-work-experience></app-employee-add-work-experience>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;">
-          <tool-bar
-            [title]="'Pan-ALPNK 0298 K'"
-            class="content-title-hold"
-            [hasEdit]="true"
-            [hasDelete]="false"
-           
-          ></tool-bar> 
+     <div  class="contents" style="overflow: hidden;flex-direction: column;" >
+       <app-employee-add-work-experience *ngIf="_currentAction=='new'" [_currentAction]="_currentAction"  (onAction)="doAction($event)"></app-employee-add-work-experience>
+        <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngFor="let workexperience of workExperienceArray; let i = index">
+          <mat-toolbar class="tool-bar">
+            <span class="tool-bar-title"  [innerHtml]="'Work-Experience'"></span>
+            <span class="sub-title mat-small"></span>
+            <span class="spacer"></span>
+            <!-- View Mode -->
+            <ng-container *ngIf="i !== _editIndex; else editMode">  
+              <button
+                mat-button
+                class="tool-bar-button bt-color"
+                matTooltip="Edit"
+                (click)="doAction('edit');startEdit(i)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span class="button-label">Edit</span>
+              </button>
+              <button
+                mat-flat-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Delete"
+                (click)="doAction('delete');doDelete(workexperience.id)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span class="button-label">Delete</span>
+              </button>
+            </ng-container>
+            <!-- Edit Mode -->
+            <ng-template #editMode>
+              <button
+                mat-button
+                class="tool-bar-button"
+                matTooltip="Cancel"
+                (click)="doAction('cancel')"
+              >
+                <mat-icon>cancel</mat-icon>
+                <span class="button-label">Cancel</span>
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Save Changes"
+                (click)="doAction('save')"
+                (click)="updateWorkExperience(workexperience)"
+              
+              >
+                <mat-icon>save</mat-icon>
+                <span class="button-label">Save</span>
+              </button>
+            </ng-template>
+          </mat-toolbar>
           <div
-              class="content-schema-view ">  
-              <div  class="office-contents content-schema-view">
+              class="content-schema-view "  *ngIf="_currentAction == 'view' || i !== _editIndex">  
+              <div  class="office-contents content-schema-view" >
                 <div class="view-entry-hold">
-                    <span class="entry-text entry-datas">Win-IT Software Solutions</span>
+                    <span class="entry-text entry-datas">{{workexperience.employer}}</span>
                   </div>
                   <div class="view-entry-hold">
                                         <span class="entry-text">Hyderabad</span>
                   </div>
                   <div class="view-entry-hold">
-                    <span class="entry-text entry-datas">01 Apr 2015 - 10 Dec 2021</span>
+                    <span class="entry-text entry-datas">{{workexperience?.fromdate? (workexperience.fromdate | stringToDate) : ''}} - {{workexperience?.todate? (workexperience.todate | stringToDate):''}}</span>
                   </div>
                   <div class="view-entry-hold">
-                    <span class="entry-text">Designed end to end mobile applications for </span>
+                    <span class="entry-text">{{workexperience.remarks}}</span>
                   </div>
 
               </div>
             </div>
+
+
+    
+    <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;" *ngIf="_currentAction == 'edit' && i == _editIndex">
+        
+        <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Designation</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+                [(ngModel)]="workexperience.designation"
+              />
+            </mat-form-field>
+           
+          </div> 
+        <div  class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Employer</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               [(ngModel)]="workexperience.employer"
+              />
+            </mat-form-field>
+           
+          </div> 
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">From Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate"  [(ngModel)]="workexperience.fromdate"
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+              <mat-datepicker #fromdate disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">To Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate"  [(ngModel)]="workexperience.todate"
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+              <mat-datepicker #todate disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <!-- <div class="form-field-hold two-column-field">
+            <mat-label class="form-field-label">Review Date</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="review" 
+                 [disabled]="false" >
+              <mat-datepicker-toggle matSuffix [for]="review"></mat-datepicker-toggle>
+              <mat-datepicker #review disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div> -->
+     
+          <!-- <div  class="form-field-hold ">
+            <mat-label class="form-field-label">City</mat-label>
+            <mat-form-field
+              class="form-field-input"
+              floatPlaceholder="never"
+              appearance="fill"
+            >
+              <input
+                matInput
+                [placeholder]=""
+                #inputValue
+               
+              />
+            </mat-form-field>
+           
+          </div>  -->
+          <div class="form-field-hold" >
+            <mat-label class="form-field-label">remarks</mat-label>
+            <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+              <textarea matInput placeholder="Ex: Responsibilites"  [(ngModel)]="workexperience.remarks"></textarea>
+            </mat-form-field>
+          </div>
+
+      
+      
+       
+
+</div>
+
+   
         </div>
       
       

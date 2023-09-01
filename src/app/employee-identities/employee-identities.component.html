@@ -6,41 +6,204 @@
         
       ></app-title>
       <span class="spacer"></span>
-      <button class="action-button" mat-raised-button color="primary">
+      <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')" *ngIf="_currentAction == 'view'">
         <mat-icon>add</mat-icon>
         <span class="button-text">Add New Identity</span>
       </button>
     </div>
-    <div class="setting-hold">
+    <div class="identifications-item-hold">
       
      <div  class="contents" style="overflow: hidden;flex-direction: column;">
-      <app-employee-add-identities></app-employee-add-identities>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;">
-          <tool-bar
-            [title]="'Pan-ALPNK 0298 K'"
-            class="content-title-hold"
-            [hasEdit]="true"
-            [hasDelete]="false"
-           
-          ></tool-bar> 
-          <div
-              class="content-schema-view ">  
-              <div  class="office-contents content-schema-view">
-                <div class="view-entry-hold">
-                    <span class="entry-text entry-datas">Win-IT Software Solutions</span>
-                  </div>
-                  <div class="view-entry-hold">
-                                        <span class="entry-text">Hyderabad</span>
-                  </div>
-                  <div class="view-entry-hold">
-                    <span class="entry-text entry-datas">01 Apr 2015 - 10 Dec 2021</span>
-                  </div>
-                  <div class="view-entry-hold">
-                    <span class="entry-text">Designed end to end mobile applications for </span>
-                  </div>
-
+      <app-employee-add-identities *ngIf="_currentAction == 'new'" [_currentAction]="_currentAction"  (onAction)="doAction($event) " 
+       [employeeId]="employeeId"></app-employee-add-identities>
+        <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngFor="let identity of empIdentitesArray; let i = index">
+          <mat-toolbar class="tool-bar">
+            <span class="tool-bar-title"  [innerHtml]="identity.type"></span>
+            <span class="sub-title mat-small"></span>
+            <span class="spacer"></span>
+            <!-- View Mode -->
+            <ng-container *ngIf="i !== _editIndex; else editMode">
+              <button
+                mat-button
+                class="tool-bar-button bt-color"
+                matTooltip="Edit"
+                (click)="doAction('edit'); startEdit(i)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span class="button-label">Edit</span>
+              </button>
+              <button
+                mat-flat-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Delete"
+                (click)="doAction('delete');deleteIdentity(identity.id)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span class="button-label">Delete</span>
+              </button>
+            </ng-container>
+            <!-- Edit Mode -->
+            <ng-template #editMode>
+              <button
+                mat-button
+                class="tool-bar-button"
+                matTooltip="Cancel"
+                (click)="doAction('cancel')"
+              >
+                <mat-icon>cancel</mat-icon>
+                <span class="button-label">Cancel</span>
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="tool-bar-button"
+                matTooltip="Save Changes"
+                (click)="doAction('save')"
+                (click)="updateIdentification(identity)"
+              >
+                <mat-icon>save</mat-icon>
+                <span class="button-label">Save</span>
+              </button>
+            </ng-template>
+          </mat-toolbar>
+          <div class="identification-contents content-data-hold no-padding-h" *ngIf="_currentAction == 'view' || i !== _editIndex">
+            <div style="display: flex;padding:0 25px;">
+              <div class="view-entry-hold two-three-column-field">
+                <span class="entry-text"> {{identity.type}}</span>
+                <span class="entry-text" style="margin-top: 8px;"> {{ 'By' + identity.issuedby}}</span>
+              </div>
+              <div class="view-entry-hold three-column-field">
+                <span class="entry-text flag-hold" style="justify-content: flex-end;"  *ngFor="let country of countries">
+                  <!-- <mat-icon [svgIcon]="identification.fkcountrycode" *ngIf="identification.fkcountry"></mat-icon> -->
+                 {{identity.fkcountrycode == country.id ? country.value : null}}
+                </span>
               </div>
             </div>
+            <div class="view-entry-hold identification-number-hold">
+              <span class="mat-display-1 primary-color-text" style="margin: 20px 0 0 10px;">{{identity.number}}</span>
+            </div>
+            <div class="view-entry-hold identification-name-hold">
+              <span class="entry-text primary-color-text highlight-title"
+                style="margin: 0 0 20px 10px;"> {{identity.name}} </span>
+            </div>
+            <div class="spacer" style="display: flex;padding:0 25px;">
+              <div class="view-entry-hold three-column-field">
+                <mat-label class="entry-label">Issued Date</mat-label>
+                <span class="entry-data">{{ identity.issuedate ? (identity.issuedate | stringToDate) : '' }}
+                </span>
+              </div>
+              <div class="view-entry-hold three-column-field" style="align-items: flex-end;">
+                <mat-label class="entry-label">Valid From</mat-label>
+                <span class="entry-data ">{{ identity.validfromdate ? (identity.validfromdate | stringToDate) : '' }}
+                </span>
+              </div>
+              <div class="view-entry-hold three-column-field" style="align-items: flex-end;" >
+                <mat-label class="entry-label">Valid Upto</mat-label>
+                <span class="entry-data">{{ identity.validuptodate ? (identity.validuptodate |stringToDate) : '' }}
+                </span>
+              </div>
+            </div>
+            <div class="view-entry-hold">
+              <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+                  [innerHtml]="_attachments.length > 0 ? 'Attachements : '<b>' + _attachments.length + '</b>' : 'No Attachements'"></span> -->
+              <!-- </div> -->
+              <div class="attachments-hold" *ngIf="_attachments.length > 0">
+                <ng-container *ngFor="let attachment of _attachments">
+                  <!-- <app-attachment [attachment]="attachment"></app-attachment> -->
+                </ng-container>
+                <span class="spacer"></span>
+                <button mat-stroked-button color="primary" >
+                  <mat-icon>download</mat-icon>
+                  Download All
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+          class="content-schema-view" style="padding-left: 20px;" *ngIf="_currentAction == 'edit' && i == _editIndex"
+        >
+        <div
+        class="form-field-hold two-column-field">
+    
+        <div class="control-label">Identity Type</div>
+               <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
+               [popupHeight]='typeheight'[(ngModel)]="identity.type" ></ejs-dropdownlist>
+    
+      </div> 
+      <div
+      class="form-field-hold two-column-field">
+    
+      <div class="control-label">Issued By</div>
+               <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
+               [popupHeight]='issudbyHeight'[(ngModel)]="identity.issuedby" ></ejs-dropdownlist>
+    </div> 
+    
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Issued Date</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Issued" 
+           [disabled]="false" [(ngModel)]="identity.issuedate">
+        <mat-datepicker-toggle matSuffix [for]="Issued"></mat-datepicker-toggle>
+        <mat-datepicker #Issued disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+         
+      <div
+      class="form-field-hold two-column-field">
+    
+      <div class="control-label" >country</div>
+      <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+      [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="identity.fkcountryid" > </ejs-dropdownlist>
+    
+    </div> 
+    
+            
+            <div  class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Identity Number</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: ABCDE 1234A." [(ngModel)]="identity.number" >
+              </mat-form-field>
+              </div> 
+            <div  class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Identity Name</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+                <input matInput placeholder="Ex: Full Name"  [(ngModel)]="identity.name">
+              </mat-form-field>
+              </div> 
+             
+            <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">valid From</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="From" 
+           [disabled]="false" [(ngModel)]="identity.validfromdate">
+        <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
+        <mat-datepicker #From disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+         
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">valid Upto</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Upto" 
+           [disabled]="false" [(ngModel)]="identity.validuptodate" >
+        <mat-datepicker-toggle matSuffix [for]="Upto"></mat-datepicker-toggle>
+        <mat-datepicker #Upto disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+         
+             
+    
+    <div class="view-entry-hold">
+     
+      <app-company-identification-uploader></app-company-identification-uploader>
+    </div>
+          
+           
+    
+    
+    
+        </div>
         </div>
       
       

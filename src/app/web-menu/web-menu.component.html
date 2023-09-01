@@ -1,10 +1,10 @@
-<div class="settings-view multi-options-view has-overall-heading" *ngIf="_currentAction== 'view' || 'add' ">
+<div class="settings-view webmenu has-overall-heading" *ngIf="_currentAction== 'view' || 'add' " >
     <div class="overall-heading">
       <app-title
         title="Web-menu"
         subTitle="List of Web-menu configured."
       ></app-title>
-      <span class="spacer"></span>
+      <span class="spacer" ></span>
       <button class="action-button" mat-raised-button color="primary" (click)="doAction('add')">
         <mat-icon>add</mat-icon>
         <span class="button-text">New Menu</span>

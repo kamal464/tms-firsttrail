@@ -130,18 +130,11 @@
          
         >
          <ng-container *ngFor="let get of getall">
-          <div class="form-field-hold two-column-field">
-            <!-- <kit-ui-text-edit
-              companyname="Registered Company Name"
-              [formData]="get"
-              placeHolder="Ex: Organisation India Pvt Ltd"
-              (inputValueEmitter)="handleInput('legalname', $event)"
-              [inputName]="'legalname'"
-            ></kit-ui-text-edit> -->
-            
+          <div class="form-field-hold two-column-field">  
             <div class="control-label">Registered Company Name</div>
-                <input  class="e-input" type="text" placeholder="Registered Company Name" [(ngModel)]="get.legalname" />
-            
+                <input  class="e-input" type="text" placeholder="Registered Company Name" 
+                [(ngModel)]="get.legalname" (input)="onInputChange(get.legalname)" />
+                <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
                 
        </div>
           
@@ -155,7 +148,8 @@
             ></kit-ui-text-edit> -->
             
             <div class="control-label">Short Name</div>
-                <input  class="e-input" type="text" placeholder="Short Name"  [(ngModel)]="get.code" />
+                <input  class="e-input" type="text" placeholder="Short Name" 
+                 [(ngModel)]="get.code" (input)="onInputChange(get.code)" />
             
           </div>
           <div class="form-field-hold two-column-field">
@@ -201,7 +195,7 @@
               (inputValueEmitter)="handleInput('email', $event)"
             ></app-email> -->
             <div class="control-label">email</div>
-            <input  class="e-input" type="text" placeholder="email" [(ngModel)]="get.email" />
+            <input  class="e-input" type="text" placeholder="email" [(ngModel)]="get.email" (input)="onInputChange(get.email)" />
 
           </div>
           <div class="form-field-hold two-column-field">
@@ -216,7 +210,7 @@
             
             
             <div class="control-label">Website</div>
-                <input  class="e-input" type="text" placeholder="website" [(ngModel)]="get.website" />
+                <input  class="e-input" type="text" placeholder="website" [(ngModel)]="get.website" (input)="onInputChange(get.website)"/>
             
           </div>
           <div class="form-field-hold two-column-field">
@@ -231,7 +225,7 @@
 
             <div>
                 <div class="control-label">whatsapp</div>
-                <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.whatsapp"></ejs-maskedtextbox>
+                <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.whatsapp" ></ejs-maskedtextbox>
             </div>
           </div>
           <div class="form-field-hold">
@@ -245,7 +239,7 @@
             ></kit-ui-text-edit> -->
           
             <div class="control-label">LinkedIN</div>
-                <input  class="e-input" type="text" placeholder="LinkedIn" [(ngModel)]="get.linkedin"   />
+                <input  class="e-input" type="text" placeholder="LinkedIn" [(ngModel)]="get.linkedin" (input)="onInputChange(get.linkedin)"  />
             
           </div>
           <div class="form-field-hold">
@@ -260,7 +254,7 @@
             ></app-textarea> -->
             
             <div class="control-label">Remarks</div>
-            <input  class="e-input" type="text" placeholder="Remarks"  [(ngModel)]="get.comments" />
+            <input  class="e-input" type="text" placeholder="Remarks"  [(ngModel)]="get.comments" (input)="onInputChange(get.comments)" />
           </div>
         
        

@@ -7,16 +7,25 @@ import {
   OnChanges,
   ChangeDetectorRef,
 } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedServiceService } from './../shared/shared-service.service';
 import { SchemaAttributeComponent } from './../schema-attribute/schema-attribute.component';
-
+import { DynamicComponent } from '../shared/components/dynamic-tab/dynamic-component-loader.directive';
+import { DynamicTabComponent,TabbedItem } from '../shared/components/dynamic-tab/dynamic-tab.component';
+import { SettingsComponent } from '../settings/settings.component';
+import { CompanyProfileComponent } from '../company-profile/company-profile.component';
+import { SchemaColumnComponent } from '../schema-column/schema-column.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, DoCheck {
+export class HomeComponent implements OnInit, DoCheck ,AfterViewInit{
+  @ViewChild(DynamicTabComponent, { static: false })
+  tabbedComponentRef: DynamicTabComponent;
+  tabEventSubject = new Subject<any>();
+  currentEmployee = null;
   title = 'dtpl';
   appComponent = 'yes';
   menuItems = [];
@@ -33,14 +42,19 @@ export class HomeComponent implements OnInit, DoCheck {
     this.currentField = field;
   }
 
-  @ViewChild(SchemaAttributeComponent) childComponent: SchemaAttributeComponent;
+ 
   constructor(
     private router: Router,
     private sharedService: SharedServiceService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    this.tabEventSubject.subscribe((item) => {
+      console.log(item,'homecomponent');
+      this.openOrAddTab(item);
+    });
+  }
 
-  ngAfterViewInit(): void {}
+ 
 
   ngDoCheck() {
   
@@ -97,7 +111,7 @@ export class HomeComponent implements OnInit, DoCheck {
   }
 
   callDoAction(): void {
-    // this.cdr.detectChanges();
+   
     const action = this.sharedService.getActionParameter();
     if (action) {
       this.doAction(action);
@@ -147,6 +161,26 @@ export class HomeComponent implements OnInit, DoCheck {
     this.dynamicNavItems = this.sharedService.getNavItems();
 
     console.log(this.dynamicNavItems, 'dynamicNavItems');
-    // console.log(this.sharedService.dynamicNavItems, this.sharedService._selected_option);
+    
   }
+
+  ngAfterViewInit(): void {
+    this.tabEventSubject.next({
+      id: 'companyprofile',
+      icon: '',
+      label: 'company-profile',
+      isClosable: true,
+      item: new DynamicComponent( CompanyProfileComponent, {
+        currentEmployee: this.currentEmployee,
+        tabEvent: this.tabEventSubject,
+      }),
+    });
+   
+  }
+
+  openOrAddTab(item: TabbedItem) {
+    this.tabbedComponentRef.openOrAddTab(item);
+  }
+
+
 }

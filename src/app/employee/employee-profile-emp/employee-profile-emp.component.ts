@@ -125,14 +125,18 @@ ngOnChanges(changes: SimpleChanges): void {
 
 addEmp(){
   const timestamp = new Date().getTime();
-  // let dateNumbers = null;
-  // if(this.empJoiningdate) {
-  //   const dateobj = new Date(this.empJoiningdate);
-  //   const year = dateobj.getFullYear();
-  //   const month = dateobj.getMonth() + 1;
-  //   const day = dateobj.getDate();
-  //   dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  // }
+  const formatDateField = (dateValue) => {
+    if (!dateValue) {
+      return null;
+    }
+    
+    const dateObj = new Date(dateValue);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    
+    return `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  };
   const requestBody = {
     id:timestamp,
     fkorgid:1,
@@ -142,22 +146,22 @@ addEmp(){
     empcode:this.empCode,
     displayname:this.empDisplayname,
     empno:this.empNo,
-    gender:this.empGender,
-    fkcountrycode:this.empFkcountrycode,
-    officialemail:this.empOfficialemail,
-    personalemail:this.empPersonalemail,
-    mobile1:this.empMobileone,
-    mobile2:this.empMobiletwo,
+    // gender:this.empGender,
+    // fkcountrycode:this.empFkcountrycode,
+    // officialemail:this.empOfficialemail,
+    // personalemail:this.empPersonalemail,
+    // mobile1:this.empMobileone,
+    // mobile2:this.empMobiletwo,
     status:0,
-    joiningdate:new Date(this.empJoiningdate).getTime(),
-    confirmationdate:this.empConfirmationdate,
-    resignationdate:this.empResignationdate,
-    exitdate:this.empExitdate,
+    joiningdate:formatDateField(this.empJoiningdate),
+    confirmationdate: formatDateField(this.empConfirmationdate),
+    resignationdate: formatDateField(this.empResignationdate),
+    exitdate:formatDateField(this.empExitdate),
     latestfkempofficialid:this.empLatestfkempofficialid
 
   }
   
-  
+  console.log(requestBody,'emp body')
   this.http.post(`${API_BASE_URL}/t/emp/add`,requestBody).subscribe((data)=>{
     console.log(data);
   })
@@ -172,14 +176,18 @@ addEmp(){
 
 addEmpOfficial(empid){
   const timestamp = new Date().getTime(); 
-  // let dateNumbers = null;
-  // if (this.empEffectiveDate) {
-  //   const dateObj = new Date(this.empEffectiveDate);
-  //   const year = dateObj.getFullYear();
-  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-  //   const day = dateObj.getDate();
-  //   dateNumbers = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  // }
+  const formatDateField = (dateValue) => {
+    if (!dateValue) {
+      return null;
+    }
+    
+    const dateObj = new Date(dateValue);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    
+    return `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  };
   const requestBody = {
     id: timestamp,
     fkempid:empid,
@@ -190,12 +198,13 @@ addEmpOfficial(empid){
     fkdepartmentid:null,
     grade:this.empGrade,
     type:this.empType,
-    effectivedate:new Date(this.empEffectiveDate).getTime(),
-    monthlyctc:this.empMonthlyCtc,
+    effectivedate:formatDateField(this.empEffectiveDate),
+    // monthlyctc:this.empMonthlyCtc,
     remarks:this.empRemarks,
     approvalstatus:0,
     previousfkempofficialid:null,
   }
+  console.log(requestBody,'empofficial body')
   this.http.post(`${API_BASE_URL}/t/empofficial/add`,requestBody).subscribe((data)=>{
     console.log(data);
   })
@@ -204,30 +213,25 @@ this.addEmpPersonal(requestBody.fkempid);
 
 addEmpPersonal(empid){
   const timestamp = new Date().getTime(); 
-  // let dob = null;
-  // let dom = null;
-  // if (this.empDateOfBirth) {
-  //   const dateObj = new Date(this.empDateOfBirth);
-  //   const year = dateObj.getFullYear();
-  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-  //   const day = dateObj.getDate();
-  //   dob = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  // }
-
-  // if (this.empDateOfMarriage) {
-  //   const dateObj = new Date(this.empDateOfMarriage);
-  //   const year = dateObj.getFullYear();
-  //   const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
-  //   const day = dateObj.getDate();
-  //   dom = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
-  // }
+  const formatDateField = (dateValue) => {
+    if (!dateValue) {
+      return null;
+    }
+    
+    const dateObj = new Date(dateValue);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    
+    return `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+  };
   const requestBody = {
     id: timestamp,
     fkempid:  empid,
-    dateofbirth:new Date(this.empDateOfBirth).getTime(),
-    dateofmarriage:new Date(this.empDateOfBirth).getTime(),
-    email:this.empPersonalemail,
-    mobile:this.empMobileone,
+    dateofbirth:formatDateField(this.empDateOfBirth),
+    dateofmarriage:formatDateField(this.empDateOfMarriage),
+    personalemail:this.empPersonalemail,
+    personalmobile:this.empMobileone,
     linkedin:this.empLinkedIn,
     twitter:this.empTwitter,
     instagram:this.empInstagram,
@@ -235,6 +239,8 @@ addEmpPersonal(empid){
     website:this.empWebsite
   }
 
+
+  console.log(requestBody,"emppersonalbody")
 this.http.post(`${API_BASE_URL}/t/emppersonal/add`,requestBody).subscribe((data)=>{
   console.log(data);
 })

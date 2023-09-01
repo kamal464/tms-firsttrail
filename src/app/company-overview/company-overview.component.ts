@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { KitUiTextEditComponent } from '../kit-ui-text-edit/kit-ui-text-edit.component';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL,Api_Base } from '../shared/api-config';
+import { Query } from '@syncfusion/ej2-data';
+import { EmitType } from '@syncfusion/ej2-base';
+import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 @Component({
   selector: 'app-company-overview',
   templateUrl: './company-overview.component.html',
@@ -9,6 +12,7 @@ import { API_BASE_URL,Api_Base } from '../shared/api-config';
 })
 export class CompanyOverviewComponent implements OnInit {
   @ViewChild('KitUiTextEditComponent') child: KitUiTextEditComponent;
+ 
   savedData: any = [];
   countries : any =[];
   getall:any = [];
@@ -18,7 +22,7 @@ export class CompanyOverviewComponent implements OnInit {
   formData: any = [];
   _currentAction = 'view';
   currentAction = 'view';
-
+  error: string;
   hasNew = false;
   hasEdit = true;
   companyDetails: '';
@@ -60,6 +64,41 @@ export class CompanyOverviewComponent implements OnInit {
 
   // }))
   // }
+
+
+
+
+  public countrydata: any = [
+    
+];
+// maps the appropriate column to fields property
+public fields: Object = { text: 'value', value: 'id' };
+// set the height of the popup element
+public height: string = '220px';
+// set the placeholder to DropDownList input element
+public watermark: string = 'Select a country';
+// set the placeholder to filter search box input element
+public filterPlaceholder: string = 'Search';
+// filtering event handler to filter a Country
+public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
+    let query: Query = new Query();
+    //frame the query based on search string with filter type.
+    query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+    //pass the filter data source, filter query to updateData method.
+    e.updateData(this.countrydata, query);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
   onUpdate() {
     console.log(this.formData)
@@ -124,7 +163,30 @@ console.log(requestbody)
   }
  
 
- 
+  onInputChange(get: any) {
+    console.log(get);
+    if(get.legalname){
+      if (get.legalnamelength < 3) {
+        this.error = `legal name must be at least 3 characters long`;
+      } else if (!/^[a-zA-Z ]+$/.test(get.legalname)) {
+        this.error = 'Legal name must contain only letters and spaces';
+      } else {
+        this.error = null;
+      }
+    }
+    else if(get.code){
+      if (get.code < 3) {
+        this.error = 'code must be at least 3 characters long';
+      } else if (!/^[a-zA-Z ]+$/.test(get.code)) {
+        this.error = 'code must contain only letters and spaces';
+      } else {
+        this.error = null;
+      }
+    }
+
+
+  }
+  
 
   constructor(private http: HttpClient) {}
 
@@ -134,14 +196,18 @@ console.log(requestbody)
         this.currentAction = action;
         break;
       case 'save':
+        this.currentAction = 'view';
         break;
       default:
         this.currentAction = 'view';
     }
   }
   getCountries(){
-    this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
+    this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data  =>{
   this.countries = data;
+  this.countrydata = data
+console.log(this.countries)
+console.log(this.countrydata)
   
   }))
   }

@@ -13,7 +13,7 @@
       <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
-        <button
+        <!-- <button
           mat-button
           class="tool-bar-button"
           matTooltip="Edit"
@@ -22,7 +22,19 @@
         >
           <mat-icon>edit</mat-icon>
           <span class="button-label">Edit</span>
-        </button>
+        </button> -->
+       
+           <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
+           (click)="doAction('edit')" 
+           matTooltip="Edit"
+           *ngIf="hasEdit && currentAction == 'view'"
+           >
+        
+           <span class="e-icons e-edit"></span>
+          
+        
+           Edit</button>
+         
         <button
           mat-button
           class="tool-bar-button"
@@ -30,7 +42,7 @@
           (click)="doAction('cancel')"
           *ngIf="currentAction == 'new' || currentAction == 'edit'"
         >
-          <mat-icon>cancel</mat-icon>
+       
           <span class="button-label">Cancel</span>
         </button>
         <button
@@ -64,12 +76,12 @@
         </div>
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Country</mat-label>
-          <span class="entry-data flag-hold" *ngFor="let country of countries">
+          <span class="entry-data" *ngFor="let country of countries">{{ get.fkcountrycode == country.id?country.value : ''}}</span>
+        
             <!-- <mat-icon svgIcon="india"></mat-icon> -->
-            {{get.fkcountrycode == country.id ? country.value : null}}
 
-          </span>
-        </div>  
+      
+          </div>  
         <div class="view-entry-hold two-column-field">
           <mat-label class="entry-label">Phone</mat-label>
           <span class="entry-data">
@@ -118,91 +130,131 @@
        
       >
        <ng-container *ngFor="let get of getall">
+        <div class="form-field-hold two-column-field">  
+          <div class="control-label">Registered Company Name</div>
+              <input  class="e-input" type="text" placeholder="Registered Company Name" 
+              [(ngModel)]="get.legalname" (input)="onInputChange(get)" />
+              <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
+              
+     </div>
+        
         <div class="form-field-hold two-column-field">
-          <kit-ui-text-edit
-            companyname="Registered Company Name"
-            [formData]="get"
-            placeHolder="Ex: Organisation India Pvt Ltd"
-            (inputValueEmitter)="handleInput('legalname', $event)"
-            [inputName]="'legalname'"
-          ></kit-ui-text-edit>
-        </div>
-        <div class="form-field-hold two-column-field">
-          <kit-ui-text-edit
+          <!-- <kit-ui-text-edit
             companyname="  Short Name"
             placeHolder="DTPL"
             [formData]="get"
             [inputName]="'code'"
             (inputValueEmitter)="handleInput('code', $event)"
-          ></kit-ui-text-edit>
+          ></kit-ui-text-edit> -->
+          
+          <div class="control-label">Short Name</div>
+              <input  class="e-input" type="text" placeholder="Short Name" 
+               [(ngModel)]="get.code" (input)="onInputChange(get)" />
+               <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
         </div>
         <div class="form-field-hold two-column-field">
-          <app-country
+          <!-- <app-country
             placeHolder="country"
             [formData]="get"
             (inputValueEmitter)="handleInput('fkcountrycode', $event)"
             [inputName]="'fkcountrycode'"
-          ></app-country>
+          ></app-country> -->
+          <div class="control-label" >country</div>
+          <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="get.fkcountrycode" > </ejs-dropdownlist>
        </div>
         <div class="form-field-hold two-column-field">
          
-          <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="get" numbertype="Phone" [inputName]="'phone'" (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber>
+          <!-- <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="get" numbertype="Phone" [inputName]="'phone'"
+           (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber> -->
+           <!-- <label class="sync-label">Phone</label> -->
+           <div>
+              <div class="control-label">Phone</div>
+              <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.phone"></ejs-maskedtextbox>
+          </div>
+           
          
         </div>
         <div class="form-field-hold two-column-field">
          
-          <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="get" numbertype="Fax" [inputName]="'fax'" (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
-        
+          <!-- <app-phonenumber placeHolder="Ex: 040-22558877" [formData]="get" numbertype="Fax" [inputName]="'fax'"
+           (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
+         -->
+
+         <div>
+          <div class="control-label">Fax</div>
+          <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.fax"></ejs-maskedtextbox>
+      </div>
         </div>
         <div class="form-field-hold two-column-field">
        
-          <app-email
+          <!-- <app-email
             placeHolder="sunsunnysinger@gmail.com"
             [formData]="get"
             [inputName]="'email'"
             (inputValueEmitter)="handleInput('email', $event)"
-          ></app-email>
+          ></app-email> -->
+          <div class="control-label">email</div>
+          <input  class="e-input" type="text" placeholder="email" [(ngModel)]="get.email" (input)="onInputChange(get.email)" />
+         
         </div>
         <div class="form-field-hold two-column-field">
          
-          <kit-ui-text-edit
+          <!-- <kit-ui-text-edit
             companyname="Website"
             [formData]="get"
             placeHolder="Ex: www.company.com"
             (inputValueEmitter)="handleInput('website', $event)"
             [inputName]="'website'"
-          ></kit-ui-text-edit>
+          ></kit-ui-text-edit> -->
+          
+          
+          <div class="control-label">Website</div>
+              <input  class="e-input" type="text" placeholder="website" [(ngModel)]="get.website" (input)="onInputChange(get.website)"/>
+          
         </div>
         <div class="form-field-hold two-column-field">
         
-          <app-phonenumber
+          <!-- <app-phonenumber
             placeHolder="Ex: 9876543210"
             numbertype="whatsapp"
             [formData]="get"
             [inputName]="'whatsapp'"
             (inputValueEmitter)="handleInput('whatsapp', $event)"
-          ></app-phonenumber>
+          ></app-phonenumber> -->
+
+          <div>
+              <div class="control-label">whatsapp</div>
+              <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.whatsapp" ></ejs-maskedtextbox>
+          </div>
         </div>
         <div class="form-field-hold">
          
-          <kit-ui-text-edit
+          <!-- <kit-ui-text-edit
             companyname="LinkedIN"
             [formData]="get"
             placeHolder="Ex: www.linkedin.com/company/dtpli"
             (inputValueEmitter)="handleInput('linkedin', $event)"
             [inputName]="'linkedin'"
-          ></kit-ui-text-edit>
+          ></kit-ui-text-edit> -->
+        
+          <div class="control-label">LinkedIN</div>
+              <input  class="e-input" type="text" placeholder="LinkedIn" [(ngModel)]="get.linkedin" (input)="onInputChange(get.linkedin)"  />
+          
         </div>
         <div class="form-field-hold">
          
 
-          <app-textarea
+          <!-- <app-textarea
             title="Remarks"
             [formData]="get"
             placeHolder="Ex. State-of-art development center."
             (inputValueEmitter)="handleInput('comments', $event)"
             [inputName]="'comments'"
-          ></app-textarea>
+          ></app-textarea> -->
+          
+          <div class="control-label">Remarks</div>
+          <input  class="e-input" type="text" placeholder="Remarks"  [(ngModel)]="get.comments" (input)="onInputChange(get.comments)" />
         </div>
       
      

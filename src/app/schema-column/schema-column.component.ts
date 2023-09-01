@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter,OnChanges ,ChangeDetectorRef} from '@angular/core';
 import { API_BASE_URL ,Api_Base} from '../shared/api-config';
 import { HTTP_INTERCEPTORS , HttpClient,HttpHeaders} from '@angular/common/http';
 import { SharedServiceService } from '../shared/shared-service.service';
@@ -10,6 +10,7 @@ import { SharedServiceService } from '../shared/shared-service.service';
 })
 export class SchemaColumnComponent implements OnInit {
   @Output() onAction: EventEmitter<string> = new EventEmitter<string>();
+ 
   __currentAction = 'view';
   fkSchemaTableId :string;
   coloumnRows: any= [];
@@ -31,12 +32,16 @@ columnname:string;
 id:string;
 selectedObject:any;
 title:string;
-  constructor(private sharedservice: SharedServiceService,private http : HttpClient) {
+  constructor(private sharedservice: SharedServiceService,private http : HttpClient,
+    private ref: ChangeDetectorRef) {
     // this.coloumnRows = this.sharedservice.getColoumnRows();
-     this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
+    { this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
     this.title = this.sharedservice.getSelectedOption();
-    
+
+   
+  }
     console.log(this.fkSchemaTableId)
+ 
     console.log(this.coloumnRows)
   }
   

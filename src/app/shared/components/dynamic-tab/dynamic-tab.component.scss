@@ -1,0 +1,260 @@
+@import '../../../../styles.scss';
+
+.full-view-hold {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+
+  .tree-view-hold {
+    position: relative;
+    padding-right: 10px;
+    border-right: 1px solid lightgray;
+    min-width: 245px;
+    background: #fff;
+
+    .tree-top-fixed-hold {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      height: 50px;
+      right: 20px;
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 16px);
+
+      .tree-top-fixed-title {
+
+        .tree-top-fixed-close-button {
+          position: absolute;
+          top: 2px;
+          right: 3px;
+          z-index: 100;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          margin-left: 24px;
+          background-color: $full-white;
+
+          .mat-icon {
+            width: 16px;
+            height: 16px;
+            line-height: 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: $primary-color
+          }
+
+          &:hover {
+            color: $full-white;
+            background-color: $primary-color;
+
+            .mat-icon {
+              font-size: 14px;
+              color: $full-white
+            }
+          }
+        }
+      }
+
+      .search-input-hold {
+        width: 100%;
+        display: none;
+
+        .user-small-input {
+          width: 100%;
+          height: 65px;
+        }
+      }
+
+      .group-button-hold {
+        margin-top: 15px;
+        display: flex;
+
+        button {
+          margin-left: 8px;
+          border: 1px solid;
+
+          ::ng-deep {
+            .mat-button-wrapper {
+              .mat-icon {
+                line-height: 21px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .tree-view-float-hold {
+      height: calc(100% - 79px);
+      display: block;
+      position: relative;
+      top: 50px;
+      overflow: auto;
+    }
+  }
+
+  .tab-view-hold {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-grow: 1;
+    position: relative;
+
+    &>* {
+      width: 100%;
+    }
+
+    .tab-view-header-hold {
+      display: flex;
+      height: 44px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      background-color: $full-white;
+
+      .tab-view-header-menu-button {
+        margin: 0 10px;
+      }
+
+      .tab-view-header-tabs {
+        width: calc(100% - 66px);
+        border-left: 1px solid lightgray;
+
+        &.has-side-nav {
+          width: 100%;
+          padding-left: 0;
+          border: 0;
+        }
+
+        ::ng-deep {
+          .mat-tab-group {
+            .mat-tab-header {
+              border-bottom: 0;
+
+              .mat-tab-label-container {
+                margin-top: -4px;
+
+                .mat-tab-list {
+                  .mat-tab-labels {
+                    .mat-tab-label {
+                      min-width: 24px;
+                      padding: 0;
+                      display: flex;
+                      justify-content: flex-start;
+                      border-right: 1px solid #ccc;
+
+                      .mat-tab-label-content {
+                        width: 100%;
+                        justify-content: flex-start;
+
+                        .tabbed-item-hold {
+                          align-items: center;
+                          display: flex;
+                          position: relative;
+                          background-color: transparent;
+                          padding: 0 8px;
+
+                          &.is-closable {
+                            padding-right: 36px;
+                          }
+
+                          .tabbed-item-lead-icon {
+                            height: 24px;
+                            padding: 8px;
+                          }
+
+                          .tabbed-item-label {
+                            font-size: 120%;
+                            font-weight: bold;
+                            margin: 0px;
+                            padding-left: 8px;
+                            border-left: 1px solid $primary-color;
+                          }
+
+                          .tabbed-item-close-button {
+                            position: absolute;
+                            top: 8px;
+                            right: 8px;
+                            z-index: 100;
+                            width: 20px;
+                            height: 20px;
+                            line-height: 20px;
+                            color: $primary-color;
+                            display: none;
+                          }
+                        }
+                      }
+
+                      &:hover,
+                      &.mat-tab-label-active {
+                        .mat-tab-label-content {
+                          .tabbed-item-hold {
+                            color: $primary-color;
+
+                            .tabbed-item-close-button {
+                              display: block;
+                            }
+                          }
+                        }
+                      }
+
+                      &.mat-tab-label-active {
+                        .mat-tab-label-content {
+                          .tabbed-item-hold {
+                            .tabbed-item-label {
+                              color: $primary-color;
+                              border-left-color: $primary-color;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  .mat-ink-bar {
+                    bottom: 0px;
+                    z-index: -1;
+                    height: 4px;
+                    background-color: $primary-color;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .tab-view-content-hold {
+      height: calc(100% - 65px);
+      display: block;
+      position: relative;
+      top: 60px;
+      overflow: auto;
+
+      ::ng-deep {
+        .mat-tab-group {
+          height: 100%;
+
+          .mat-tab-header {
+            display: none;
+          }
+
+          .mat-tab-body-wrapper {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+  
