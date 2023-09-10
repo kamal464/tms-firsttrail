@@ -1,9 +1,10 @@
-import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit ,Input,Output,EventEmitter,ChangeDetectorRef,ChangeDetectionStrategy} from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { API_BASE_URL,Api_Base } from 'src/app/shared/api-config';
+import { API_BASE_URL,Api_Base,vfsApi } from 'src/app/shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import { FileUploadService } from 'src/app/shared/file-upload.service';
 @Component({
   selector: 'app-company-identification-entry',
   templateUrl: './company-identification-entry.component.html',
@@ -14,7 +15,12 @@ export class CompanyIdentificationEntryComponent implements OnInit {
 @Input()identityTypeDropdown : any=[];
 @Input()identityIssuedByDropdown : any=[];
 @Input()countries :any=[];
+@Input()attachments:any=[];
 @Output() onDelete = new EventEmitter<any>();
+table_name = 'identification'
+table_id = '';
+uploadedbyfkempid = '';
+category = 'image';
   _currentAction = 'view';
   _identificationTitle = '';
   selectedCountry:string;
@@ -28,7 +34,9 @@ export class CompanyIdentificationEntryComponent implements OnInit {
  idissueDate:any
  idFromDate:any;
  idValidUpto:any;
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+    private fileservice:FileUploadService,
+    private ref : ChangeDetectorRef) {
     this.countrydata = this.countrydata.concat(this.countries);
     this.identityType = this.identityType.concat(this.identityTypeDropdown);
     this.identityissudby = this.identityissudby.concat(this.identityIssuedByDropdown);
@@ -38,13 +46,25 @@ export class CompanyIdentificationEntryComponent implements OnInit {
   ngOnInit(): void {
     
     
-   
+ this.table_id = this.identificationsInfo.id
+ this.uploadedbyfkempid  = this.identificationsInfo.id
+ 
       this.countrydata = this.countrydata.concat(this.countries);
       this.identityType = this.identityType.concat(this.identityTypeDropdown);
       this.identityissudby = this.identityissudby.concat(this.identityIssuedByDropdown);
    console.log(this.countries)
   }
  
+
+
+
+
+
+
+
+
+
+
   _doDelete(): void {
     console.log(this.identificationsInfo.id)
     this.onDelete.emit(this.identificationsInfo.id);
@@ -76,7 +96,7 @@ export class CompanyIdentificationEntryComponent implements OnInit {
 
 
   public identityType:any= [];
-  public typeFields: Object = { text: 'value', value: 'id' };
+  public typeFields: Object = { text: 'value', value: 'value' };
     // set the placeholder to DropDownList input element
     public typeWaterMark: string = 'Select a type';
     // set the height of the popup element
@@ -85,7 +105,7 @@ export class CompanyIdentificationEntryComponent implements OnInit {
 
 
   public identityissudby:any= [];
-  public issudbyFields: Object = { text: 'value', value: 'id' };
+  public issudbyFields: Object = { text: 'value', value: 'value' };
     // set the placeholder to DropDownList input element
     public issudbyWatermark: string = 'Select a type';
     // set the height of the popup element
@@ -122,9 +142,41 @@ export class CompanyIdentificationEntryComponent implements OnInit {
     };
     this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
       console.log(data, 'data is updated')
+      this.updateUploadVfs(requestBody.id)
     })
   }
 
+  removeAttachment(attachment): void {
+console.log(this.identificationsInfo);
+    console.log(attachment,'attachment removed')
+    if (this.identificationsInfo && this.identificationsInfo.attachment) {
+      const index = this.identificationsInfo.attachment.findIndex((entry) => entry.id == attachment.id);
+      if (index !== -1) {
+        this.identificationsInfo.attachment.splice(index, 1);
+      }
+
+      
+      this.refreshView();
+    }
+    
+    const headers = new HttpHeaders()
+    .set('id', attachment.id.toString());
+  
+  this.http.post(`${API_BASE_URL}/t/vfs/delete`, {}, { headers }).subscribe(
+    (data) => {
+      console.log(data, 'vfs deleted');
+    },
+    (error) => {
+      console.error('Error deleting vfs:', error);
+    }
+  );
+  }
+  removeSelectedAttachment(idx): void {
+    console.log(idx,'index')
+    if (this.identificationsInfo && this.identificationsInfo.attachment) {
+      this.identificationsInfo.attachment.splice(idx, 1);
+    }
+  }
 
   doAction(action): void {
     this._currentAction = action;
@@ -148,4 +200,42 @@ export class CompanyIdentificationEntryComponent implements OnInit {
     }
   
   }
+
+
+  updateUploadVfs = (data) => {
+    let files = this.fileservice.files || [];
+    console.log('upload is called');
+  
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append('files', file, file.name);
+    }
+  
+    this.http
+      .post(`${vfsApi}/upload`, formData, {
+        headers: {
+          table_name: 'identification',
+          table_id: data.toString(),
+          uploadedbyfkempid: '1693465985040',
+          // category: 'img',
+        },
+      })
+      .subscribe((responseData) => {
+        console.log(responseData, 'uploaded successfully');
+        
+        // Assuming identificationInfo is an object where you want to store the attachment data
+        // Modify this part according to your application's structure
+        this.identificationsInfo.attachment = responseData;
+      
+  
+        // You can also perform any other actions you need to after the upload is successful here.
+      });
+  };
+
+  refreshView(): void {
+    setTimeout(() => {
+      this.ref.markForCheck();
+    }, 200);
+  }
+  
 }

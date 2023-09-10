@@ -68,7 +68,7 @@
             </ng-template>
           </mat-toolbar>
           <div
-              class="content-schema-view "  *ngIf="_currentAction == 'view' || i !== _editIndex">  
+                *ngIf="_currentAction == 'view' || i !== _editIndex">  
               <div  class="office-contents content-schema-view" >
                 <div class="view-entry-hold">
                     <span class="entry-text entry-datas">{{workexperience.employer}}</span>
@@ -81,6 +81,36 @@
                   </div>
                   <div class="view-entry-hold">
                     <span class="entry-text">{{workexperience.remarks}}</span>
+                  </div>
+                  <div class="view-entry-hold">
+                    <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+                      [innerHtml]="(workexperience.attachments?.length + _selectedAttachments?.length) > 0 ? 'Attachments : <b>' + ((workexperience.attachments?.length || 0) + (_selectedAttachments?.length || 0)) + '</b>' : 'No Attachments'">
+                      </span>
+                    </div>
+                    <div class="attachments-hold">
+                      <ng-container *ngFor="let attachment of workexperience.attachments">
+                        <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing" 
+                        (onDelete)="removeAttachment(attachment)"></app-attachment>
+                         
+                         <!-- (onDelete)="removeAttachment(attachment)" -->
+                          
+                        
+                      </ng-container>
+                     <!-- <ng-container *ngFor="let selectedFile of workExperienceArray; let idx = index"> -->
+                        <!-- <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"></app-attachment> -->
+                       
+                       <!-- (onDelete)="removeSelectedAttachment(idx)"  -->
+                         
+               
+                      <!-- </ng-container> -->
+                      <!-- <span class="spacer"></span>
+                      <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf" -->
+                        
+                      <!-- <button mat-stroked-button color="primary" (click)="file.click()">
+                        <mat-icon>upload</mat-icon>
+                        Add Attachments
+                      </button> -->
+                    </div>
                   </div>
 
               </div>
@@ -172,7 +202,9 @@
               <textarea matInput placeholder="Ex: Responsibilites"  [(ngModel)]="workexperience.remarks"></textarea>
             </mat-form-field>
           </div>
-
+          <div class="form-field-hold">
+            <app-company-identification-uploader ></app-company-identification-uploader>
+          </div>
       
       
        

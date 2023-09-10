@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+  import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { API_BASE_URL,Api_Base } from '../shared/api-config';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { SharedServiceService } from '../shared/shared-service.service';

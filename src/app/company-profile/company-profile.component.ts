@@ -11,7 +11,7 @@ export class CompanyProfileComponent implements OnInit {
   _selected_option = 'OVERVIEW';
   ngOnInit(): void {
   }
-
+orgId=1;
 
   selectOption(option) {
     this._selected_option = option;

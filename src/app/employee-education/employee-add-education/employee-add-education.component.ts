@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { API_BASE_URL } from 'src/app/shared/api-config';
+import { API_BASE_URL,vfsApi } from 'src/app/shared/api-config';
+import { FileUploadService } from 'src/app/shared/file-upload.service';
 import { SharedServiceService } from 'src/app/shared/shared-service.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class EmployeeAddEducationComponent implements OnInit {
   empIsactive:any;
   isSaveFormDataCalled= false;
 
-  constructor(private http:HttpClient,private sharedService:SharedServiceService) { }
+  constructor(private http:HttpClient,
+    private fileservice :FileUploadService, private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
     this.subscription = this.sharedService.employeeId$.subscribe((empid) => {
@@ -107,9 +109,50 @@ export class EmployeeAddEducationComponent implements OnInit {
       this.http.post(`${API_BASE_URL}/t/empeducation/add` , requestBody).subscribe((data)=>{
         console.log(data,'data')
 this.empEducationArray.push(data);
-
+this.uploadVfs(data)
       })
       
     }
+
+
+    uploadVfs = (data) => {
+      let files = this.fileservice.files || [];
+      console.log('upload is called');
+    
+      const formData = new FormData();
+      for (const file of files) {
+        formData.append('files', file, file.name);
+      }
+    
+      this.http
+        .post(`${vfsApi}/upload`, formData, {
+          headers: {
+            table_name: 'empeducation',
+            table_id: data.id.toString(),
+            uploadedbyfkempid: '1693465985040',
+            // category: 'img',
+          },
+        })
+        .subscribe((responseData) => {
+          console.log(responseData, 'uploaded successfully');
+          
+          // Assuming identificationInfo is an object where you want to store the attachment data
+          // Modify this part according to your application's structure
+          this.empEducationArray.attachment = responseData;
+         
+          // You can also perform any other actions you need to after the upload is successful here.
+        });
+    };
+
+
+
+
+
+
+
+
+
+
+
   }
 

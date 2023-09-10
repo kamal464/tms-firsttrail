@@ -1,0 +1,28 @@
+<div class="attachment-hold">
+    <div class="attachment" *ngIf="attachment || file" (click)="downloadVfs(attachment);" [ngClass]="{'with-blur': isProcessing}">
+      <div class="attachment-thumb-hold mat-elevation-z4" [matTooltip]="attachment ? attachment.filename: file.name">
+        <div class="default-thumb-icon">
+          <mat-icon>attach_file</mat-icon>
+        </div>
+        <div class="attachment-thumb-img" 
+          [style.background-image]="attachmentThumb"></div>
+      </div>
+      <div class="attachment-info-hold" [ngClass]="{'no-delete': readonly}" *ngIf="attachment" >
+        <span class="attachment-title" [matTooltip]="attachment.filename">File: {{ attachment.filename }}</span>
+        <span class="attachment-sub-title mat-small">Size : {{ attachment.filesizeinbytes | fileSize }}</span>
+      </div>
+      <div class="attachment-info-hold" [ngClass]="{'no-delete': readonly}" *ngIf="file">
+        <span class="attachment-title" [matTooltip]="file.name">File: {{ file.name }}</span>
+        <span class="attachment-sub-title mat-small">Size : {{ file.size | fileSize }}</span>
+      </div>
+      <div class="attachment-delete-button-hold" >
+        <button mat-icon-button color="warn" (click)="deleteAttachment($event);"
+          [matTooltip]="'Remove attachement: ' + (attachment ? attachment.filename: file.name)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="progressbar-hold" *ngIf="isProcessing">
+      <mat-spinner diameter="40" strokeWidth="3"></mat-spinner>
+    </div>
+  </div>

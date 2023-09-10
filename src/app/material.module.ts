@@ -53,7 +53,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
-
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
   exports: [
     A11yModule,
@@ -107,8 +108,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatTooltipModule,
     MatTreeModule,
     MatIconModule,
-    
-  
+    PdfJsViewerModule,
+    ImageCropperModule,
   ],
 })
 export class MaterialModule {}

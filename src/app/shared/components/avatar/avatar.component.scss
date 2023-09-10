@@ -1,0 +1,62 @@
+@import "../../../../styles.scss";
+
+.avatar-hold {
+  position: relative;
+  display: block;
+  width: 33px;
+  height: 35px;
+
+  .alpha-avatar,
+  .img-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+
+    @include mat-elevation(2);
+  }
+
+  .img-avatar {
+    z-index: 1;
+    background-image: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .change-button {
+    z-index: 3;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    width: 32px;
+    height: 32px;
+    line-height: 1;
+
+    ::ng-deep {
+      .mat-button-wrapper {
+        padding: 0;
+      }
+    }
+
+    .mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      color: $primary-color;
+    }
+  }
+}

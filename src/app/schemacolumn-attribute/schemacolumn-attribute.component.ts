@@ -3,6 +3,7 @@ import { API_BASE_URL ,Api_Base} from '../shared/api-config';
 import { HTTP_INTERCEPTORS , HttpClient,HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared/shared-service.service';
+import { inputs } from '@syncfusion/ej2-angular-popups/src/dialog/dialog.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { SharedServiceService } from '../shared/shared-service.service';
 })
 export class SchemacolumnAttributeComponent implements OnInit,OnChanges {
   @Input() currentSelectedReason:any = null;
+  @Input() selectedColumn:any = null;
   _currentAction = 'view'
   currentIndex = 0;
   newid :string;
@@ -25,11 +27,13 @@ export class SchemacolumnAttributeComponent implements OnInit,OnChanges {
 fields : any= [];
   ngOnInit(): void {
   //  this.getAttributes('8000002') ;
+  console.log(this.currentSelectedReason,'currentselectedobject')
    this.getDropCommentType();
   }
 ngOnChanges(changes: SimpleChanges): void {
   if (this.currentSelectedReason) {
     this.newid = this.currentSelectedReason.id
+
     this._currentAction = 'view';
     console.log(this.currentSelectedReason.id)
   
@@ -48,9 +52,32 @@ ngOnChanges(changes: SimpleChanges): void {
       .set('filtername', 'fkschemacolumnid')
       .set('filtervalue', [id]);
   
-    this.http.post<any[]>(`${API_BASE_URL}/t/schemacolumnattr/getall`, {}, { headers })
+const requestBody = {
+  "page": 0,
+  "limit": 0,
+  "filters": [
+                {
+                  "name": "tablename", 
+                  "value": this.currentSelectedReason.tablename
+                },
+                {
+                  "name": "columnname" ,
+                  "value": this.selectedColumn
+                }
+              ],
+  "order_by": [
+                {
+                  "name": "columnname", 
+                  "direction": "asc"
+                }
+              ]
+}
+
+
+    this.http.post<any[]>(`${API_BASE_URL}/t/schemacolumnattr/getlist`, requestBody)
       .subscribe((data) => {
         console.log(data);
+        console.log(requestBody)
   
         if (Array.isArray(data)) {
           this.fields = data;
@@ -89,18 +116,25 @@ ngOnChanges(changes: SimpleChanges): void {
       id: timestamp,
       serialno: '2',
       attrtype:  Array.isArray(this.enteredType) ? this.enteredType.toString() : this.enteredType,
-      fkschemacolumnid: this.currentSelectedReason.id,
+      // fkschemacolumnid: this.currentSelectedReason.id,
       description: this.enteredDesc,
       isactive: this.enteredactive ? '1' : '0',
+      tablename:this.currentSelectedReason.tablename,
+      columnname:this.selectedColumn,
+
     };
     
     //  this.isChecked = true
     console.log(requestBody)
     
-    this.http.post(`${API_BASE_URL}/t/schemacolumnattr/add`,requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/t/schemacolumnattr/add`,requestBody).subscribe((data) => {
+      this.fields.push(data);
       this.enteredDesc = '',
-      this.fields.push(requestBody);
       this.enteredType = ''
+    },
+    (error) => {
+      console.error('Error:', error);
+      // Handle the error appropriately
     })
     console.log('called addAttribute')
   }
@@ -115,9 +149,11 @@ ngOnChanges(changes: SimpleChanges): void {
         id: this.editid,
         serialno: '2',
         attrtype: fieldToUpdate.attrtype,
-        fkschemacolumnid: this.currentSelectedReason.id,
+        // fkschemacolumnid: this.currentSelectedReason.id,
         description: fieldToUpdate.description,
-        isactive: fieldToUpdate.isactive
+        isactive: fieldToUpdate.isactive,
+        tablename:fieldToUpdate.tablename,
+        columnname:fieldToUpdate.columnname
       };
   
       console.log(updateData);

@@ -1,75 +1,85 @@
-import { HttpClient } from '@angular/common/http';
-import { Component,OnInit, ViewChild, ViewEncapsulation, Inject } from '@angular/core';
-import { UploaderComponent, SelectedEventArgs, FileInfo, RemovingEventArgs } from '@syncfusion/ej2-angular-inputs';
-import { API_BASE_URL } from 'src/app/shared/api-config';
-
+import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
+import {
+  UploaderComponent,
+  SelectedEventArgs,
+  FileInfo,
+  RemovingEventArgs,
+} from '@syncfusion/ej2-angular-inputs';
+import { API_BASE_URL, vfsApi } from 'src/app/shared/api-config';
+import { Observable } from 'rxjs';
+import { inputs } from '@syncfusion/ej2';
+import { type } from 'os';
+import { highlightSearch } from '@syncfusion/ej2-dropdowns';
+import { FileUploadService } from 'src/app/shared/file-upload.service';
 
 @Component({
   selector: 'app-company-identification-uploader',
   templateUrl: './company-identification-uploader.component.html',
   styleUrls: ['./company-identification-uploader.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CompanyIdentificationUploaderComponent implements OnInit {
-  @ViewChild('fileupload')
-  public uploadObj: UploaderComponent;
+  @Output() uploadVfsEvent: EventEmitter<File[]> = new EventEmitter<File[]>();
+  @Input() table_id: any;
+  @Input() table_name: any;
+  @Input() uploadedbyfkempid: any;
+  @Input() category: any;
+  uploadingFiles: any;
+  @ViewChild('documentsUpload')
+  public documentsUpload: UploaderComponent;
 
   public path: Object = {
-      saveUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Save',
-      removeUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Remove'
+    saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
+    removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove',
   };
 
-  public dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
+  file: any;
 
-  public allowExtensions: string = '.doc, .docx, .xls, .xlsx';
-
- public onSelected(args: SelectedEventArgs): void {
-    args.filesData.splice(5);
-    let filesData: FileInfo[] = this.uploadObj.getFilesData();
-    let allFiles: FileInfo[] = filesData.concat(args.filesData);
-
-    if (allFiles.length > 5) {
-        for (let i: number = 0; i < allFiles.length; i++) {
-            if (allFiles.length > 5) {
-                allFiles.shift();
-            }
-        }
-        args.filesData = allFiles;
-        args.modifiedFilesData = args.filesData;
-    }
-    args.isModified = true;
-    
-    console.log(allFiles);
-
-    // Prepare the data to send to the API
-    const dataToSend = {
-        // Construct your data object as needed
-        files: allFiles
-    };
-
-    // Make the API call
-    this.http.post(`${API_BASE_URL}/t/vfs/uploadx`, dataToSend).subscribe(
-        (response) => {
-            // Handle successful response from the server
-            console.log('Data sent to server successfully', response);
-        },
-        (error) => {
-            // Handle error response from the server
-            console.error('Error sending data to server', error);
-        }
-    );
-}
-
-
-  public onFileRemove(args: RemovingEventArgs): void {
-      args.postRawFile = false;
-  }
-
-  constructor(private http : HttpClient) {
-    
-  }
+  constructor(private http: HttpClient, private fileservice : FileUploadService) {} // Inject HttpClient
   ngOnInit(): void {
+    console.log(
+      this.table_id,
+      this.table_name,
+      this.uploadedbyfkempid,
+      this.category
+    );
   }
+
+  onDocumentsSelected(args: SelectedEventArgs) {
+    const documents = args.filesData.map(
+      (fileInfo) => fileInfo.rawFile as Blob
+    );
+    this.file = args.filesData[0];
+    // setTimeout(() => {
+    //   this.dooo(this.file);
+    // }, 1000);
+    const selectedFiles = args.filesData.map(
+      (fileInfo) => fileInfo.rawFile as File
+    );
+    this.uploadingFiles = selectedFiles;
+    
+    this.uploadVfsEvent.emit(selectedFiles);
+    this.fileservice.afterFilesSelected(selectedFiles);
+    // this.uploadVfs(selectedFiles); // Call the uploadVfs method here with an array of File objects
+  }
+
+  onProgress(event: any) {
+    console.log(event);
+  }
+
+  // dooo(file: any) {
+  //   this.documentsUpload.notify('progress', file);
+  //   // this.uploadVfs(this.uploadingFiles)
+  // }
+  //
+
 }
-
-

@@ -90,11 +90,16 @@ import { DynamicTabNavComponent } from './shared/components/dynamic-tab/dynamic-
 import { DynamicComponentLoaderDirective } from './shared/components/dynamic-tab/dynamic-component-loader.directive';
 import { TopBarComponent } from './shared/components/top-bar/top-bar.component';
 import { TabeventserviceService } from './shared/tabeventservice.service';
-
-
+import { AttachmentComponent } from './shared/components/attachment/attachment.component';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { FileSizePipe } from './shared/pipes/file-size.pipe';
+import { AvatarComponent } from './shared/components/avatar/avatar.component';
+import { AvatarSelectionComponent } from './shared/components/avatar-selection/avatar-selection.component';
 @NgModule({
   declarations: [
     StringdatePipe,
+    FileSizePipe,
     AppComponent,
     CompanyOverviewComponent,
     CompanyOfficesComponent,
@@ -173,6 +178,11 @@ import { TabeventserviceService } from './shared/tabeventservice.service';
    DynamicTabNavComponent,
    DynamicComponentLoaderDirective,
    TopBarComponent,
+   AttachmentComponent,
+   ConfirmDialogComponent,
+   AvatarComponent,
+   AvatarSelectionComponent,
+   
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -184,6 +194,7 @@ import { TabeventserviceService } from './shared/tabeventservice.service';
     FormsModule,
     CommonModule,
     SyncModule,
+    PdfJsViewerModule,
     HttpClientModule,
     RouterModule.forRoot([
       {

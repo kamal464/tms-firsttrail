@@ -37,6 +37,7 @@ title:string;
     // this.coloumnRows = this.sharedservice.getColoumnRows();
     { this.fkSchemaTableId = this.sharedservice.getFkSchemaTableId();
     this.title = this.sharedservice.getSelectedOption();
+    console.log(this.title,'titlecheck')
 
    
   }
@@ -119,7 +120,7 @@ getSchemaColumn(){
       if(data != undefined && data != null){
 this.SchemaColumn = data
 console.log(this.SchemaColumn)
- this.filteredData = this.SchemaColumn.filter(item => item.fkschematableid === this.fkSchemaTableId);
+ this.filteredData = this.SchemaColumn.filter(item => item.tablename === this.title);
  this.selectObject(this.filteredData[0])
 console.log(this.filteredData);
 this.coloumnRows = this.filteredData.map(item => item.columnname);

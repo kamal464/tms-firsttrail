@@ -1,0 +1,8 @@
+<div class="avatar-hold" [matTooltip]="text" [ngStyle]="avatarHoldStyle">
+    <div class="alpha-avatar" [ngStyle]="avatarStyle">{{avatarText}}</div>
+    <div class="img-avatar" [ngStyle]="avatarImgStyle" [style.background-image]="avatarImage"></div>
+    <button mat-mini-fab *ngIf="!readonly" matTooltip="Click to change the avatar" class="change-button">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  

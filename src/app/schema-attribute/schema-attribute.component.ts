@@ -112,7 +112,7 @@ navigateToNewTab(): void {
 
   ngOnChanges() {
     if (this.currentSelectedReason) {
-      this.newid = this.currentSelectedReason.id
+      this.newid = this.currentSelectedReason.tablename
       this._currentAction = 'view';
       console.log(this.currentSelectedReason.id)
     
@@ -155,12 +155,12 @@ isEditable(fieldId: number): boolean {
 
 
 
-  getAttributes(id: string) {
+  getAttributes(id) {
     console.log(id);
   
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('filtername', 'fkschematableid')
+      .set('filtername', 'tablename')
       .set('filtervalue', [id]);
   
     this.http.post<any[]>(`${API_BASE_URL}/t/schematableattr/getall`, {}, { headers })
@@ -200,9 +200,10 @@ isEditable(fieldId: number): boolean {
       id: timestamp,
       serialno: '2',
       attrtype:  Array.isArray(this.enteredType) ? this.enteredType.toString() : this.enteredType,
-      fkschematableid: this.currentSelectedReason.id,
+      // fkschematableid: this.currentSelectedReason.id,
       description: this.enteredDesc,
       isactive: this.enteredactive ? '1' : '0',
+      tablename:this.currentSelectedReason.tablename
     };
     
     //  this.isChecked = true

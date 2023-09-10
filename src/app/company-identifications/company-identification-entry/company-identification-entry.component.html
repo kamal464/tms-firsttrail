@@ -40,19 +40,30 @@
           </span>
         </div>
       </div>
-      <div class="view-entry-hold">
-        <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
-            [innerHtml]="_attachments.length > 0 ? 'Attachements : '<b>' + _attachments.length + '</b>' : 'No Attachements'"></span> -->
-        <!-- </div> -->
-        <div class="attachments-hold" *ngIf="_attachments.length > 0">
-          <ng-container *ngFor="let attachment of _attachments">
-            <!-- <app-attachment [attachment]="attachment"></app-attachment> -->
+      <div class="view-entry-hold" *ngIf="identificationsInfo.attachments.length">
+        <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
+            [innerHtml]="(identificationsInfo.attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (identificationsInfo.attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
+        </div>
+        <div class="attachments-hold">
+          <ng-container *ngFor="let attachment of identificationsInfo.attachments">
+            <app-attachment [attachment]="attachment" [readonly]="false" [isProcessing]="isProcessing"
+            (onDelete)="removeAttachment(attachment)" >
+              
+            </app-attachment>
           </ng-container>
-          <span class="spacer"></span>
-          <button mat-stroked-button color="primary" >
-            <mat-icon>download</mat-icon>
-            Download All
-          </button>
+          <!-- <ng-container *ngFor="let selectedFile of _selectedAttachments; let idx = index">
+            <app-attachment [file]="selectedFile" [readonly]="false" [isProcessing]="isProcessing"
+            (onDelete)="removeSelectedAttachment(idx)" >
+             
+            </app-attachment>
+          </ng-container> -->
+          <!-- <span class="spacer"></span>
+          <input type="file" name="file" #file [multiple]="true" accept="image/*,application/pdf" -->
+            
+          <!-- <button mat-stroked-button color="primary" (click)="file.click()">
+            <mat-icon>upload</mat-icon>
+            Add Attachments
+          </button> -->
         </div>
       </div>
     </div>
@@ -139,10 +150,7 @@
         <ejs-datepicker [(ngModel)]="idValidUpto" ></ejs-datepicker>
       </div>
       <div class="view-entry-hold">
-        <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
-            [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
-        </div> -->
-        <app-company-identification-uploader></app-company-identification-uploader>
+        <app-company-identification-uploader [table_id]="table_id" [table_name]="table_name" [uploadedbyfkempid]="uploadedbyfkempid" [category]="category" ></app-company-identification-uploader>
       </div>
     </div>
   </div>

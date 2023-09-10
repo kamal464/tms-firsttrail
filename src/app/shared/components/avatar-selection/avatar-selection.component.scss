@@ -1,0 +1,142 @@
+@import '../../../../styles.scss';
+
+.avatar-selection-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 50vh;
+
+  .avatar-selection-before-file {
+    height: 200px;
+    background-color: $background-color;
+    border: dashed 1px #888;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px 0;
+    border-radius: 5px;
+    position: relative;
+
+    .error-hold {
+      position: absolute;
+      display: flex;
+      top: 10px;
+      align-items: center;
+      color: red;
+
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    .file-upload-icon {
+      color: $primary-color;
+      font-size: 72px;
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+    }
+
+    &.dropleft {
+      background-color: $background-color;
+      border-style: dashed;
+    }
+
+    &.dropenter {
+      background-color: #efffee;
+      border-style: solid;
+    }
+  }
+
+  .avatar-selection-with-file {
+    display: flex;
+    min-height: 300px;
+
+    .image-cropper-modify-hold {
+      display: flex;
+      flex-direction: column;
+      height: 50vh;
+
+      .image-cropper-toolbar {
+        display: flex;
+        padding: 0 3px;
+        background-color: #efefef;
+        margin: 5px;
+        border-radius: 5px;
+        justify-content: space-evenly;
+
+        button {
+          &:hover .toolbar-icon {
+            color: $primary-color;
+          }
+        }
+
+        .seperator {
+          border-left: 1px dotted #a4a4a4;
+          padding-left: 10px;
+          margin-left: 10px;
+        }
+      }
+
+      .image-cropper-hold {
+        max-width: 415px;
+        height: calc(50vh - 61px);
+      }
+    }
+
+    .cropped-image-preview-hold {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      padding-left: 20px;
+      border-left: 1px solid #a4a4a4;
+      width: 260px;
+      min-width: 260px;
+      max-width: 260px;
+
+      .cropped-image-preview-title {
+        text-align: center;
+      }
+
+      .cropped-image-preview {
+        img {
+          border: 1px solid #efefef;
+
+          &.rounded {
+            border-radius: 100%;
+          }
+        }
+      }
+
+      .cropped-preview-tooltip {
+        display: flex;
+        color: #666;
+        border: 1px dashed #888;
+        border-radius: 8px;
+        padding: 8px;
+        margin-bottom: 40px;
+
+        span {
+          margin-left: 6px;
+          line-height: 1.3;
+        }
+      }
+    }
+  }
+}
+
+.avatar-selection-buttons {
+  .avatar-selection-tooltip {
+    display: flex;
+    align-items: center;
+    color: #666;
+    margin-right: 20px;
+
+    .mat-icon {
+      margin-right: 8px;
+    }
+  }
+}

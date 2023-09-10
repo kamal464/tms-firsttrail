@@ -3,8 +3,9 @@ import { Component, Input, OnInit ,Output,EventEmitter} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SharedServiceService } from 'src/app/shared/shared-service.service';
-import { API_BASE_URL } from 'src/app/shared/api-config';
+import { API_BASE_URL ,vfsApi} from 'src/app/shared/api-config';
 import { data } from '@syncfusion/ej2';
+import { FileUploadService } from 'src/app/shared/file-upload.service';
 @Component({
   selector: 'app-employee-add-work-experience',
   templateUrl: './employee-add-work-experience.component.html',
@@ -25,7 +26,9 @@ export class EmployeeAddWorkExperienceComponent implements OnInit {
 
 
   private subscription: Subscription;
-  constructor(private http : HttpClient, private sharedService :SharedServiceService) { }
+  constructor(private http : HttpClient,
+    private fileservice:FileUploadService,
+    private sharedService :SharedServiceService) { }
 
   ngOnInit(): void {
     this.subscription = this.sharedService.employeeId$.subscribe((empid) => {
@@ -95,12 +98,40 @@ addWorkExperience(){
 
 this.http.post(`${API_BASE_URL}/t/empworkhistory/add`,requestBody).subscribe((data)=>{
   this.workExperience = data;
+  this.uploadVfs(data)
 })
 
 }
 
 
+uploadVfs = (data) => {
+  let files = this.fileservice.files || [];
+  console.log('upload is called');
 
+  const formData = new FormData();
+  for (const file of files) {
+    formData.append('files', file, file.name);
+  }
+
+  this.http
+    .post(`${vfsApi}/upload`, formData, {
+      headers: {
+        table_name: 'empworkhistory',
+        table_id: data.id.toString(),
+        uploadedbyfkempid: '1693465985040',
+        // category: 'img',
+      },
+    })
+    .subscribe((responseData) => {
+      console.log(responseData, 'uploaded successfully');
+      
+      // Assuming identificationInfo is an object where you want to store the attachment data
+      // Modify this part according to your application's structure
+      this.workExperience.attachment = responseData;
+     
+      // You can also perform any other actions you need to after the upload is successful here.
+    });
+};
 
 
 

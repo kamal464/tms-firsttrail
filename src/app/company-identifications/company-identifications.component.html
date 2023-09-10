@@ -13,7 +13,8 @@
       <div class="multiple-content-hold">
         <ng-container *ngFor="let identification of identificationsInfo">
         <app-company-identification-entry class="content-hold item-hold" [identificationsInfo]="identification"
-       [identityIssuedByDropdown]="identityIssuedByDropdown" [identityTypeDropdown]="identityTypeDropdown" [countries]="countries" 
+       [identityIssuedByDropdown]="identityIssuedByDropdown" [identityTypeDropdown]="identityTypeDropdown"
+       [attachments]="_attachments" [countries]="countries" 
        (onDelete)="deleteIdentity($event)"></app-company-identification-entry>
       </ng-container>
       <div  class="content-hold item-hold">
@@ -188,12 +189,13 @@
 
 
 
-          <div class="view-entry-hold">
+          <div class="form-field-hold">
             <!-- <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
                 [innerHtml]="(_attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (_attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
             </div> -->
            
-              <app-company-identification-uploader></app-company-identification-uploader>
+            <app-company-identification-uploader ></app-company-identification-uploader>
+
             
           </div>
         </div>

@@ -32,14 +32,15 @@ export class SchemaManagerComponent implements OnInit {
   // @ViewChild(SchemaAttributeComponent) schemaAttributeComponent: SchemaAttributeComponent;
   isProcessing = false;
 
- 
+ id:any;
+ index:any;
   currentEmployee = null;
   coloumnRows: any = [];
   _currentAction = 'view';
   activeButton :string
   // defaultSelectedReasonIndex:number = 2;
   objindex: number;
-  id: any;
+  tablename: any;
   errorMsg = '';
   currentRoute: string;
   isChecked = true;
@@ -55,12 +56,12 @@ export class SchemaManagerComponent implements OnInit {
     this.module = event.value;
     this.feature = event.value;
   }
-  module: string[] = [];
+  module: any ;
   moduleDrop: any[];
-  feature: string[] = [];
+  feature: any = [];
   featureDrop: any[];
-  description: string;
-  notes: string;
+  description: any;
+  notes: any;
   _selected_option: any = '';
   selectedObject: any;
   columns: any = [];
@@ -100,7 +101,7 @@ export class SchemaManagerComponent implements OnInit {
     };
 
     this.tabeventservice.openOrAddTab(tabItem)
-    this.sharedservice.setFkSchemaTableId(this.id);
+    this.sharedservice.setFkSchemaTableId(this.tablename);
     this.sharedservice.setSelectedOption(this._selected_option);
   
   }
@@ -109,15 +110,20 @@ export class SchemaManagerComponent implements OnInit {
  
 
   selectObject(index: number = 0) {
-    if (this.filteredReasons && this.filteredReasons.length > index) {
+   
+    this.index = index;
+    console.log(index,'selecteobject')
+     
       this.selectedObject = this.filteredReasons[index];
-
+console.log(this.selectedObject)
       this.module = [this.selectedObject?.modulename] || [];
       this.feature = [this.selectedObject?.featurename] || [];
       this.description = this.selectedObject?.description || '';
       this.notes = this.selectedObject?.notes || '';
       this.isChecked = this.selectedObject?.isactive || '';
-    }
+    
+    console.log(this.module,'module')
+    
   }
 
   // onEditClick() {
@@ -144,7 +150,7 @@ export class SchemaManagerComponent implements OnInit {
   }
   doReason(action: any): void {
     this._selected_option = action.tablename;
-    this.id = action.id;
+    this.tablename = action.tablename;
     console.log(this._selected_option);
     this.getColumns();
 
@@ -169,8 +175,9 @@ export class SchemaManagerComponent implements OnInit {
           this._selected_option = data[0]?.tablename;
           this.currentSelectedReason = data[0];
           this.id = data[0].id;
-          console.log(this.id);
-          this.sharedservice.setFkSchemaTableId(this.id);
+          this.tablename = data[0].tablename;
+          console.log(this.tablename);
+          this.sharedservice.setFkSchemaTableId(this.tablename);
 
           console.log(this.filteredReasons, this._selected_option);
           this.selectObject(0);
@@ -183,7 +190,7 @@ export class SchemaManagerComponent implements OnInit {
 
   editColumns() {
     const requestBody = {
-      id: this.id,
+      id: this.selectedObject.id,
       tablename: this._selected_option,
       modulename: this.module.toString(),
       featurename: this.feature.toString(),
@@ -194,9 +201,18 @@ export class SchemaManagerComponent implements OnInit {
     console.log(requestBody);
     this.http
       .post(`${API_BASE_URL}/t/schematable/update`, requestBody)
-      .subscribe(() => {
-        console.log('editColumns called');
+      .subscribe((data) => {
+        this.module = requestBody.modulename,
+        this.feature = requestBody.featurename,
+        this.description = requestBody.description,
+        this.notes = requestBody.notes,
+      
+        console.log('editColumns called' ,data);
+       
       });
+      this.getReasons();
+   
+      
   }
 
   getColumns() {

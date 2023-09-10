@@ -19,7 +19,21 @@
     }
   }
   
-
+  .tool-bar {
+    width: calc(100% - 32px);
+    border-bottom: 1px solid #ddd;
+  
+    .tool-bar-title {
+      font-weight: bold;
+      text-transform: uppercase;
+  
+      &.no-transform {
+        text-transform: none;
+      }
+    }
+  
+    
+  }
   .attri-input{
     // font-weight: bold;
         font-size: 120%;

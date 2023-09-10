@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>{{this.data.title}}</h1>
+<div mat-dialog-content class="avatar-selection-content">
+  <input type="file" name="file" #file [multiple]="false" accept="image/*" (change)="fileChangeEvent($event)">
+  <div class="avatar-selection-before-file" *ngIf="!imageDroppedFile" draggable="true" ngClass="{{dragAreaClass}}">
+    <mat-icon class="file-upload-icon">upload</mat-icon>
+    <span class="file-drop-text mat-title">Drag & Drop it here!</span>
+    <button mat-flat-button color="primary" class="file-browse-text" (click)="file.click()">Click here to
+      browse.</button>
+    <div class="error-hold" *ngIf="error_text">
+      <mat-icon>error</mat-icon>
+      <span class="mat-small">Please select/drag only one file</span>
+    </div>
+  </div>
+  <div class="avatar-selection-with-file" *ngIf="imageDroppedFile">
+    <div class="image-cropper-modify-hold">
+      <div class="image-cropper-toolbar">
+        <button mat-icon-button matTooltip="Select different image" (click)="file.click()">
+          <mat-icon class="toolbar-icon">upload</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Reset image">
+          <mat-icon class="toolbar-icon" (click)="resetImage()">restart_alt</mat-icon>
+        </button>
+        <span class="seperator"></span>
+        <button mat-icon-button matTooltip="Rotate Left" (click)="rotateLeft()">
+          <mat-icon class="toolbar-icon">rotate_left</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Rotate Right" (click)="rotateRight()">
+          <mat-icon class="toolbar-icon">rotate_right</mat-icon>
+        </button>
+        <span class="seperator"></span>
+        <button mat-icon-button matTooltip="Flip" (click)="flipHorizontal()">
+          <mat-icon class="toolbar-icon">flip</mat-icon>
+        </button>
+        <span class="seperator"></span>
+        <button mat-icon-button matTooltip="Zoom In" (click)="zoomIn()">
+          <mat-icon class="toolbar-icon">zoom_in</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Zoom Out" (click)="zoomOut()">
+          <mat-icon class="toolbar-icon">zoom_out</mat-icon>
+        </button>
+      </div>
+      <div class="image-cropper-hold">
+        <image-cropper [imageFile]="imageDroppedFile" [maintainAspectRatio]="true" [containWithinAspectRatio]="true"
+          [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+          [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+          [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()">
+        </image-cropper>
+      </div>
+    </div>
+    <div class="cropped-image-preview-hold">
+      <div class="cropped-preview-tooltip">
+        <mat-icon>info</mat-icon>
+        <span class="mat-small">Use the bounded boxes to resize and select the avatar</span>
+      </div>
+      <span class="cropped-image-preview-title mat-title">Preview</span>
+      <div class="cropped-image-preview">
+        <img [src]="croppedImage" style="width: 256px;" class="mat-elevation-z3"
+          [ngClass]="{'rounded': this.data.is_rounded}" />
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="avatar-selection-buttons">
+  <span class="avatar-selection-tooltip mat-small">
+    <mat-icon>info</mat-icon>
+    Click on 'Change' button to upload.
+  </span>
+  <span class="spacer"></span>
+  <button mat-raised-button [mat-dialog-close]="croppedFile" color="primary" [disabled]="!croppedImage">Change</button>
+  <button mat-stroked-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>
