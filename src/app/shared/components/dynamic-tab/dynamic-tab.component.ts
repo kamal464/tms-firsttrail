@@ -51,6 +51,7 @@ export class DynamicTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.viewTabs)
       this.tabeventservice.tabEventSubject.subscribe((item)=>
     {
       this.openOrAddTab(item)

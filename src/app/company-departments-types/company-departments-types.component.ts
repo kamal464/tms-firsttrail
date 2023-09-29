@@ -11,9 +11,7 @@ export class CompanyDepartmentsTypesComponent implements OnInit {
   errorMsg = '';
 departmentTypes :any = [];
   isProcessing = false;
-  code : string;
-  name: string;
-
+  sendBody:any;
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
@@ -27,6 +25,13 @@ departmentTypes :any = [];
     }
   }
   
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+  }
 
   getDepartmentTypes() {
     const headers = new HttpHeaders()
@@ -64,8 +69,8 @@ addDepartmentType(){
       serialno:'3',
       iseditable:'1',
       isactive:'0',
-      code: this.code,
-      value:this.name, 
+      code: this.sendBody.code,
+      value:this.sendBody.name, 
     }; 
 
     this.http.post(`${API_BASE_URL}/t/reasonitem/add` , requestBody).subscribe((data)=>{

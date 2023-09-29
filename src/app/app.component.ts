@@ -1,14 +1,35 @@
-import { Component,OnInit,ViewChild,AfterViewInit,OnChanges ,SimpleChanges} from '@angular/core';
+import { Component,OnInit,ViewChild,AfterViewInit,OnChanges ,SimpleChanges, OnDestroy} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedServiceService } from './shared/shared-service.service';
 import { SchemaAttributeComponent } from './schema-attribute/schema-attribute.component';
+import * as v8 from 'v8';
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
+  private memoryUsage: number; //
+  ngOnInit(): void {
+
+    // this.memoryUsage = performance.now();
+
+   
+    // setInterval(() => {
+    //   const currentMemoryUsage = performance.now();
+    //   const memoryIncrease = currentMemoryUsage - this.memoryUsage;
+    //   console.log(`Memory increase (milliseconds): ${memoryIncrease}`);
+      
+     
+    //   this.memoryUsage = currentMemoryUsage;
+    // }, 1000); 
+  }
+
+
+
 //   title = 'dtpl';
 //   appComponent = 'yes'
 //   menuItems = [];

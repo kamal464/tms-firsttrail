@@ -1,0 +1,8 @@
+<div class="control-label">{{label}}</div>
+<ejs-dropdownlist id='games' [dataSource]='dropdowndata' [fields]='localFields' [placeholder]='localWaterMark'
+ [popupHeight]='localheight'[(ngModel)]="fielddata" (change)="DataToParent($event)"></ejs-dropdownlist>
+
+
+ <div *ngIf="dropdownControl.invalid && dropdownControl.touched" class="error-message">
+    This field is required.
+  </div>

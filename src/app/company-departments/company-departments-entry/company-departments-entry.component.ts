@@ -3,7 +3,8 @@ import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { API_BASE_URL,Api_Base } from 'src/app/shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
+// import { EmitType } from '@syncfusion/ej2-base';
+import { EmitType } from '@syncfusion/ej2-base/src/base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 @Component({
   selector: 'app-company-departments-entry',
@@ -35,6 +36,12 @@ export class CompanyDepartmentsEntryComponent implements OnInit {
    
     // console.log(this._offices)
   }
+
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.department[inputName] = inputValue;
+  }
   getOfficeCode(fkofficeid: number): string {
     const office = this.officeType.find((office) => office.id === fkofficeid);
     return office ? office.code : '';
@@ -51,7 +58,7 @@ export class CompanyDepartmentsEntryComponent implements OnInit {
   updateDepartment(){
     const requestBody = {
       id:this.department.id,
-      fkofficeid:this.selectedOffice.id ,
+      fkofficeid:this.department.officeid ,
       fkorgid:this.department.fkorgid ,
       type: this.department.type,
       name:this.department.name,
@@ -60,8 +67,8 @@ export class CompanyDepartmentsEntryComponent implements OnInit {
     console.log(requestBody)
     this.http.post(`${API_BASE_URL}/t/department/update` , requestBody).subscribe((data)=>{
 console.log(data ,"Department is updated")
-this.getOfficeCode(this.selectedOffice.id)
-this.getOfficeType(this.selectedOffice.id)
+this.getOfficeCode(this.department.officeid)
+this.getOfficeType(this.department.officeid)
 this.department =data
     })
   }

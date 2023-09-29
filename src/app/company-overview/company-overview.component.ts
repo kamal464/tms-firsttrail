@@ -3,7 +3,8 @@ import { KitUiTextEditComponent } from '../kit-ui-text-edit/kit-ui-text-edit.com
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL,Api_Base } from '../shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
+// import { EmitType } from '@syncfusion/ej2-base';
+import { EmitType } from '@syncfusion/ej2-base/src/base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 @Component({
   selector: 'app-company-overview',
@@ -12,7 +13,7 @@ import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 })
 export class CompanyOverviewComponent implements OnInit {
   @ViewChild('KitUiTextEditComponent') child: KitUiTextEditComponent;
- 
+//  mask:any='000-000-0000';
   savedData: any = [];
   countries : any =[];
   getall:any = [];
@@ -31,11 +32,13 @@ export class CompanyOverviewComponent implements OnInit {
       .post(`${API_BASE_URL}/t/org/getall`, {})
       .subscribe((data: any) => {
         this.getall = data;
+        this.formData = data[0];
         console.log(data,this.getall);
        
       });
   }
   handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
     this.formData[inputName] = inputValue;
   }
 
@@ -71,24 +74,15 @@ export class CompanyOverviewComponent implements OnInit {
   public countrydata: any = [
     
 ];
-// maps the appropriate column to fields property
 public fields: Object = { text: 'value', value: 'id' };
-// set the height of the popup element
 public height: string = '220px';
-// set the placeholder to DropDownList input element
 public watermark: string = 'Select a country';
-// set the placeholder to filter search box input element
 public filterPlaceholder: string = 'Search';
-// filtering event handler to filter a Country
 public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
     let query: Query = new Query();
-    //frame the query based on search string with filter type.
     query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
-    //pass the filter data source, filter query to updateData method.
     e.updateData(this.countrydata, query);
 }
-
-
 
 
 
@@ -104,58 +98,35 @@ public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
     console.log(this.formData)
 const requestbody = {
   id : 1,
-  code:this.formData.code? this.formData.code : this.getall[0].code , 
-  name : this.formData.name? this.formData.name : this.getall[0].name,
-  legalname : this.formData.legalname? this.formData.legalname : this.getall[0].legalname, 
- fkcountrycode : this.formData.fkcountrycode? this.formData.fkcountrycode : this.getall[0].fkcountrycode,
- contactname : this.formData.contactname? this.formData.contactname : this.getall[0].contactname,
- email:this.formData.email? this.formData.email : this.getall[0].email,
- phone: this.formData.phone? this.formData.phone : this.getall[0].phone,
- fax:this.formData.fax? this.formData.fax : this.getall[0].fax,
- website : this.formData.website? this.formData.website : this.getall[0].website,
- comments:this.formData.comments? this.formData.comments : this.getall[0].comments,
- whatsapp : this.formData.whatsapp? this.formData.whatsapp : this.getall[0].whatsapp,
- linkedin : this.formData.linkedin? this.formData.linkedin : this.getall[0].linkedin,
- type:this.formData.type? this.formData.type : this.getall[0].type,
- golivedate:this.formData.golivedate? this.formData.golivedate : this.getall[0].golivedate,
-sid: this.getall[0].sid,
-rss:  this.getall[0].rss,
-lct : this.getall[0].lct,
-lmt : this.getall[0].lmt ,
-sct : this.getall[0].sct ,
-smt :  this.getall[0].smt,
+  code:this.formData.code , 
+  name : this.formData.name,
+  legalname : this.formData.legalname, 
+ fkcountrycode : this.formData.fkcountrycode,
+ contactname : this.formData.contactname,
+ email:this.formData.email,
+ phone: this.formData.phone,
+ fax:this.formData.fax,
+ website : this.formData.website,
+ comments:this.formData.comments,
+ whatsapp : this.formData.whatsapp,
+ linkedin : this.formData.linkedin,
+ type:this.formData.type,
+ golivedate:this.formData.golivedate,
+sid: this.formData.sid,
+rss:  this.formData.rss,
+lct : this.formData.lct,
+lmt : this.formData.lmt ,
+sct : this.formData.sct ,
+smt :  this.formData.smt,
 }
-
-// const requestbody = {
-//   "name": "Virinchi Infra",
-//   "whatsapp": "",
-//   "lmt": 1685126240,
-//   "legalname": "Virinchi Infra Private Limited",
-//   "linkedin": null,
-//   "sct": 1685126240,
-//   "fkcountrycode": "IN",
-//   "comments": "State-of-art development center located at Hyderabad, DTPL has been able to serve its clients effectively and efficiently worldwide.",
-//   "smt": 1685126240,
-//   "contactname": null,
-//   "type": 1,
-//   "phone": "",
-//   "golivedate": 1,
-//   "email": "rsd@vipl.com",
-//   "sid": 0,
-//   "code": "VIPL",
-//   "fax": "",
-//   "rss": 0,
-//   "id": 1,
-//   "website": "",
-//   "lct": 1685126240
-// }
-
 
 console.log(requestbody)
     this.http
       .post(`${API_BASE_URL}/t/org/update`, requestbody)
-      .subscribe();
-    // console.log(myJSON);
+      .subscribe((data) => {
+        console.log(data)
+      });
+   
   }
   
   onDataChanged(data: any) {

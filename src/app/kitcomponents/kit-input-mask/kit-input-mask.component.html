@@ -1,0 +1,9 @@
+<div>
+    <div class="control-label">{{label}}</div>
+    <!-- mask="000-000-0000" -->
+    <ejs-maskedtextbox   [mask]="mask"   name="label" [placeholder]="placeholder" 
+    [(ngModel)]="fielddata"
+    #inputValue
+    (input)="DataToParent(inputValue.value)"></ejs-maskedtextbox>
+    
+</div>

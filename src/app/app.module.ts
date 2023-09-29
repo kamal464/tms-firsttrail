@@ -96,6 +96,16 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { AvatarSelectionComponent } from './shared/components/avatar-selection/avatar-selection.component';
+import { KitTextComponentComponent } from './kitcomponents/kit-text-component/kit-text-component.component';
+import { KitDatepickerComponent } from './kitcomponents/kit-datepicker/kit-datepicker.component';
+import { KitCountryDropdownComponent } from './kitcomponents/kit-country-dropdown/kit-country-dropdown.component';
+import { KitInputMaskComponent } from './kitcomponents/kit-input-mask/kit-input-mask.component';
+import { KitTextareaComponent } from './kitcomponents/kit-textarea/kit-textarea.component';
+import { KitDropdownComponent } from './kitcomponents/kit-dropdown/kit-dropdown.component';
+import { KitRadioComponent } from './kitcomponents/kit-radio/kit-radio.component';
+import { KitToggleSwitchComponent } from './kitcomponents/kit-toggle-switch/kit-toggle-switch.component';
+import { KitDateTimePickerComponent } from './kitcomponents/kit-date-time-picker/kit-date-time-picker.component';
+import { KitCheckboxComponent } from './kitcomponents/kit-checkbox/kit-checkbox.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -182,7 +192,16 @@ import { AvatarSelectionComponent } from './shared/components/avatar-selection/a
    ConfirmDialogComponent,
    AvatarComponent,
    AvatarSelectionComponent,
-   
+   KitTextComponentComponent,
+   KitDatepickerComponent,
+   KitCountryDropdownComponent,
+   KitInputMaskComponent,
+   KitTextareaComponent,
+   KitDropdownComponent,
+   KitRadioComponent,
+   KitToggleSwitchComponent,
+   KitDateTimePickerComponent,
+   KitCheckboxComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

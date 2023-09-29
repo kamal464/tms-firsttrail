@@ -4,7 +4,7 @@
 
 
     <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">SurName</mat-label>
+        <!-- <mat-label class="form-field-label">SurName</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -17,28 +17,20 @@
             [(ngModel)]="empSurname"
            
           />
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'SurName'"  [placeholder]="'SurName'"
+        (sendData)="handleInput('surname',$event)"
+        ></app-kit-text-component>
        
       </div>
       <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">GiveName</mat-label>
-        <mat-form-field
-          class="form-field-input"
-          floatPlaceholder="never"
-          appearance="fill"
-        >
-          <input
-            matInput
-            [placeholder]="'sunny'"
-            #inputValue
-            [(ngModel)]="empGivename"
-           
-          />
-        </mat-form-field>
+        <app-kit-text-component [label]="'Givenname'"  [placeholder]="'Givenname'"
+        (sendData)="handleInput('givenname',$event)"
+        ></app-kit-text-component>
        
       </div>
      <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">DisplayName</mat-label>
+        <!-- <mat-label class="form-field-label">DisplayName</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -50,12 +42,14 @@
             #inputValue
             [(ngModel)]="empDisplayname"
           />
-        </mat-form-field>
-       
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'DisplayName'"  [placeholder]="'DisplayName'"
+        (sendData)="handleInput('displayname',$event)"
+        ></app-kit-text-component>
       </div>
       <div class="form-field-hold two-column-fields">
        
-        <mat-label class="form-field-label">Title</mat-label>
+        <!-- <mat-label class="form-field-label">Title</mat-label>
         <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -66,13 +60,17 @@
           <mat-option *ngFor="let title of fetchedTitle" [value]="title.id">{{title.value}} </mat-option
           >
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
+      <ng-container *ngIf="isDataLoaded">
+      <app-kit-dropdown [label]="'Title'"  [placeholder]="'Title'" [dropdata]="fetchedTitle"
+           (sendData)="handleInput('title',$event)" ></app-kit-dropdown>
+        </ng-container>
   
       </div> 
 
 
       <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">EmpCode</mat-label>
+        <!-- <mat-label class="form-field-label">EmpCode</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -84,11 +82,14 @@
             #inputValue
            [(ngModel)]="empCode"
           />
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'EmpCode'"  [placeholder]="'EmpCode'"
+        (sendData)="handleInput('empcode',$event)"
+        ></app-kit-text-component>
        
       </div>
       <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">EmpNo</mat-label>
+        <!-- <mat-label class="form-field-label">EmpNo</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -100,7 +101,10 @@
             #inputValue
            [(ngModel)]="empNo"
           />
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'EmpNo'"  [placeholder]="'EmpNo'"
+        (sendData)="handleInput('empno',$event)"
+        ></app-kit-text-component>
        
       </div>
       <!-- <div class="form-field-hold two-column-fields">
@@ -169,7 +173,7 @@
        
       </div> -->
       <div class="form-field-hold two-column-fields">
-        <mat-label class="form-field-label">Status</mat-label>
+        <!-- <mat-label class="form-field-label">Status</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -183,7 +187,10 @@
             [value]="'active'"
            
           />
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'Status'"  [fielddata]="'active'" [placeholder]="'Status'" [readonly]="true" 
+        (sendData)="handleInput('status',$event)"
+        ></app-kit-text-component>
        
       </div>
 <!-- <div class="form-field-hold two-column-fields">
@@ -220,13 +227,14 @@
           
          
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Date Of Joining</mat-label>
+            <!-- <mat-label class="form-field-label">Date Of Joining</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Joining" 
                  [disabled]="false" [(ngModel)]="empJoiningdate">
               <mat-datepicker-toggle matSuffix [for]="Joining"></mat-datepicker-toggle>
               <mat-datepicker #Joining disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker [label]="'Date Of Joining'" [placeholder]="'Date Of Joining'"  (sendData)="handleInput('joiningdate',$event)"  ></app-kit-datepicker>
           </div>
          
          
@@ -235,7 +243,7 @@
 
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Supervisor</mat-label>
+            <!-- <mat-label class="form-field-label">Supervisor</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -243,12 +251,15 @@
             <mat-select placeholder="Click to Select">
               <mat-option></mat-option>
             </mat-select>
-          </mat-form-field>
-      
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Supervisor'"  [placeholder]="'Supervisor'" [dropdata]=""
+          (sendData)="handleInput('supervisorfkempid',$event)" ></app-kit-dropdown>
+      </ng-container>
           </div>
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Manager</mat-label>
+            <!-- <mat-label class="form-field-label">Manager</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -256,12 +267,15 @@
             <mat-select placeholder="Click to Select">
               <mat-option></mat-option>
             </mat-select>
-          </mat-form-field>
-      
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Manager'"  [placeholder]="'Manager'" [dropdata]=""
+          (sendData)="handleInput('managerfkempid',$event)" ></app-kit-dropdown>
+          </ng-container>
           </div>
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Designation</mat-label>
+            <!-- <mat-label class="form-field-label">Designation</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -269,12 +283,15 @@
             <mat-select placeholder="Click to Select" [(ngModel)]="empDesignation">
               <mat-option *ngFor="let designation of fetchedDesignation" [value]="designation.id">{{designation.value}}</mat-option>
             </mat-select>
-          </mat-form-field>
-      
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Designation'"  [placeholder]="'Designation'" [dropdata]="fetchedDesignation"
+          (sendData)="handleInput('designation',$event)" ></app-kit-dropdown>
+        </ng-container>
           </div>
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Office</mat-label>
+            <!-- <mat-label class="form-field-label">Office</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -282,12 +299,16 @@
             <mat-select placeholder="Click to Select" [(ngModel)]="empOffice" (selectionChange)="onOfficeSelect($event)">
               <mat-option *ngFor="let office of officesDropdown" [value]="office.id">{{office.value}}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Office'"  [placeholder]="'Office'" [dropdata]="officesDropdown"
+          (sendData)="handleInput('fkofficeid',$event)" ></app-kit-dropdown>
+        </ng-container>
       
           </div>
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Department</mat-label>
+            <!-- <mat-label class="form-field-label">Department</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -295,13 +316,16 @@
             <mat-select placeholder="Click to Select" [(ngModel)]="empDepartment">
               <mat-option *ngFor="let department of departmentsDropdown" [value]="department.id">{{department.value}}</mat-option>
             </mat-select>
-          </mat-form-field>
-      
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Department'"  [placeholder]="'Department'" [dropdata]="departmentsDropdown"
+          (sendData)="handleInput('fkdepartmentid',$event)" ></app-kit-dropdown>
+        </ng-container>
           </div>
          
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Grade</mat-label>
+            <!-- <mat-label class="form-field-label">Grade</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -309,13 +333,16 @@
             <mat-select placeholder="Click to Select" [(ngModel)]="empGrade">
               <mat-option *ngFor="let grade of fetchedGrade" [value]="grade.id">{{grade.value}}</mat-option>
             </mat-select>
-          </mat-form-field>
-      
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Grade'"  [placeholder]="'Grade'" [dropdata]="fetchedGrade"
+          (sendData)="handleInput('grade',$event)" ></app-kit-dropdown>
+        </ng-container>
           </div>
 
           <div class="form-field-hold two-column-fields">
        
-            <mat-label class="form-field-label">Type</mat-label>
+            <!-- <mat-label class="form-field-label">Type</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -323,39 +350,45 @@
             <mat-select placeholder="Click to Select" [(ngModel)]="empType">
               <mat-option *ngFor="let type of fetchedType" [value]="type.id">{{type.value}}</mat-option>
             </mat-select>
-          </mat-form-field>
-          
+          </mat-form-field> -->
+          <ng-container *ngIf="isDataLoaded">
+          <app-kit-dropdown [label]="'Type'"  [placeholder]="'Type'" [dropdata]="fetchedType"
+          (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
+          </ng-container>
           </div>
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Effective Date</mat-label>
+            <!-- <mat-label class="form-field-label">Effective Date</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Effective" 
                  [disabled]="false" [(ngModel)]="empEffectiveDate" >
               <mat-datepicker-toggle matSuffix [for]="Effective"></mat-datepicker-toggle>
               <mat-datepicker #Effective disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker [label]="'Effective Date'" [placeholder]="'Effective Date'"  (sendData)="handleInput('effectivedate',$event)"  ></app-kit-datepicker>
           </div>
           
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Date Of Birth</mat-label>
+            <!-- <mat-label class="form-field-label">Date Of Birth</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="dob" 
                  [disabled]="false" [(ngModel)]="empDateOfBirth" >
               <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
               <mat-datepicker #dob disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker [label]="'Date Of Birth'" [placeholder]="' Date Of Birth'"  (sendData)="handleInput('dateofbirth',$event)"  ></app-kit-datepicker>
           </div>
 
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Date Of Marriage</mat-label>
+            <!-- <mat-label class="form-field-label">Date Of Marriage</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="dom" 
                  [disabled]="false" [(ngModel)]="empDateOfMarriage" >
               <mat-datepicker-toggle matSuffix [for]="dom"></mat-datepicker-toggle>
               <mat-datepicker #dom disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker [label]="'Date Of Marriage'" [placeholder]="'Date Of Marriage'"  (sendData)="handleInput('dateofmarriage',$event)"  ></app-kit-datepicker>
           </div>
 
           
@@ -382,7 +415,7 @@
           </div> -->
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">LinkedIn</mat-label>
+            <!-- <mat-label class="form-field-label">LinkedIn</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -394,12 +427,16 @@
                 #inputValue
                [(ngModel)]="empLinkedIn"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component [label]="'LinkedIn'"  [placeholder]="'LinkedIn'"
+        (sendData)="handleInput('linkedin',$event)"
+        ></app-kit-text-component>
+       
            
           </div>
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Twitter</mat-label>
+            <!-- <mat-label class="form-field-label">Twitter</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -411,13 +448,17 @@
                 #inputValue
                [(ngModel)]="empTwitter"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component [label]="'Twitter'"  [placeholder]="'Twitter'"
+            (sendData)="handleInput('twitter',$event)"
+            ></app-kit-text-component>
+           
            
           </div>
 
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Instagram</mat-label>
+            <!-- <mat-label class="form-field-label">Instagram</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -429,12 +470,17 @@
                 #inputValue
                [(ngModel)]="empInstagram"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <app-kit-text-component [label]="'Instagram'"  [placeholder]="'Instagram'"
+            (sendData)="handleInput('instagram',$event)"
+            ></app-kit-text-component>
+           
            
           </div>
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Facebook</mat-label>
+            <!-- <mat-label class="form-field-label">Facebook</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -446,12 +492,17 @@
                 #inputValue
                [(ngModel)]="empFacebook"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <app-kit-text-component [label]="'Facebook'"  [placeholder]="'Facebook'"
+            (sendData)="handleInput('facebook',$event)"
+            ></app-kit-text-component>
+           
            
           </div>
 
           <div class="form-field-hold two-column-fields">
-            <mat-label class="form-field-label">Website</mat-label>
+            <!-- <mat-label class="form-field-label">Website</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -463,15 +514,21 @@
                 #inputValue
                [(ngModel)]="empWebsite"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component [label]="'Website'"  [placeholder]="'Website'"
+            (sendData)="handleInput('website',$event)"
+            ></app-kit-text-component>
+           
            
           </div>
 
           <div class="form-field-hold " >
-            <mat-label class="form-field-label">Remarks</mat-label>
+            <!-- <mat-label class="form-field-label">Remarks</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <textarea matInput placeholder="Ex: Notes" [(ngModel)]="empRemarks" ></textarea>
-            </mat-form-field>
+            </mat-form-field> -->
+
+            
           </div>
  
 

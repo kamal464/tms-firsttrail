@@ -14,16 +14,23 @@
         <span class="mat-title">Adding New Grade</span>
         <div class="new-grade-inputs content-data-hold" >
           <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Code</mat-label>
+            <!-- <mat-label class="form-field-label">Code</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: MD" [(ngModel)]="code">
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component [label]="'Code'"  [placeholder]="'Code'"
+            (sendData)="handleInput('code',$event)"
+            ></app-kit-text-component>
           </div>
           <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Name</mat-label>
+            <!-- <mat-label class="form-field-label">Name</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: Managing Director"  [(ngModel)]="name">
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component [label]="'Name'"  [placeholder]="'Name'"
+            (sendData)="handleInput('name',$event)"
+            ></app-kit-text-component>
+
           </div>
         </div>
         <div class="new-grade-controls">

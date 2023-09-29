@@ -1,8 +1,9 @@
-<div class="identifications-item-hold">
-   
+<div class="identifications-item-hold" >
+   <ng-container  >
     <tool-bar [title]="identificationsInfo.type" class="content-title-hold" [currentAction]="_currentAction"
       (onAction)="doAction($event)" [hasEdit]="true" [hasDelete]="true" *ngIf="!isProcessing">
     </tool-bar>
+  </ng-container>
     <div class="identification-contents content-data-hold no-padding-h" *ngIf="_currentAction == 'view' && !isProcessing">
       <div style="display: flex;padding:0 25px;">
         <div class="view-entry-hold two-three-column-field">
@@ -11,7 +12,7 @@
         </div>
         <div class="view-entry-hold three-column-field">
           <span class="entry-text flag-hold" style="justify-content: flex-end;"  *ngFor="let country of countries">
-            <!-- <mat-icon [svgIcon]="identification.fkcountrycode" *ngIf="identification.fkcountry"></mat-icon> -->
+            <!-- <mat-icon [svgIcon]="identification.fkcountrycode" *ngIf="identification.fkcountry"></mat  -icon> -->
            {{identificationsInfo.fkcountrycode == country.id ? country.value : null}}
           </span>
         </div>
@@ -71,9 +72,16 @@
       *ngIf="_currentAction == 'edit'">
      
       <div class="form-field-hold two-column-field">
-         <div class="control-label" >country</div>
+         <!-- <div class="control-label" >country</div>
           <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
-          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist> -->
+
+          <app-kit-country-dropdown [label]="'country'"  [placeholder]="'country'"
+          (sendData)="handleInput('fkcountrycode',$event)"
+          ></app-kit-country-dropdown>
+
+
+
       </div>
      
       <div class="form-field-hold two-column-field">
@@ -85,9 +93,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field> -->
-        <div class="control-label">Identity Type</div>
+        <!-- <div class="control-label">Identity Type</div>
         <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
-        [popupHeight]='typeheight'[(ngModel)]="identificationsInfo.type" ></ejs-dropdownlist>
+        [popupHeight]='typeheight'[(ngModel)]="identificationsInfo.type" ></ejs-dropdownlist> -->
+
+        <app-kit-dropdown [label]="'Identity Type'"  [placeholder]="'Identity Type'" [dropdata]="identityType"
+        (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
+
+
       </div>
       <div class="form-field-hold two-column-field">
         <!-- <mat-label class="form-field-label">Issued By</mat-label>
@@ -98,9 +111,13 @@
             </mat-option>
           </mat-select>
         </mat-form-field> -->
-        <div class="control-label">Issued By</div>
+        <!-- <div class="control-label">Issued By</div>
         <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
-        [popupHeight]='issudbyHeight' [(ngModel)]="identificationsInfo.issuedby" ></ejs-dropdownlist>
+        [popupHeight]='issudbyHeight' [(ngModel)]="identificationsInfo.issuedby" ></ejs-dropdownlist> -->
+        <app-kit-dropdown [label]="'Issued By'"  [placeholder]="'Issued By'" [dropdata]="identityissudby"
+        (sendData)="handleInput('issuedby',$event)" ></app-kit-dropdown>
+       
+
       </div>
       <div class="form-field-hold two-column-field">
         <!-- <mat-label class="form-field-label">Issued Date</mat-label>
@@ -110,21 +127,30 @@
           <mat-datepicker-toggle matSuffix [for]="issuedate"></mat-datepicker-toggle>
           <mat-datepicker #issuedate disabled="false"></mat-datepicker>
         </mat-form-field> -->
-        <div class="control-label">Issued Date</div>
-        <ejs-datepicker [(ngModel)]="idissueDate" ></ejs-datepicker>
+        <!-- <div class="control-label">Issued Date</div>
+        <ejs-datepicker [(ngModel)]="idissueDate" ></ejs-datepicker> -->
+        <app-kit-datepicker [label]="'Issued Date'" [placeholder]="'Issued Date'"  (sendData)="handleInput('issuedate',$event)"  ></app-kit-datepicker>
+        
+
       </div>
       
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Identity Number</mat-label>
+        <!-- <mat-label class="form-field-label">Identity Number</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: ABCDE 1234A." [(ngModel)]="identificationsInfo.number" >
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'Identity Number'" [placeholder]="'Identity Number'"
+           (sendData)="handleInput('number',$event)"
+           ></app-kit-text-component>
       </div>
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Identity Name</mat-label>
+        <!-- <mat-label class="form-field-label">Identity Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Full Name"  [(ngModel)]="identificationsInfo.name">
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-text-component [label]="'Identity Name'" [placeholder]="'Identity Name'"
+           (sendData)="handleInput('name',$event)"
+           ></app-kit-text-component>
       </div>
       <div class="form-field-hold two-column-field">
         <!-- <mat-label class="form-field-label">Valid From</mat-label>
@@ -134,9 +160,10 @@
           <mat-datepicker-toggle matSuffix [for]="validfrom"></mat-datepicker-toggle>
           <mat-datepicker #validfrom disabled="false"></mat-datepicker>
         </mat-form-field> -->
-        <div class="control-label">Valid From</div>
+        <!-- <div class="control-label">Valid From</div>
         <ejs-datepicker [(ngModel)]="idFromDate" ></ejs-datepicker>
-     
+      -->
+      <app-kit-datepicker [label]="'Valid From'" [placeholder]="'Valid From'"  (sendData)="handleInput('validfromdate',$event)"  ></app-kit-datepicker>
       </div>
       <div class="form-field-hold two-column-field">
         <!-- <mat-label class="form-field-label">Valid Upto</mat-label>
@@ -146,8 +173,10 @@
           <mat-datepicker-toggle matSuffix [for]="validupto"></mat-datepicker-toggle>
           <mat-datepicker #validupto disabled="false"></mat-datepicker>
         </mat-form-field> -->
-        <div class="control-label">Valid Upto</div>
-        <ejs-datepicker [(ngModel)]="idValidUpto" ></ejs-datepicker>
+        <!-- <div class="control-label">Valid Upto</div>
+        <ejs-datepicker [(ngModel)]="idValidUpto" ></ejs-datepicker> -->
+        <app-kit-datepicker [label]="'Valid Upto'" [placeholder]="'Valid Upto'"  (sendData)="handleInput('validuptodate',$event)"  ></app-kit-datepicker>
+
       </div>
       <div class="view-entry-hold">
         <app-company-identification-uploader [table_id]="table_id" [table_name]="table_name" [uploadedbyfkempid]="uploadedbyfkempid" [category]="category" ></app-company-identification-uploader>

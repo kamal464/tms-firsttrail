@@ -68,37 +68,41 @@
         <div class="department-edit-contents content-data-hold"  
        >
         <div class="form-field-hold">
-          <mat-label class="form-field-label">Department Name</mat-label>
+          <!-- <mat-label class="form-field-label">Department Name</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <input matInput placeholder="Ex: Civil-02" [(ngModel)]="departmentName" >
-          </mat-form-field>
+          </mat-form-field> -->
+          <app-kit-text-component [label]="'Department Name'"  [placeholder]="'Department Name'"
+          (sendData)="handleInput('name',$event)"
+          ></app-kit-text-component>
         </div>
         <div class="form-field-hold">
-          <mat-label class="form-field-label">Department Type</mat-label>
+          <!-- <mat-label class="form-field-label">Department Type</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <mat-select matInput placeholder="Ex: Civil"  [(ngModel)]="departmentType">
               <mat-option *ngFor="let departmentType of departmentTypeArray" [value]="departmentType.value">
                 {{departmentType.value}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
+          <app-kit-dropdown [label]="'Department Type'"  [placeholder]="'Department Type'" [dropdata]="departmentTypeArray"
+          (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
         </div>
         <div class="form-field-hold">
-          <mat-label class="form-field-label">Office</mat-label>
+          <!-- <mat-label class="form-field-label">Office</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <mat-select placeholder="Ex: Office" [(ngModel)]="selectedOffice">
-              <!-- <mat-select-trigger>
-                <span  *ngFor="let office of officeType">
-                  {{ office.code + ' (' + office.type + ')' }}
-                </span>
-              </mat-select-trigger> -->
+            
               <mat-option *ngFor="let office of officeType" [value]="office">
                 <span>
                   {{ office.code + ' (' + office.type + ')' }}
                 </span>
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
+          <app-kit-dropdown [label]="'Office'"  [placeholder]="'Office'" [dropdata]="officeType"
+          (sendData)="handleInput('officeid',$event)" ></app-kit-dropdown>
+
         </div>
         <!-- <div class="form-field-hold">
           <mat-label class="form-field-label">Head of the Department</mat-label>

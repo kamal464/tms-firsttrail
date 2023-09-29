@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class KitUiTextEditComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<any>();
   @Output() inputValueEmitter = new EventEmitter<string>();
-  @Output() dataEvent = new EventEmitter<string>();
+ 
   @Input() formData: any = [];
   @Input() companyname: string;
   @Input() placeHolder: string;
@@ -21,10 +21,7 @@ export class KitUiTextEditComponent implements OnInit {
   texterr: boolean = false;
   error: string;
 
-  sendData() {
-    this.dataEvent.emit(this.inputData);
-    console.log(this.inputData)
-  }
+  
   addInputValue(value: string) {
     this.inputValueEmitter.emit(value);
   }

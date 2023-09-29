@@ -45,6 +45,7 @@ export class EmployeeProfileEntryComponent implements OnInit {
 empPersonalDateOfMarriage : any;
   @Output() onAction = new EventEmitter<any>();
   ngOnInit(): void {
+    console.log(this.employeeDetails)
     this.getDesignation();
     this.getEmpOfficial();
     this.getEmpPersonal();
@@ -56,6 +57,21 @@ empPersonalDateOfMarriage : any;
 updateChild(){
   // this.childComponent.updateEmpPersonal();
 };
+// handleInput(inputName: string, inputValue: string): void {
+//   console.log(inputName,inputValue)
+//   this.employeeDetails.personalData[inputName] = inputValue;
+// }
+
+handleInput(inputName: string, inputValue: string): void {
+  if (inputName && inputValue) {
+    console.log(inputName, inputValue);
+    this.employeeDetails.personalData = this.employeeDetails.personalData || {}; // Ensure personalData is initialized as an object
+    this.employeeDetails.personalData[inputName] = inputValue;
+  } else {
+    console.error("Invalid inputName or inputValue.");
+  }
+}
+
 
   doAction(action): void {
     const previousaction = this._currentAction
@@ -127,16 +143,16 @@ updateChild(){
 this.updateEmp();
       let dob = null;
       let dom = null;
-      if (this.empPersonaldob) {
-          const dateObj = new Date(this.empPersonaldob);
+      if (this.employeeDetails.personalData.dateofbirth) {
+          const dateObj = new Date(this.employeeDetails.personalData.dateofbirth);
           const year = dateObj.getFullYear();
           const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
           const day = dateObj.getDate();
           dob = `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
         }
       
-      if (this.empPersonalDateOfMarriage) {
-          const dateObj = new Date(this.empPersonalDateOfMarriage);
+      if (this.employeeDetails.personalData.dateofmarriage) {
+          const dateObj = new Date(this.employeeDetails.personalData.dateofmarriage);
           const year = dateObj.getFullYear();
           const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
           const day = dateObj.getDate();

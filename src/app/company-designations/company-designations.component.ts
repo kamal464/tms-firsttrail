@@ -14,14 +14,20 @@ export class CompanyDesignationsComponent implements OnInit {
   isProcessing = false;
   serialno = 0;
   isLoading = false;
-  code :any;
-  name : any;
+  
+  sendBody:any;
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
     this.getDesignations();
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+  }
 
   doAction(action): void {
     this._currentAction = action;
@@ -54,8 +60,8 @@ addDesignationType(){
       serialno:'3',
       iseditable:'1',
       isactive:'0',
-      code: this.code,
-      value:this.name, 
+      code: this.sendBody.code,
+      value:this.sendBody.name, 
     }; 
 
     this.http.post(`${API_BASE_URL}/t/reasonitem/add` , requestBody).subscribe((data)=>{

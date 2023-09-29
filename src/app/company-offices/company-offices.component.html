@@ -161,74 +161,73 @@
 
 
             <div class="form-field-hold">
-              <div class="control-label">Office Title</div>
-              <input  class="e-input" type="text" placeholder="Office Title" 
-               [(ngModel)]="officeTitle" />
+              <app-kit-text-component [label]="'Office Title'"  [placeholder]="'Office Title'" [minLength]="3" [maxLength]="10"
+              (sendData)="handleInput('code',$event)"
+              ></app-kit-text-component>
               
         
             </div>
            
             <div class="form-field-hold two-column-field">
             
-              <div class="control-label">Office Name</div>
-              <input  class="e-input" type="text" placeholder="Office Name" 
-               [(ngModel)]="officeName" />
+              <app-kit-text-component [label]="'Office Name'" [placeholder]="'Office Name'" [minLength]="3" [maxLength]="10"
+              (sendData)="handleInput('name',$event)"
+              ></app-kit-text-component>
             </div>
             <div class="form-field-hold two-column-field">
            
-              <div class="control-label">Office Type</div>
-              <ejs-dropdownlist id='games' [dataSource]='OfficesArray' [fields]='localFields' [placeholder]='localWaterMark'
-               [popupHeight]='localheight'[(ngModel)]="officeType" ></ejs-dropdownlist>
+              <app-kit-dropdown [label]="'Office Type'"  [placeholder]="'Office Type'" [dropdata]="officeTypeArray" [required]="true"
+              (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
                
             </div>
             <div class="form-field-hold two-column-field">
             
-              <div class="control-label">Flat No/Plot No/Floor</div>
-              <input  class="e-input" type="text" placeholder="Flat No/Plot No/Floor" 
-               [(ngModel)]="flatNo" />
+              <app-kit-text-component [label]="'Flat No/Plot No/Floor'"  [placeholder]="'Flat No/Plot No/Floor'" [minLength]="3" [maxLength]="10"
+              (sendData)="handleInput('houseno',$event)"
+       ></app-kit-text-component>
+
             </div>
             <div class="form-field-hold two-column-field">
             
-              <div class="control-label">Building Name</div>
-              <input  class="e-input" type="text" placeholder="Building Name" 
-               [(ngModel)]="buildingName" />
+              <app-kit-text-component [label]="'Building Name'" [placeholder]="'Building Name'"
+              (sendData)="handleInput('building',$event)"
+              ></app-kit-text-component>
             </div>
             <div class="form-field-hold two-column-field">
             
-              <div class="control-label">Road Name/Number</div>
-              <input  class="e-input" type="text" placeholder="Road Name/Number" 
-               [(ngModel)]="roadName" />
+              <app-kit-text-component [label]="'Road Name/Number'"  [placeholder]="'Road Name/Number'"  [minLength]="3" [maxLength]="15"
+              (sendData)="handleInput('street',$event)"
+              ></app-kit-text-component>
             </div>
             <div class="form-field-hold two-column-field">
              
-              <div class="control-label">Landmark</div>
-              <input  class="e-input" type="text" placeholder="Landmark" 
-               [(ngModel)]="landMark" />
+              <app-kit-text-component [label]="'Landmark'" [placeholder]="'Landmark'"  [minLength]="3" [maxLength]="15"
+              (sendData)="handleInput('area',$event)"
+       ></app-kit-text-component>
             </div>
             <div class="form-field-hold two-column-field">
              
-              <div class="control-label">Location</div>
-              <input  class="e-input" type="text" placeholder="Location" 
-               [(ngModel)]="location" />
+              <app-kit-text-component [label]="'Location'"  [placeholder]="'Location'"  [minLength]="3" [maxLength]="15"
+              (sendData)="handleInput('location',$event)"
+              ></app-kit-text-component>
             </div>
             <div class="form-field-hold two-column-field">
            
-              <div class="control-label">City</div>
-              <input  class="e-input" type="text" placeholder="City" 
-               [(ngModel)]="city" />
+              <app-kit-text-component [label]="'City'"  [placeholder]="'City'"  [minLength]="3" [maxLength]="15"
+              (sendData)="handleInput('city',$event)"
+       ></app-kit-text-component>
             </div>
              <div class="form-field-hold two-column-field">
-                  <div class="control-label" >country</div>
-                  <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)'
-                   [filterBarPlaceholder]="filterPlaceholder"
-                  [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
+              <app-kit-country-dropdown [label]="'country'"  [placeholder]="'country'"
+              (sendData)="handleInput('fkcountrycode',$event)"
+              ></app-kit-country-dropdown>
                     </div>
                    
             <div class="form-field-hold two-column-field">
               
-              <div class="control-label">Pincode</div>
-              <input  class="e-input" type="text" placeholder="Pincode" 
-               [(ngModel)]="pincode" />
+              <app-kit-text-component [label]="'Pincode'"  [placeholder]="'Pincode'" [minLength]="3" [maxLength]="15"
+              (sendData)="handleInput('postalcode',$event)"
+              ></app-kit-text-component>
         
             </div>
         

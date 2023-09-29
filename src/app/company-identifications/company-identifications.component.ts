@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Api_Base, API_BASE_URL, vfsApi } from '../shared/api-config';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
+// import { EmitType } from '@syncfusion/ej2-base';
+import { EmitType } from '@syncfusion/ej2-base/src/base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CompanyIdentificationUploaderComponent } from './company-identification-entry/company-identification-uploader/company-identification-uploader.component';
 import { FileUploadService } from '../shared/file-upload.service';
@@ -40,6 +41,7 @@ export class CompanyIdentificationsComponent implements OnInit {
   idValidUptoDate: any;
   identificationId:any;
   _identifications:any;
+  sendBody:any;
   constructor(
     private http: HttpClient,
     private fileservice: FileUploadService
@@ -57,6 +59,14 @@ export class CompanyIdentificationsComponent implements OnInit {
     this.getCountries();
   }
 
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+  }
   public countrydata: any = [];
   // maps the appropriate column to fields property
   public fields: Object = { text: 'value', value: 'id' };
@@ -244,14 +254,14 @@ getAttachments(Id) {
     };
     const requestBody = {
       id: timestamp,
-      type: this.idType,
-      issuedby: this.idIssuedBy || null,
-      issuedate: formatDateField(this.idIssuedDate),
-      number: this.idNumber || null,
-      name: this.idName || null,
-      validfromdate: formatDateField(this.idValidFromDate),
-      validuptodate: formatDateField(this.idValidUptoDate),
-      fkcountrycode: this.selectedCountry || null,
+      type: this.sendBody.type,
+      issuedby: this.sendBody.issuedby || null,
+      issuedate: formatDateField(this.sendBody.issuedate),
+      number: this.sendBody.number || null,
+      name: this.sendBody.name || null,
+      validfromdate: formatDateField(this.sendBody.validfromdate),
+      validuptodate: formatDateField(this.sendBody.validuptodate),
+      fkcountrycode: this.sendBody.fkcountrycode || null,
       fkorgid: 1,
       fkempid: null,
       sid: 0,

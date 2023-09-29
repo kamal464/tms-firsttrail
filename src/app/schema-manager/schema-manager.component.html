@@ -164,9 +164,11 @@
                   </mat-form-field>
                 </div>
                 <div class="form-field-hold" style="padding: left 50px;">
-                  <mat-checkbox class="example-margin" [(ngModel)]="isChecked">
+                  <!-- <mat-checkbox class="example-margin" [(ngModel)]="isChecked">
                     <mat-label >IsActive</mat-label>
-                  </mat-checkbox>
+                  </mat-checkbox> -->
+
+                  <app-kit-toggle-switch [toggle]="isChecked" (sendData)="ischeckedFn($event)"></app-kit-toggle-switch>
                 </div>
               </div>
             </div>

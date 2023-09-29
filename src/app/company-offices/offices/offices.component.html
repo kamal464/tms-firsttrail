@@ -66,7 +66,7 @@
         <span class="entry-text">{{offices?.address?.houseno + ',' + offices.address?.building}}</span>
       </div>
       <div class="view-entry-hold">
-        <span class="entry-text">{{offices?.address?.landmark}}</span>
+        <span class="entry-text">{{offices?.address?.area}}</span>
       </div>  
       <div class="view-entry-hold">
         <span class="entry-text">{{offices?.address?.street}}</span>
@@ -89,9 +89,13 @@
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Short Code." [(ngModel)]="offices.office.code">
       </mat-form-field> -->
-      <div class="control-label">Office Title</div>
+      <!-- <div class="control-label">Office Title</div>
       <input  class="e-input" type="text" placeholder="Office Title" 
-       [(ngModel)]="offices.office.code" />
+       [(ngModel)]="offices.office.code" /> -->
+
+       <app-kit-text-component [label]="'Office Title'" [fielddata]="offices.office.code" [placeholder]="'Office Title'" [minLength]="3" [maxLength]="15"
+          (sendData)="handleInput('code',$event)"
+          ></app-kit-text-component>
       
 
     </div>
@@ -101,9 +105,12 @@
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Organisation India Pvt Ltd" [(ngModel)]="offices.office.name">
       </mat-form-field> -->
-      <div class="control-label">Office Name</div>
+      <!-- <div class="control-label">Office Name</div>
       <input  class="e-input" type="text" placeholder="Office Name" 
-       [(ngModel)]="offices.office.name" />
+       [(ngModel)]="offices?.office.name" /> -->
+       <app-kit-text-component [label]="'Office Name'" [fielddata]="offices.office.name" [placeholder]="'Office Name'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleInput('name',$event)"
+       ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Office Type</mat-label>
@@ -113,63 +120,90 @@
           </mat-option>
         </mat-select>
       </mat-form-field> -->
-      <div class="control-label">Office Type</div>
+      <!-- <div class="control-label">Office Type</div>
       <ejs-dropdownlist id='games' [dataSource]='officeType' [fields]='localFields' [placeholder]='localWaterMark'
-       [popupHeight]='localheight'[(ngModel)]="offices.office.type" ></ejs-dropdownlist>
+       [popupHeight]='localheight'[(ngModel)]="offices.office.type" ></ejs-dropdownlist> -->
+
+<app-kit-dropdown [label]="'Office Type'" [fielddata]="offices.office.type" [placeholder]="'Office Type'" [dropdata]="officeTypeArray"
+(sendData)="handleInput('type',$event)" ></app-kit-dropdown>
+
+
+
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="offices.address.houseno">
       </mat-form-field> -->
-      <div class="control-label">Flat No/Plot No/Floor</div>
+      <!-- <div class="control-label">Flat No/Plot No/Floor</div>
       <input  class="e-input" type="text" placeholder="Flat No/Plot No/Floor" 
-       [(ngModel)]="offices.address.houseno" />
+       [(ngModel)]="offices.address.houseno" /> -->
+       <app-kit-text-component [label]="'Flat No/Plot No/Floor'" [fielddata]="offices.address.houseno" [placeholder]="'Flat No/Plot No/Floor'" [minLength]="3" [maxLength]="15"
+       (sendData)="handleAddress('houseno',$event)"
+       ></app-kit-text-component>
+
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Building Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Building Name" [(ngModel)]="offices.address.building">
       </mat-form-field> -->
-      <div class="control-label">Building Name</div>
+      <!-- <div class="control-label">Building Name</div>
       <input  class="e-input" type="text" placeholder="Building Name" 
-       [(ngModel)]="offices.address.building" />
+       [(ngModel)]="offices.address.building" /> -->
+       <app-kit-text-component [label]="'Building Name'" [fielddata]="offices.address.building" [placeholder]="'Building Name'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('building',$event)"
+       ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Road Name/Number</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Road no 1" [(ngModel)]="offices.address.street">
       </mat-form-field> -->
-      <div class="control-label">Road Name/Number</div>
+      <!-- <div class="control-label">Road Name/Number</div>
       <input  class="e-input" type="text" placeholder="Road Name/Number" 
-       [(ngModel)]="offices.address.street" />
+       [(ngModel)]="offices.address.street" /> -->
+       <app-kit-text-component [label]="'Road Name/Number'" [fielddata]="offices.address.street" [placeholder]="'Road Name/Number'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('street',$event)"
+       ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Landmark</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="offices.address.area">
       </mat-form-field> -->
-      <div class="control-label">Landmark</div>
+      <!-- <div class="control-label">Landmark</div>
       <input  class="e-input" type="text" placeholder="Landmark" 
-       [(ngModel)]="offices.address.area" />
+       [(ngModel)]="offices.address.area" /> -->
+
+       <app-kit-text-component [label]="'Landmark'" [fielddata]="offices.address.area" [placeholder]="'Landmark'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('area',$event)"
+       ></app-kit-text-component>
+
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Location</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: Location" [(ngModel)]="offices.address.location">
       </mat-form-field> -->
-      <div class="control-label">Location</div>
+      <!-- <div class="control-label">Location</div>
       <input  class="e-input" type="text" placeholder="Location" 
-       [(ngModel)]="offices.address.location" />
+       [(ngModel)]="offices.address.location" /> -->
+       <app-kit-text-component [label]="'Location'" [fielddata]="offices.address.location" [placeholder]="'Location'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('location',$event)"  
+       ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">City</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: City" [(ngModel)]="offices.address.city">
       </mat-form-field> -->
-      <div class="control-label">City</div>
+      <!-- <div class="control-label">City</div>
       <input  class="e-input" type="text" placeholder="City" 
-       [(ngModel)]="offices.address.city" />
+       [(ngModel)]="offices.address.city" /> -->
+       <app-kit-text-component [label]="'City'" [fielddata]="offices.address.city" [placeholder]="'City'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('city',$event)"
+       ></app-kit-text-component>
     </div>
      <div class="form-field-hold two-column-field">
               <!-- <mat-label class="form-field-label">Country</mat-label>
@@ -188,19 +222,23 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field> -->
-              <div class="control-label" >country</div>
+              <!-- <div class="control-label" >country</div>
           <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
-          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="offices.address.fkcountrycode" > </ejs-dropdownlist>
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="offices.address.fkcountrycode" > </ejs-dropdownlist> -->
+          <app-kit-country-dropdown [label]="'country'" [fielddata]="offices.address.fkcountrycode" [placeholder]="'country'"
+          (sendData)="handleAddress('fkcountrycode',$event)"></app-kit-country-dropdown>
             </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Pincode</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="offices.address.postalcode">
       </mat-form-field> -->
-      <div class="control-label">Pincode</div>
+      <!-- <div class="control-label">Pincode</div>
       <input  class="e-input" type="text" placeholder="Pincode" 
-       [(ngModel)]="offices.address.postalcode" />
-
+       [(ngModel)]="offices.address.postalcode" /> -->
+       <app-kit-text-component [label]="'Pincode'" [fielddata]="offices.address.postalcode" [placeholder]="'Pincode'" [minLength]="3" [maxLength]="10"
+       (sendData)="handleAddress('postalcode',$event)"
+       ></app-kit-text-component>
     </div>
   <!-- </ng-container> -->
   </div>

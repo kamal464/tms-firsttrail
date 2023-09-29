@@ -15,7 +15,7 @@ import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 export class OfficesComponent implements OnInit {
 @Input() officeTypeArray :any = [];
 @Input() countries : any =[];
-@Input() offices= null;
+@Input() offices:any= [];
 
 @Output() onDelete = new EventEmitter<any>();
 // @Input() address = null;
@@ -35,6 +35,18 @@ officesArray:any = [];
 saveOff(){
  
 }
+
+
+handleInput(inputName: string, inputValue: string): void {
+  console.log(inputName,inputValue)
+  this.offices.office[inputName] = inputValue;
+}
+handleAddress(inputName: string, inputValue: string):void {
+  console.log(inputName,inputValue)
+  this.offices.address[inputName] = inputValue;
+
+}
+
 
 
   doAction(action: any): void {
@@ -72,22 +84,13 @@ saveOff(){
 
 
   public countrydata: any = [ ];
-
-  // maps the appropriate column to fields property
-
   public fields: Object = { text: 'value', value: 'id' };
-  // set the height of the popup element
   public height: string = '220px';
-  // set the placeholder to DropDownList input element
   public watermark: string = 'Select a country';
-  // set the placeholder to filter search box input element
   public filterPlaceholder: string = 'Search';
-  // filtering event handler to filter a Country
   public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
       let query: Query = new Query();
-      //frame the query based on search string with filter type.
       query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
-      //pass the filter data source, filter query to updateData method.
       e.updateData(this.countrydata, query);
   }
 
@@ -104,11 +107,8 @@ saveOff(){
   
   public officeType:any= [];
   public localFields: Object = { text: 'value', value: 'id' };
-  
-    // set the placeholder to DropDownList input element
-    public localWaterMark: string = 'Select a type';
-    // set the height of the popup element
-    public localheight: string = '200px';
+  public localWaterMark: string = 'Select a type';
+  public localheight: string = '200px';
   
   
 
@@ -129,6 +129,8 @@ saveOff(){
     })
     this.updateAddress();
   }
+
+
 updateAddress(){
   const requestbody = {
     id: this.offices.address.id,

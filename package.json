@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --max_old_space_size=16000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -23,7 +23,7 @@
     "@syncfusion/ej2": "^22.2.9",
     "@syncfusion/ej2-angular-base": "^22.2.5",
     "@syncfusion/ej2-angular-buttons": "^22.2.9",
-    "@syncfusion/ej2-angular-calendars": "^22.2.10",
+    "@syncfusion/ej2-angular-calendars": "^22.2.12",
     "@syncfusion/ej2-angular-dropdowns": "^22.2.9",
     "@syncfusion/ej2-angular-inputs": "^22.2.9",
     "@syncfusion/ej2-angular-popups": "^22.2.11",
@@ -41,6 +41,7 @@
     "ngx-image-cropper": "^7.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "v8": "^0.1.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

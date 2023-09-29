@@ -1,0 +1,3 @@
+<div class="control-label" >{{label}}</div>
+<ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
+[popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="fielddata"  (change)="DataToParent($event)"></ejs-dropdownlist>

@@ -3,8 +3,10 @@ import { TextBoxModule,MaskedTextBoxModule } from '@syncfusion/ej2-angular-input
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
-import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { DatePickerModule, DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { SwitchModule } from '@syncfusion/ej2-angular-buttons';
+import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 @NgModule({
   exports: [
     ButtonModule,
@@ -14,7 +16,9 @@ import { DialogModule } from '@syncfusion/ej2-angular-popups';
     UploaderModule,
     DatePickerModule,
     DialogModule,
-    
+    SwitchModule,
+    DateTimePickerModule,
+    RadioButtonModule,
   ],
 })
 export class SyncModule {}

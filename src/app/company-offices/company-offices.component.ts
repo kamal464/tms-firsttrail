@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from '../shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
+// import { EmitType } from '@syncfusion/ej2-base';
+import { EmitType } from '@syncfusion/ej2-base/src/base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 @Component({
   selector: 'app-company-offices',
@@ -12,6 +13,7 @@ import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 })
 export class CompanyOfficesComponent implements OnInit {
   currentAction = 'view';
+ sendBody:any;
   mergedArray :any;
   officesArray:any = [];
   addressArray:any = [];
@@ -44,6 +46,17 @@ export class CompanyOfficesComponent implements OnInit {
     this.getAddress();
       this.OfficesArray =  this.OfficesArray.concat(this.officeTypeArray);
     this.countrydata  = this.countrydata.concat(this.countries);
+  }
+
+
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+console.log(this.sendBody);
   }
 
 
@@ -180,9 +193,9 @@ addOffice(){
   const requestBody = {
     id: timestamp,
     fkorgid:1,
-    code:this.officeTitle,
-    name:this.officeName,
-    type:this.officeType
+    code:this.sendBody.code,
+    name:this.sendBody.name,
+    type:this.sendBody.type
     
   }
 
@@ -208,17 +221,17 @@ addOfficeAddress(fkofficeid){
     type: null ,
     contactname: null,
     description : null,
-    houseno:this.flatNo,
-    building :this.buildingName,
-    street:this.roadName,
+    houseno:this.sendBody.houseno,
+    building :this.sendBody.building,
+    street:this.sendBody.street,
     locality:null,
-    landmark:this.landMark,
-    area:this.location,
-    city:this.city,
-    postalcode:this.pincode,
+    landmark:this.sendBody.landmark,
+    area:this.sendBody.area,
+    city:this.sendBody.city,
+    postalcode:this.sendBody.postalcode,
     region:null,
     zone:null,
-    fkcountrycode:this.selectedCountry,
+    fkcountrycode:this.sendBody.fkcountrycode,
     latitude:null,
     longitude:null,
     phone:null,
@@ -229,15 +242,7 @@ addOfficeAddress(fkofficeid){
   }
   this.http.post(`${API_BASE_URL}/t/address/add` , requestbody).subscribe((data)=>{
     console.log('data' , 'address added')
-    this.addressArray.push(data);
-    this.flatNo = '';
-    this.buildingName = '';
-    this.roadName = '';
-    this.landMark = '';
-    this.location = '';
-    this.city = '';
-    this.pincode = null;
-    this.selectedCountry = null;
+ 
     this.combineData();
     console.log(requestbody)
   })

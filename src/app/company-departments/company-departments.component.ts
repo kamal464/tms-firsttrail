@@ -14,6 +14,7 @@ departmentType : any;
 selectedOffice : any;
 headOfDepartment : any;
 officeType:any;
+sendBody:any;
 _currentAction = 'view';
 isNew = false;
   constructor(private http : HttpClient) { }
@@ -22,6 +23,15 @@ isNew = false;
     this.getDepartments();
     this.getDepartmentType();
     this.getOfficeType();
+  }
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+console.log(this.sendBody);
   }
 
 
@@ -59,10 +69,10 @@ addDepartment(){
   const timestamp = new Date().getTime(); 
   const requestBody = {
     id:timestamp,
-    fkofficeid:this.selectedOffice.id,
+    fkofficeid:this.sendBody.officeid,
     fkorgid:1,
-    type:this.departmentType,
-    name:this.departmentName,
+    type:this.sendBody.type,
+    name:this.sendBody.name,
     hodfkempid:null
   }
   this.http.post(`${API_BASE_URL}/t/department/add` , requestBody).subscribe((data)=> {

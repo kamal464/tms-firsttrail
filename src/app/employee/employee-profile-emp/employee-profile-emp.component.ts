@@ -1,8 +1,9 @@
-import { Component, OnInit,Input,Output,EventEmitter, OnChanges, SimpleChanges ,OnDestroy } from '@angular/core';
+import { Component,ChangeDetectorRef, OnInit,Input,Output,EventEmitter, OnChanges, SimpleChanges ,OnDestroy } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
 import { Subscription } from 'rxjs';
 import { SharedServiceService } from 'src/app/shared/shared-service.service';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -67,31 +68,46 @@ empDepartment:any;
  departmentsDropdown : any;
  selectedOfficeId : any;
 updateGender:any;
-
+sendBody:any;
+isDataLoaded = false;
   @Output() onAction = new EventEmitter<any>();
 
 
-  constructor(private http : HttpClient,private sharedService : SharedServiceService){}
+  constructor(private http : HttpClient,private sharedService : SharedServiceService, private cd: ChangeDetectorRef){
+  //   this.getDesignation();
+  //   this.getEmpOfficial();
+  //   this.getEmpPersonal();
+  //   this.getGrade();
+  //   this.getGenders();
+  //   this.getCountries();
+  //   this.getType();
+  //  this.getTitle();
+  //   this.getOffices();
+  //   this.getEmployee();
+  }
   ngOnInit(): void {
-   
+   this.loadData()
     
 
-    this.getDesignation();
-    this.getEmpOfficial();
-    this.getEmpPersonal();
-    this.getGrade();
-    this.getGenders();
-    this.getCountries();
-    this.getType();
-   this.getTitle();
-    this.getOffices();
-    this.getEmployee();
+   
   }
 ngOnChanges(changes: SimpleChanges): void {
     console.log(this._currentAction)
    this.doAction(this._currentAction); 
 }
 
+handleInput(inputName: string, inputValue: string): void {
+  console.log(inputName,inputValue)
+  this.sendBody = {
+    ...this.sendBody,
+    [inputName]:inputValue
+  }
+console.log(this.sendBody);
+if ('fkofficeid' in this.sendBody) {
+  this.getDepartments(this.sendBody.fkofficeid)
+}
+
+}
 
   doAction(action): void {
     this._currentAction = action;
@@ -140,12 +156,12 @@ addEmp(){
   const requestBody = {
     id:timestamp,
     fkorgid:1,
-    title:this.empTitle?this.empTitle : null,
-    surname:this.empSurname,
-    givenname:this.empGivename,
-    empcode:this.empCode,
-    displayname:this.empDisplayname,
-    empno:this.empNo,
+    title:this.sendBody.title,
+    surname:this.sendBody.surname,
+    givenname:this.sendBody.givenname,
+    empcode:this.sendBody.empcode,
+    displayname:this.sendBody.displayname,
+    empno:this.sendBody.empno,
     // gender:this.empGender,
     // fkcountrycode:this.empFkcountrycode,
     // officialemail:this.empOfficialemail,
@@ -153,10 +169,10 @@ addEmp(){
     // mobile1:this.empMobileone,
     // mobile2:this.empMobiletwo,
     status:0,
-    joiningdate:formatDateField(this.empJoiningdate),
-    confirmationdate: formatDateField(this.empConfirmationdate),
-    resignationdate: formatDateField(this.empResignationdate),
-    exitdate:formatDateField(this.empExitdate),
+    joiningdate:formatDateField(this.sendBody.joiningdate),
+    confirmationdate: formatDateField(this.sendBody.confirmationdate),
+    resignationdate: formatDateField(this.sendBody.resignationdate),
+    exitdate:formatDateField(this.sendBody.exitdate),
     latestfkempofficialid:this.empLatestfkempofficialid
 
   }
@@ -191,16 +207,16 @@ addEmpOfficial(empid){
   const requestBody = {
     id: timestamp,
     fkempid:empid,
-    supervisorfkempid:null,
-    managerfkempid:null,
-    designation:this.empDesignation,
-    fkofficeid:this.empOffice,
+    supervisorfkempid:this.sendBody.supervisorfkempid,
+    managerfkempid:this.sendBody.managerfkempid,
+    designation:this.sendBody.designation,
+    fkofficeid:this.sendBody.fkofficeid,
     fkdepartmentid:null,
-    grade:this.empGrade,
-    type:this.empType,
-    effectivedate:formatDateField(this.empEffectiveDate),
+    grade:this.sendBody.grade,
+    type:this.sendBody.type,
+    effectivedate:formatDateField(this.sendBody.effectivedate),
     // monthlyctc:this.empMonthlyCtc,
-    remarks:this.empRemarks,
+    remarks:this.sendBody.remarks,
     approvalstatus:0,
     previousfkempofficialid:null,
   }
@@ -228,15 +244,15 @@ addEmpPersonal(empid){
   const requestBody = {
     id: timestamp,
     fkempid:  empid,
-    dateofbirth:formatDateField(this.empDateOfBirth),
-    dateofmarriage:formatDateField(this.empDateOfMarriage),
-    personalemail:this.empPersonalemail,
-    personalmobile:this.empMobileone,
-    linkedin:this.empLinkedIn,
-    twitter:this.empTwitter,
-    instagram:this.empInstagram,
-    facebook:this.empFacebook,
-    website:this.empWebsite
+    dateofbirth:formatDateField(this.sendBody.dateofbirth),
+    dateofmarriage:formatDateField(this.sendBody.dateofmarriage),
+    personalemail:this.sendBody.personalemail,
+    personalmobile:this.sendBody.personalmobile,
+    linkedin:this.sendBody.linkedin,
+    twitter:this.sendBody.twitter,
+    instagram:this.sendBody.instagram,
+    facebook:this.sendBody.facebook,
+    website:this.sendBody.website
   }
 
 
@@ -248,6 +264,98 @@ this.http.post(`${API_BASE_URL}/t/emppersonal/add`,requestBody).subscribe((data)
 }
 
 
+loadData() {
+  // Define your API calls using forkJoin
+  const grade = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
+    headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('reason', 'EmpGrade')
+  });
+
+  const gender = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
+    headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('reason', 'EmpGender')
+  });
+
+  const title = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
+    headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('reason', 'EmpTitle')
+  });
+
+  const countries = this.http.post(`${Api_Base}/utils/dropdown/country`, {});
+
+  const type = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
+    headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('reason', 'EmployeeType')
+  });
+
+  const empOfficial = this.http.post(`${API_BASE_URL}/t/empofficial/getall`, {});
+  const empPersonal = this.http.post(`${API_BASE_URL}/t/emppersonal/getall`, {});
+
+  const designation = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
+    headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('reason', 'EmpDesignation')
+  });
+
+  // Additional API calls can be included here
+
+  forkJoin([
+    grade,
+    gender,
+    title,
+    countries,
+    type,
+    empOfficial,
+    empPersonal,
+    designation, // Include the getDesignation() API call here
+    // Add more API calls as needed
+  ]).subscribe(
+    ([
+      dataGrade,
+      dataGender,
+      dataTitle,
+      dataCountries,
+      dataType,
+      dataEmpOfficial,
+      dataEmpPersonal,
+      dataDesignation, // Include additional data variables here
+    ]) => {
+      // Assign data to your variables
+      this.fetchedGrade = dataGrade;
+      this.fetchedGender = dataGender;
+      this.fetchedTitle = dataTitle;
+      this.fetchedCountries = dataCountries;
+      this.fetchedType = dataType;
+      this.fetchEmpOfficial = dataEmpOfficial;
+      this.fetchEmpPersonal = dataEmpPersonal;
+      this.fetchedDesignation = dataDesignation;
+       // Assign data for designation
+      // Assign data to other variables as needed
+      this.getOffices();
+
+      // Set the flag when all data is loaded
+      this.isDataLoaded = true;
+
+      // Log data from each API call
+      console.log('Grade Data:', this.fetchedGrade);
+      console.log('Gender Data:', this.fetchedGender);
+      console.log('Title Data:', this.fetchedTitle);
+      console.log('Countries Data:', this.fetchedCountries);
+      console.log('Type Data:', this.fetchedType);
+      console.log('EmpOfficial Data:', this.fetchEmpOfficial);
+      console.log('EmpPersonal Data:', this.fetchEmpPersonal);
+      console.log('Designation Data:', this.fetchedDesignation);
+      // Add more log statements for additional data if needed
+    },
+    error => {
+      console.error('Error loading data:', error);
+    }
+  );
+}
 
 getEmpOfficial(){
   this.http.post(`${API_BASE_URL}/t/empofficial/getall`,{}).subscribe((data)=>{
@@ -262,45 +370,46 @@ getEmpPersonal(){
   })
 }
 
-    getType(){
+ getType(){
       const headers = new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('reason', 'EmployeeType');
       this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data:any) => {
 this.fetchedType = data;
+this.isDataLoaded = true; 
 console.log(this.fetchedType)
       })
     }
 
-
-    getDesignation(){
+ getDesignation(){
       const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('reason', 'EmpDesignation');
       this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data) => {
         this.fetchedDesignation = data;
+        this.isDataLoaded = true; 
         console.log(this.fetchedDesignation)
               })
     }
 
-
-
-    getGrade(){
+ getGrade(){
       const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('reason', 'EmpGrade');
       this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data) => {
         this.fetchedGrade = data;
+        this.isDataLoaded = true; 
         console.log(this.fetchedGrade)
               })
     }
-
-    getGenders(){
+   
+ getGenders(){
       const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('reason', 'EmpGender');
       this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data) => {
         this.fetchedGender = data;
+        this.isDataLoaded = true; 
         console.log(this.fetchedGender)
               })
     }
@@ -311,6 +420,7 @@ console.log(this.fetchedType)
     .set('reason','EmpTitle');
     this.http.post(`${Api_Base}/utils/dropdown/reason`,{},{headers}).subscribe((data)=>{
       this.fetchedTitle = data;
+      this.isDataLoaded = true; 
       console.log(this.fetchedTitle)
     })
   }
@@ -334,25 +444,35 @@ console.log(this.fetchedType)
     .set('fkorgid', '1');
     this.http.post(`${Api_Base}/utils/dropdown/office`,{},{headers}).subscribe((data) => {
       this.officesDropdown = data;
+      this.isDataLoaded = true; 
       console.log(this.officesDropdown)
             })
+           
   }
 
 
   onOfficeSelect(event: any): void {
     this.selectedOfficeId = event.value; 
-    this.getDepartments()
+    // this.getDepartments()
    
   }
 
-getDepartments(){
-  console.log(this.selectedOfficeId);
+getDepartments(id){
+  // console.log(this.selectedOfficeId);
   const headers = new HttpHeaders()
   .set('Content-Type', 'application/json')
-    .set('fkofficeid', [this.selectedOfficeId]);
+    .set('fkofficeid', [id]);
     this.http.post(`${Api_Base}/utils/dropdown/department`,{},{headers}).subscribe((data) => {
-    this.departmentsDropdown = data;
+      if (!this.departmentsDropdown) {
+        this.departmentsDropdown = []; // Initialize departmentsDropdown as an empty array if it's undefined
+        
+        this.departmentsDropdown = data;
+      }
+    
+      this.isDataLoaded = true; 
+    this.cd.detectChanges();
       console.log(data)
+      
             })
 }
 

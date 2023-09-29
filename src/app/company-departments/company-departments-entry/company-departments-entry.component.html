@@ -48,8 +48,8 @@
       <div class="view-entry-hold">
         <span class="entry-text highlight-title">{{department.name}}</span>
       </div>
-      <div class="view-entry-hold">
-        <span class="entry-text">{{department.type}},</span>
+      <div class="view-entry-hold" *ngFor="let type of departmentTypeArray">
+        <span class="entry-text">{{department.type == type.id ? type.value : null}}</span>
       </div>
       <div class="view-entry-hold"  *ngIf="department.fkofficeid">
         <span  class="entry-text">{{ 'Office: ' + getOfficeCode(department.fkofficeid) + ' (' + getOfficeType(department.fkofficeid) + ')' }}</span>
@@ -65,8 +65,14 @@
         <!-- <mat-label class="form-field-label">Department Name</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: Civil-02" [(ngModel)]="department.name">
-        </mat-form-field> --><div class="control-label">Department Name</div>
-          <input  class="e-input" type="text" placeholder="Ex: Civil-02" [(ngModel)]="department.name"  />
+        </mat-form-field> -->
+        
+        <!-- <div class="control-label">Department Name</div>
+          <input  class="e-input" type="text" placeholder="Ex: Civil-02" [(ngModel)]="department.name"  /> -->
+
+          <app-kit-text-component [label]="'Department Name'"  [placeholder]="'Department Name'"
+          (sendData)="handleInput('name',$event)"
+          ></app-kit-text-component>
          
 
       </div>
@@ -79,9 +85,12 @@
             </mat-option>
           </mat-select>
         </mat-form-field> -->
-        <div class="control-label">Department Type</div>
+        <!-- <div class="control-label">Department Type</div>
         <ejs-dropdownlist id='games' [dataSource]='departmentArray' [fields]='localFields' [placeholder]='localWaterMark'
-        [popupHeight]='localheight'[(ngModel)]="department.type" ></ejs-dropdownlist>
+        [popupHeight]='localheight'[(ngModel)]="department.type" ></ejs-dropdownlist> -->
+
+        <app-kit-dropdown [label]="'Department Type'"  [placeholder]="'Department Type'" [dropdata]="departmentTypeArray"
+        (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
       </div>
       <div class="form-field-hold">
         <!-- <mat-label class="form-field-label">Office</mat-label>
@@ -95,9 +104,11 @@
             </mat-option>
           </mat-select>
         </mat-form-field> -->
-        <div class="control-label">Office</div>
+        <!-- <div class="control-label">Office</div>
         <ejs-dropdownlist id='games' [dataSource]='officeArray' [fields]='officeFields' [placeholder]='OfficewaterMark'
-        [popupHeight]='officeHeight'[(ngModel)]="selectedOffice" ></ejs-dropdownlist>
+        [popupHeight]='officeHeight'[(ngModel)]="selectedOffice" ></ejs-dropdownlist> -->
+        <app-kit-dropdown [label]="'Office'"  [placeholder]="'Office'" [dropdata]="officeType"
+        (sendData)="handleInput('officeid',$event)" ></app-kit-dropdown>
 
       </div>
       <!-- <div class="form-field-hold">

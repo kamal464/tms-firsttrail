@@ -2,9 +2,11 @@ import { Component, OnInit ,Input,Output,EventEmitter,ChangeDetectorRef,ChangeDe
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { API_BASE_URL,Api_Base,vfsApi } from 'src/app/shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
+import { EmitType } from '@syncfusion/ej2-base/src/base';
+// import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { FileUploadService } from 'src/app/shared/file-upload.service';
+import { NgForOf } from '@angular/common';
 @Component({
   selector: 'app-company-identification-entry',
   templateUrl: './company-identification-entry.component.html',
@@ -17,6 +19,7 @@ export class CompanyIdentificationEntryComponent implements OnInit {
 @Input()countries :any=[];
 @Input()attachments:any=[];
 @Output() onDelete = new EventEmitter<any>();
+title:any= '';
 table_name = 'identification'
 table_id = '';
 uploadedbyfkempid = '';
@@ -53,12 +56,15 @@ category = 'image';
       this.identityType = this.identityType.concat(this.identityTypeDropdown);
       this.identityissudby = this.identityissudby.concat(this.identityIssuedByDropdown);
    console.log(this.countries)
+
   }
  
+  
 
-
-
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.identificationsInfo[inputName] = inputValue;
+  }
 
 
 
@@ -129,14 +135,14 @@ category = 'image';
     };
     const requestBody = {
       id: this.identificationsInfo.id,
-      fkcountrycode:this.selectedCountry,
+      fkcountrycode:this.identificationsInfo.fkcountrycode,
       type: this.identificationsInfo.type,
       issuedby: this.identificationsInfo.issuedby,
-      issuedate: formatDateField(this.idissueDate),
+      issuedate: formatDateField(this.identificationsInfo.issuedate),
       number: this.identificationsInfo.number,
       name: this.identificationsInfo.name,
-      validfromdate: formatDateField(this.idFromDate),
-      validuptodate: formatDateField(this.idValidUpto),
+      validfromdate: formatDateField(this.identificationsInfo.validfromdate),
+      validuptodate: formatDateField(this.identificationsInfo.validuptodate),
       fkorgid: 1,
       fkempid: null,
     };

@@ -113,7 +113,7 @@
 
   <div class="form-field-hold two-column-fields">
      
-      <mat-label class="form-field-label">Gender</mat-label>
+      <!-- <mat-label class="form-field-label">Gender</mat-label>
       <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -121,34 +121,39 @@
       <mat-select placeholder="Click to Select" [(ngModel)]="employeeDetails.gender">
         <mat-option *ngFor="let gender of genderArray" [value]="gender.id" >{{gender.value}}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-dropdown [label]="'Office Type'" [fielddata]="employeeDetails?.gender" [placeholder]="'Office Type'" [dropdata]="genderArray"
+    (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
+   
 
     </div>
 
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Date Of Birth</mat-label>
+      <!-- <mat-label class="form-field-label">Date Of Birth</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
            [disabled]="false" [(ngModel)]="empPersonaldob" >
         <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
         <mat-datepicker #Birth disabled="false"></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-kit-datepicker [label]="'Date Of Birth'" [placeholder]="'Date Of Birth'"  (sendData)="handleInput('dateofbirth',$event)"  ></app-kit-datepicker>
     </div>
 
 
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Date Of Marriage</mat-label>
+      <!-- <mat-label class="form-field-label">Date Of Marriage</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
         <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Marriage" 
            [disabled]="false"  [(ngModel)]="empPersonalDateOfMarriage" >
         <mat-datepicker-toggle matSuffix [for]="Marriage"></mat-datepicker-toggle>
         <mat-datepicker #Marriage disabled="false"></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-kit-datepicker [label]="'Date Of Marriage'" [placeholder]="'Date Of Marriage'"  (sendData)="handleInput('dateofmarriage',$event)"  ></app-kit-datepicker>
     </div>
 
 
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Email</mat-label>
+      <!-- <mat-label class="form-field-label">Email</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -160,12 +165,15 @@
           #inputValue
         [(ngModel)]="employeeDetails.personalData.email"
         />
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-kit-text-component [label]="'Email'" [fielddata]="employeeDetails?.personalData?.email" [placeholder]="'Email'"
+      (sendData)="handleInput('email',$event)"
+      ></app-kit-text-component>
      
     </div>
 
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Mobile</mat-label>
+      <!-- <mat-label class="form-field-label">Mobile</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -178,13 +186,16 @@
           [(ngModel)]="employeeDetails.personalData.mobile"
         
         />
-      </mat-form-field>
-     
+      </mat-form-field> -->
+
+      <app-kit-text-component [label]="'Mobile'" [fielddata]="employeeDetails?.personalData?.mobile" [placeholder]="'Mobile'"
+      (sendData)="handleInput('mobile',$event)"
+      ></app-kit-text-component>
     </div>
 
     
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">linkedIn</mat-label>
+      <!-- <mat-label class="form-field-label">linkedIn</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -197,13 +208,16 @@
           [(ngModel)]="employeeDetails.personalData.linkedin"
         
         />
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-kit-text-component [label]="'linkedIn'" [fielddata]="employeeDetails?.personalData?.linkedin" [placeholder]="'linkedIn'"
+      (sendData)="handleInput('linkedin',$event)"
+      ></app-kit-text-component>
      
     </div>
 
     
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Twitter</mat-label>
+      <!-- <mat-label class="form-field-label">Twitter</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -216,13 +230,16 @@
           [(ngModel)]="employeeDetails.personalData.twitter"
         
         />
-      </mat-form-field>
+      </mat-form-field> -->
+      <app-kit-text-component [label]="'Twitter'" [fielddata]="employeeDetails?.twitter?.linkedin" [placeholder]="'Twitter'"
+      (sendData)="handleInput('twitter',$event)"
+      ></app-kit-text-component>
      
     </div>
 
     
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Instagram</mat-label>
+      <!-- <mat-label class="form-field-label">Instagram</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -234,13 +251,18 @@
           #inputValue
         [(ngModel)]="employeeDetails.personalData.instagram"
         />
-      </mat-form-field>
+      </mat-form-field> -->
+
+      <app-kit-text-component [label]="'Instagram'" [fielddata]="employeeDetails?.instagram?.linkedin" [placeholder]="'Instagram'"
+      (sendData)="handleInput('instagram',$event)"
+      ></app-kit-text-component>
+     
      
     </div>
 
     
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Facebook</mat-label>
+      <!-- <mat-label class="form-field-label">Facebook</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -252,12 +274,14 @@
           #inputValue
         [(ngModel)]="employeeDetails.personalData.facebook"
         />
-      </mat-form-field>
-     
+      </mat-form-field> -->
+      <app-kit-text-component [label]="'Facebook'" [fielddata]="employeeDetails?.facebook?.linkedin" [placeholder]="'Facebook'"
+      (sendData)="handleInput('facebook',$event)"
+      ></app-kit-text-component>
     </div>
 
     <div class="form-field-hold two-column-fields">
-      <mat-label class="form-field-label">Website</mat-label>
+      <!-- <mat-label class="form-field-label">Website</mat-label>
       <mat-form-field
         class="form-field-input"
         floatPlaceholder="never"
@@ -269,8 +293,11 @@
           #inputValue
           [(ngModel)]="employeeDetails.personalData.website"
         />
-      </mat-form-field>
-     
+      </mat-form-field> -->
+
+     <app-kit-text-component [label]="'Website'" [fielddata]="employeeDetails?.website?.linkedin" [placeholder]="'Website'"
+      (sendData)="handleInput('website',$event)"
+      ></app-kit-text-component>
     </div>
 
 

@@ -13,16 +13,6 @@
       <mat-toolbar class="tool-bar">
         <span class="tool-bar-title">OVERVIEW</span>
         <span class="spacer"></span>
-        <!-- <button
-          mat-button
-          class="tool-bar-button"
-          matTooltip="Edit"
-          (click)="doAction('edit')"
-          *ngIf="hasEdit && currentAction == 'view'"
-        >
-          <mat-icon>edit</mat-icon>
-          <span class="button-label">Edit</span>
-        </button> -->
        
            <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
            (click)="doAction('edit')" 
@@ -78,7 +68,7 @@
           <mat-label class="entry-label">Country</mat-label>
           <span class="entry-data" *ngFor="let country of countries">{{ get.fkcountrycode == country.id?country.value : ''}}</span>
         
-            <!-- <mat-icon svgIcon="india"></mat-icon> -->
+          
 
       
           </div>  
@@ -121,6 +111,8 @@
             >{{get.comments}}</span
           >
         </div>
+
+  
       </ng-container>
       </div>
 
@@ -131,10 +123,16 @@
       >
        <ng-container *ngFor="let get of getall">
         <div class="form-field-hold two-column-field">  
-          <div class="control-label">Registered Company Name</div>
+          <!-- <div class="control-label">Registered Company Name</div>
               <input  class="e-input" type="text" placeholder="Registered Company Name" 
               [(ngModel)]="get.legalname" (input)="onInputChange(get)" />
-              <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
+              <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p> -->
+            <app-kit-text-component [label]="'Registered Company Name'" [fielddata]="get.legalname"   [minLength]="3" [required]="true"
+            [maxLength]="15"
+            [placeholder]="'Registered Company Name'" 
+            (sendData)="handleInput('legalname',$event)"
+            
+            ></app-kit-text-component>
               
      </div>
         
@@ -147,10 +145,15 @@
             (inputValueEmitter)="handleInput('code', $event)"
           ></kit-ui-text-edit> -->
           
-          <div class="control-label">Short Name</div>
+          <!-- <div class="control-label">Short Name</div>
               <input  class="e-input" type="text" placeholder="Short Name" 
                [(ngModel)]="get.code" (input)="onInputChange(get)" />
                <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p>
+        </div> -->
+        <app-kit-text-component [label]="'Short Name'" [fielddata]="get.code" [placeholder]="'shortName'"  [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleInput('code',$event)"
+        ></app-kit-text-component>
         </div>
         <div class="form-field-hold two-column-field">
           <!-- <app-country
@@ -159,20 +162,27 @@
             (inputValueEmitter)="handleInput('fkcountrycode', $event)"
             [inputName]="'fkcountrycode'"
           ></app-country> -->
-          <div class="control-label" >country</div>
+          <!-- <div class="control-label" >country</div>
           <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
-          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="get.fkcountrycode" > </ejs-dropdownlist>
+          [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="get.fkcountrycode" > </ejs-dropdownlist> -->
+
+
+        <app-kit-country-dropdown [label]="'country'" [fielddata]="get.fkcountrycode" [placeholder]="'country'"
+        (sendData)="handleInput('fkcountrycode',$event)"></app-kit-country-dropdown>
        </div>
         <div class="form-field-hold two-column-field">
          
           <!-- <app-phonenumber placeHolder="Ex: 9876543210"  [formData]="get" numbertype="Phone" [inputName]="'phone'"
            (inputValueEmitter)="handleInput('phone', $event)"  ></app-phonenumber> -->
            <!-- <label class="sync-label">Phone</label> -->
-           <div>
+           <!-- <div>
               <div class="control-label">Phone</div>
               <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.phone"></ejs-maskedtextbox>
           </div>
-           
+            -->
+
+            <app-kit-input-mask [label]="'Phone'" [fielddata]="get.phone" [placeholder]="'Phone'" [mask]="'000-000-0000'"
+            (sendData)="handleInput('phone',$event)"></app-kit-input-mask>
          
         </div>
         <div class="form-field-hold two-column-field">
@@ -181,10 +191,14 @@
            (inputValueEmitter)="handleInput('fax', $event)"   ></app-phonenumber> 
          -->
 
-         <div>
+         <!-- <div>
           <div class="control-label">Fax</div>
           <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.fax"></ejs-maskedtextbox>
-      </div>
+      </div> -->
+
+      <app-kit-input-mask [label]="'Fax'" [fielddata]="get.fax" [placeholder]="'Fax'" [mask]="'000-000-0000'"
+      (sendData)="handleInput('Fax',$event)"></app-kit-input-mask>
+
         </div>
         <div class="form-field-hold two-column-field">
        
@@ -194,8 +208,18 @@
             [inputName]="'email'"
             (inputValueEmitter)="handleInput('email', $event)"
           ></app-email> -->
+          <!-- <div class="control-label">email</div> -->
+          <app-kit-text-component [label]="'email'" [fielddata]="get.email" [placeholder]="'email'"   [customPattern]="'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'"
+          (sendData)="handleInput('email',$event)"
+          ></app-kit-text-component>
+          <!-- <input  class="e-input" type="text" plac <app-email
+            placeHolder="sunsunnysinger@gmail.com"
+            [formData]="get"
+            [inputName]="'email'"
+            (inputValueEmitter)="handleInput('email', $event)"
+          ></app-email>
           <div class="control-label">email</div>
-          <input  class="e-input" type="text" placeholder="email" [(ngModel)]="get.email" (input)="onInputChange(get.email)" />
+          <input  class="e-input" type="text" placeholder="email" [(ngModel)]="get.email" (input)="onInputChange(get.email)" />eholder="email" [(ngModel)]="get.email" (input)="onInputChange(get.email)" /> -->
          
         </div>
         <div class="form-field-hold two-column-field">
@@ -209,9 +233,14 @@
           ></kit-ui-text-edit> -->
           
           
-          <div class="control-label">Website</div>
-              <input  class="e-input" type="text" placeholder="website" [(ngModel)]="get.website" (input)="onInputChange(get.website)"/>
-          
+          <!-- <div class="control-label">Website</div>
+              <input  class="e-input" type="text" placeholder="website" [(ngModel)]="get.website" (input)="onInputChange(get.website)"/> -->
+              <app-kit-text-component [label]="'Website'" [fielddata]="get.website"  [minLength]="3"
+              [maxLength]="30"
+              [placeholder]="'Website'" 
+              (sendData)="handleInput('website',$event)"
+              
+              ></app-kit-text-component>
         </div>
         <div class="form-field-hold two-column-field">
         
@@ -223,10 +252,12 @@
             (inputValueEmitter)="handleInput('whatsapp', $event)"
           ></app-phonenumber> -->
 
-          <div>
+          <!-- <div>
               <div class="control-label">whatsapp</div>
               <ejs-maskedtextbox mask="000-000-0000" [(ngModel)]="get.whatsapp" ></ejs-maskedtextbox>
-          </div>
+          </div> -->
+           <app-kit-input-mask [label]="'whatsapp'" [fielddata]="get.whatsapp" [placeholder]="'whatsapp'" [mask]="'000-000-0000'"
+      (sendData)="handleInput('whatsapp',$event)"></app-kit-input-mask>
         </div>
         <div class="form-field-hold">
          
@@ -238,9 +269,12 @@
             [inputName]="'linkedin'"
           ></kit-ui-text-edit> -->
         
-          <div class="control-label">LinkedIN</div>
-              <input  class="e-input" type="text" placeholder="LinkedIn" [(ngModel)]="get.linkedin" (input)="onInputChange(get.linkedin)"  />
-          
+          <!-- <div class="control-label">LinkedIN</div>
+              <input  class="e-input" type="text" placeholder="LinkedIn" [(ngModel)]="get.linkedin" (input)="onInputChange(get.linkedin)"  /> -->
+              <app-kit-text-component [label]="'LinkedIn'" [fielddata]="get.linkedin" [placeholder]="'linkedin'"  [minLength]="3"
+              [maxLength]="30"
+              (sendData)="handleInput('linkedin',$event)"
+              ></app-kit-text-component>
         </div>
         <div class="form-field-hold">
          
@@ -253,8 +287,16 @@
             [inputName]="'comments'"
           ></app-textarea> -->
           
-          <div class="control-label">Remarks</div>
-          <input  class="e-input" type="text" placeholder="Remarks"  [(ngModel)]="get.comments" (input)="onInputChange(get.comments)" />
+          <!-- <div class="control-label">Remarks</div>
+          <input  class="e-input" type="text" placeholder="Remarks"  [(ngModel)]="get.comments" (input)="onInputChange(get.comments)" /> -->
+          <app-kit-text-component [label]="'Remarks'" [fielddata]="get.comments" [placeholder]="'Remarks'"  [minLength]="3"
+          [maxLength]="50"
+          (sendData)="handleInput('comments',$event)"
+          ></app-kit-text-component>
+
+
+        
+
         </div>
       
      

@@ -1,1 +1,14 @@
-<p>kit-text-component works!</p>
+<div class="control-label">{{label}}</div>
+<input  class="e-input" type="text" name="label" [placeholder]="placeholder" [readOnly]="readonly"
+ [(ngModel)]="fielddata"
+ #inputValue
+ (input)="DataToParent(inputValue.value)"
+ (keydown)="onKeyDown($event)"
+ [required]="required"
+  />
+
+  <!-- (input)="handleInputChange(inputValue.value)" -->
+
+
+  <div *ngIf="error" style="color: red;" class="error-message">{{ error }}</div>
+<!-- <p class="error-message" style="color: red" *ngIf="error">{{ error }}</p> -->

@@ -1,4 +1,6 @@
 
+
+
 @import "~@angular/material/theming";
 @include mat-core();
 // @import '../../../../node_modules/@syncfusion/ej2-base/styles/material.css';
@@ -7,6 +9,7 @@
 @import "./styles/media.scss";
 @import "./styles/theme.scss";
 @import './styles/variables.scss';
+
 html,
 body {
   margin: 0;

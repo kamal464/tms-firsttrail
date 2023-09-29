@@ -126,6 +126,11 @@ console.log(this.selectedObject)
     
   }
 
+ischeckedFn(bool){
+  this.isChecked = bool;
+  console.log(bool,'check');
+}
+
   // onEditClick() {
   //   this._currentAction = 'edit';
   //   this.module = '';
