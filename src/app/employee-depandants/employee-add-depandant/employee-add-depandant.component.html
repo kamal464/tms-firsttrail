@@ -1,22 +1,19 @@
-<div class="content-hold" style="width: 100%;margin-bottom: 20px;">
-         
-
-    <tool-bar
-      [title]="'ADDING NEW Dependant'"
-      class="content-title-hold"
-      [hasEdit]="false"
-      [hasDelete]="false"
-      [currentAction]="'new'"
-      (onAction)="doAction($event)"
-     
-    ></tool-bar>
+<div class="content-hold" style="width: 100%; margin-bottom: 20px">
+  <tool-bar
+    [title]="'ADDING NEW Dependant'"
+    class="content-title-hold"
+    [hasEdit]="false"
+    [hasDelete]="false"
+    [currentAction]="'new'"
+    (onAction)="doAction($event)"
+  ></tool-bar>
+  <div>
     <div
-      
+      class="setting-data-hold content-schema-view"
+      style="padding-left: 20px"
     >
-    <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
-        
-        <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Contact Name</mat-label>
+      <div class="form-field-hold two-column-field">
+        <!-- <mat-label class="form-field-label">Contact Name</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -28,14 +25,19 @@
                 #inputValue
                [(ngModel)]="empDependentName"
               />
-            </mat-form-field>
-           
-          </div> 
-         
-      <div
-      class="form-field-hold two-column-field">
- 
-      <mat-label class="form-field-label">Gender</mat-label>
+            </mat-form-field> -->
+
+        <app-kit-text-component
+          [label]="'Contact Name'"
+          [minLength]="3"
+          [maxLength]="30"
+          [placeholder]="'Contact Name'"
+          (sendData)="handleInput('dependentname', $event)"
+        ></app-kit-text-component>
+      </div>
+
+      <div class="form-field-hold two-column-field">
+        <!-- <mat-label class="form-field-label">Gender</mat-label>
       <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -50,25 +52,33 @@
         <mat-option *ngFor="let gender of genderArray" [value]="gender.id">{{gender.value}}</mat-option
         >
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+        <app-kit-dropdown
+          [label]="'Gender'"
+          [placeholder]="'Gender'"
+          [dropdata]="genderArray"
+          [required]="true"
+          (sendData)="handleInput('gender', $event)"
+        ></app-kit-dropdown>
+      </div>
 
-    </div> 
-         
-    <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Date Of Birth</mat-label>
+      <div class="form-field-hold two-column-field">
+        <!-- <mat-label class="form-field-label">Date Of Birth</mat-label>
         <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
           <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
              [disabled]="false" [(ngModel)]="empDob">
           <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
           <mat-datepicker #Birth disabled="false"></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-datepicker
+          [label]="'Date Of Birth'"
+          [placeholder]="'Date Of Birth'"
+          (sendData)="handleInput('birthdate', $event)"
+        ></app-kit-datepicker>
       </div>
 
-      
-      <div
-      class="form-field-hold two-column-field">
- 
-      <mat-label class="form-field-label">Relation</mat-label>
+      <div class="form-field-hold two-column-field">
+        <!-- <mat-label class="form-field-label">Relation</mat-label>
       <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -83,22 +93,15 @@
         <mat-option *ngFor="let relation of relationArray" [value]="relation.value">{{relation.value}}</mat-option
         >
       </mat-select>
-    </mat-form-field>
-
-    </div> 
-       
-  
-   
-    
-   
-
-
-
-
-
-</div>
-
+    </mat-form-field> -->
+        <app-kit-dropdown
+          [label]="'Relation'"
+          [placeholder]="'Relation'"
+          [dropdata]="relationArray"
+          [required]="true"
+          (sendData)="handleInput('relationtype', $event)"
+        ></app-kit-dropdown>
+      </div>
     </div>
-   
- 
-  </div> 
+  </div>
+</div>

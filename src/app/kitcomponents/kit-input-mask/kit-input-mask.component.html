@@ -1,9 +1,21 @@
 <div>
     <div class="control-label">{{label}}</div>
-    <!-- mask="000-000-0000" -->
+   
+    
     <ejs-maskedtextbox   [mask]="mask"   name="label" [placeholder]="placeholder" 
     [(ngModel)]="fielddata"
     #inputValue
-    (input)="DataToParent(inputValue.value)"></ejs-maskedtextbox>
+    (change)="DataToParent(inputValue.value)"
+    [(value)]='value'
+    ></ejs-maskedtextbox>
     
-</div>
+</div> 
+ 
+
+
+  <!-- <div class='e-input-group' style='margin-bottom:30px'> -->
+    <!-- <ejs-input class='e-input' type='text' [(ngModel)]='value' placeholder='Mobile Number' ></ejs-input> -->
+ <!-- </div>
+ <ejs-maskedtextbox mask='000-000-0000' [(value)]='value'></ejs-maskedtextbox> -->
+
+ <!-- <ejs-maskedtextbox mask='000-000-0000' [(value)]='value'   #inputValue (change)="logValue($event)"></ejs-maskedtextbox> -->

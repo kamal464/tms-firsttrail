@@ -1,4 +1,47 @@
 @import '../../styles.scss';
+@import '../../styles/syncimport.scss';
+
+
+.sort-style{
+  color: #03045A !important;
+  border-color: #03045A !important;
+}
+
+
+.tool-bar {
+  width: calc(100% - 32px);
+  border-bottom: 1px solid #ddd;
+
+  .tool-bar-title {
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &.no-transform {
+      text-transform: none;
+    }
+  }
+
+}
+.active {
+  background-color: #03045E; /* Change this to the desired color */
+  color: #fff; /* Change this to the desired text color */
+}
+.search-criteria {
+  font-weight: bold;
+}
+
+.criteria-heading {
+  font-weight: normal; /* Reset font-weight for headings */
+  margin-right: 5px;
+}
+
+.criteria-value {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+}
+
 .employee-content-hold {
     // flex-grow: 1;
           display: flex;
@@ -11,6 +54,70 @@
         width: calc(100% - 20px);
 
 }
+/* custom-dropdown.component.css */
+
+.custom-dropdown {
+  position: relative;
+  display: inline;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 200px; /* Adjust the width as needed */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.horizontal-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.filter-options, .sort-options {
+  position: relative;
+}
+
+.button-options{
+  display: flex !important;
+  justify-content: space-between !important;
+  margin: 10px;
+}
+.filter-options .options, .sort-options .options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  top: 100%;
+}
+
+/* Show the dropdown content when the button is clicked */
+.custom-dropdown .dropdown-content {
+  display: block;
+}
+
+/* Show filter options */
+.filter-options .options {
+  display: block;
+}
+
+/* Show sort options */
+.sort-options .options {
+  display: block;
+}
+
 
 .employee-content-data-hold{
     display: flex;

@@ -18,6 +18,9 @@ import { EmployeeProfileComponent } from '../employee-profile/employee-profile.c
 export class EmployeeComponent implements OnInit {
 _currentAction = 'view';
 currentEmployee : '';
+filterData:any=[];
+projectData:any=[{id:"construction",value:"construction"}];
+locationData:any=[{id:"cements-vizag",value:"cements-vizag"}  ];
 @Input() empData :any = [];
 
 
@@ -25,11 +28,61 @@ constructor(private sharedservice: SharedServiceService, private http: HttpClien
   private tabeventservice:TabeventserviceService) {
   
 }
-
+clearFilterData() {
+  this.filterData = []; // Set filterData to an empty array when the button is clicked
+}
+handleInput(inputName: string, inputValue: string): void {
+  console.log(inputName,inputValue)
+  this.filterData[inputName] = inputValue;
+}
   ngOnInit(): void {
     this.getEmployees();
   }
  
+ // Inside your component
+isDropdownOpen = false;
+isFilterOpen = false;
+isSortOpen = false;
+
+toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
+
+  if (this.isDropdownOpen) {
+    this.isFilterOpen = false; // Close the filter when opening the dropdown
+  }
+}
+
+toggleFilterOptions() {
+  this.isFilterOpen = !this.isFilterOpen;
+
+  if (this.isFilterOpen) {
+    this.isSortOpen = false; // Close the sort when opening the filter
+  }
+}
+
+toggleSortOptions() {
+  this.isSortOpen = !this.isSortOpen;
+
+  if (this.isSortOpen) {
+    this.isFilterOpen = false; // Close the filter when opening the sort
+  }
+}
+
+cancelFilter() {
+  this.isFilterOpen = false;
+}
+
+saveFilter() {
+  this.isFilterOpen = false;
+}
+
+cancelSort() {
+  this.isSortOpen = false;
+}
+
+saveSort() {
+  this.isSortOpen = false;
+}
 
 
   triggerDoAction(): void {

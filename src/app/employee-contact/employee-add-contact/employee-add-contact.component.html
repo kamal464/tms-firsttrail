@@ -16,7 +16,7 @@
     <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;">
         
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Contact Name</mat-label>
+            <!-- <mat-label class="form-field-label">Contact Name</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -28,14 +28,23 @@
                 #inputValue
                [(ngModel)]="empContactName"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <app-kit-text-component [label]="'Contact Name'"   [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Contact Name'" 
+            (sendData)="handleInput('contactname',$event)"
+            
+            ></app-kit-text-component>
            
           </div> 
+         
+         
          
       <div
       class="form-field-hold two-column-field">
  
-      <mat-label class="form-field-label">Relation</mat-label>
+      <!-- <mat-label class="form-field-label">Relation</mat-label>
       <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -50,13 +59,21 @@
         <mat-option *ngFor="let relation of empRelationTypeArray" [value]="relation.value">{{relation.value}}</mat-option
         >
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-dropdown
+    [label]="'Relation'"
+  
+    [placeholder]="'Relation'"
+    [dropdata]="empRelationTypeArray"
+    [required]="true"
+    (sendData)="handleInput('relationtype', $event)"
+  ></app-kit-dropdown>
 
     </div> 
          
   
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">Contact Number</mat-label>
+        <!-- <mat-label class="form-field-label">Contact Number</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -68,13 +85,20 @@
             #inputValue
            [(ngModel)]="empPhoneNumber"
           />
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-kit-input-mask
+        [label]="'Contact Number'"
+       
+        [placeholder]="'Contact Number'"
+        (sendData)="handleInput('phonenumber', $event)"
+        [mask]="'000-000-0000'"
+      ></app-kit-input-mask>
        
       </div>
 
 
       <div class="form-field-hold two-column-field">
-        <mat-label class="form-field-label">E-mail id</mat-label>
+        <!-- <mat-label class="form-field-label">E-mail id</mat-label>
         <mat-form-field
           class="form-field-input"
           floatPlaceholder="never"
@@ -86,8 +110,14 @@
             #inputValue
            [(ngModel)]="empEmail"
           />
-        </mat-form-field>
-       
+        </mat-form-field> -->
+
+        <app-kit-text-component [label]="'E-mail id'"   [minLength]="3"
+                  [maxLength]="30"
+                  [placeholder]="'E-mail id'" 
+                  (sendData)="handleInput('email',$event)"
+                  
+                  ></app-kit-text-component>
       </div>
 
 

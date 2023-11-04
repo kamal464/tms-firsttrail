@@ -15,6 +15,7 @@ export class EmployeeContactComponent implements OnInit {
   relationTypeArray:any=[];
   empContactName:any;
   empRelation:any;
+  contactData:any=[];
    constructor(private http : HttpClient,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -52,18 +53,22 @@ export class EmployeeContactComponent implements OnInit {
       }
     }
 
-
+    handleInput(inputName: string, inputValue: string): void {
+      console.log(inputName,inputValue)
+      this.contactData[inputName] = inputValue;
+    }
     updateContact(contact){
       const requestBody = {
         id:contact.id,
          fkempid:contact.fkempid,
-         contactname: contact.contactname,
-         relationtype:contact.relationtype,
-            phonenumber:contact.phonenumber,
-             email:contact.email,
+         contactname: this.contactData.contactname,
+         relationtype: this.contactData.relationtype,
+            phonenumber: this.contactData.phonenumber,
+             email: this.contactData.email,
               remarks:null
               
-      }
+            }
+            console.log(requestBody);
       this.http.post(`${API_BASE_URL}/t/empcontact/update`,requestBody).subscribe((data)=>{
         console.log(data)
       })

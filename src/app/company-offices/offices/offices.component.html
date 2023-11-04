@@ -1,13 +1,14 @@
 <!-- <ng-container *ngFor="let office of officesArray"> -->
-    <div class="offices-item-hold">
-   
-    <mat-toolbar class="tool-bar">
-        <span class="tool-bar-title" [innerHtml]="offices.office?.code" ></span>
-        <div  *ngFor="let office of officeTypeArray" >
-          <span class="sub-title mat-small"> {{ offices.office?.type == office.id ? office.value : null }}</span>
-        </div>
-        <span class="spacer"></span>
-        <!-- <button
+<div class="offices-item-hold">
+  <mat-toolbar class="tool-bar">
+    <span class="tool-bar-title" [innerHtml]="offices.office?.code"></span>
+    <div *ngFor="let office of officeTypeArray">
+      <span class="sub-title mat-small">
+        {{ offices.office?.type == office.id ? office.value : null }}</span
+      >
+    </div>
+    <span class="spacer"></span>
+    <!-- <button
           mat-button
           class="tool-bar-button bt-color"
           matTooltip="Edit"
@@ -17,73 +18,98 @@
           <mat-icon>edit</mat-icon>
           <span class="button-label">Edit</span>
         </button> -->
-        <button ejs-button  cssClass="tool-bar-button e-flat button-color" iconCss="e-btn-sb-icons e-open-icon"  iconPosition="Right"
-        (click)="doAction('edit')" 
-        matTooltip="Edit"
-        *ngIf="hasEdit && currentAction == 'view'"
-        >
-        <!-- <button ejs-button cssClass="e-flat" iconCss="bg-icons e-btngrp-watch"></button> -->
-        <span class="e-icons e-edit"></span>
-       
-        <!-- <mat-icon>edit</mat-icon> -->
-        Edit</button>
-        <button mat-flat-button   color="primary" class="tool-bar-button" matTooltip="Delete" (click)="doAction('delete');_doDelete()"
-    *ngIf="hasEdit && currentAction == 'view'">
-    <mat-icon>delete</mat-icon>
-    <span class="button-label">Delete</span>
-  </button>
-        <button
-          mat-button
-          class="tool-bar-button"
-          matTooltip="Cancel"
-          (click)="doAction('cancel')"
-          *ngIf="currentAction == 'new' || currentAction == 'edit'"
-        >
-          <mat-icon>cancel</mat-icon>
-          <span class="button-label">Cancel</span>
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          class="tool-bar-button"
-          matTooltip="Save Changes"
-          (click)="doAction('view')"
-          (click)="saveOff()"
-          (click)="updateOffice(offices.office)"
-          *ngIf="currentAction == 'new' || currentAction == 'edit'"
-        >
-          <mat-icon>save</mat-icon>
-          <span class="button-label">Save</span>
-        </button>
-      </mat-toolbar>
-      
-    <div class="office-contents content-data-hold" *ngIf="currentAction == 'view'">
-      <div class="view-entry-hold">
-        <span class="entry-text highlight-title">{{offices?.office?.name}}</span>
-      </div>
-      
-      <div class="view-entry-hold">
-        <span class="entry-text">{{offices?.address?.houseno + ',' + offices.address?.building}}</span>
-      </div>
-      <div class="view-entry-hold">
-        <span class="entry-text">{{offices?.address?.area}}</span>
-      </div>  
-      <div class="view-entry-hold">
-        <span class="entry-text">{{offices?.address?.street}}</span>
-      </div>
-      <div class="view-entry-hold">
-        <span class="entry-text"> {{offices?.address?.area + ',' + offices?.address?.city}}</span>
-      </div>
-      <div class="view-entry-hold">
-        <span class="entry-text flag-hold">
-          <mat-icon></mat-icon>
-          {{(offices?.address?.fkcountrycode) + '-' + offices?.address?.postalcode}}
-        </span>
-      </div>
+    <button
+      ejs-button
+      cssClass="tool-bar-button e-flat button-color"
+      iconCss="e-btn-sb-icons e-open-icon"
+      iconPosition="Right"
+      (click)="doAction('edit')"
+      matTooltip="Edit"
+      *ngIf="hasEdit && currentAction == 'view'"
+    >
+      <!-- <button ejs-button cssClass="e-flat" iconCss="bg-icons e-btngrp-watch"></button> -->
+      <span class="e-icons e-edit"></span>
+
+      <!-- <mat-icon>edit</mat-icon> -->
+      Edit
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="tool-bar-button"
+      matTooltip="Delete"
+      (click)="doAction('delete'); _doDelete()"
+      *ngIf="hasEdit && currentAction == 'view'"
+    >
+      <mat-icon>delete</mat-icon>
+      <span class="button-label">Delete</span>
+    </button>
+    <button
+      mat-button
+      class="tool-bar-button"
+      matTooltip="Cancel"
+      (click)="doAction('cancel')"
+      *ngIf="currentAction == 'new' || currentAction == 'edit'"
+    >
+      <mat-icon>cancel</mat-icon>
+      <span class="button-label">Cancel</span>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="tool-bar-button"
+      matTooltip="Save Changes"
+      (click)="doAction('view')"
+      (click)="saveOff()"
+      (click)="updateOffice(offices.office)"
+      *ngIf="currentAction == 'new' || currentAction == 'edit'"
+    >
+      <mat-icon>save</mat-icon>
+      <span class="button-label">Save</span>
+    </button>
+  </mat-toolbar>
+
+  <div
+    class="office-contents content-data-hold"
+    *ngIf="currentAction == 'view'"
+  >
+    <div class="view-entry-hold">
+      <span class="entry-text highlight-title">{{
+        offices?.office?.name
+      }}</span>
     </div>
- 
-    <div class="office-edit-contents content-data-hold"  *ngIf="currentAction == 'edit'">
-  <!-- <ng-container *ngFor="let office of offices"> -->
+
+    <div class="view-entry-hold">
+      <span class="entry-text">{{
+        offices?.address?.houseno + "," + offices.address?.building
+      }}</span>
+    </div>
+    <div class="view-entry-hold">
+      <span class="entry-text">{{ offices?.address?.area }}</span>
+    </div>
+    <div class="view-entry-hold">
+      <span class="entry-text">{{ offices?.address?.street }}</span>
+    </div>
+    <div class="view-entry-hold">
+      <span class="entry-text">
+        {{ offices?.address?.area + "," + offices?.address?.city }}</span
+      >
+    </div>
+    <div class="view-entry-hold">
+      <span class="entry-text flag-hold">
+        <mat-icon></mat-icon>
+        {{
+          offices?.address?.fkcountrycode + "-" + offices?.address?.postalcode
+        }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="office-edit-contents content-data-hold"
+    *ngIf="currentAction == 'edit'"
+  >
+    <!-- <ng-container *ngFor="let office of offices"> -->
     <div class="form-field-hold">
       <!-- <mat-label class="form-field-label">Office Title</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
@@ -93,13 +119,16 @@
       <input  class="e-input" type="text" placeholder="Office Title" 
        [(ngModel)]="offices.office.code" /> -->
 
-       <app-kit-text-component [label]="'Office Title'" [fielddata]="offices.office.code" [placeholder]="'Office Title'" [minLength]="3" [maxLength]="15"
-          (sendData)="handleInput('code',$event)"
-          ></app-kit-text-component>
-      
-
+      <app-kit-text-component
+        [label]="'Office Title'"
+        [fielddata]="offices.office.code"
+        [placeholder]="'Office Title'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('code', $event)"
+      ></app-kit-text-component>
     </div>
-   
+
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Office Name</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
@@ -108,9 +137,14 @@
       <!-- <div class="control-label">Office Name</div>
       <input  class="e-input" type="text" placeholder="Office Name" 
        [(ngModel)]="offices?.office.name" /> -->
-       <app-kit-text-component [label]="'Office Name'" [fielddata]="offices.office.name" [placeholder]="'Office Name'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleInput('name',$event)"
-       ></app-kit-text-component>
+      <app-kit-text-component
+        [label]="'Office Name'"
+        [fielddata]="offices.office.name"
+        [placeholder]="'Office Name'"
+        [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleInput('name', $event)"
+      ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Office Type</mat-label>
@@ -124,11 +158,13 @@
       <ejs-dropdownlist id='games' [dataSource]='officeType' [fields]='localFields' [placeholder]='localWaterMark'
        [popupHeight]='localheight'[(ngModel)]="offices.office.type" ></ejs-dropdownlist> -->
 
-<app-kit-dropdown [label]="'Office Type'" [fielddata]="offices.office.type" [placeholder]="'Office Type'" [dropdata]="officeTypeArray"
-(sendData)="handleInput('type',$event)" ></app-kit-dropdown>
-
-
-
+      <app-kit-dropdown
+        [label]="'Office Type'"
+        [fielddata]="offices.office.type"
+        [placeholder]="'Office Type'"
+        [dropdata]="officeTypeArray"
+        (sendData)="handleInput('type', $event)"
+      ></app-kit-dropdown>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
@@ -138,10 +174,12 @@
       <!-- <div class="control-label">Flat No/Plot No/Floor</div>
       <input  class="e-input" type="text" placeholder="Flat No/Plot No/Floor" 
        [(ngModel)]="offices.address.houseno" /> -->
-       <app-kit-text-component [label]="'Flat No/Plot No/Floor'" [fielddata]="offices.address.houseno" [placeholder]="'Flat No/Plot No/Floor'" [minLength]="3" [maxLength]="15"
-       (sendData)="handleAddress('houseno',$event)"
-       ></app-kit-text-component>
-
+      <app-kit-input-mask
+        [label]="'Flat No/Plot No/Floor'"
+        [fielddata]="offices.address.houseno"
+        [placeholder]="'Flat No/Plot No/Floor'"
+        (sendData)="handleAddress('houseno', $event)"
+      ></app-kit-input-mask>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Building Name</mat-label>
@@ -151,9 +189,14 @@
       <!-- <div class="control-label">Building Name</div>
       <input  class="e-input" type="text" placeholder="Building Name" 
        [(ngModel)]="offices.address.building" /> -->
-       <app-kit-text-component [label]="'Building Name'" [fielddata]="offices.address.building" [placeholder]="'Building Name'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('building',$event)"
-       ></app-kit-text-component>
+      <app-kit-text-component
+        [label]="'Building Name'"
+        [fielddata]="offices.address.building"
+        [placeholder]="'Building Name'"
+        [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleAddress('building', $event)"
+      ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Road Name/Number</mat-label>
@@ -163,9 +206,12 @@
       <!-- <div class="control-label">Road Name/Number</div>
       <input  class="e-input" type="text" placeholder="Road Name/Number" 
        [(ngModel)]="offices.address.street" /> -->
-       <app-kit-text-component [label]="'Road Name/Number'" [fielddata]="offices.address.street" [placeholder]="'Road Name/Number'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('street',$event)"
-       ></app-kit-text-component>
+      <app-kit-input-mask
+        [label]="'Road Name/Number'"
+        [fielddata]="offices.address.street"
+        [placeholder]="'Road Name/Number'"
+        (sendData)="handleAddress('street', $event)"
+      ></app-kit-input-mask>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Landmark</mat-label>
@@ -176,10 +222,14 @@
       <input  class="e-input" type="text" placeholder="Landmark" 
        [(ngModel)]="offices.address.area" /> -->
 
-       <app-kit-text-component [label]="'Landmark'" [fielddata]="offices.address.area" [placeholder]="'Landmark'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('area',$event)"
-       ></app-kit-text-component>
-
+      <app-kit-text-component
+        [label]="'Landmark'"
+        [fielddata]="offices.address.area"
+        [placeholder]="'Landmark'"
+        [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleAddress('area', $event)"
+      ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Location</mat-label>
@@ -189,9 +239,14 @@
       <!-- <div class="control-label">Location</div>
       <input  class="e-input" type="text" placeholder="Location" 
        [(ngModel)]="offices.address.location" /> -->
-       <app-kit-text-component [label]="'Location'" [fielddata]="offices.address.location" [placeholder]="'Location'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('location',$event)"  
-       ></app-kit-text-component>
+      <app-kit-text-component
+        [label]="'Location'"
+        [fielddata]="offices.address.location"
+        [placeholder]="'Location'"
+        [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleAddress('location', $event)"
+      ></app-kit-text-component>
     </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">City</mat-label>
@@ -201,12 +256,17 @@
       <!-- <div class="control-label">City</div>
       <input  class="e-input" type="text" placeholder="City" 
        [(ngModel)]="offices.address.city" /> -->
-       <app-kit-text-component [label]="'City'" [fielddata]="offices.address.city" [placeholder]="'City'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('city',$event)"
-       ></app-kit-text-component>
+      <app-kit-text-component
+        [label]="'City'"
+        [fielddata]="offices.address.city"
+        [placeholder]="'City'"
+        [minLength]="3"
+        [maxLength]="10"
+        (sendData)="handleAddress('city', $event)"
+      ></app-kit-text-component>
     </div>
-     <div class="form-field-hold two-column-field">
-              <!-- <mat-label class="form-field-label">Country</mat-label>
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">Country</mat-label>
               <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
                 <mat-select placeholder="Ex: Country" [(ngModel)]="offices.address.fkcountrycode " >
                   <mat-select-trigger>
@@ -222,12 +282,16 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field> -->
-              <!-- <div class="control-label" >country</div>
+      <!-- <div class="control-label" >country</div>
           <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
           [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="offices.address.fkcountrycode" > </ejs-dropdownlist> -->
-          <app-kit-country-dropdown [label]="'country'" [fielddata]="offices.address.fkcountrycode" [placeholder]="'country'"
-          (sendData)="handleAddress('fkcountrycode',$event)"></app-kit-country-dropdown>
-            </div>
+      <app-kit-country-dropdown
+        [label]="'country'"
+        [fielddata]="offices.address.fkcountrycode"
+        [placeholder]="'country'"
+        (sendData)="handleAddress('fkcountrycode', $event)"
+      ></app-kit-country-dropdown>
+    </div>
     <div class="form-field-hold two-column-field">
       <!-- <mat-label class="form-field-label">Pincode</mat-label>
       <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
@@ -236,12 +300,14 @@
       <!-- <div class="control-label">Pincode</div>
       <input  class="e-input" type="text" placeholder="Pincode" 
        [(ngModel)]="offices.address.postalcode" /> -->
-       <app-kit-text-component [label]="'Pincode'" [fielddata]="offices.address.postalcode" [placeholder]="'Pincode'" [minLength]="3" [maxLength]="10"
-       (sendData)="handleAddress('postalcode',$event)"
-       ></app-kit-text-component>
+      <app-kit-input-mask
+        [label]="'Pincode'"
+        [fielddata]="offices.address.postalcode"
+        [placeholder]="'Pincode'"
+        (sendData)="handleAddress('postalcode', $event)"
+      ></app-kit-input-mask>
     </div>
-  <!-- </ng-container> -->
+    <!-- </ng-container> -->
   </div>
 </div>
 <!-- </ng-container> -->
-

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit ,Output,EventEmitter} from '@angular/core';
+import { Component, Input, OnInit ,Output,EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-kit-input-mask',
@@ -11,14 +11,18 @@ export class KitInputMaskComponent implements OnInit {
   @Input() fielddata: any;
   @Input() mask:string;
   @Output() sendData = new EventEmitter<any>();
-  constructor() { }
-
-
+    public value: any;
+    constructor() { 
+    
+    
+    }
+   
   DataToParent(value:any){
+   
     
     this.sendData.emit(value)
   }
-
+  
   ngOnInit(): void {
     console.log(this.mask); 
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit ,Input,Output,EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import { Query } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
@@ -10,7 +10,7 @@ import { Api_Base } from 'src/app/shared/api-config';
   templateUrl: './kit-country-dropdown.component.html',
   styleUrls: ['./kit-country-dropdown.component.scss']
 })
-export class KitCountryDropdownComponent implements OnInit {
+export class KitCountryDropdownComponent implements OnInit,OnChanges {
   @Input() label: any;
   @Input() placeholder: any;
   @Input() fielddata: any;
@@ -21,11 +21,14 @@ export class KitCountryDropdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
+    
+    
+  }
+  ngOnChanges(changes: SimpleChanges): void {
     this.getCountries();
     console.log(this.placeholder,this.label)
     this.watermark = this.placeholder;
-    
-    
   }
 
 

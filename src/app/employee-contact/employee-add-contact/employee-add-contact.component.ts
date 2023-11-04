@@ -20,6 +20,7 @@ empRelation:any;
 empPhoneNumber:any;
 empEmail:any;
 isSaveFormDataCalled:any;
+contactData:any=[];
   constructor(private http : HttpClient,private sharedService :SharedServiceService) { }
 
   ngOnInit(): void {
@@ -35,6 +36,10 @@ isSaveFormDataCalled:any;
     });
   }
 
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.contactData[inputName] = inputValue;
+  }
   addContact(){
     const timestamp = new Date().getTime(); 
     const requestBody = {

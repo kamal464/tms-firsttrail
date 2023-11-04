@@ -1,72 +1,266 @@
 <div class="settings-views multi-options-view has-overall-heading">
-    <div class="overall-heading">
-        <app-title
-          title="Find Employee"
-          subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est ex modi architecto accusamus vitae laborum minima et, eaque dolore!
+  <div class="overall-heading">
+    <app-title
+      title="Find Employee"
+      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est ex modi architecto accusamus vitae laborum minima et, eaque dolore!
           "
-        ></app-title>
-        
-        <span class="spacer"></span>
-        <button class="action-button" mat-raised-button color="primary" *ngIf="_currentAction == 'view'"  (click)=" triggerDoAction()">
-          <mat-icon>add</mat-icon>
-          <span class="button-text">New Employee</span>
-        </button>
-        <div class="action-padding"></div>
-      </div>
+    ></app-title>
 
-      <div class="overall-view">
-       
-        <div class="contents-view">
-      <div class="search-and-new-hold" *ngIf="_currentAction=='view'">
-        <div class="new-reason-hold mat-elevation-z4">
-    
-        </div>
+    <span class="spacer"></span>
+    <button
+      class="action-button"
+      mat-raised-button
+      color="primary"
+      *ngIf="_currentAction == 'view'"
+      (click)="triggerDoAction()"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="button-text">New Employee</span>
+    </button>
+    <div class="action-padding"></div>
+  </div>
+
+  <div class="overall-view">
+    <div class="contents-view">
+      <div class="search-and-new-hold" *ngIf="_currentAction == 'view'">
+        <div class="new-reason-hold mat-elevation-z4"></div>
         <div class="form-field-hold search-input-hold">
           <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
             appearance="outline"
           >
-            <mat-icon matPrefix 
-              >search</mat-icon
-            >
+            <mat-icon matPrefix>search</mat-icon>
             <!-- style="margin-top: 8px; margin-bottom: 12px" -->
             <input matInput placeholder="Search Employee" />
             <button matSuffix mat-icon-button style="margin-right: -15px">
               <mat-icon>close</mat-icon>
             </button>
-           
           </mat-form-field>
+
+          <span class="search-criteria">Search criteria: </span>
+
+          Customer Name:{{ filterData.customername }} projects:
+          {{ filterData.project }} Group:{{ filterData.group }} Contact:
+          {{ filterData.contact }} location: {{ filterData.location }}
         </div>
-    </div> 
-    
-<div class="contents" *ngIf="_currentAction=='view'" style="overflow: hidden;" >
-    <div class="employee-content-hold "  *ngFor="let emp of empData ; let i = index;" style="margin: 15px;">
-        <div class="employee-content-data-hold" >
-          <div  (click)="sendEmployeeId(emp.id)" >
-            <span class="entry-data entry-text">{{emp.displayname}}</span>
-            <span class="entry-label">{{emp.empno}}</span>
+      </div>
+
+      <div
+        class="contents"
+        *ngIf="_currentAction == 'view'"
+        style="overflow: hidden"
+      >
+        <div
+          class="employee-content-hold"
+          *ngFor="let emp of empData; let i = index"
+          style="margin: 15px"
+        >
+          <div class="employee-content-data-hold">
+            <div (click)="sendEmployeeId(emp.id)">
+              <span class="entry-data entry-text">{{ emp.displayname }}</span>
+              <span class="entry-label">{{ emp.empno }}</span>
+            </div>
           </div>
         </div>
-          
+      </div>
+
+      <!-- <app-employee-profile-entry *ngIf="_currentAction=='new'"></app-employee-profile-entry> -->
+      <!-- <app-employee-profile-entry *ngIf="_currentAction=='new'"></app-employee-profile-entry> -->
     </div>
-</div>
 
-<!-- <app-employee-profile-entry *ngIf="_currentAction=='new'"></app-employee-profile-entry> -->
-<!-- <app-employee-profile-entry *ngIf="_currentAction=='new'"></app-employee-profile-entry> -->
-</div>
-
-
-<div class="info-and-options-view" *ngIf="_currentAction=='view'">
-    <div class="reasons-hold info-options-hold  mat-elevation-z4" >
-        <!-- style="max-height: calc(100vh - 310px); overflow-y: auto;" -->
-        <div class="info-data-hold">
-        <p>controls</p>
-        <p>controls</p>
-        <p>controls</p>
-        <p>controls</p>
+    <!-- <div class="info-and-options-view" *ngIf="_currentAction == 'view'">
+      <div class="reasons-hold info-options-hold mat-elevation-z4">
+       
+        <mat-toolbar class="tool-bar" (click)="toggleDropdown()">
+    
+          <button mat-button class="tool-bar-title">FILTER/SORT</button>
+          <span class="spacer"></span>
+          <mat-icon *ngIf="isDropdownOpen">arrow_drop_down</mat-icon>
+          <span class="e-icons e-edit"></span>
+        </mat-toolbar>
+        <div class="setting-data-hold content-data-hold">
+          <div class="custom-dropdown">
+            <div *ngIf="isDropdownOpen" class="dropdown-content">
+              <div class="options">
+                <button mat-button (click)="toggleFilterOptions()">
+                  Filter
+                </button>
+                <div *ngIf="isFilterOpen" class="options">
+              
+                  <button mat-button (click)="cancelFilter()">Cancel</button>
+                  <button mat-button (click)="saveFilter()">Save</button>
+                </div>
+              </div>
+              <div class="options">
+                <button mat-button (click)="toggleSortOptions()">Sort</button>
+                <div *ngIf="isSortOpen" class="options">
+                 
+                  <button mat-button (click)="cancelSort()">Cancel</button>
+                  <button mat-button (click)="saveSort()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div> -->
+
+    <div class="info-and-options-view" *ngIf="_currentAction == 'view'">
+      <div class="reasons-hold info-options-hold mat-elevation-z4">
+        <mat-toolbar class="tool-bar" (click)="toggleDropdown()">
+          <button mat-button class="tool-bar-title">FILTER/SORT</button>
+          <span class="spacer"></span>
+          <mat-icon *ngIf="isDropdownOpen">arrow_drop_down</mat-icon>
+          
+        </mat-toolbar>
+
+        <div
+          *ngIf="isDropdownOpen"
+          class="setting-data-hold content-data-hold "
+          style="width: 100%"
+        >
+         <div class="button-options">
+          <button
+          mat-button
+          [ngClass]="{ active: isFilterOpen }"
+          (click)="toggleFilterOptions()"
+        >
+          Filter
+        </button>
+        <button
+          mat-button
+          [ngClass]="{ active: isSortOpen }"
+          (click)="toggleSortOptions()"
+        >
+          Sort
+        </button>
+         </div>
+
+          <div *ngIf="isFilterOpen" class="options" style="margin: 10px">
+            <!-- Add filter options here -->
+            <app-kit-text-component
+              [label]="'Customer Name'"
+              [placeholder]="'Customer Name'"
+              (sendData)="handleInput('customername', $event)"
+             
+            ></app-kit-text-component>
+            <app-kit-dropdown
+              [label]="'Project'"
+              [placeholder]="'Project'"
+              [required]="true"
+              [dropdata]="projectData"
+              (sendData)="handleInput('project', $event)"
+            ></app-kit-dropdown>
+            <app-kit-text-component
+              [label]="'Group'"
+              [placeholder]="'Group'"
+              (sendData)="handleInput('group', $event)"
+            ></app-kit-text-component>
+            <app-kit-text-component
+              [label]="'Contact'"
+              [placeholder]="' Contact'"
+              (sendData)="handleInput('contact', $event)"
+            ></app-kit-text-component>
+            <app-kit-dropdown
+              [label]="'Location'"
+              [placeholder]="'Location'"
+              [required]="true"
+              [dropdata]="locationData"
+              (sendData)="handleInput('location', $event)"
+              style="margin-bottom: 10px;" 
+            ></app-kit-dropdown>
+
+            <div style="margin-top: 20px;">
+            <button
+              mat-button
+              class="tool-bar-button"
+              matTooltip="Cancel"
+              (click)="clearFilterData()"
+            >
+              <span class="button-label">Cancel</span>
+            </button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+            >
+              <mat-icon>save</mat-icon>
+              <span class="button-label">Save</span>
+            </button>
+            </div>
+          </div>
+
+          <div *ngIf="isSortOpen" class="options" style="margin: 10px">
+            <!-- Add sort options here -->
+            <div>
+            <app-kit-checkbox 
+              [label]="'Employee Code'"
+              [fieldData]="true"
+              (sendData)="handleInput('employeecode', $event)"
+              style="margin-bottom: 10px;" 
+            ></app-kit-checkbox>
+          
+            <div style="margin-top: 10px;"> <!-- Add margin-bottom to create space below the button -->
+              <button ejs-button cssClass="e-outline" class="sort-style" [isPrimary]="true" style="margin-right: 10px;">A-Z</button>
+              <button ejs-button cssClass="e-outline" class="sort-style"  [isPrimary]="true">Z-A</button>
+            </div>
+          </div>
+            <div>
+            <app-kit-checkbox 
+              [label]="'Employee Name'"
+              [fieldData]="false"
+              (sendData)="handleInput('employeeName', $event)"
+              style="margin-bottom: 10px;" 
+            ></app-kit-checkbox>
+          
+            <div style="margin-top: 10px;"> <!-- Add margin-bottom to create space below the button -->
+              <button ejs-button cssClass="e-outline" class="sort-style" [isPrimary]="true" style="margin-right: 10px;">A-Z</button>
+              <button ejs-button cssClass="e-outline" class="sort-style" [isPrimary]="true">Z-A</button>
+            </div>
+          </div>
+            <div>
+            <app-kit-checkbox 
+              [label]="'Joining Date'"
+              [fieldData]="true"
+              (sendData)="handleInput('employeecode', $event)"
+              style="margin-bottom: 10px;" 
+            ></app-kit-checkbox>
+          
+            <div style="margin-top: 10px;"> <!-- Add margin-bottom to create space below the button -->
+              <button ejs-button cssClass="e-outline" class="sort-style" [isPrimary]="true" style="margin-right: 10px;">Oldest First</button>
+              <button ejs-button cssClass="e-outline" class="sort-style" [isPrimary]="true">Newest First</button>
+            </div>
+          </div>
+            <div>
+              <div style="margin-top: 20px;">
+            <button
+            mat-button
+            class="tool-bar-button"
+            matTooltip="Cancel"
+            (click)="clearFilterData()"
+            style="margin-right: 10px;"
+          >
+            <span class="button-label">Cancel</span>
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="tool-bar-button"
+            matTooltip="Save Changes"
+          >
+            <mat-icon>save</mat-icon>
+            <span class="button-label">Save</span>
+          </button>
+          </div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
 </div>

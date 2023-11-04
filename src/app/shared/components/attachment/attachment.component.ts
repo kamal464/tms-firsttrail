@@ -65,39 +65,68 @@ export class AttachmentComponent implements OnInit {
 
 
 
+  // downloadVfs(attachment): void {
+  //   // Define the API URL for the file download
+  //   // const vfsApi = 'https://example.com/api'; // Replace with your API URL
+  //   const apiUrl = `${vfsApi}/get/${attachment.id}`;
+  
+  //   // Set up the request headers with custom headers
+  //   // const headers = new HttpHeaders({
+  //   //   vfs_id : id.toString()
+  //   // });
+  
+  //   // Send the HTTP GET request
+  //   // {
+  //   //   headers :{ vfs_id : attachment.id.toString()},
+  //   //   responseType: 'blob', // Specify blob responseType for binary data
+  //   //   observe: 'response', // To access the full HTTP response including headers
+  //   // }
+  //   this.http.get(apiUrl, {}).subscribe(
+  //     (response: HttpResponse<Blob>) => {
+  //       const contentDisposition = response.headers.get('content-disposition');
+  //       const filename = contentDisposition ? contentDisposition.split(';')[1].split('=')[1].trim() : attachment.filename;
+  //       const blob = new Blob([response.body], { type: response.body.type });
+  
+  //       // Create a temporary URL to the blob and trigger the download
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement('a');
+  //       a.href = url;
+  //       a.download = filename;
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //     },
+  //     error => {
+  //       console.error('Error downloading file:', error);
+  //     }
+  //   );
+  // }
+
+
   downloadVfs(attachment): void {
-    // Define the API URL for the file download
-    // const vfsApi = 'https://example.com/api'; // Replace with your API URL
-    const apiUrl = `${vfsApi}/download`;
+    const apiUrl = `${vfsApi}/get/${attachment.id}`;
   
-    // Set up the request headers with custom headers
-    // const headers = new HttpHeaders({
-    //   vfs_id : id.toString()
-    // });
+    const headers = new HttpHeaders({
+      'vfs_id': attachment.id.toString(),
+    });
   
-    // Send the HTTP GET request
-    this.http.post(apiUrl, {},{
-      headers :{ vfs_id : attachment.id.toString()},
-      responseType: 'blob', // Specify blob responseType for binary data
-      observe: 'response', // To access the full HTTP response including headers
-    }).subscribe(
-      (response: HttpResponse<Blob>) => {
-        const contentDisposition = response.headers.get('content-disposition');
-        const filename = contentDisposition ? contentDisposition.split(';')[1].split('=')[1].trim() : attachment.filename;
-        const blob = new Blob([response.body], { type: response.body.type });
+    this.http.get(apiUrl, { headers, responseType: 'blob', observe: 'response' })
+      .subscribe(
+        (response: HttpResponse<Blob>) => {
+          const contentDisposition = response.headers.get('content-disposition');
+          const filename = contentDisposition ? contentDisposition.split(';')[1].split('=')[1].trim() : attachment.filename;
+          const blob = new Blob([response.body], { type: response.body.type });
   
-        // Create a temporary URL to the blob and trigger the download
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        a.click();
-        window.URL.revokeObjectURL(url);
-      },
-      error => {
-        console.error('Error downloading file:', error);
-      }
-    );
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        },
+        error => {
+          console.error('Error downloading file:', error);
+        }
+      );
   }
 
 

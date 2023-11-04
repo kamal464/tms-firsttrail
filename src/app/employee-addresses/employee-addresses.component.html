@@ -1,22 +1,36 @@
 <div>
-    <div class="headings">
-      <app-title
-        title="Address"
+  <div class="headings">
+    <app-title
+      title="Address"
       subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
-        
-      ></app-title>
-      <span class="spacer"></span>
-      <button class="action-button" mat-raised-button color="primary"  *ngIf="_currentAction == 'view'" (click)="doAction('new')">
-        <mat-icon>add</mat-icon>
-        <span class="button-text">Add New Address</span>
-      </button>
-    </div>
-    <div class="setting-hold">
-      
-      <ng-container >
-     <div  class="contents" style="overflow: hidden;flex-direction: column;">
-        <app-employee-add-address *ngIf="_currentAction == 'new'" [_currentAction]="_currentAction" [countries]="countriesArray" [addressArray]="addressArray"   (onAction)="doAction($event)"></app-employee-add-address>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;"  *ngFor="let address of addressArray ;let i = index" >
+    ></app-title>
+    <span class="spacer"></span>
+    <button
+      class="action-button"
+      mat-raised-button
+      color="primary"
+      *ngIf="_currentAction == 'view'"
+      (click)="doAction('new')"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="button-text">Add New Address</span>
+    </button>
+  </div>
+  <div class="setting-hold">
+    <ng-container>
+      <div class="contents" style="overflow: hidden; flex-direction: column">
+        <app-employee-add-address
+          *ngIf="_currentAction == 'new'"
+          [_currentAction]="_currentAction"
+          [countries]="countriesArray"
+          [addressArray]="addressArray"
+          (onAction)="doAction($event)"
+        ></app-employee-add-address>
+        <div
+          class="content-hold"
+          style="width: 100%; margin-bottom: 20px"
+          *ngFor="let address of addressArray; let i = index"
+        >
           <!-- <tool-bar
             [title]="'Current Address'"
             class="content-title-hold"
@@ -27,7 +41,16 @@
             (onEdit)="startEdit(i)"
           ></tool-bar>  -->
           <mat-toolbar class="tool-bar">
-            <span class="tool-bar-title" [innerHtml]="address.type === 'TA' ? 'Temporary Address' : (address.type === 'PA' ? 'Permanent Address' : address.type) "></span>
+            <span
+              class="tool-bar-title"
+              [innerHtml]="
+                address.type === 'TA'
+                  ? 'Temporary Address'
+                  : address.type === 'PA'
+                  ? 'Permanent Address'
+                  : address.type
+              "
+            ></span>
             <span class="sub-title mat-small"></span>
             <span class="spacer"></span>
             <!-- View Mode -->
@@ -36,7 +59,7 @@
                 mat-button
                 class="tool-bar-button bt-color"
                 matTooltip="Edit"
-                (click)="doAction('edit'); startEdit(i,address.id)"
+                (click)="doAction('edit'); startEdit(i, address.id)"
               >
                 <mat-icon>edit</mat-icon>
                 <span class="button-label">Edit</span>
@@ -46,7 +69,7 @@
                 color="primary"
                 class="tool-bar-button"
                 matTooltip="Delete"
-                (click)="doAction('delete');doDelete(address.id)"
+                (click)="doAction('delete'); doDelete(address.id)"
               >
                 <mat-icon>delete</mat-icon>
                 <span class="button-label">Delete</span>
@@ -68,7 +91,7 @@
                 color="primary"
                 class="tool-bar-button"
                 matTooltip="Save Changes"
-                (click)="doAction('save');"
+                (click)="doAction('save')"
                 (click)="updateAddress(address)"
               >
                 <mat-icon>save</mat-icon>
@@ -76,34 +99,50 @@
               </button>
             </ng-template>
           </mat-toolbar>
-          <div  class="office-contents content-schema-view" *ngIf="_currentAction=='view' || i !== _editIndex">
+          <div
+            class="office-contents content-schema-view"
+            *ngIf="_currentAction == 'view' || i !== _editIndex"
+          >
             <div class="view-entry-hold">
-              <span class="entry-text">{{'Plot No.' + address?.houseno }}</span>
+              <span class="entry-text">{{
+                "Plot No." + address?.houseno
+              }}</span>
             </div>
             <div class="view-entry-hold">
-              <span class="entry-text">{{ address?.building}}</span>
+              <span class="entry-text">{{ address?.building }}</span>
             </div>
             <div class="view-entry-hold">
-              <span class="entry-text">{{address?.landmark}}</span>
+              <span class="entry-text">{{ address?.landmark }}</span>
             </div>
             <div class="view-entry-hold">
-              <span class="entry-text">{{address?.street}}</span>
+              <span class="entry-text">{{ address?.street }}</span>
             </div>
             <div class="view-entry-hold">
-              <span class="entry-text"> {{address?.area + ',' + address?.city}}</span>
+              <span class="entry-text">
+                {{ address?.area + "," + address?.city }}</span
+              >
             </div>
             <div class="view-entry-hold">
-              <span class="entry-text flag-hold" *ngFor="let country of countriesArray">
+              <span
+                class="entry-text flag-hold"
+               
+              >
                 <mat-icon></mat-icon>
-                {{(address?.fkcountrycode == country.id ? country.value : null) + '-' + address?.postalcode}}
+                {{
+                  address?.fkcountrycode 
+                    +
+                    "-" +
+                    address?.postalcode
+                }}
               </span>
             </div>
           </div>
-          <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;" *ngIf="_currentAction=='edit' && i == _editIndex">
-            
-           
-             
-            <div
+          <div
+            class="setting-data-hold content-schema-view"
+            style="padding-left: 20px"
+            *ngIf="_currentAction == 'edit' && i == _editIndex"
+          >
+            <!-- <div
             class="form-field-hold two-column-field">
        
             <mat-label class="form-field-label">Address Type</mat-label>
@@ -123,44 +162,109 @@
           </mat-form-field>
       
           </div> 
-               
-          <div class="form-field-hold two-column-field">
+                -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'Address Type'"
+                [fielddata]="selectedAddress"
+                [placeholder]="'Address Type'"
+                [dropdata]="addressTypeArray"
+                [required]="true"
+                (sendData)="handleInput('type', $event)"
+              ></app-kit-dropdown>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="address.houseno">
             </mat-form-field>
-          </div>
-          <div class="form-field-hold two-column-field">
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-input-mask
+                [label]="'Flat No/Plot No/Floor'"
+                [fielddata]="address.houseno"
+                [placeholder]="'Flat No/Plot No/Floor'"
+                (sendData)="handleInput('houseno', $event)"
+              ></app-kit-input-mask>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Building Name</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: Building Name" [(ngModel)]="address.building">
             </mat-form-field>
-          </div>
-          <div class="form-field-hold two-column-field">
+          </div> -->
+
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Building Name'"
+                [placeholder]="'Building Name'"
+                [fielddata]="address.building"
+                (sendData)="handleInput('building', $event)"
+              ></app-kit-text-component>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Road Name/Number</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: Road no 1" [(ngModel)]="address.street">
             </mat-form-field>
-          </div>
-          <div class="form-field-hold two-column-field">
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-input-mask
+                [label]="'Road Name/Number'"
+                [placeholder]="'Road Name/Number'"
+                [fielddata]="address.street"
+                (sendData)="handleInput('street', $event)"
+              ></app-kit-input-mask>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Landmark</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="address.landmark">
             </mat-form-field>
-          </div>
-          <div class="form-field-hold two-column-field">
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Landmark'"
+                [placeholder]="'Landmark'"
+                [minLength]="3"
+                [maxLength]="15"
+                [fielddata]="address.landmark"
+                (sendData)="handleInput('area', $event)"
+              ></app-kit-text-component>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Location</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: Location" [(ngModel)]="address.location">
             </mat-form-field>
-          </div>
-          <div class="form-field-hold two-column-field">
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Location'"
+                [placeholder]="'Location'"
+                [minLength]="3"
+                [maxLength]="15"
+                [fielddata]="address.location"
+                (sendData)="handleInput('location', $event)"
+              ></app-kit-text-component>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">City</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: City" [(ngModel)]="address.city">
             </mat-form-field>
-          </div>
-           <div class="form-field-hold two-column-field">
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'City'"
+                [placeholder]="'City'"
+                [minLength]="3"
+                [maxLength]="15"
+                [fielddata]="address.city"
+                (sendData)="handleInput('city', $event)"
+              ></app-kit-text-component>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
                     <mat-label class="form-field-label">Country</mat-label>
                     <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
                       <mat-select placeholder="Ex: Country" [(ngModel)]="address.fkcountrycode " >
@@ -177,27 +281,32 @@
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-                  </div>
-          <div class="form-field-hold two-column-field">
+                  </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-country-dropdown
+                [label]="'country'"
+                [placeholder]="'country'"
+                [fielddata]="address.fkcountrycode"
+                (sendData)="handleInput('fkcountrycode', $event)"
+              ></app-kit-country-dropdown>
+            </div>
+            <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Pincode</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="address.postalcode">
             </mat-form-field>
+          </div> -->
+            <div class="form-field-hold two-column-field">
+              <app-kit-input-mask
+                [label]="'Pincode'"
+                [placeholder]="'Pincode'"
+                [fielddata]="address.postalcode"
+                (sendData)="handleInput('postalcode', $event)"
+              ></app-kit-input-mask>
+            </div>
           </div>
-       
-      
-      
-      
-      
-      </div>
-      
         </div>
-    
-       
-
       </div>
-       
-
     </ng-container>
-    </div>
   </div>
+</div>

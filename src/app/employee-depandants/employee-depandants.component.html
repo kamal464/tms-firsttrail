@@ -1,89 +1,113 @@
 <div>
-    <div class="headings">
-      <app-title
-        title="Dependants"
+  <div class="headings">
+    <app-title
+      title="Dependants"
       subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
-        
-      ></app-title>
-      <span class="spacer"></span>
-      <button class="action-button" mat-raised-button color="primary" (click)="doAction('new')" *ngIf="_currentAction == 'view'">
-        <mat-icon>add</mat-icon>
-        <span class="button-text">Add New Dependant</span>
-      </button>
-    </div>
-    <div class="setting-hold">
-      
-     <div  class="contents" style="overflow: hidden;flex-direction: column;">
-       <app-employee-add-depandant *ngIf="_currentAction == 'new'" [_currentAction]="_currentAction"  (onAction)="doAction($event)" [dependantsArray]="dependantArray"
-        [relationArray]="relationsArray"  [genderArray]="gendersArray"></app-employee-add-depandant>
-        <div class="content-hold" style="width: 100%;margin-bottom: 20px;" *ngFor="let dependant of dependantArray ; let i = index">
-          <mat-toolbar class="tool-bar">
-            <span class="tool-bar-title"  [innerHtml]="dependant.dependentname + '-' + dependant.relationtype"></span>
-            <span class="sub-title mat-small"></span>
-            <span class="spacer"></span>
-            <!-- View Mode -->
-            <ng-container *ngIf="i !== _editIndex; else editMode">
-              <button
-                mat-button
-                class="tool-bar-button bt-color"
-                matTooltip="Edit"
-                (click)="doAction('edit'); startEdit(i)"
-              >
-                <mat-icon>edit</mat-icon>
-                <span class="button-label">Edit</span>
-              </button>
-              <button
-                mat-flat-button
-                color="primary"
-                class="tool-bar-button"
-                matTooltip="Delete"
-                (click)="doAction('delete');doDelete(dependant.id)"
-              >
-                <mat-icon>delete</mat-icon>
-                <span class="button-label">Delete</span>
-              </button>
-            </ng-container>
-            <!-- Edit Mode -->
-            <ng-template #editMode>
-              <button
-                mat-button
-                class="tool-bar-button"
-                matTooltip="Cancel"
-                (click)="doAction('cancel')"
-              >
-                <mat-icon>cancel</mat-icon>
-                <span class="button-label">Cancel</span>
-              </button>
-              <button
-                mat-raised-button
-                color="primary"
-                class="tool-bar-button"
-                matTooltip="Save Changes"
-                (click)="doAction('save')"
-                (click)="updateDependent(dependant)"
-              >
-                <mat-icon>save</mat-icon>
-                <span class="button-label">Save</span>
-              </button>
-            </ng-template>
-          </mat-toolbar>
-          <div class="content-schema-view " *ngIf="_currentAction == 'view' || i !== _editIndex">  
-              <div class="view-entry-schema two-column-field ">
-                <mat-label class="entry-label">Dateofbirth</mat-label>
-                <span class="entry-data">{{dependant?.birthdate ? (dependant.birthdate | stringToDate) : ''}}</span>
-              </div>
-              <!-- employeeDetails?.personalData?.dateofmarriage ? (employeeDetails.personalData.dateofmarriage | stringToDate) : ''  -->
-              <div class="view-entry-schema two-column-field ">
-                <mat-label class="entry-label">Gender</mat-label>
-                <span class="entry-data">{{dependant.gender}}</span>
-              </div>
-            </div>
-         
+    ></app-title>
+    <span class="spacer"></span>
+    <button
+      class="action-button"
+      mat-raised-button
+      color="primary"
+      (click)="doAction('new')"
+      *ngIf="_currentAction == 'view'"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="button-text">Add New Dependant</span>
+    </button>
+  </div>
+  <div class="setting-hold">
+    <div class="contents" style="overflow: hidden; flex-direction: column">
+      <app-employee-add-depandant
+        *ngIf="_currentAction == 'new'"
+        [_currentAction]="_currentAction"
+        (onAction)="doAction($event)"
+        [dependantsArray]="dependantArray"
+        [relationArray]="relationsArray"
+        [genderArray]="gendersArray"
+      ></app-employee-add-depandant>
+      <div
+        class="content-hold"
+        style="width: 100%; margin-bottom: 20px"
+        *ngFor="let dependant of dependantArray; let i = index"
+      >
+        <mat-toolbar class="tool-bar">
+          <span
+            class="tool-bar-title"
+            [innerHtml]="dependant.dependentname + '-' + dependant.relationtype"
+          ></span>
+          <span class="sub-title mat-small"></span>
+          <span class="spacer"></span>
+          <!-- View Mode -->
+          <ng-container *ngIf="i !== _editIndex; else editMode">
+            <button
+              mat-button
+              class="tool-bar-button bt-color"
+              matTooltip="Edit"
+              (click)="doAction('edit'); startEdit(i)"
+            >
+              <mat-icon>edit</mat-icon>
+              <span class="button-label">Edit</span>
+            </button>
+            <button
+              mat-flat-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Delete"
+              (click)="doAction('delete'); doDelete(dependant.id)"
+            >
+              <mat-icon>delete</mat-icon>
+              <span class="button-label">Delete</span>
+            </button>
+          </ng-container>
+          <!-- Edit Mode -->
+          <ng-template #editMode>
+            <button
+              mat-button
+              class="tool-bar-button"
+              matTooltip="Cancel"
+              (click)="doAction('cancel')"
+            >
+              <mat-icon>cancel</mat-icon>
+              <span class="button-label">Cancel</span>
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+              (click)="doAction('save')"
+              (click)="updateDependent(dependant)"
+            >
+              <mat-icon>save</mat-icon>
+              <span class="button-label">Save</span>
+            </button>
+          </ng-template>
+        </mat-toolbar>
+        <div
+          class="content-schema-view"
+          *ngIf="_currentAction == 'view' || i !== _editIndex"
+        >
+          <div class="view-entry-schema two-column-field">
+            <mat-label class="entry-label">Dateofbirth</mat-label>
+            <span class="entry-data">{{
+              dependant?.birthdate ? (dependant.birthdate | stringToDate) : ""
+            }}</span>
+          </div>
+          <!-- employeeDetails?.personalData?.dateofmarriage ? (employeeDetails.personalData.dateofmarriage | stringToDate) : ''  -->
+          <div class="view-entry-schema two-column-field">
+            <mat-label class="entry-label">Gender</mat-label>
+            <span class="entry-data">{{ dependant.gender }}</span>
+          </div>
+        </div>
 
-            <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;"  *ngIf="_currentAction == 'edit' && i == _editIndex">
-        
-              <div  class="form-field-hold two-column-field">
-                  <mat-label class="form-field-label">Contact Name</mat-label>
+        <div
+          class="setting-data-hold content-schema-view content-data-hold"
+          style="padding-left: 20px"
+          *ngIf="_currentAction == 'edit' && i == _editIndex"
+        >
+          <div class="form-field-hold two-column-field">
+            <!-- <mat-label class="form-field-label">Contact Name</mat-label>
                   <mat-form-field
                     class="form-field-input"
                     floatPlaceholder="never"
@@ -95,14 +119,19 @@
                       #inputValue
                      [(ngModel)]="dependant.dependentname"
                     />
-                  </mat-form-field>
-                 
-                </div> 
-               
-            <div
-            class="form-field-hold two-column-field">
-       
-            <mat-label class="form-field-label">Gender</mat-label>
+                  </mat-form-field> -->
+            <app-kit-text-component
+              [label]="'Contact Name'"
+              [fielddata]="dependant.dependentname"
+              [minLength]="3"
+              [maxLength]="30"
+              [placeholder]="'Contact Name'"
+              (sendData)="handleInput('dependentname', $event)"
+            ></app-kit-text-component>
+          </div>
+
+          <div class="form-field-hold two-column-field">
+            <!-- <mat-label class="form-field-label">Gender</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -117,25 +146,34 @@
               <mat-option *ngFor="let gender of gendersArray" [value]="gender.id">{{gender.value}}</mat-option
               >
             </mat-select>
-          </mat-form-field>
-      
-          </div> 
-               
+          </mat-form-field> -->
+            <app-kit-dropdown
+              [label]="'Gender'"
+              [fielddata]="dependant.gender"
+              [placeholder]="'Gender'"
+              [dropdata]="gendersArray"
+              [required]="true"
+              (sendData)="handleInput('gender', $event)"
+            ></app-kit-dropdown>
+          </div>
+
           <div class="form-field-hold two-column-field">
-              <mat-label class="form-field-label">Date Of Birth</mat-label>
+            <!-- <mat-label class="form-field-label">Date Of Birth</mat-label>
               <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
                 <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Birth" 
                    [disabled]="false" [(ngModel)]="dependant.birthdate">
                 <mat-datepicker-toggle matSuffix [for]="Birth"></mat-datepicker-toggle>
                 <mat-datepicker #Birth disabled="false"></mat-datepicker>
-              </mat-form-field>
-            </div>
-      
-            
-            <div
-            class="form-field-hold two-column-field">
-       
-            <mat-label class="form-field-label">Relation</mat-label>
+              </mat-form-field> -->
+            <app-kit-datepicker
+              [label]="'Date Of Birth'"
+              [placeholder]="'Date Of Birth'"
+              (sendData)="handleInput('birthdate', $event)"
+            ></app-kit-datepicker>
+          </div>
+
+          <div class="form-field-hold two-column-field">
+            <!-- <mat-label class="form-field-label">Relation</mat-label>
             <mat-form-field
             class="form-field-input"
             floatPlaceholder="never"
@@ -150,29 +188,21 @@
               <mat-option *ngFor="let relation of relationsArray" [value]="relation.value">{{relation.value}}</mat-option
               >
             </mat-select>
-          </mat-form-field>
-      
-          </div> 
-             
-        
-         
-          
-         
-      
-      
-      
-      
-      
-      </div>
+          </mat-form-field> -->
+
+            <app-kit-dropdown
+              [label]="'Relation'"
+              [fielddata]="dependant.relationtype"
+              [placeholder]="'Relation'"
+              [dropdata]="relationsArray"
+              [required]="true"
+              (sendData)="handleInput('relationtype', $event)"
+            ></app-kit-dropdown>
+          </div>
         </div>
-      
-      
-     
-<!-- <app-employee-addemployee></app-employee-addemployee> -->
-
-
       </div>
-       
 
+      <!-- <app-employee-addemployee></app-employee-addemployee> -->
     </div>
   </div>
+</div>

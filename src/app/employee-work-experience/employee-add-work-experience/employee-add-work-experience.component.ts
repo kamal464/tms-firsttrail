@@ -23,6 +23,7 @@ export class EmployeeAddWorkExperienceComponent implements OnInit {
   empFromDate:any;
   empToDate:any;
   empRemarks:any;
+  workExperienceData:any=[];
 
 
   private subscription: Subscription;
@@ -40,6 +41,11 @@ export class EmployeeAddWorkExperienceComponent implements OnInit {
         console.log('Employee ID not set in Component B');
       }
     });
+  }
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.workExperienceData[inputName] = inputValue;
   }
   doAction(action): void {
     this._currentAction = action;
@@ -84,15 +90,15 @@ addWorkExperience(){
   const requestBody ={
     id:timestamp,
     fkempid:this.employeeId,
-    employer:this.empEmployer,
-    designation:this.empDesignation,
-    roles:this.empRoles,
-    fromdate:formatDateField(this.empFromDate),
-    todate:formatDateField(this.empToDate),
+    employer:this.workExperienceData.employer,
+    designation:this.workExperienceData.designation,
+    roles:this.workExperienceData.roles,
+    fromdate:formatDateField(this.workExperienceData.fromdate),
+    todate:formatDateField(this.workExperienceData.todate),
     isrelevant:null,
     reviewedbyfkempid:null,
     reviewdate:null,
-    remarks:this.empRemarks,
+    remarks:this.workExperienceData.remarks,
     isactive:0
   }
 

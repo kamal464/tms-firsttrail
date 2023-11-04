@@ -106,6 +106,7 @@ import { KitRadioComponent } from './kitcomponents/kit-radio/kit-radio.component
 import { KitToggleSwitchComponent } from './kitcomponents/kit-toggle-switch/kit-toggle-switch.component';
 import { KitDateTimePickerComponent } from './kitcomponents/kit-date-time-picker/kit-date-time-picker.component';
 import { KitCheckboxComponent } from './kitcomponents/kit-checkbox/kit-checkbox.component';
+import { KitButtonComponent } from './kitcomponents/kit-button/kit-button.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -202,6 +203,7 @@ import { KitCheckboxComponent } from './kitcomponents/kit-checkbox/kit-checkbox.
    KitToggleSwitchComponent,
    KitDateTimePickerComponent,
    KitCheckboxComponent,
+   KitButtonComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

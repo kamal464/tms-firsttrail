@@ -27,6 +27,7 @@ private subscription: Subscription;
   city:string;
   country:string;
   pincode:number;
+  sendBody:any;
   private isSaveFormDataCalled = false;
   ngOnInit(): void {
     
@@ -42,6 +43,14 @@ private subscription: Subscription;
     });
   }
  
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.sendBody = {
+      ...this.sendBody,
+      [inputName]:inputValue
+    }
+console.log(this.sendBody);
+  }
 
   getAddressType(){
     const headers = new HttpHeaders()
@@ -91,20 +100,20 @@ addAddress(){
       id: timestamp,
       fkorgid : 1,
       fkofficeid : null,
-      type: this.SelectedAddressType ,
+      type: this.sendBody.type ,
       contactname: null,
       description : null,
-      houseno:this.flatNo,
-      building :this.buildingName,
-      street:this.roadName,
+      houseno:this.sendBody.houseno,
+      building :this.sendBody.building,
+      street:this.sendBody.street,
       locality:null,
-      landmark:this.landMark,
-      area:this.location,
-      city:this.city,
-      postalcode:this.pincode,
+      landmark:this.sendBody.landMark,
+      area:this.sendBody.area,
+      city:this.sendBody.city,
+      postalcode:this.sendBody.postalcode,
       region:null,
       zone:null,
-      fkcountrycode:this.selectedCountry,
+      fkcountrycode:this.sendBody.fkcountrycode,
       latitude:null,
       longitude:null,
       phone:null,

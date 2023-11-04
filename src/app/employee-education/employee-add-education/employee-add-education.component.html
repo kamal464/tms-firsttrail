@@ -35,7 +35,7 @@
 
   </div>  -->
   <div  class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">College/Institute Name</mat-label>
+    <!-- <mat-label class="form-field-label">College/Institute Name</mat-label>
     <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -47,11 +47,18 @@
         #inputValue
        [(ngModel)]="empInstitute"
       />
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-text-component
+    [label]="'College/Institute Name'"
+    [minLength]="3"
+    [maxLength]="30"
+    [placeholder]="'College/Institute Name'"
+    (sendData)="handleInput('institute', $event)"
+  ></app-kit-text-component>
    
   </div> 
   <div  class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Course</mat-label>
+    <!-- <mat-label class="form-field-label">Course</mat-label>
     <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -63,11 +70,18 @@
         #inputValue
        [(ngModel)]="empCourse"
       />
-    </mat-form-field>
-   
+    </mat-form-field> -->
+    
+    <app-kit-text-component
+    [label]="'Course'"
+    [minLength]="3"
+    [maxLength]="30"
+    [placeholder]="'Course'"
+    (sendData)="handleInput('course', $event)"
+  ></app-kit-text-component>
   </div> 
   <div  class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">Specification</mat-label>
+    <!-- <mat-label class="form-field-label">Specification</mat-label>
     <mat-form-field
       class="form-field-input"
       floatPlaceholder="never"
@@ -79,35 +93,52 @@
         #inputValue
        [(ngModel)]="empSpecialization"
       />
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-text-component
+    [label]="'Specification'"
+    [minLength]="3"
+    [maxLength]="30"
+    [placeholder]="'Specification'"
+    (sendData)="handleInput('specialization', $event)"
+  ></app-kit-text-component>
    
   </div> 
 
   <div class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">From Date</mat-label>
+    <!-- <mat-label class="form-field-label">From Date</mat-label>
     <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
       <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate" 
          [disabled]="false"  [(ngModel)]="empFromDate">
       <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
       <mat-datepicker #fromdate disabled="false"></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-datepicker
+        [label]="'From Date'"
+        [placeholder]="'From Date'"
+        (sendData)="handleInput('fromDate', $event)"
+      ></app-kit-datepicker>
   </div>
 
   <div class="form-field-hold two-column-field">
-    <mat-label class="form-field-label">To Date</mat-label>
+    <!-- <mat-label class="form-field-label">To Date</mat-label>
     <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
       <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate" 
          [disabled]="false"  [(ngModel)]="empToDate">
       <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
       <mat-datepicker #todate disabled="false"></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
+    <app-kit-datepicker
+        [label]="'To Date'"
+        [placeholder]="'To Date'"
+        (sendData)="handleInput('toDate', $event)"
+      ></app-kit-datepicker>
   </div>
      
   
 
         
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Score</mat-label>
+            <!-- <mat-label class="form-field-label">Score</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -120,10 +151,16 @@
                [(ngModel)]="empScore"
               />
             </mat-form-field>
-           
+            -->
+            <app-kit-input-mask
+        [label]="'Score'"
+        [placeholder]="'Score'"
+       
+        (sendData)="handleInput('score', $event)"
+      ></app-kit-input-mask>
           </div> 
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">ScoreMax</mat-label>
+            <!-- <mat-label class="form-field-label">ScoreMax</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -136,10 +173,16 @@
                [(ngModel)]="empScoreMax"
               />
             </mat-form-field>
+            -->
+            <app-kit-input-mask
+            [label]="'ScoreMax'"
+            [placeholder]="'ScoreMax'"
            
+            (sendData)="handleInput('scoremax', $event)"
+          ></app-kit-input-mask>
           </div> 
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">ScoreMetric</mat-label>
+            <!-- <mat-label class="form-field-label">ScoreMetric</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -151,7 +194,13 @@
                 #inputValue
                [(ngModel)]="empScoreMetric"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-input-mask
+        [label]="'ScoreMetric'"
+        [placeholder]="'ScoreMetric'"
+       
+        (sendData)="handleInput('scoremetric', $event)"
+      ></app-kit-input-mask>
            
           </div> 
       
@@ -159,7 +208,7 @@
           
      
           <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Type</mat-label>
+            <!-- <mat-label class="form-field-label">Type</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -171,14 +220,28 @@
                 #inputValue
                [(ngModel)]="empScoreType"
               />
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component
+            [label]="'Type'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Type'"
+            (sendData)="handleInput('type', $event)"
+          ></app-kit-text-component>
            
           </div> 
           <div class="form-field-hold" >
-            <mat-label class="form-field-label">Remarks</mat-label>
+            <!-- <mat-label class="form-field-label">Remarks</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <textarea matInput placeholder="Ex: Notes" [(ngModel)]="empRemarks" ></textarea>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component
+            [label]="'Remarks'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Remarks'"
+            (sendData)="handleInput('remarks', $event)"
+          ></app-kit-text-component>
           </div>
           <div class="form-field-hold">
             <app-company-identification-uploader ></app-company-identification-uploader>

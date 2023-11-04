@@ -13,6 +13,7 @@ export class EmployeeDepandantsComponent implements OnInit {
   dependantArray:any=[];
   relationsArray:any = [];
   gendersArray:any = [];
+  dependentData :any =[];
   constructor(private http : HttpClient, private cdr:ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -22,7 +23,10 @@ export class EmployeeDepandantsComponent implements OnInit {
     console.log(this._currentAction)
   }
 
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.dependentData[inputName] = inputValue;
+  }
   startEdit(index: number) {
     this._editIndex = index;
     this.hasEdit = true;
@@ -88,8 +92,8 @@ export class EmployeeDepandantsComponent implements OnInit {
 
 updateDependent(dependent){
   let dob = null;
-  if (dependent.birthdate) {
-    const dateObj = new Date(dependent.birthdate);
+  if (this.dependentData.birthdate) {
+    const dateObj = new Date(this.dependentData.birthdate);
     const year = dateObj.getFullYear();
     const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
     const day = dateObj.getDate();
@@ -99,10 +103,10 @@ updateDependent(dependent){
   const requestBody ={
     id:dependent.id,
     fkempid:dependent.fkempid,
-    dependentname:dependent.dependentname,
-    gender:dependent.gender,
-    birthdate:dependent.birthdate,
-    relationtype:dependent.relationtype,
+    dependentname:this.dependentData.dependentname?this.dependentData.dependentname:dependent.dependentname,
+    gender:this.dependentData.gender?this.dependentData.gender : dependent.gender,
+    birthdate:dob?dob:dependent.birthdate,
+    relationtype:this.dependentData.relationtype?this.dependentData.relationtype:dependent.relationtype,
     remarks:null,
   }
   this.http.post(`${API_BASE_URL}/t/empdependent/update`,requestBody).subscribe((data)=>{

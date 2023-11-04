@@ -30,77 +30,81 @@ idNumber:any;
 idName:any;
 idValidFromDate:any;
 idValidUptoDate:any;
+identitiesData:any=[];
   constructor(private http : HttpClient) { }
   onDateSelected(event: MatDatepickerInputEvent<Date>) {
     this.idIssuedDate = event.value;
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.identitiesData[inputName] = inputValue;
+  }
 
   ngOnInit(): void {
     
     this.getIdentifications();
     this.getIdentityType();
     this.getIssuedBy();
-    this.getCountries();
+    // this.getCountries();
   }
 
   
-  public countrydata: any = [
-  ];
-  // maps the appropriate column to fields property
-  public fields: Object = { text: 'value', value: 'id' };
-  // set the height of the popup element
-  public height: string = '220px';
-  // set the placeholder to DropDownList input element
-  public watermark: string = 'Select a country';
-  // set the placeholder to filter search box input element
-  public filterPlaceholder: string = 'Search';
-  // filtering event handler to filter a Country
-  public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
-      let query: Query = new Query();
-      //frame the query based on search string with filter type.
-      query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
-      //pass the filter data source, filter query to updateData method.
-      e.updateData(this.countrydata, query);
-  }
+  // public countrydata: any = [
+  // ];
+  // // maps the appropriate column to fields property
+  // public fields: Object = { text: 'value', value: 'id' };
+  // // set the height of the popup element
+  // public height: string = '220px';
+  // // set the placeholder to DropDownList input element
+  // public watermark: string = 'Select a country';
+  // // set the placeholder to filter search box input element
+  // public filterPlaceholder: string = 'Search';
+  // // filtering event handler to filter a Country
+  // public onFiltering: EmitType<FilteringEventArgs> = (e: FilteringEventArgs) => {
+  //     let query: Query = new Query();
+  //     //frame the query based on search string with filter type.
+  //     query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+  //     //pass the filter data source, filter query to updateData method.
+  //     e.updateData(this.countrydata, query);
+  // }
  
 
 
 
 
 
-  public identityType:any= [];
-  public typeFields: Object = { text: 'value', value: 'value' };
-    // set the placeholder to DropDownList input element
-    public typeWaterMark: string = 'Select a type';
-    // set the height of the popup element
-    public typeheight: string = '200px';
+  // public identityType:any= [];
+  // public typeFields: Object = { text: 'value', value: 'value' };
+  //   // set the placeholder to DropDownList input element
+  //   public typeWaterMark: string = 'Select a type';
+  //   // set the height of the popup element
+  //   public typeheight: string = '200px';
 
 
 
-  public identityissudby:any= [];
-  public issudbyFields: Object = { text: 'value', value: 'value' };
-    // set the placeholder to DropDownList input element
-    public issudbyWatermark: string = 'Select a type';
-    // set the height of the popup element
-    public issudbyHeight: string = '200px';
-
-
-
-
+  // public identityissudby:any= [];
+  // public issudbyFields: Object = { text: 'value', value: 'value' };
+  //   // set the placeholder to DropDownList input element
+  //   public issudbyWatermark: string = 'Select a type';
+  //   // set the height of the popup element
+  //   public issudbyHeight: string = '200px';
 
 
 
 
 
 
-  getCountries(){
-    this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
-this.countries = data;
-this.countrydata = data;
+
+
+
+
+//   getCountries(){
+//     this.http.post(`${Api_Base}/utils/dropdown/country`,{}).subscribe((data =>{ console.log(data)
+// this.countries = data;
+// // this.countrydata = data;
   
-  }))
-}
+//   }))
+// }
 
 getIdentifications(){
   this.http.post(`${API_BASE_URL}/t/identification/getall`,{}).subscribe((data)=>{
@@ -119,7 +123,7 @@ getIdentityType(){
     this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
       .subscribe((data)=>{
 this.identityTypeDropdown = data
-this.identityType = data;
+// this.identityType = data;
 console.log(this.identityTypeDropdown)
       })
 }
@@ -132,7 +136,7 @@ getIssuedBy(){
     this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
       .subscribe((data)=>{
 this.identityIssuedByDropdown = data
-this.identityissudby = data;
+// this.identityissudby = data;
 console.log(this.identityIssuedByDropdown)
       })
 }
@@ -154,14 +158,14 @@ addIdentity(){
   };
     const requestBody = {
     id:timestamp,
-    type:this.idType,
-    issuedby:this.idIssuedBy|| null,
-    issuedate:formatDateField(this.idIssuedDate),
-    number:this.idNumber|| null,
-    name:this.idName|| null,
-    validfromdate:formatDateField(this.idValidFromDate),
-    validuptodate:formatDateField(this.idValidUptoDate),
-    fkcountrycode:this.selectedCountry|| null,
+    type:this.identitiesData.type,
+    issuedby:this.identitiesData.issuedby|| null,
+    issuedate:formatDateField(this.identitiesData.issuedate),
+    number:this.identitiesData.number|| null,
+    name:this.identitiesData.name|| null,
+    validfromdate:formatDateField(this.identitiesData.validfromdate),
+    validuptodate:formatDateField(this.identitiesData.validuptodate),
+    fkcountrycode:this.identitiesData.fkcountrycode|| null,
     fkorgid:1,
     fkempid:this.employeeId,
     sid:0,

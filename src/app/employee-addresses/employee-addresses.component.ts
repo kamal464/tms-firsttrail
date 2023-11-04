@@ -21,6 +21,7 @@ addressArray:any=[];
 countriesArray:any;
 selectedAddress:any;
 addressTypeArray:any;
+addressData:any =[];
   constructor(private http: HttpClient,private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
@@ -40,6 +41,11 @@ this.subscription = this.sharedService.employeeId$.subscribe((empid) => {
 
 
 
+  }
+
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.addressData[inputName] = inputValue;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -114,20 +120,20 @@ updateAddress(address){
     id: address.id,
     fkorgid : 1,
     fkofficeid : address.fkofficeid,
-    type: this.selectedAddress ,
+    type: this.addressData.type ,
     contactname: null,
     description : null,
-    houseno:address.houseno,
-    building :address.building,
-    street:address.street,
+    houseno:this.addressData.houseno,
+    building :this.addressData.building,
+    street:this.addressData.street,
     locality:null,
-    landmark:address.landmark,
-    area:address.area,
-    city:address.city,
-    postalcode:address.postalcode,
+    landmark:this.addressData.landmark,
+    area:this.addressData.area,
+    city:this.addressData.city,
+    postalcode:this.addressData.postalcode,
     region:null,
     zone:null,
-    fkcountrycode:address.fkcountrycode,
+    fkcountrycode:this.addressData.fkcountrycode,
     latitude:null,
     longitude:null,
     phone:null,

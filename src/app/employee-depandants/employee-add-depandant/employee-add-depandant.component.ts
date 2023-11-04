@@ -20,6 +20,7 @@ isSaveFormDataCalled = false;
 empGender:any;
 empDob  :any;
 empRelation:any;
+dependantData:any=[];
 private subscription: Subscription;
   constructor(private http : HttpClient, private sharedService :SharedServiceService) { }
 
@@ -34,7 +35,10 @@ private subscription: Subscription;
       }
     });
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.dependantData[inputName] = inputValue;
+  }
 
   doAction(action): void {
     this._currentAction = action;
@@ -63,8 +67,8 @@ private subscription: Subscription;
 
     addDependant(){
       let dob = null;
-      if (this.empDob) {
-        const dateObj = new Date(this.empDob);
+      if (this.dependantData.birthdate) {
+        const dateObj = new Date(this.dependantData.birthdate);
         const year = dateObj.getFullYear();
         const month = dateObj.getMonth() + 1; // Months are zero-based, so we add 1
         const day = dateObj.getDate();
@@ -74,10 +78,10 @@ private subscription: Subscription;
       const requestBody ={
         id:timestamp,
         fkempid:this.employeeId,
-        dependentname:this.empDependentName,
-        gender:this.empGender,
+        dependentname:this.dependantData.dependentname,
+        gender:this.dependantData.gender,
         birthdate:dob,
-        relationtype:this.empRelation,
+        relationtype:this.dependantData.relationtype,
         remarks:null,
       }
 

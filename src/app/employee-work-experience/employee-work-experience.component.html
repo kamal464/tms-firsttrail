@@ -121,7 +121,7 @@
     <div class="setting-data-hold content-schema-view  " style="padding-left: 20px;" *ngIf="_currentAction == 'edit' && i == _editIndex">
         
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Designation</mat-label>
+            <!-- <mat-label class="form-field-label">Designation</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -133,11 +133,19 @@
                 #inputValue
                 [(ngModel)]="workexperience.designation"
               />
-            </mat-form-field>
-           
+            </mat-form-field> -->
+            <app-kit-text-component
+            [label]="'Designation'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Designation'"
+            (sendData)="handleInput('designation', $event)"
+            [fielddata]="workexperience.designation"
+          ></app-kit-text-component>
+                        
           </div> 
         <div  class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">Employer</mat-label>
+            <!-- <mat-label class="form-field-label">Employer</mat-label>
             <mat-form-field
               class="form-field-input"
               floatPlaceholder="never"
@@ -149,26 +157,45 @@
                 #inputValue
                [(ngModel)]="workexperience.employer"
               />
-            </mat-form-field>
-           
+            </mat-form-field> -->
+            <app-kit-text-component
+            [label]="'Employer'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Employer'"
+            (sendData)="handleInput('employer', $event)"
+            [fielddata]="workexperience.employer"
+          ></app-kit-text-component>
           </div> 
           <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">From Date</mat-label>
+            <!-- <mat-label class="form-field-label">From Date</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="fromdate"  [(ngModel)]="workexperience.fromdate"
                  [disabled]="false" >
               <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
               <mat-datepicker #fromdate disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker
+            [label]="'From Date'"
+            [placeholder]="'From Date'"
+            (sendData)="handleInput('fromdate', $event)"
+            [fielddata]="workexperience.fromdate"
+          ></app-kit-datepicker>
           </div>
           <div class="form-field-hold two-column-field">
-            <mat-label class="form-field-label">To Date</mat-label>
+            <!-- <mat-label class="form-field-label">To Date</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="todate"  [(ngModel)]="workexperience.todate"
                  [disabled]="false" >
               <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
               <mat-datepicker #todate disabled="false"></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-datepicker
+            [label]="'To Date'"
+            [placeholder]="'To Date'"
+            (sendData)="handleInput('todate', $event)"
+          [fielddata]="workexperience.todate"
+          ></app-kit-datepicker>
           </div>
           <!-- <div class="form-field-hold two-column-field">
             <mat-label class="form-field-label">Review Date</mat-label>
@@ -197,10 +224,18 @@
            
           </div>  -->
           <div class="form-field-hold" >
-            <mat-label class="form-field-label">remarks</mat-label>
+            <!-- <mat-label class="form-field-label">remarks</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <textarea matInput placeholder="Ex: Responsibilites"  [(ngModel)]="workexperience.remarks"></textarea>
-            </mat-form-field>
+            </mat-form-field> -->
+            <app-kit-text-component
+            [label]="'remarks'"
+            [fielddata]="workexperience.remarks"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Responsibilites'"
+            (sendData)="handleInput('remarks', $event)"
+          ></app-kit-text-component>
           </div>
           <div class="form-field-hold">
             <app-company-identification-uploader ></app-company-identification-uploader>

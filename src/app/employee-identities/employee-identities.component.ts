@@ -7,6 +7,7 @@ import { Api_Base,API_BASE_URL } from 'src/app/shared/api-config';
 import { Query } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import { ThumbSettings } from '@syncfusion/ej2/charts';
 @Component({
   selector: 'app-employee-identities',
   templateUrl: './employee-identities.component.html',
@@ -21,6 +22,7 @@ export class EmployeeIdentitiesComponent implements OnInit {
   employeeId:any;
   _attachments = [];
   empIdentitesArray:any;
+  identitiesData:any=[];
   private subscription: Subscription;
   constructor(private http:HttpClient,private cdr :ChangeDetectorRef,private sharedService:SharedServiceService) { }
 
@@ -39,7 +41,10 @@ export class EmployeeIdentitiesComponent implements OnInit {
     this.getIdentityType();
     this.getIssuedBy();
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.identitiesData[inputName] = inputValue;
+  }
   getIdentityType(){
     const headers = new HttpHeaders()
         .set('Content-Type', 'application/json')
@@ -168,36 +173,71 @@ getIdentities(){
   })
 }
 
-updateIdentification(item){
+// updateIdentification(item){
+//   const formatDateField = (dateValue) => {
+//     if (!dateValue) {
+//       return null;
+//     }
+    
+//     const dateObj = new Date(dateValue);
+//     const year = dateObj.getFullYear();
+//     const month = dateObj.getMonth() + 1;
+//     const day = dateObj.getDate();
+//     console.log(year,month,day)
+//     return `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
+
+//   };
+//   const requestBody = {
+//     id: item.id,
+//     fkcountrycode:this.identitiesData.fkcountrycode?this.identitiesData.fkcountrycode:item.fkcountrycode,
+//     type: this.identitiesData.type?this.identitiesData.type:item.type,
+//     issuedby: this.identitiesData.issuedby?this.identitiesData.issuedby:item.issuedby,
+//     issuedate: formatDateField(this.identitiesData.issuedate?this.identitiesData.issuedate:item.issuedate),
+//     number:this.identitiesData.number?this.identitiesData.number: item.number,
+//     name: this.identitiesData.name?this.identitiesData.name:item.name,
+//     validfromdate: formatDateField(this.identitiesData.validfromdate?this.identitiesData.validfromdate:item.validfromdate),
+//     validuptodate: formatDateField(this.identitiesData.validuptodate?this.identitiesData.validuptodate:item.validuptodate),
+//     fkorgid: 1,
+//     fkempid: item.fkempid,
+//   };
+//   this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
+//     console.log(data, 'data is updated')
+//   })
+// }
+updateIdentification(item) {
+  console.log(item,'updateidentification')
   const formatDateField = (dateValue) => {
     if (!dateValue) {
       return null;
     }
-    
+
     const dateObj = new Date(dateValue);
     const year = dateObj.getFullYear();
     const month = dateObj.getMonth() + 1;
     const day = dateObj.getDate();
-    
     return `${year}${month < 10 ? '0' : ''}${month}${day < 10 ? '0' : ''}${day}`;
   };
+
   const requestBody = {
     id: item.id,
-    fkcountrycode:item.fkcountrycode,
-    type:item.type,
-    issuedby: item.issuedby,
-    issuedate: formatDateField(item.issuedate),
-    number: item.number,
-    name: item.name,
-    validfromdate: formatDateField(item.validfromdate),
-    validuptodate: formatDateField(item.validuptodate),
+    fkcountrycode: this.identitiesData.fkcountrycode !== undefined ? this.identitiesData.fkcountrycode : item.fkcountrycode,
+    type: this.identitiesData.type !== undefined ? this.identitiesData.type : item.type,
+    issuedby: this.identitiesData.issuedby !== undefined ? this.identitiesData.issuedby : item.issuedby,
+    issuedate:this.identitiesData.issuedate? formatDateField(this.identitiesData.issuedate) : item.issuedate,
+    number: this.identitiesData.number !== undefined ? this.identitiesData.number : item.number,
+    name: this.identitiesData.name !== undefined ? this.identitiesData.name : item.name,
+    validfromdate: this.identitiesData.validfromdate?formatDateField(this.identitiesData.validfromdate ): item.validfromdate,
+    validuptodate: this.identitiesData.validuptodate? formatDateField(this.identitiesData.validuptodate  ): item.validuptodate,
     fkorgid: 1,
     fkempid: item.fkempid,
   };
-  this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
-    console.log(data, 'data is updated')
-  })
+
+  this.http.post(`${API_BASE_URL}/t/identification/update`, requestBody).subscribe((data) => {
+    console.log(requestBody,'data is updated')
+    console.log(data, 'data is updated');
+  });
 }
+
 
 deleteIdentity(deleteid:number){
   const deletefield = this.empIdentitesArray.find((item)=>item.id === deleteid);

@@ -1,99 +1,122 @@
-<div class="content-hold" style="width: 100%;margin-bottom: 20px;">
-         
-
-    <tool-bar
-      [title]="'ADDING NEW IDENTITY'"
-      class="content-title-hold"
-      [hasEdit]="false"
-      [hasDelete]="false"
-      [currentAction]="'new'"
-      (onAction)="doAction($event)"
-     
-    ></tool-bar>
-    <div
-      class="content-schema-view" style="padding-left: 20px;"
-    >
-    <div
-    class="form-field-hold two-column-field">
-
-    <div class="control-label">Identity Type</div>
+<div class="content-hold" style="width: 100%; margin-bottom: 20px">
+  <tool-bar
+    [title]="'ADDING NEW IDENTITY'"
+    class="content-title-hold"
+    [hasEdit]="false"
+    [hasDelete]="false"
+    [currentAction]="'new'"
+    (onAction)="doAction($event)"
+  ></tool-bar>
+  <div class="content-schema-view" style="padding-left: 20px">
+    <div class="form-field-hold two-column-field">
+      <!-- <div class="control-label">Identity Type</div>
            <ejs-dropdownlist id='games' [dataSource]='identityType' [fields]='typeFields' [placeholder]='typeWaterMark'
-           [popupHeight]='typeheight'[(ngModel)]="idType" ></ejs-dropdownlist>
-
-  </div> 
-  <div
-  class="form-field-hold two-column-field">
-
-  <div class="control-label">Issued By</div>
+           [popupHeight]='typeheight'[(ngModel)]="idType" ></ejs-dropdownlist> -->
+      <app-kit-dropdown
+        [label]="'Identity Type'"
+        [placeholder]="'Identity Type'"
+        [dropdata]="identityTypeDropdown"
+        [required]="true"
+        (sendData)="handleInput('type', $event)"
+      ></app-kit-dropdown>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <!-- <div class="control-label">Issued By</div>
            <ejs-dropdownlist id='games' [dataSource]='identityissudby' [fields]='issudbyFields' [placeholder]='issudbyWatermark'
-           [popupHeight]='issudbyHeight'[(ngModel)]="idIssuedBy" ></ejs-dropdownlist>
-</div> 
+           [popupHeight]='issudbyHeight'[(ngModel)]="idIssuedBy" ></ejs-dropdownlist> -->
+      <app-kit-dropdown
+        [label]="'Issued By'"
+        [placeholder]="'Issued By'"
+        [dropdata]="identityIssuedByDropdown"
+        [required]="true"
+        (sendData)="handleInput('issuedby', $event)"
+      ></app-kit-dropdown>
+    </div>
 
-<div class="form-field-hold two-column-field">
-  <mat-label class="form-field-label">Issued Date</mat-label>
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">Issued Date</mat-label>
   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
     <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Issued" 
        [disabled]="false" [(ngModel)]="idIssuedDate">
     <mat-datepicker-toggle matSuffix [for]="Issued"></mat-datepicker-toggle>
     <mat-datepicker #Issued disabled="false"></mat-datepicker>
-  </mat-form-field>
-</div>
-     
-  <div
-  class="form-field-hold two-column-field">
+  </mat-form-field> -->
+      <app-kit-datepicker
+        [label]="'Issued Date'"
+        [placeholder]="'Issued Date'"
+        (sendData)="handleInput('issuedate', $event)"
+      ></app-kit-datepicker>
+    </div>
 
-  <div class="control-label" >country</div>
+    <div class="form-field-hold two-column-field">
+      <!-- <div class="control-label" >country</div>
   <ejs-dropdownlist id='country' [dataSource]='countrydata' [fields]='fields' (filtering)='onFiltering($event)' [filterBarPlaceholder]="filterPlaceholder"
-  [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist>
+  [popupHeight]='height' [allowFiltering]='true' [placeholder]='watermark' [(ngModel)]="selectedCountry" > </ejs-dropdownlist> -->
+      <app-kit-country-dropdown
+        [label]="'country'"
+        [placeholder]="'country'"
+        (sendData)="handleInput('fkcountrycode', $event)"
+      ></app-kit-country-dropdown>
+    </div>
 
-</div> 
-
-        
-        <div  class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Identity Number</mat-label>
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">Identity Number</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <input matInput placeholder="Ex: ABCDE 1234A." [(ngModel)]="idNumber" >
-          </mat-form-field>
-          </div> 
-        <div  class="form-field-hold two-column-field">
-          <mat-label class="form-field-label">Identity Name</mat-label>
+          </mat-form-field> -->
+      <app-kit-input-mask
+        [label]="'Identity Number'"
+        [placeholder]="'Identity Number'"
+       
+        (sendData)="handleInput('number', $event)"
+      ></app-kit-input-mask>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">Identity Name</mat-label>
           <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
             <input matInput placeholder="Ex: Full Name"  [(ngModel)]="idName">
-          </mat-form-field>
-          </div> 
-         
-        <div class="form-field-hold two-column-field">
-  <mat-label class="form-field-label">valid From</mat-label>
+          </mat-form-field> -->
+      <app-kit-text-component
+        [label]="'Identity Name'"
+        [minLength]="3"
+        [maxLength]="30"
+        [placeholder]="'Identity Name'"
+        (sendData)="handleInput('name', $event)"
+      ></app-kit-text-component>
+    </div>
+
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">valid From</mat-label>
   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
     <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="From" 
        [disabled]="false" [(ngModel)]="idValidFromDate">
     <mat-datepicker-toggle matSuffix [for]="From"></mat-datepicker-toggle>
     <mat-datepicker #From disabled="false"></mat-datepicker>
-  </mat-form-field>
-</div>
-     
-<div class="form-field-hold two-column-field">
-  <mat-label class="form-field-label">valid Upto</mat-label>
+  </mat-form-field> -->
+      <app-kit-datepicker
+        [label]="'valid From'"
+        [placeholder]="'valid From'"
+        (sendData)="handleInput('validfromdate', $event)"
+      ></app-kit-datepicker>
+    </div>
+
+    <div class="form-field-hold two-column-field">
+      <!-- <mat-label class="form-field-label">valid Upto</mat-label>
   <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
     <input matInput placeholder="Ex: 11 Mar 2021" [matDatepicker]="Upto" 
        [disabled]="false" [(ngModel)]="idValidUptoDate" >
     <mat-datepicker-toggle matSuffix [for]="Upto"></mat-datepicker-toggle>
     <mat-datepicker #Upto disabled="false"></mat-datepicker>
-  </mat-form-field>
-</div>
-     
-         
-
-<div class="view-entry-hold">
- 
-  <app-company-identification-uploader></app-company-identification-uploader>
-</div>
-      
-       
-
-
-
+  </mat-form-field> -->
+      <app-kit-datepicker
+        [label]="'valid Upto'"
+        [placeholder]="'valid Upto'"
+        (sendData)="handleInput('validuptodate', $event)"
+      ></app-kit-datepicker>
     </div>
-   
- 
-  </div> 
+
+    <div class="view-entry-hold">
+      <app-company-identification-uploader></app-company-identification-uploader>
+    </div>
+  </div>
+</div>

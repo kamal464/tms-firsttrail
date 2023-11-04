@@ -14,6 +14,7 @@ export class EmployeeWorkExperienceComponent implements OnInit {
   isProcessing = false;
   _selectedAttachments = [];
   workExperienceArray:any=[];
+  workExperienceData:any=[];
   constructor(private http : HttpClient,private fileservice:FileUploadService ) { }
 
   ngOnInit(): void {
@@ -24,7 +25,10 @@ export class EmployeeWorkExperienceComponent implements OnInit {
     this._editIndex = index;
     this.hasEdit = true;
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.workExperienceData[inputName] = inputValue;
+  }
 
 
   doAction(action): void {
@@ -134,15 +138,15 @@ updateWorkExperience(item){
   const requestBody = {
     id:item.id,
     fkempid:item.fkempid,
-    employer:item.employer,
-    designation:item.designation,
-    roles:item.roles,
-    fromdate:formatDateField(item.fromdate),
-    todate:formatDateField(item.todate),
+    employer:this.workExperienceData.employer?this.workExperienceData.employer :item.employer,
+    designation:this.workExperienceData.designation?this.workExperienceData.designation:item.designation,
+    roles: this.workExperienceData.roles?this.workExperienceData.roles  :item.roles,
+    fromdate:formatDateField(this.workExperienceData.fromdate?this.workExperienceData.fromdate:item.fromdate),
+    todate:formatDateField(this.workExperienceData.todate?this.workExperienceData.todate:item.todate),
     isrelevant:null,
     reviewedbyfkempid:null,
     reviewdate:null,
-    remarks:item.remarks,
+    remarks:this.workExperienceData.remarks?this.workExperienceData.remarks:item.remarks,
     isactive:0
   }
   this.http.post(`${API_BASE_URL}/t/empworkhistory/update`,requestBody).subscribe((data)=>{

@@ -122,7 +122,7 @@
         <mat-option *ngFor="let gender of genderArray" [value]="gender.id" >{{gender.value}}</mat-option>
       </mat-select>
     </mat-form-field> -->
-    <app-kit-dropdown [label]="'Office Type'" [fielddata]="employeeDetails?.gender" [placeholder]="'Office Type'" [dropdata]="genderArray"
+    <app-kit-dropdown [label]="'Gender'" [fielddata]="employeeDetails?.gender" [placeholder]="'Gender'" [dropdata]="genderArray"
     (sendData)="handleInput('type',$event)" ></app-kit-dropdown>
    
 

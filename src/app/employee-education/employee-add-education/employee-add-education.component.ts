@@ -29,7 +29,7 @@ export class EmployeeAddEducationComponent implements OnInit {
   empRemarks:any;
   empIsactive:any;
   isSaveFormDataCalled= false;
-
+educationData:any=[];
   constructor(private http:HttpClient,
     private fileservice :FileUploadService, private sharedService:SharedServiceService) { }
 
@@ -44,7 +44,10 @@ export class EmployeeAddEducationComponent implements OnInit {
       }
     });
   }
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.educationData[inputName] = inputValue;
+  }
 
   doAction(action): void {
     this._currentAction = action;
@@ -91,16 +94,16 @@ export class EmployeeAddEducationComponent implements OnInit {
       const requestBody ={
         id: timestamp,
         fkempid: this.employeeId,
-        course: this.empCourse,
-        institute: this.empInstitute,
-        specialization: this.empSpecialization,
-        fromDate: formatDateField(this.empFromDate),
-        toDate: formatDateField(this.empToDate),
-        score: this.empScore,
-        scoremax: this.empScoreMax,
-        scoremetric: this.empScoreMetric,
-        type: this.empScoreType,
-        remarks: this.empRemarks,
+        course: this.educationData.course,
+        institute:this.educationData.institute,
+        specialization: this.educationData.specialization,
+        fromDate: formatDateField(this.educationData.fromDate),
+        toDate: formatDateField(this.educationData.toDate),
+        score: this.educationData.score,
+        scoremax:this.educationData.scoremax,
+        scoremetric: this.educationData.scoremetric,
+        type: this.educationData.type,
+        remarks: this.educationData.remarks,
         isactive: 0,
         reviewedbyfkempid: null,
         reviewdate: null

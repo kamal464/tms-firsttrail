@@ -18,6 +18,7 @@ export class EmployeeEducationComponent implements OnInit {
   educationArray:any=[];
   _selectedAttachments:any=[];
   employeeId:any;
+  educationData:any=[];
   constructor(private http :HttpClient,
    private fileservice : FileUploadService,  private sharedService:SharedServiceService) { }
   private subscription : Subscription
@@ -39,7 +40,10 @@ export class EmployeeEducationComponent implements OnInit {
     this.hasEdit = true;
   }
 
-
+  handleInput(inputName: string, inputValue: string): void {
+    console.log(inputName,inputValue)
+    this.educationData[inputName] = inputValue;
+  }
 
   doAction(action): void {
     this._currentAction = action;
@@ -123,16 +127,16 @@ updateEducation(item){
   const requestBody ={
     id: item.id,
     fkempid: this.employeeId,
-    course: item.course,
-    institute: item.institute,
-    specialization: item.specialization,
-    fromDate: formatDateField(item.fromDate),
-    toDate: formatDateField(item.toDate),
-    score: item.score,
-    scoremax: item.scoremax,
-    scoremetric: item.scoremetric,
-    type: item.type,
-    remarks: item.remarks,
+    course: this.educationData.course?this.educationData.course:item.course,
+    institute:  this.educationData.institute?this.educationData.institute:item.institute,
+    specialization: this.educationData.specialization?this.educationData.specialization: item.specialization,
+    fromDate:this.educationData.fromDate? formatDateField(this.educationData.fromDate):item.fromDate,
+    toDate:this.educationData.toDate? formatDateField(this.educationData.toDate):item.toDate,
+    score:this.educationData.score? this.educationData.score:item.score,
+    scoremax: this.educationData.scoremax?this.educationData.scoremax:item.scoremax,
+    scoremetric: this.educationData.scoremetric?this.educationData.scoremetric: item.scoremetric,
+    type: this.educationData.type?this.educationData.type:item.type,
+    remarks: this.educationData.remarks?this.educationData.remarks: item.remarks,
     isactive: 0,
     reviewedbyfkempid: null,
     reviewdate: null

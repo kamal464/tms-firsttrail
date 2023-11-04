@@ -41,7 +41,7 @@
           </span>
         </div>
       </div>
-      <div class="view-entry-hold" *ngIf="identificationsInfo.attachments.length">
+      <div class="view-entry-hold" *ngIf="identificationsInfo.attachments">
         <div class="mat-small hr-inline-text-hold"><span class="hr-inline-text"
             [innerHtml]="(identificationsInfo.attachments.length + _selectedAttachments.length) > 0 ? 'Attachements : <b>' + (identificationsInfo.attachments.length + _selectedAttachments.length) + '</b>' : 'No Attachements'"></span>
         </div>
