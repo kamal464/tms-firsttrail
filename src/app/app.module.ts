@@ -107,6 +107,12 @@ import { KitToggleSwitchComponent } from './kitcomponents/kit-toggle-switch/kit-
 import { KitDateTimePickerComponent } from './kitcomponents/kit-date-time-picker/kit-date-time-picker.component';
 import { KitCheckboxComponent } from './kitcomponents/kit-checkbox/kit-checkbox.component';
 import { KitButtonComponent } from './kitcomponents/kit-button/kit-button.component';
+import { ResetEmailComponent } from './changefields/reset-email/reset-email.component';
+import { ResetPhonenumberComponent } from './changefields/reset-phonenumber/reset-phonenumber.component';
+import { ResetSupervisorComponent } from './changefields/reset-supervisor/reset-supervisor.component';
+import { ResetOfficeComponent } from './changefields/reset-office/reset-office.component';
+import { ResetNewPromotionComponent } from './changefields/reset-new-promotion/reset-new-promotion.component';
+import { EmployeeResignComponent } from './employee-resign/employee-resign.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -204,6 +210,12 @@ import { KitButtonComponent } from './kitcomponents/kit-button/kit-button.compon
    KitDateTimePickerComponent,
    KitCheckboxComponent,
    KitButtonComponent,
+  ResetEmailComponent,
+  ResetPhonenumberComponent,
+  ResetSupervisorComponent,
+  ResetOfficeComponent,
+  ResetNewPromotionComponent,
+  EmployeeResignComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -229,7 +241,9 @@ component:SyncCompanyProfileComponent,
       // { path: 'meta-table', component: SchemaColumnComponent },
     ]),
   ],
-
+  entryComponents: [
+    ResetEmailComponent,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

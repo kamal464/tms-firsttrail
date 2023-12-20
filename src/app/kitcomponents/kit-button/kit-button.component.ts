@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component,OnInit, ViewEncapsulation, Inject, ViewChild } from '@angular/core';
+import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
 @Component({
   selector: 'app-kit-button',
   templateUrl: './kit-button.component.html',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class KitButtonComponent implements OnInit {
 
   constructor() { }
-
+  @ViewChild('toggleBtn')
+  public toggleBtn: ButtonComponent;
   ngOnInit(): void {
   }
 

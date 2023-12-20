@@ -1,0 +1,47 @@
+<div class="contents">
+  <div class="content-hold">
+    <mat-toolbar class="tool-bar">
+      <span class="tool-bar-title">RESET E-MAIL</span>
+      <span class="spacer"></span>
+
+      <button
+        mat-button
+        class="tool-bar-button"
+        matTooltip="Cancel"
+        (click)="closeModal()"
+      >
+        <span class="button-label">Cancel</span>
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="tool-bar-button"
+        matTooltip="Save Changes"
+      >
+        <mat-icon>save</mat-icon>
+        <span class="button-label">Save</span>
+      </button>
+    </mat-toolbar>
+
+    <!-- Content-view -->
+
+    <div class="content-schema-view">
+      <div class="view-entry-schema two-column-field">
+        <mat-label class="entry-label">current Email</mat-label>
+        <span class="entry-data">phanindrakasthuri@gmail.com</span>
+      </div>
+      <div class="view-entry-schema two-column-field">
+        <app-kit-text-component
+          [label]="'NEW-Email'"
+          [placeholder]="'New-Email'"
+        ></app-kit-text-component>
+      </div>
+      <div class="view-entry-schema">
+          <span color="primary" class="date"><span class="dateColor">Effective Date:</span>21 Jun 2022</span>
+      </div>
+      <div class="view-entry-schema">
+ <span class="dateColor">*please enter the valid mail id only</span>
+      </div>
+    </div>
+  </div>
+</div>

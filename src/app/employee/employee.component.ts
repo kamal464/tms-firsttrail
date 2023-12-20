@@ -19,6 +19,7 @@ export class EmployeeComponent implements OnInit {
 _currentAction = 'view';
 currentEmployee : '';
 filterData:any=[];
+sortOptions: any = [];
 projectData:any=[{id:"construction",value:"construction"}];
 locationData:any=[{id:"cements-vizag",value:"cements-vizag"}  ];
 @Input() empData :any = [];
@@ -27,6 +28,12 @@ locationData:any=[{id:"cements-vizag",value:"cements-vizag"}  ];
 constructor(private sharedservice: SharedServiceService, private http: HttpClient,
   private tabeventservice:TabeventserviceService) {
   
+}
+sortBy(sortField) {
+  // Implement your logic for A-Z sorting based on the selected field
+  console.log(`A-Z button clicked for ${sortField}`);
+  // Update sortBy or perform other actions based on the selected field
+  this.sortOptions.push(sortField);
 }
 clearFilterData() {
   this.filterData = []; // Set filterData to an empty array when the button is clicked

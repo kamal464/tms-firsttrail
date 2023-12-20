@@ -3,17 +3,24 @@
   <span class="button-text">Add New Dependant</span>
 </button> -->
 
-<div class="multi-options-view" >
-    <div class="info-and-options-view" >
+<!-- employee-profile-entry-rightsidenav.component.html -->
+
+<div class="multi-options-view">
+  <div class="info-and-options-view">
     <div class="info-options-hold mat-elevation-z4" *ngIf="_currentAction !== 'new'">
-   
       <ng-container *ngFor="let option of _available_options">
-         
-          <button mat-button style="color: #03045E" class="option-item" [matTooltip]="option" matTooltipPosition="right"  >
-        <mat-icon *ngIf="option == _selected_option"  class="selection_arrow">arrow_right</mat-icon>
-        {{option}}
+        <button
+          mat-button
+          style="color: #03045E"
+          class="option-item"
+          [matTooltip]="option"
+          matTooltipPosition="right"
+          (click)="onSelectOption(option)"
+        >
+          <mat-icon *ngIf="option == _selected_option" class="selection_arrow">arrow_right</mat-icon>
+          {{ option }}
         </button>
       </ng-container>
+    </div>
   </div>
-  </div>
-  </div>
+</div>

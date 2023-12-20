@@ -1,0 +1,114 @@
+<div class="contents">
+    <div class="content-hold">
+      <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">RESET OFFICE</span>
+        <span class="spacer"></span>
+  
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="closeModal()"
+        >
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Save Changes"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+  
+      <!-- Content-view -->
+  
+      <div
+              class="content-schema-view ">  
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead" >Old </mat-label>
+                <span class="entry-data"></span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead">New </mat-label>
+                <span class="entry-data"></span>
+              </div>
+            
+              <div class="view-entry-schema two-column-field ">
+                
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-datepicker [label]="'Start/Effective Date'" [placeholder]="'Start/Effective Date'"  ></app-kit-datepicker>
+
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Department</mat-label>
+                <span class="entry-data">Civil</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Department'"
+              
+                [placeholder]="'Department'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Office</mat-label>
+                <span class="entry-data">DTPL-HYD</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Office'"
+              
+                [placeholder]="'Department'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Supervisor</mat-label>
+                <span class="entry-data">RT-Rahul</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Supervisor'"
+              
+                [placeholder]="'Supervisor'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Manager</mat-label>
+                <span class="entry-data">kamal</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Manager'"
+              
+                [placeholder]="'Manager'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema">
+                <app-kit-text-component
+            [label]="'Remarks'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Remarks'"
+           
+          ></app-kit-text-component>
+            </div>
+            </div>
+    </div>
+  </div>
+  

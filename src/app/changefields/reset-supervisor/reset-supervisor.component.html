@@ -1,0 +1,73 @@
+<div class="contents">
+    <div class="content-hold">
+      <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">RESET SUPERVISOR</span>
+        <span class="spacer"></span>
+  
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="closeModal()"
+        >
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Save Changes"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+  
+      <!-- Content-view -->
+  
+      <div
+              class="content-schema-view ">  
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead" >Old </mat-label>
+                <span class="entry-data"></span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead">New </mat-label>
+                <span class="entry-data"></span>
+              </div>
+            
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Supervisor</mat-label>
+                <span class="entry-data">RT-Rahul Trivedi</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Supervisor'"
+              
+                [placeholder]="'Supervisor'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Manager</mat-label>
+                <span class="entry-data">kamal</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Manager'"
+              
+                [placeholder]="'Manager'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema">
+                <span color="primary" class="date"><span class="dateColor">Effective Date:</span>21 Jun 2022</span>
+            </div>
+            </div>
+    </div>
+  </div>
+  

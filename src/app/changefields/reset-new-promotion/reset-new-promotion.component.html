@@ -1,0 +1,127 @@
+<div class="contents">
+    <div class="content-hold">
+      <mat-toolbar class="tool-bar">
+        <span class="tool-bar-title">RESET NEW-PROMOTION</span>
+        <span class="spacer"></span>
+  
+        <button
+          mat-button
+          class="tool-bar-button"
+          matTooltip="Cancel"
+          (click)="closeModal()"
+        >
+          <span class="button-label">Cancel</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="tool-bar-button"
+          matTooltip="Save Changes"
+        >
+          <mat-icon>save</mat-icon>
+          <span class="button-label">Save</span>
+        </button>
+      </mat-toolbar>
+  
+      <!-- Content-view -->
+  
+      <div
+              class="content-schema-view ">  
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead" >Old Role</mat-label>
+                <span class="entry-data"></span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label secondHead">New Role</mat-label>
+                <span class="entry-data"></span>
+              </div>
+            
+              <div class="view-entry-schema two-column-field ">
+                
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-datepicker [label]="'Start/Effective Date'" [placeholder]="'Start/Effective Date'"  ></app-kit-datepicker>
+
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Designation</mat-label>
+                <span class="entry-data">Lead Designer</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Designation'"
+              
+                [placeholder]="'Designation'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Grade</mat-label>
+                <span class="entry-data">L2G2</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Grade'"
+              
+                [placeholder]="'Grade'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Salary</mat-label>
+                <span class="entry-data">7500</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-text-component
+                [label]="'Salary'"
+                [minLength]="3"
+                [maxLength]="30"
+                [placeholder]="'Salary'"
+               
+              ></app-kit-text-component>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Supervisor</mat-label>
+                <span class="entry-data">RT-Rahul</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Supervisor'"
+              
+                [placeholder]="'Supervisor'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <mat-label class="entry-label ">Manager</mat-label>
+                <span class="entry-data">kamal</span>
+              </div>
+              <div class="view-entry-schema two-column-field ">
+                <app-kit-dropdown
+                [label]="'Manager'"
+              
+                [placeholder]="'Manager'"
+                [dropdata]=""
+                [required]="true"
+                
+              ></app-kit-dropdown>
+              </div>
+              <div class="view-entry-schema">
+                <app-kit-text-component
+            [label]="'Remarks'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Remarks'"
+           
+          ></app-kit-text-component>
+            </div>
+            </div>
+    </div>
+  </div>
+  
