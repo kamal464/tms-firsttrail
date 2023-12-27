@@ -56,7 +56,7 @@ export class SchemaManagerComponent implements OnInit {
     this.module = event.value;
     this.feature = event.value;
   }
-  module: any ;
+  module: any =[];
   moduleDrop: any[];
   feature: any = [];
   featureDrop: any[];

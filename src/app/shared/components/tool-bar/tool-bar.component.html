@@ -99,6 +99,18 @@ Inactive
   <mat-icon>save</mat-icon>
   <span class="button-label">Save</span>
 </button>
+  <button
+  mat-raised-button
+  color="primary"
+  class="tool-bar-button"
+  matTooltip="Save Changes"
+  *ngIf=" currentAction === 'viewpop' ||currentAction ===  'popup'"
+  (click)="_doAction('popup')"
+  
+>
+<mat-icon>remove_red_eye</mat-icon>
+  <span class="button-label">View</span>
+</button>
 <span color="primary"
 class="date"
 *ngIf="hasDate && currentAction == 'date'"

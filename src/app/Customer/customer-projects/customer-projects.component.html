@@ -1,0 +1,152 @@
+<div>
+    <div class="headings">
+      <app-title
+        title="Contact"
+        subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eum exercitationem? Alias consequuntur labore ab corrupti delectus ea omnis in!"
+      ></app-title>
+      <span class="spacer"></span>
+      <!-- <button
+        class="action-button"
+        mat-raised-button
+        color="primary"
+        (click)="doAction('new')"
+        *ngIf="_currentAction == 'view'"
+      >
+        <mat-icon>add</mat-icon>
+        <span class="button-text">Add New Contact</span>
+      </button> -->
+    </div>
+    <div class="form-field-hold search-input-hold">
+      <mat-form-field
+        class="form-field-input"
+        floatPlaceholder="never"
+        appearance="outline"
+      >
+        <mat-icon matPrefix style="margin-top: 8px; margin-bottom: 12px"
+          >search</mat-icon
+        >
+        <input matInput placeholder="Search" />
+        <button matSuffix mat-icon-button style="margin-right: -15px">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-hint>Enter the search input to filter the contacts.</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="setting-hold">
+      <div class="contents" style="overflow: hidden; flex-direction: column">
+        <!-- <app-employee-add-contact
+          *ngIf="_currentAction == 'new'"
+          [_currentAction]="_currentAction"
+          (onAction)="doAction($event)"
+          [empRelationTypeArray]="relationTypeArray"
+          [contactsArray]="contactsArray"
+        ></app-employee-add-contact> -->
+  <!-- <app-add-customer-contact
+    *ngIf="_currentAction == 'new'"
+    [_currentAction]="_currentAction"
+    (onAction)="doAction($event)"
+    [empRelationTypeArray]="relationTypeArray"
+    [contactsArray]="contactsArray">
+  </app-add-customer-contact> -->
+        <div
+          class="content-hold"
+          style="width: 100%; margin-bottom: 20px"
+         
+        >
+          <mat-toolbar class="tool-bar">
+            <span
+              class="tool-bar-title"
+              [innerHtml]="'329847234'"
+            ></span>
+            <span class="sub-title mat-small"></span>
+            <span class="spacer"></span>
+            <!-- View Mode -->
+           
+            <!-- Edit Mode -->
+            
+          </mat-toolbar>
+          <!-- [currentAction]="_currentAction" -->
+          <div
+            class="content-schema-view"
+            *ngIf="_currentAction == 'view' "
+          >
+            <div class="view-entry-schema two-column-field">
+              <mat-label class="entry-label">Project Code</mat-label>
+              <span class="entry-data">329847234</span>
+            </div>
+            <div class="view-entry-schema two-column-field">
+              <mat-label class="entry-label">Project Status</mat-label>
+              <span class="entry-data" style="color: green;">Ongoing</span>
+            </div>
+            <div class="view-entry-schema two-column-field">
+                <mat-label class="entry-label">Project Starting Date</mat-label>
+                <span class="entry-data">31 oct 2020</span>
+            </div>
+            <div class="view-entry-schema two-column-field">
+                <mat-label class="entry-label">Project Ending Date</mat-label>
+                <span class="entry-data">31 oct 2020</span>
+            </div>
+            <div class="view-entry-schema  ">
+                <mat-label class="entry-label">Remarks</mat-label>
+                <span class="entry-data">We managing to build 433 units of villas in 30 acres</span>
+            </div>
+          </div>
+  
+          
+        </div>
+  
+        <!-- <app-employee-addemployee></app-employee-addemployee> -->
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="content-hold" style="width: 100%; margin-bottom: 20px">
+    <tool-bar
+      [title]="'ADDING NEW Contact'"
+      class="content-title-hold"
+      [hasEdit]="false"
+      [hasDelete]="false"
+      [currentAction]="'new'"
+      
+    ></tool-bar>
+    
+      <div
+        class="setting-data-hold content-schema-view"
+        style="padding-left: 20px;"
+      >
+      <mat-label class="entry-label">Project Code</mat-label>
+      <span class="entry-data">489324723</span>
+        <div class="form-field-hold two-column-field">
+            <mat-label class="entry-label">Project Status</mat-label>
+            <span class="entry-data">Ongoing</span>
+        </div>
+        <div class="form-field-hold two-column-field">
+            <mat-label class="entry-label">Project Starting Date</mat-label>
+            <span class="entry-data">31 oct 2020</span>
+        </div>
+        <div class="form-field-hold two-column-field">
+            <mat-label class="entry-label">Project Ending Date</mat-label>
+            <span class="entry-data">31 oct 2020</span>
+        </div>
+        <div class="form-field-hold ">
+            <mat-label class="entry-label">Remarks</mat-label>
+            <span class="entry-data">We managing to build 433 units of villas in 30 acres</span>
+        </div>
+        
+      </div>
+    </div> -->
+
+  

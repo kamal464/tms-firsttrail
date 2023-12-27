@@ -1,0 +1,202 @@
+<div
+  class="content-hold"
+  style="width: 100%; margin-bottom: 20px"
+  *ngIf="_currentAction == 'new'"
+>
+  <tool-bar
+    [title]="'ADDING NEW Address'"
+    class="content-title-hold"
+    [hasEdit]="false"
+    [hasDelete]="false"
+    [currentAction]="_currentAction"
+    (onAction)="doAction($event)"
+  ></tool-bar>
+
+  <div class="setting-data-hold content-schema-view" style="padding-left: 20px">
+    <!-- <div
+      class="form-field-hold two-column-field">
+ 
+      <mat-label class="form-field-label">Address Type</mat-label>
+      <mat-form-field
+      class="form-field-input"
+      floatPlaceholder="never"
+      appearance="fill"
+
+    >
+      <mat-select
+      
+        placeholder="Click to Select"
+
+     [(ngModel)]="SelectedAddressType"
+      >
+        <mat-option *ngFor="let type of addressTypeArray" [value]="type.id">{{type.value}}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    </div>  -->
+
+    <!-- <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Flat No/Plot No/Floor</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: 101, Ground floor"  [(ngModel)]="flatNo">
+      </mat-form-field>
+    </div> -->
+
+    <!-- <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Building Name</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Building Name" [(ngModel)]="buildingName">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Road Name/Number</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Road no 1" [(ngModel)]="roadName">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Landmark</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Near By Landmark" [(ngModel)]="landMark">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Location</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: Location" [(ngModel)]="location">
+      </mat-form-field>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">City</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput placeholder="Ex: City" [(ngModel)]="city">
+      </mat-form-field>
+    </div>
+     <div class="form-field-hold two-column-field">
+              <mat-label class="form-field-label">Country</mat-label>
+              <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill"  >
+                <mat-select placeholder="Ex: Country" [(ngModel)]="selectedCountry " >
+                  
+                  <mat-option *ngFor="let country of countries" [value]="country.id">
+                    <span class="flag-hold">
+                      <mat-icon ></mat-icon>{{country.value}}
+                    </span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+    <div class="form-field-hold two-column-field">
+      <mat-label class="form-field-label">Pincode</mat-label>
+      <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
+        <input matInput type="number" placeholder="Ex: 000000" [(ngModel)]="pincode">
+      </mat-form-field>
+    </div> -->
+    <div class="form-field-hold two-column-field">
+      <app-kit-dropdown
+        [label]="'Address Type'"
+        [placeholder]="'Address Type'"
+        [dropdata]="addressTypeArray"
+        [required]="true"
+        (sendData)="handleInput('type', $event)"
+      ></app-kit-dropdown>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-input-mask
+        [label]="'Line#1'"
+        [placeholder]="'Line#1'"
+        (sendData)="handleInput('houseno', $event)"
+      ></app-kit-input-mask>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'Line#2'"
+        [placeholder]="'Line#2'"
+        (sendData)="handleInput('building', $event)"
+      ></app-kit-text-component>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-input-mask
+        [label]="'Line#3'"
+        [placeholder]="'Line#3'"
+        (sendData)="handleInput('street', $event)"
+      ></app-kit-input-mask>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'Location'"
+        [placeholder]="'Location'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('location', $event)"
+      ></app-kit-text-component>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'village/City Name'"
+        [placeholder]="'village/City Name'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('city', $event)"
+      ></app-kit-text-component>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'District'"
+        [placeholder]="'District'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('area', $event)"
+      ></app-kit-text-component>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'State'"
+        [placeholder]="'State'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('area', $event)"
+      ></app-kit-text-component>
+    </div>
+
+    <div class="form-field-hold two-column-field">
+      <app-kit-input-mask
+        [label]="'Pincode'"
+        [placeholder]="'Pincode'"
+        (sendData)="handleInput('postalcode', $event)"
+      ></app-kit-input-mask>
+    </div>
+
+    <!-- <div class="form-field-hold two-column-field">
+    <app-kit-country-dropdown [label]="'country'"  [placeholder]="'country'"
+    (sendData)="handleInput('fkcountrycode',$event)"
+    ></app-kit-country-dropdown>
+          </div> -->
+
+    <div class="form-field-hold two-column-field">
+      <app-kit-input-mask
+        [label]="'Phone'"
+        [placeholder]="'Phone'"
+        (sendData)="handleInput('postalcode', $event)"
+      ></app-kit-input-mask>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-input-mask
+        [label]="'Fax'"
+        [placeholder]="'Fax'"
+        (sendData)="handleInput('postalcode', $event)"
+      ></app-kit-input-mask>
+    </div>
+    <div class="form-field-hold two-column-field">
+      <app-kit-text-component
+        [label]="'Mail'"
+        [placeholder]="'Mail'"
+        [minLength]="3"
+        [maxLength]="15"
+        (sendData)="handleInput('area', $event)"
+      ></app-kit-text-component>
+    </div>
+  </div>
+</div>
+
+<!-- </div>  -->

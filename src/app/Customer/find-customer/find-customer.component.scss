@@ -1,0 +1,202 @@
+@import '../../../styles.scss';
+@import '../../../styles/syncimport.scss';
+
+
+.sort-style{
+  color: #03045A !important;
+  border-color: #03045A !important;
+}
+
+
+.tool-bar {
+  width: calc(100% - 32px);
+  border-bottom: 1px solid #ddd;
+
+  .tool-bar-title {
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &.no-transform {
+      text-transform: none;
+    }
+  }
+
+}
+.active {
+  background-color: #03045E; /* Change this to the desired color */
+  color: #fff; /* Change this to the desired text color */
+}
+.search-criteria {
+  font-weight: bold;
+}
+
+.criteria-heading {
+  font-weight: normal; /* Reset font-weight for headings */
+  margin-right: 5px;
+}
+
+.criteria-value {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.employee-content-hold {
+    // flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          background-color: $full-white;
+          @include mat-elevation(4);
+
+        //   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);;
+        //   width: calc(100% - 265px);
+        width: calc(100% - 20px);
+
+}
+/* custom-dropdown.component.css */
+
+.custom-dropdown {
+  position: relative;
+  display: inline;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 200px; /* Adjust the width as needed */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.horizontal-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.filter-options, .sort-options {
+  position: relative;
+}
+
+.button-options{
+  display: flex !important;
+  justify-content: space-between !important;
+  margin: 10px;
+}
+.filter-options .options, .sort-options .options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  top: 100%;
+}
+
+/* Show the dropdown content when the button is clicked */
+.custom-dropdown .dropdown-content {
+  display: block;
+}
+
+/* Show filter options */
+.filter-options .options {
+  display: block;
+}
+
+/* Show sort options */
+.sort-options .options {
+  display: block;
+}
+
+
+.employee-content-data-hold{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+    overflow: 0;
+}
+
+.entry-label {
+    color: #666;
+    padding: 0 10px;
+    margin-top: 0;
+  }
+
+  .entry-data {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 4px 10px 25px;
+  }
+
+  .entry-text {
+    font-size: 1.5em;
+  }
+
+
+  
+  .name-info {
+    display: flex; /* To align the name and sub-title horizontally */
+    align-items: center; /* To vertically center the name and sub-title */
+    margin-left: 10px; /* Add some spacing between the avatar and the name info */
+  }
+
+  /* Style the container to display avatar and employee info */
+.avatar-container {
+    display: flex;
+    align-items: center;
+    // padding: 10px;
+    // border: 1px solid #ccc;
+    border-radius: 20px; /* Set a base radius for the container */
+  }
+  
+
+  /* Style the employee name */
+  .employee-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+
+  
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    // padding: 10px;
+    // border: 1px solid #ccc;
+    border-radius: 20px;    
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .employee-info {
+    display: flex;
+    flex-direction: row;
+  }
+  
+ 
+  .employee-id {
+    margin-left: 10px; /* Add some space between the employee name and ID */
+  }
+  
+  .employee-designation {
+    font-size: 1rem;
+    margin: 0;
+    color: #777;
+  }
+  

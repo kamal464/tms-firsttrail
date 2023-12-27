@@ -113,6 +113,18 @@ import { ResetSupervisorComponent } from './changefields/reset-supervisor/reset-
 import { ResetOfficeComponent } from './changefields/reset-office/reset-office.component';
 import { ResetNewPromotionComponent } from './changefields/reset-new-promotion/reset-new-promotion.component';
 import { EmployeeResignComponent } from './employee-resign/employee-resign.component';
+import { ResignationtasksComponent } from './resignationtasks/resignationtasks.component';
+import { ResignationtasksEditComponent } from './resignationtasks-edit/resignationtasks-edit.component';
+import { FindCustomerComponent } from './Customer/find-customer/find-customer.component';
+
+import { AddCustomerComponent } from './Customer/add-customer/add-customer.component';
+import { CustomerOverviewComponent } from './Customer/customer-overview/customer-overview.component';
+import { CustomerProfileComponent } from './Customer/customer-profile/customer-profile.component';
+import { CustomerAddressComponent } from './Customer/customer-address/customer-address.component';
+import { CustomerContactComponent } from './Customer/customer-contact/customer-contact.component';
+import { CustomerProjectsComponent } from './Customer/customer-projects/customer-projects.component';
+import { AddCustomerAddressComponent } from './Customer/customer-address/add-customer-address/add-customer-address.component';
+import { AddCustomerContactComponent } from './Customer/customer-contact/add-customer-contact/add-customer-contact.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -216,6 +228,17 @@ import { EmployeeResignComponent } from './employee-resign/employee-resign.compo
   ResetOfficeComponent,
   ResetNewPromotionComponent,
   EmployeeResignComponent,
+  ResignationtasksComponent,
+  ResignationtasksEditComponent,
+  FindCustomerComponent,
+  CustomerOverviewComponent,
+  CustomerProfileComponent,
+  AddCustomerComponent,
+CustomerAddressComponent,
+CustomerContactComponent,
+CustomerProjectsComponent,
+AddCustomerAddressComponent,
+AddCustomerContactComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

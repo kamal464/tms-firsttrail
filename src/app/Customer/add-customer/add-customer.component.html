@@ -1,0 +1,262 @@
+<div class="settings-views multi-options-view has-overall-heading">
+  <div class="overall-heading">
+    <app-title
+      title="Add Customer"
+      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est ex modi architecto accusamus vitae laborum minima et, eaque dolore!
+             "
+    ></app-title>
+
+    <span class="spacer"></span>
+
+    <div class="action-padding"></div>
+  </div>
+  <div class="setting-hold">
+    <div class="contents" style="overflow: hidden; flex-direction: column">
+      <div class="content-hold" style="width: 100%; margin-bottom: 20px">
+        <tool-bar
+          [title]="'Profile'"
+          class="content-title-hold"
+          [hasEdit]="false"
+          [hasDelete]="false"
+          [currentAction]="_currentAction"
+          (onAction)="doAction($event)"
+        ></tool-bar>
+
+        <div class="setting-data-hold" style="padding-left: 20px">
+          <div
+            class="setting-data-hold content-schema-view"
+            style="padding-top: 20px"
+          >
+            <div class="form-field-hold two-column-fields">
+            
+              <app-kit-text-component
+                [label]="'SurName'"
+                [placeholder]="'SurName'"
+                (sendData)="handleInput('surname', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-text-component
+                [label]="'Givenname'"
+                [placeholder]="'Givenname'"
+                (sendData)="handleInput('givenname', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+            
+              <app-kit-text-component
+                [label]="'DisplayName'"
+                [placeholder]="'DisplayName'"
+                (sendData)="handleInput('displayname', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-dropdown
+                [label]="'Title'"
+                [placeholder]="'Title'"
+                [dropdata]="fetchedTitle"
+                (sendData)="handleInput('title', $event)"
+              ></app-kit-dropdown>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'EmpCode'"
+                [placeholder]="'EmpCode'"
+                (sendData)="handleInput('empcode', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'EmpNo'"
+                [placeholder]="'EmpNo'"
+                (sendData)="handleInput('empno', $event)"
+              ></app-kit-text-component>
+            </div>
+            
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'Status'"
+                [fielddata]="'active'"
+                [placeholder]="'Status'"
+                [readonly]="true"
+                (sendData)="handleInput('status', $event)"
+              ></app-kit-text-component>
+            </div>
+          
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-datepicker
+                [label]="'Date Of Joining'"
+                [placeholder]="'Date Of Joining'"
+                (sendData)="handleInput('joiningdate', $event)"
+              ></app-kit-datepicker>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Supervisor'"
+                  [placeholder]="'Supervisor'"
+                  [dropdata]=""
+                  (sendData)="handleInput('supervisorfkempid', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Manager'"
+                  [placeholder]="'Manager'"
+                  [dropdata]=""
+                  (sendData)="handleInput('managerfkempid', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Designation'"
+                  [placeholder]="'Designation'"
+                  [dropdata]="fetchedDesignation"
+                  (sendData)="handleInput('designation', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Office'"
+                  [placeholder]="'Office'"
+                  [dropdata]="officesDropdown"
+                  (sendData)="handleInput('fkofficeid', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Department'"
+                  [placeholder]="'Department'"
+                  [dropdata]="departmentsDropdown"
+                  (sendData)="handleInput('fkdepartmentid', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container *ngIf="isDataLoaded">
+                <app-kit-dropdown
+                  [label]="'Grade'"
+                  [placeholder]="'Grade'"
+                  [dropdata]="fetchedGrade"
+                  (sendData)="handleInput('grade', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <ng-container >
+                <app-kit-dropdown
+                  [label]="'Type'"
+                  [placeholder]="'Type'"
+                  [dropdata]="fetchedType"
+                  (sendData)="handleInput('type', $event)"
+                ></app-kit-dropdown>
+              </ng-container>
+            </div>
+            <div class="form-field-hold two-column-fields">
+            
+              <app-kit-datepicker
+                [label]="'Effective Date'"
+                [placeholder]="'Effective Date'"
+                (sendData)="handleInput('effectivedate', $event)"
+              ></app-kit-datepicker>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-datepicker
+                [label]="'Date Of Birth'"
+                [placeholder]="' Date Of Birth'"
+                (sendData)="handleInput('dateofbirth', $event)"
+              ></app-kit-datepicker>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-datepicker
+                [label]="'Date Of Marriage'"
+                [placeholder]="'Date Of Marriage'"
+                (sendData)="handleInput('dateofmarriage', $event)"
+              ></app-kit-datepicker>
+            </div>
+
+           
+            <div class="form-field-hold two-column-fields">
+            
+              <app-kit-text-component
+                [label]="'LinkedIn'"
+                [placeholder]="'LinkedIn'"
+                (sendData)="handleInput('linkedin', $event)"
+              ></app-kit-text-component>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'Twitter'"
+                [placeholder]="'Twitter'"
+                (sendData)="handleInput('twitter', $event)"
+              ></app-kit-text-component>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+
+              <app-kit-text-component
+                [label]="'Instagram'"
+                [placeholder]="'Instagram'"
+                (sendData)="handleInput('instagram', $event)"
+              ></app-kit-text-component>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'Facebook'"
+                [placeholder]="'Facebook'"
+                (sendData)="handleInput('facebook', $event)"
+              ></app-kit-text-component>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+              <app-kit-text-component
+                [label]="'Website'"
+                [placeholder]="'Website'"
+                (sendData)="handleInput('website', $event)"
+              ></app-kit-text-component>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

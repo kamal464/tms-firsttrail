@@ -18,6 +18,8 @@ import { SettingsComponent } from 'src/app/settings/settings.component';
 import { ReasonsComponent } from 'src/app/reasons/reasons.component';
 import { EmployeeProfileComponent } from 'src/app/employee-profile/employee-profile.component';
 import { EmployeeComponent } from 'src/app/employee/employee.component';
+import { FindCustomerComponent } from 'src/app/Customer/find-customer/find-customer.component';
+import { CustomerProfileComponent } from 'src/app/Customer/customer-profile/customer-profile.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -37,6 +39,10 @@ export class TopBarComponent implements OnInit {
     {route:'employeeprofile', label:'employee-profile',tooltip:'employeeprofile',iconfile:'',name:'employeeprofile',level:1,id:56565},
     {route:'employeeprofile', label:'employee-profile',tooltip:'employeeprofile',iconfile:'',name:'employeeprofile',level:2,fkparentid:56565},
     {route:'findemployee', label:'Find-Employee',tooltip:'findemployee',iconfile:'',name:'findemployee',level:2,fkparentid:56565},
+    {route:'customerprofile', label:'customer-profile', tooltip:'customerprofile',iconfile:'',name:'customerprofile',level:1,id:3214},
+    {route:'customerprofile', label:'customer-profile', tooltip:'customerprofile',iconfile:'',name:'customerprofile',level:2,fkparentid:3214},
+    {route:'findcustomer', label:'find-customer',tooltip:'findcustomer',iconfile:'',name:'findcustomer',level:2,fkparentid:3214},
+
     
   
   ];
@@ -103,7 +109,10 @@ case 'employeeprofile':
   return EmployeeProfileComponent;
   case 'findemployee':
     return EmployeeComponent;
-
+case 'customerprofile':
+  return CustomerProfileComponent ;
+  case 'findcustomer':
+    return FindCustomerComponent;
       default:
         return null;
     }

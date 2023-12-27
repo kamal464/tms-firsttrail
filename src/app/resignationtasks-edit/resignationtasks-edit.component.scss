@@ -1,0 +1,158 @@
+@import '../../../src/styles.scss';
+.tool-bar-two {
+    width: calc(100% - 32px);
+    background-color: #ffff;
+  
+    .tool-bar-title {
+      font-weight: bold;
+      text-transform: uppercase;
+  
+      &.no-transform {
+        text-transform: none;
+      }
+    }
+  
+    
+  }
+.entry-label {
+    color: #666;
+    padding: 0 10px;
+    margin-top: 0;
+  }
+  .secondHead{
+    
+    color: #606197 !important;
+  }
+  .entry-data {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 4px 10px 25px;
+  }
+
+  .entry-text {
+    font-size: 1.5em;
+  }
+
+  
+
+  .employee-content-hold{
+    flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          background-color: $full-white;
+          @include mat-elevation(4);
+          width: calc(100% - 20px);
+          // height: 250px;
+          box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+          height: auto;
+          // padding-bottom: 100px;
+  }
+
+ 
+  .content-schema-view{
+    display: flex;
+    // flex-direction: column;
+padding: 15px;
+   
+
+    flex-wrap: wrap;
+    
+      }
+
+      .view-entry-hold {
+                  display: flex;
+                  flex-direction: column;
+                  position: relative;
+                  width: calc(100% - 22px);
+                //   padding-left: px;
+                  padding-right: 22px;;
+                  margin-bottom: 8px;
+      }
+
+      .view-entry-schema {
+        display: flex;
+    
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: relative;
+        width: calc(100% - 22px);
+        padding-right: 22px;
+      
+        .entry-label {
+          color: #666;
+          padding-left: 10px;
+          margin-top: 0;
+        }
+      
+        .entry-data {
+          font-weight: bold;
+          font-size: 120%;
+          padding: 4px 10px 25px;
+        }
+      }
+    
+     
+
+        .office-contents {
+          display: flex;
+          flex-direction: column;
+          min-height: 195px;
+          padding: 25px !important;
+        }
+      
+        .office-edit-contents {
+          flex-wrap: wrap;
+        }
+      
+        .content-loading-hold {
+          margin: 110px 0;
+      
+          .content-loading-text {
+            max-width: 350px;
+          }
+        }
+      
+
+        .tool-bar {
+            width: calc(100% - 32px);
+            border-bottom: 1px solid #ddd;
+          
+            .tool-bar-title {
+              font-weight: bold;
+              text-transform: uppercase;
+          
+              &.no-transform {
+                text-transform: none;
+              }
+            }
+          
+            
+          }
+          .two-column-field {
+                  flex-grow: 1;
+                  width: calc(50% - 40px) !important;
+                }
+                
+                        .three-column-field {
+                                  flex-grow: 1;
+                                  width: calc(30% - 40px) !important;
+                                }
+          .content-schema-view{
+            display: flex;
+            // flex-direction: column;
+        padding: 15px;
+           
+        
+            flex-wrap: wrap;
+            
+              }
+
+              .date{
+                font-size: 15px;
+              }
+              .dateColor{
+                
+                color: #606197;
+              }
+
+              

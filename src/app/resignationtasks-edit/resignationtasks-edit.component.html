@@ -1,0 +1,87 @@
+<div class="overall-view">
+    <div class="contents">
+      <div class="content-hold">
+        <!-- Content-view -->
+  
+        <div class="content-schema-view">
+          <div class="view-entry-schema two-column-field">
+            <mat-label class="entry-label ">Employee Name</mat-label>
+            <span class="entry-data">Divya</span>
+          </div>
+          <div class="view-entry-schema two-column-field">
+            <mat-label class="entry-label">Last working Day </mat-label>
+            <span class="entry-data">29 may 2023</span>
+          </div>
+  
+          <div class="view-entry-schema">
+            <mat-label class="entry-label">Task Name </mat-label>
+            <span class="entry-data">project to do</span>
+          </div>
+          <div class="view-entry-schema">
+            <mat-label class="entry-label">Task Description </mat-label>
+            <span class="entry-data">upload project documents</span>
+          </div>
+          <div class="view-entry-schema three-column-field">
+            <mat-label class="entry-label">Created By </mat-label>
+            <span class="entry-data">Radha Krishnam</span>
+          </div>
+          <div class="view-entry-schema three-column-field">
+            <mat-label class="entry-label">Updated Date </mat-label>
+            <span class="entry-data">23 may 2000</span>
+          </div>
+          <div class="view-entry-schema three-column-field">
+            <mat-label class="entry-label">Status </mat-label>
+            <span class="entry-data" style="color: #147FB9;">Draft</span>
+          </div>
+          
+          <div class="view-entry-schema">
+            <app-kit-text-component
+              [label]="'Closure Comments'"
+              [minLength]="3"
+              [maxLength]="30"
+              [placeholder]="'Remarks'"
+            ></app-kit-text-component>
+          </div>
+          <div class="view-entry-schema" style="padding-top: 20px">
+            <app-company-identification-uploader></app-company-identification-uploader>
+          </div>
+          <mat-toolbar class="tool-bar-two">
+            <span class="tool-bar-title"></span>
+            <span class="spacer"></span>
+  
+            <button
+              mat-button
+              class="tool-bar-button"
+              matTooltip="Cancel"
+              (click)="closeModal()"
+            >
+            <mat-icon>cancel</mat-icon>
+              <span class="button-label">Cancel</span>
+            </button>
+            <button
+              mat-raised-button
+            
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+            >
+              <mat-icon>save</mat-icon>
+              <span class="button-label">Save</span>
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+            >
+              <mat-icon>done</mat-icon>
+              <span class="button-label">Complete</span>
+            </button>
+          </mat-toolbar>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+  

@@ -18,6 +18,7 @@ export class ToolBarComponent implements OnInit {
   @Input() hasDelete = true;
   @Input() hasNew = false;
   @Input() hasEdit = true;
+  @Input() hasPop = true;
   @Input() hasDate = true;
   @Input() hasActive = false;
   @Input() noTransform = false;
@@ -29,6 +30,7 @@ export class ToolBarComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
+    console.log(this.currentAction,"present currentAction")
   }
 
   saveData() {

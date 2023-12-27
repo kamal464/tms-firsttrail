@@ -1,4 +1,10 @@
 <div class="attachments-hold">
-    <!-- <ejs-uploader #fileupload id='validatefileupload' [minFileSize]=10000 [asyncSettings]='path' [autoUpload]='false' [dropArea]='dropElement' [allowedExtensions]='allowExtensions' (selected)='onSelected($event)' (removing)='onFileRemove($event)'></ejs-uploader> -->
-    <ejs-uploader [asyncSettings]='path' [autoUpload]="false" (selected)="onDocumentsSelected($event)" (progress)="onProgress($event)"></ejs-uploader>
-  </div>
+  <!-- <ejs-uploader #fileupload id='validatefileupload' [minFileSize]=10000 [asyncSettings]='path' [autoUpload]='false' [dropArea]='dropElement' [allowedExtensions]='allowExtensions' (selected)='onSelected($event)' (removing)='onFileRemove($event)'></ejs-uploader> -->
+  <ejs-uploader
+    [asyncSettings]="path"
+    [autoUpload]="false"
+    (selected)="onDocumentsSelected($event)"
+    (progress)="onProgress($event)"
+  ></ejs-uploader>
+  
+</div>

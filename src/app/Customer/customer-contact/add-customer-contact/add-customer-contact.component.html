@@ -1,0 +1,96 @@
+<div class="content-hold" style="width: 100%; margin-bottom: 20px">
+  <tool-bar
+    [title]="'ADDING NEW Contact'"
+    class="content-title-hold"
+    [hasEdit]="false"
+    [hasDelete]="false"
+    [currentAction]="'new'"
+    (onAction)="doAction($event)"
+  ></tool-bar>
+  <div>
+    <div
+      class="setting-data-hold content-schema-view"
+      style="padding-left: 20px;padding-top: 20px;"
+    >
+      <div class="form-field-hold two-column-field">
+        <app-company-identification-uploader
+          style="padding: 40px"
+        ></app-company-identification-uploader>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <div class="form-field-hold">
+          <app-kit-text-component
+            [label]="'Contact Name'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Contact Name'"
+            (sendData)="handleInput('contactname', $event)"
+          ></app-kit-text-component>
+        </div>
+
+        <div class="form-field-hold">
+          <app-kit-text-component
+            [label]="'Company Name'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Company Name'"
+            (sendData)="handleInput('email', $event)"
+          ></app-kit-text-component>
+        </div>
+      </div>
+
+      <div class="form-field-hold two-column-field">
+        <app-kit-text-component
+          [label]="'Designation'"
+          [minLength]="3"
+          [maxLength]="30"
+          [placeholder]="'Designation'"
+          (sendData)="handleInput('email', $event)"
+        ></app-kit-text-component>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <app-kit-dropdown
+          [label]="'Address Type'"
+          [placeholder]="'Address Type'"
+          [dropdata]="empRelationTypeArray"
+          [required]="true"
+          (sendData)="handleInput('relationtype', $event)"
+        ></app-kit-dropdown>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <app-kit-text-component
+          [label]="'E-mail id'"
+          [minLength]="3"
+          [maxLength]="30"
+          [placeholder]="'E-mail id'"
+          (sendData)="handleInput('email', $event)"
+        ></app-kit-text-component>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <app-kit-input-mask
+          [label]="'Fax'"
+          [placeholder]="'Fax'"
+          (sendData)="handleInput('phonenumber', $event)"
+          [mask]="'000-000-0000'"
+        ></app-kit-input-mask>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <app-kit-input-mask
+          [label]="'phone'"
+          [placeholder]="'Phone'"
+          (sendData)="handleInput('phonenumber', $event)"
+          [mask]="'000-000-0000'"
+        ></app-kit-input-mask>
+      </div>
+      <div class="form-field-hold two-column-field">
+        <app-kit-text-component
+          [label]="'Place/city/location'"
+          [minLength]="3"
+          [maxLength]="30"
+          [placeholder]="'Place/city/location'"
+          (sendData)="handleInput('email', $event)"
+        ></app-kit-text-component>
+      </div>
+    </div>
+  </div>
+</div>

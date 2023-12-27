@@ -61,10 +61,10 @@
           >
         </mat-select>
       </mat-form-field> -->
-      <ng-container *ngIf="isDataLoaded">
+      
       <app-kit-dropdown [label]="'Title'"  [placeholder]="'Title'" [dropdata]="fetchedTitle"
            (sendData)="handleInput('title',$event)" ></app-kit-dropdown>
-        </ng-container>
+       
   
       </div> 
 
@@ -522,7 +522,7 @@
            
           </div>
 
-          <div class="form-field-hold " >
+          <div class="form-field-hold two-column-fields" >
             <!-- <mat-label class="form-field-label">Remarks</mat-label>
             <mat-form-field class="form-field-input" floatPlaceholder="never" appearance="fill">
               <textarea matInput placeholder="Ex: Notes" [(ngModel)]="empRemarks" ></textarea>

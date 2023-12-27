@@ -11,6 +11,7 @@ import { SchemaColumnComponent } from '../schema-column/schema-column.component'
 import { TabeventserviceService } from '../shared/tabeventservice.service';
 import { SharedServiceService } from '../shared/shared-service.service';
 import { EmployeeResignComponent } from '../employee-resign/employee-resign.component';
+import { ResignationtasksComponent } from '../resignationtasks/resignationtasks.component';
 @Component({
   selector: 'app-employee-profile-entry-rightsidenav',
   templateUrl: './employee-profile-entry-rightsidenav.component.html',
@@ -90,7 +91,8 @@ export class EmployeeProfileEntryRightsidenavComponent implements OnInit, OnChan
       icon: '',
       label: 'Resign',
       isClosable: true,
-      item: new DynamicComponent(EmployeeResignComponent, {
+      item: new DynamicComponent(ResignationtasksComponent, {
+        //employeeResignComponent
         currentEmployee: this.currentEmployee,
         tabEvent: this.tabeventservice.tabEventSubject,
       }),
