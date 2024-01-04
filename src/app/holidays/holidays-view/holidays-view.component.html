@@ -1,0 +1,171 @@
+<div class="multi-options-view">
+  <div class="info-and-options-view"></div>
+  <div class="contents-view">
+    <div>
+      <div class="headings">
+        <app-title title="Attendence Rules" subTitle=""></app-title>
+        <span class="spacer"></span>
+        <button
+          class="action-button"
+          mat-raised-button
+          color="primary"
+          style="margin-right: 16px"
+          (click)="doAction('new')"
+          *ngIf="_currentAction == 'view' || _currentAction == 'edit'"
+        >
+          <mat-icon>add</mat-icon>
+          <span class="button-text"> Add New HoliDay</span>
+        </button>
+        <div class="action-padding"></div>
+      </div>
+      <div class="setting-hold">
+        <div class="content-hold" style="flex-direction: row; margin-top: 15px">
+          <div class="company-overview-contents content-data-hold">
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'Select Year'"
+                [placeholder]="'TYPE'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'Select Office'"
+                [placeholder]="'TYPE'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+          </div>
+          <div style="flex: none; margin-top: 25px">
+            <button
+              mat-raised-button
+              color="primary"
+              style="margin-right: 10px"
+            >
+              <!-- <mat-icon>add</mat-icon> -->
+              <span class="button-text">Export to Excel</span>
+            </button>
+            <button mat-raised-button color="primary" style="margin: auto">
+              <!-- <mat-icon>add</mat-icon> -->
+              <span class="button-text"> Export to PDF</span>
+            </button>
+          </div>
+        </div>
+        <app-holidays-add
+          *ngIf="_currentAction == 'new'"
+          [_currentAction]="_currentAction"
+          (onAction)="doAction($event)"
+        ></app-holidays-add>
+        <div class="contents" style="overflow: hidden; flex-direction: column">
+          <div
+            class="content-hold"
+            style="margin-bottom: 20px"
+            *ngFor="let education of educationArray; let i = index"
+          >
+            <!-- <tool-bar
+            [title]="'28-02-2001'"
+            class="content-title-hold"
+            [currentAction]="_currentAction"
+            [hasEdit]="true"
+            [hasDelete]="false"
+            (onAction)="doAction($event)"
+          ></tool-bar> -->
+            <mat-toolbar class="tool-bar">
+              <span class="tool-bar-title" [innerHtml]="'28-02-2001'"></span>
+              <span class="sub-title mat-small"></span>
+              <span class="spacer"></span>
+              <!-- View Mode -->
+              <ng-container *ngIf="i !== _editIndex; else editMode">
+                <button
+                  mat-button
+                  class="tool-bar-button bt-color"
+                  matTooltip="Edit"
+                  (click)="doAction('edit'); startEdit(i)"
+                >
+                  <mat-icon>edit</mat-icon>
+                  <span class="button-label">Edit</span>
+                </button>
+              </ng-container>
+              <!-- Edit Mode -->
+              <ng-template #editMode>
+                <button
+                  mat-button
+                  class="tool-bar-button"
+                  matTooltip="Cancel"
+                  (click)="doAction('cancel')"
+                >
+                  <mat-icon>cancel</mat-icon>
+                  <span class="button-label">Cancel</span>
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="tool-bar-button"
+                  matTooltip="Save Changes"
+                  (click)="doAction('save')"
+                >
+                  <mat-icon>save</mat-icon>
+                  <span class="button-label">Save</span>
+                </button>
+              </ng-template>
+            </mat-toolbar>
+            <!-- Content-view -->
+
+            <div
+              class="company-overview-contents content-data-hold"
+              *ngIf="_currentAction == 'view' || i !== _editIndex"
+            >
+              <div class="view-entry-hold">
+                <mat-label class="entry-data">New Year</mat-label>
+                <span class="entry-label">Festival-optional</span>
+                <span class="entry-label"
+                  >First day of the year happy new year</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="company-overview-contents content-data-hold"
+              *ngIf="_currentAction == 'edit'&& i == _editIndex"
+            >
+              <div class="form-field-hold two-column-field">
+                <app-kit-datepicker
+                  [label]="'Valid Upto'"
+                  [placeholder]="'Valid Upto'"
+                ></app-kit-datepicker>
+              </div>
+              <div class="form-field-hold two-column-field">
+                <app-kit-text-component
+                  [label]="'Holiday'"
+                  [minLength]="3"
+                  [maxLength]="30"
+                  [placeholder]="'Holiday'"
+                ></app-kit-text-component>
+              </div>
+              <div class="form-field-hold">
+                <app-kit-dropdown
+                  [label]="'Type of Holiday'"
+                  [placeholder]="'Type of Holiday'"
+                  [dropdata]=""
+                  [required]="true"
+                ></app-kit-dropdown>
+              </div>
+
+              <div class="form-field-hold">
+                <app-kit-text-component
+                  [label]="'Holiday Description'"
+                  [minLength]="3"
+                  [maxLength]="30"
+                  [placeholder]="'Holiday Description'"
+                ></app-kit-text-component>
+              </div>
+            </div>
+          </div>
+          <div class="controls-view"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

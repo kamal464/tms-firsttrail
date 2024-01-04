@@ -125,6 +125,18 @@ import { CustomerContactComponent } from './Customer/customer-contact/customer-c
 import { CustomerProjectsComponent } from './Customer/customer-projects/customer-projects.component';
 import { AddCustomerAddressComponent } from './Customer/customer-address/add-customer-address/add-customer-address.component';
 import { AddCustomerContactComponent } from './Customer/customer-contact/add-customer-contact/add-customer-contact.component';
+import { AttendenceRulesComponent } from './attendence/attendence-rules/attendence-rules.component';
+
+import { KitTimePickerComponent } from './kitcomponents/kit-time-picker/kit-time-picker.component';
+import { HolidaysViewComponent } from './holidays/holidays-view/holidays-view.component';
+import { HolidaysAddComponent } from './holidays/holidays-add/holidays-add.component';
+import { WorkingDayViewComponent } from './workingdays/working-day-view/working-day-view.component';
+import { WorkingDayAddComponent } from './workingdays/working-day-add/working-day-add.component';
+import { LeaveRulesAddComponent } from './leaves/leave-rules-add/leave-rules-add.component';
+import { LeaveRulesViewComponent } from './leaves/leave-rules-view/leave-rules-view.component';
+import { CasualLeaveEditComponent } from './leaves/casual-leave-edit/casual-leave-edit.component';
+import { CasualLeaveViewComponent } from './leaves/casual-leave-view/casual-leave-view.component';
+import { LeaveTypesComponent } from './leaves/leave-types/leave-types.component';
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -239,6 +251,17 @@ CustomerContactComponent,
 CustomerProjectsComponent,
 AddCustomerAddressComponent,
 AddCustomerContactComponent,
+AttendenceRulesComponent,
+WorkingDayViewComponent,
+KitTimePickerComponent,
+HolidaysViewComponent,
+HolidaysAddComponent,
+WorkingDayAddComponent,
+LeaveRulesAddComponent,
+LeaveRulesViewComponent,
+CasualLeaveEditComponent,
+CasualLeaveViewComponent,
+LeaveTypesComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [

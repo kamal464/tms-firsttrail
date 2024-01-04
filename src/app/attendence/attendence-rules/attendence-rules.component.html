@@ -1,0 +1,143 @@
+
+
+<div class="multi-options-view">
+  <div class="info-and-options-view"></div>
+  <div class="contents-view">
+    <div>
+      <div class="headings">
+        <app-title
+          title="Attendence Rules"
+          subTitle=""
+        ></app-title>
+        <span class="spacer"></span>
+      </div>
+      <div class="contents">
+        <div class="content-hold">
+          <tool-bar
+            [title]="'DTPL-HYD'"
+            class="content-title-hold"
+            [currentAction]="_currentAction"
+            [hasEdit]="true"
+            [hasDelete]="false"
+            (onAction)="doAction($event)"
+          ></tool-bar>
+
+          <!-- Content-view -->
+
+          <div
+            class="company-overview-contents content-data-hold"
+            *ngIf="_currentAction == 'view'"
+          >
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label">Weekend-1</mat-label>
+              <span class="entry-data">saturday</span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label">Weekend-2</mat-label>
+              <span class="entry-data">Sunday </span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label">DayStart</mat-label>
+              <span class="entry-data">10:00am </span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label">DayEnd</mat-label>
+              <span class="entry-data">6:30pm</span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label"
+                >Entry/Exit Grace period Time</mat-label
+              >
+              <span class="entry-data">15min</span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label">Late concession Time</mat-label>
+              <span class="entry-data">2 Days</span>
+            </div>
+            <div class="view-entry-hold two-column-field">
+              <mat-label class="entry-label"
+                >Paid Leave duration per late</mat-label
+              >
+              <span class="entry-data">0.5%</span>
+            </div>
+          </div>
+
+          <div
+            class="company-overview-contents content-data-hold"
+            *ngIf="_currentAction == 'edit'"
+          >
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'WEEKEND-1'"
+                [placeholder]="'WEEKEND-1'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'TYPE'"
+                [placeholder]="'TYPE'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'WEEKEND-2'"
+                [placeholder]="'WEEKEND-2'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-dropdown
+                [label]="'TYPE'"
+                [placeholder]="'TYPE'"
+                [dropdata]=""
+                [required]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-time-picker
+                [label]="'Day Start'"
+                [placeholder]="'Day Start'"
+              ></app-kit-time-picker>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-time-picker
+                [label]="'Day End'"
+                [placeholder]="'Day End'"
+              ></app-kit-time-picker>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Entry/Exit Grace period Time(min)'"
+                [minLength]="3"
+                [maxLength]="30"
+                [placeholder]="'Entry/Exit Grace period Time(min)'"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Late concession Days'"
+                [minLength]="3"
+                [maxLength]="30"
+                [placeholder]="'Late concession Days'"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-field">
+              <app-kit-text-component
+                [label]="'Paid leave Deduction Per Late'"
+                [minLength]="3"
+                [maxLength]="30"
+                [placeholder]="'Paid leave Deduction Per Late'"
+              ></app-kit-text-component>
+            </div>
+          </div>
+        </div>
+        <div class="controls-view"></div>
+      </div>
+    </div>
+  </div>
+</div>

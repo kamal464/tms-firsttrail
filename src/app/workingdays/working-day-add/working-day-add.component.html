@@ -1,0 +1,55 @@
+<div class="contents">
+        
+    <div class="content-hold">
+      <tool-bar
+        [title]="'Adding New AD Hoc Working Day'"
+        class="content-title-hold"
+        [currentAction]="'new'"
+        [hasEdit]="false"
+        [hasDelete]="false"
+        (onAction)="doAction($event)"
+      ></tool-bar>
+
+      <!-- Content-view -->
+
+      
+
+      <div
+        class="company-overview-contents content-data-hold"
+       
+      >
+        <div class="form-field-hold two-column-field">
+          <app-kit-datepicker   
+            [label]="'Date'"
+            [placeholder]="'Valid Upto'"
+          ></app-kit-datepicker>
+        </div>
+        <div class="form-field-hold two-column-field">
+          <app-kit-text-component
+            [label]="'Project Name'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'Project Name'"
+          ></app-kit-text-component>
+        </div>
+        <div class="form-field-hold">
+          <app-kit-dropdown
+            [label]="'Type of Working Day'"
+            [placeholder]="'Type of Working Day'"
+            [dropdata]=""
+            [required]="true"
+          ></app-kit-dropdown>
+        </div>
+
+        <div class="form-field-hold">
+          <app-kit-text-component
+            [label]="'Working-day Description'"
+            [minLength]="3"
+            [maxLength]="30"
+            [placeholder]="'working-day Description'"
+          ></app-kit-text-component>
+        </div>
+      </div>
+    </div>
+    <div class="controls-view"></div>
+  </div>

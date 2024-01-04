@@ -1,1 +1,14 @@
-<ejs-radiobutton label="Net Banking" name="payment" value="netbanking"></ejs-radiobutton>
+<div>
+  <div class="control-label">{{ label }}</div>
+  <ejs-radiobutton
+    [label]="firstoption"
+    name="payment"
+    value="netbanking"
+  ></ejs-radiobutton>
+ <span style="padding-left: 4px;">
+    <ejs-radiobutton
+    [label]="secondoption"
+    name="payment"
+    value="netbanking"
+  ></ejs-radiobutton></span>
+</div>

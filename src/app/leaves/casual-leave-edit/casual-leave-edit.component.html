@@ -1,0 +1,138 @@
+<div class="company-overview-contents content-data-hold">
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Type of Leave'"
+      [placeholder]="'Type of Leave'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-text-component
+    [label]="'Code'"
+    [minLength]="3"
+    [maxLength]="30"
+    [placeholder]="'Code'"
+  ></app-kit-text-component>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-datepicker
+      [label]="'Start Year'"
+      [placeholder]="'Start Year'"
+    ></app-kit-datepicker>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-datepicker
+      [label]="'End Year'"
+      [placeholder]="'End Year'"
+    ></app-kit-datepicker>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Max leave per month'"
+      [placeholder]="'Max leave per month'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Max leave per year'"
+      [placeholder]="'Max leave per year'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+   <app-kit-radio
+   [label]="'Count Holidays in Between'"
+   [firstoption]="'Yes'"
+   [secondoption]="'No'"
+   [placeholder]="'Count Holidays in Between'"></app-kit-radio>
+  </div>
+  <div class="form-field-hold two-column-field">
+   <app-kit-radio
+   [label]="'Count weeknds in Between'"
+   [firstoption]="'Yes'"
+   [secondoption]="'No'"
+   [placeholder]="'Count weeknds in Between'"></app-kit-radio>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Actual Frequency'"
+      [placeholder]="'Actual Frequency'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Actural Period'"
+      [placeholder]="'Actural Period'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+
+  <div class="form-field-hold">
+    <app-kit-text-component
+      [label]="'Actual Amount'"
+      [minLength]="3"
+      [maxLength]="30"
+      [placeholder]="'Actual Amount'"
+    ></app-kit-text-component>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-radio
+    [label]="'Carry Forward'"
+    [firstoption]="'Yes'"
+    [secondoption]="'No'"
+    [placeholder]="'Carry Forward'"></app-kit-radio>
+   </div>
+   <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Max Carry Forward'"
+      [placeholder]="'Max Carry Forward'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Max allowed in a Request'"
+      [placeholder]="'Max allowed in a Request'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+  <div class="form-field-hold two-column-field">
+    <app-kit-dropdown
+      [label]="'Max allowed in a Month'"
+      [placeholder]="'Max allowed in a Month'"
+      [dropdata]=""
+      [required]="true"
+    ></app-kit-dropdown>
+  </div>
+
+  <div class="form-field-hold two-column-field">
+    <app-kit-radio
+    [label]="'Allow Negative Balance credits'"
+    [firstoption]="'Yes'"
+    [secondoption]="'No'"
+    [placeholder]="'Allow Negative Balance credits'"></app-kit-radio>
+   </div><div class="form-field-hold two-column-field">
+    <app-kit-radio
+    [label]="'Convert Negative Balance to lop'"
+    [firstoption]="'Yes'"
+    [secondoption]="'No'"
+    [placeholder]="'Convert Negative Balance to lop'"></app-kit-radio>
+   </div>
+  <div class="form-field-hold">
+    <app-kit-text-component
+      [label]="'Description'"
+      [minLength]="3"
+      [maxLength]="30"
+      [placeholder]="'Description'"
+    ></app-kit-text-component>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="multi-options-view">
+  <div class="info-and-options-view"></div>
+  <div class="contents-view">
+    <div>
+      <div class="headings">
+        <app-title title="Leave Rules" subTitle=""></app-title>
+
+        
+        <span class="spacer"></span>
+        <button
+          class="action-button"
+          mat-raised-button
+          color="primary"
+          style="margin-right: 16px"
+          (click)="doAction('new')"
+          *ngIf="_currentAction == 'view'&& isOpen || _currentAction == 'edit' && isOpen"
+        >
+          <mat-icon>add</mat-icon>
+          <span class="button-text"> Add New Leave Type</span>
+        </button>
+       
+       
+          <div class="action-padding"></div>
+      </div>
+      <div class="button-options">
+        <button
+          mat-button
+          [ngClass]="{ active: isFilterOpen }"
+          (click)="toggleFilterOptions()"
+          [style.color]="isOpen ? '#020231' : ''"
+          [style.text-decoration]="isOpen ? 'underline' : 'none'"
+        >
+          Leave Types
+        </button>
+        <button
+          mat-button
+          [ngClass]="{ active: isSortOpen }"
+          (click)="toggleSortOptions()"
+          [style.color]="!isOpen ? '#020231' : ''"  
+          [style.text-decoration]="!isOpen ? 'underline' : 'none'"
+        >
+          Casual Leave
+        </button>
+      </div>
+      <app-leave-types
+        [_currentAction]="_currentAction"
+        (onAction)="doAction($event)"
+        *ngIf="isOpen"
+      ></app-leave-types>
+      <app-casual-leave-view *ngIf="!isOpen  "></app-casual-leave-view>
+    </div>
+  </div>
+</div>

@@ -318,7 +318,24 @@
           </ng-container>
         </div>
       </div>
-      
+      <div class="controls-view">
+        <div class="help-info-hold" *ngIf="currentAction == 'view'">
+          <mat-icon>info</mat-icon>
+          <span class="help-text"
+            >Click on '<b>Edit</b>' button, to update the company
+            information</span
+          >
+        </div>
+  
+        <div class="help-info-hold" *ngIf="currentAction == 'edit'">
+          <mat-icon>info</mat-icon>
+          <span class="help-text"
+            >Once you finish editing, Click on '<b>Save</b>' button, to save the
+            changes.<br />To cancel the edit, click on '<b>Cancel</b>'
+            button.</span
+          >
+        </div>
+      </div>
     </div>
   </div>
   

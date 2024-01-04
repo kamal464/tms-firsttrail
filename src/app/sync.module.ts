@@ -8,6 +8,7 @@ import { DialogModule } from '@syncfusion/ej2-angular-popups';
 import { SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
+import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 @NgModule({
   exports: [
     ButtonModule,
@@ -20,7 +21,8 @@ import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
     SwitchModule,
     DateTimePickerModule,
     RadioButtonModule,
-    CheckBoxModule
+    CheckBoxModule,
+    TimePickerModule
   ],
 })
 export class SyncModule {}

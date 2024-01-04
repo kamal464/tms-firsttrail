@@ -1,0 +1,146 @@
+<div class="setting-hold">
+          
+    
+    <div class="contents" style="overflow: hidden; flex-direction: column">
+      <div
+        class="content-hold"
+        style="margin-bottom: 20px"
+        *ngFor="let education of educationArray; let i = index"
+      >
+        <!-- <tool-bar
+        [title]="'28-02-2001'"
+        class="content-title-hold"
+        [currentAction]="_currentAction"
+        [hasEdit]="true"
+        [hasDelete]="false"
+        (onAction)="doAction($event)"
+      ></tool-bar> -->
+        <mat-toolbar class="tool-bar">
+          <span class="tool-bar-title" [innerHtml]="'casual-Leave(lct01)'"></span>
+          <span class="sub-title mat-small"></span>
+          <span class="spacer"></span>
+          <!-- View Mode -->
+          <ng-container *ngIf="i !== _editIndex; else editMode">
+            <button
+              mat-button
+              class="tool-bar-button bt-color"
+              matTooltip="Edit"
+              (click)="doAction('edit'); startEdit(i)"
+            >
+              <mat-icon>edit</mat-icon>
+              <span class="button-label">Edit</span>
+            </button>
+          </ng-container>
+          <!-- Edit Mode -->
+          <ng-template #editMode>
+            <button
+              mat-button
+              class="tool-bar-button"
+              matTooltip="Cancel"
+              (click)="doAction('cancel')"
+            >
+              <mat-icon>cancel</mat-icon>
+              <span class="button-label">Cancel</span>
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              class="tool-bar-button"
+              matTooltip="Save Changes"
+              (click)="doAction('save')"
+            >
+              <mat-icon>save</mat-icon>
+              <span class="button-label">Save</span>
+            </button>
+          </ng-template>
+        </mat-toolbar>
+        <!-- Content-view -->
+
+        <div
+          class="company-overview-contents content-data-hold"
+          *ngIf="_currentAction == 'view' || i !== _editIndex"
+        >
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Employement Type</mat-label>
+          <span class="entry-data">Saturday(2nd & 4th)</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Status</mat-label>
+          <span class="entry-data">Active</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Start Year</mat-label>
+          <span class="entry-data">01 Jan 2022</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">End Year</mat-label>
+          <span class="entry-data">31 Dec 2022</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Per Month</mat-label>
+          <span class="entry-data">01 Day</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Max leaves in a year</mat-label>
+          <span class="entry-data">12 Days</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Count holidays in between</mat-label>
+          <span class="entry-data">yes</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Count weeknds in between</mat-label>
+          <span class="entry-data">Yes</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Actual Frequency</mat-label>
+          <span class="entry-data">Month</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Actual period</mat-label>
+          <span class="entry-data">End</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Actual Amount</mat-label>
+          <span class="entry-data">01</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Carry Forward</mat-label>
+          <span class="entry-data">Yes</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Max Carry forward</mat-label>
+          <span class="entry-data">0</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Max allowed in a request</mat-label>
+          <span class="entry-data">03</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Max allowed in a month</mat-label>
+          <span class="entry-data">03</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Allow Negative Balance credits</mat-label>
+          <span class="entry-data">no</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Convert negative balance to lop</mat-label>
+          <span class="entry-data">yes</span>
+        </div>
+        <div class="view-entry-hold two-column-field">
+          <mat-label class="entry-label">Description</mat-label>
+          <span class="entry-data">Application  for new joiners</span>
+        </div>
+        </div>
+<!-- For Edit component -->
+<div
+class=""
+*ngIf="_currentAction == 'edit'&& i == _editIndex"
+>
+<app-casual-leave-edit></app-casual-leave-edit>
+</div>
+      </div>
+      <div class="controls-view"></div>
+    </div>
+  </div>
