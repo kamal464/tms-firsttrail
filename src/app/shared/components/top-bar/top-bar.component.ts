@@ -24,6 +24,7 @@ import { AttendenceRulesComponent } from 'src/app/attendence/attendence-rules/at
 import { HolidaysViewComponent } from 'src/app/holidays/holidays-view/holidays-view.component';
 import { WorkingDayViewComponent } from 'src/app/workingdays/working-day-view/working-day-view.component';
 import { LeaveRulesViewComponent } from 'src/app/leaves/leave-rules-view/leave-rules-view.component';
+import { CasualLeavePoliciesComponent } from 'src/app/leaves/casual-leave-policies/casual-leave-policies.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -184,6 +185,15 @@ export class TopBarComponent implements OnInit {
       level: 5,
       fkparentid: 444,
     },
+    {
+      route: 'leavepolicies',
+      label: 'leavepolicies',
+      tooltip: 'leavepolicies',
+      iconfile: '',
+      name: 'leavepolicies',
+      level: 6,
+      fkparentid: 444,
+    },
   ];
   menuItems = [];
   @Input() tabEvent;
@@ -250,11 +260,12 @@ export class TopBarComponent implements OnInit {
         return AttendenceRulesComponent;
       case 'holidays':
         return HolidaysViewComponent;
-        case 'workingday':
-          return WorkingDayViewComponent;
-          case 'leaverules':
-            return LeaveRulesViewComponent;
-
+      case 'workingday':
+        return WorkingDayViewComponent;
+      case 'leaverules':
+        return LeaveRulesViewComponent;
+      case 'leavepolicies':
+        return CasualLeavePoliciesComponent;
       default:
         return null;
     }

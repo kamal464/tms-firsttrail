@@ -1,0 +1,113 @@
+<div class="multi-options-view">
+  <div class="info-and-options-view"></div>
+  <div class="contents-view">
+    <div>
+      <div class="headings">
+        <app-title title="Leave Policies" subTitle=""></app-title>
+        <span class="spacer"></span>
+      </div>
+      <div class="setting-hold">
+        <div class="contents" style="overflow: hidden; flex-direction: column">
+          <div class="content-hold" style="margin-bottom: 20px">
+            <tool-bar
+              [title]="'2022 Leave Policies'"
+              class="content-title-hold"
+              [currentAction]="_currentAction"
+              [hasEdit]="false"
+              [hasDelete]="false"
+              (onAction)="doAction($event)"
+            ></tool-bar>
+
+            <!-- Content-view -->
+
+            <div
+              class="company-overview-contents content-data-hold"
+              *ngIf="_currentAction == 'view'"
+            >
+              
+                
+         
+            <div class="field-styles" >
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-label">Policy Starts</span>
+                </div>
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-data">Unlocked</span>
+                </div>
+                <div class="view-entry-hold three-column-field" style="padding-left: 117px">
+                  <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="Save Changes" style="width: 25%">
+                    <span class="button-label">Lock</span>
+                  </button>
+                </div>
+                <div class="view-entry-hold">
+                  <span class="entry-label">Leave Policy Description</span>
+                  <span class="entry-data">Policy status has been unlocked</span>
+                </div>
+            </div>
+              
+            <div class="field-styles">
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-label">Credit Status</span>
+                </div>
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-data">NotCompleted</span>
+                </div>
+                <div class="view-entry-hold three-column-field" >
+                  <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="Save Changes" style="width: auto">
+                    <span class="button-label">Create Leave & Credit employee</span>
+                  </button>
+                </div>
+                <div class="view-entry-hold">
+                  <span class="entry-label">Leave Policy Description</span>
+                  <span class="entry-data">credit status has not been completed yet</span>
+                </div>
+            </div>
+            <div class="field-styles">
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-label">Closure Status</span>
+                </div>
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-data">unlocked</span>
+                </div>
+                <div class="view-entry-hold three-column-field" style="padding-left: 117px">
+                  <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="Save Changes" style="width: 25%">
+                    <span class="button-label">Lock</span>
+                  </button>
+                </div>
+                <div class="view-entry-hold">
+                  <span class="entry-label">Leave Policy Description</span>
+                  <span class="entry-data">closure status has not been completed yet</span>
+                </div>
+            </div>
+            <div class="field-styles">
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-label">Carry Forward Status</span>
+                </div>
+                <div class="view-entry-hold three-column-field">
+                  <span class="entry-data">NotCompleted</span>
+                </div>
+                <div class="view-entry-hold three-column-field" style="padding-left: 117px">
+                  <button mat-raised-button color="primary" class="tool-bar-button" matTooltip="Save Changes" style="width: auto">
+                    <span class="button-label">Complete caryy forward for 2023</span>
+                  </button>
+                </div>
+                <div class="view-entry-hold">
+                  <span class="entry-label">Leave Policy Description</span>
+                  <span class="entry-data">Carry Forward Status has not been completed yet</span>
+                </div>
+            </div>
+              
+              
+              <!-- <div>
+                <span>Festival-optional</span>
+                <span>unlocked</span>
+                <button>lock</button>
+              </div> -->
+            </div>
+          </div>
+          <div class="controls-view"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
