@@ -65,7 +65,7 @@ export class CompanyDepartmentsEntryComponent implements OnInit {
       hodfkempid:null ,
     }
     console.log(requestBody)
-    this.http.post(`${API_BASE_URL}/t/department/update` , requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/department/update` , requestBody).subscribe((data)=>{
 console.log(data ,"Department is updated")
 this.getOfficeCode(this.department.officeid)
 this.getOfficeType(this.department.officeid)

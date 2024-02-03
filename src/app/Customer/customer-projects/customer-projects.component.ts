@@ -71,7 +71,7 @@ doAction(action): void {
             
           }
           console.log(requestBody);
-    this.http.post(`${API_BASE_URL}/t/empcontact/update`,requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/empcontact/update`,requestBody).subscribe((data)=>{
       console.log(data)
     })
     this.cdr.detectChanges();
@@ -108,7 +108,7 @@ doAction(action): void {
               .set('id', addressId.toString());
       
         
-            this.http.post(`${API_BASE_URL}/t/empcontact/delete`, {}, { headers }).subscribe(
+            this.http.post(`${API_BASE_URL}/v1/empcontact/delete`, {}, { headers }).subscribe(
               (data) => {
                 console.log('Address is deleted', addressId);
                 this.contactsArray = this.contactsArray.filter((item) => item.id !== addressId );
@@ -119,7 +119,7 @@ doAction(action): void {
         
 
 getContacts(){
-this.http.post(`${API_BASE_URL}/t/empcontact/getall` , {}).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/empcontact/getall` , {}).subscribe((data)=>{
   console.log(data)
   this.contactsArray = data;
 

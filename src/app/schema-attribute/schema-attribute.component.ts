@@ -140,7 +140,7 @@ updateAttribute() {
 
     console.log(updateData);
 
-    this.http.post(`${API_BASE_URL}/t/schematableattr/update`, updateData).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/schematableattr/update`, updateData).subscribe(() => {
       console.log('editAttribute is called');
       
       
@@ -163,7 +163,7 @@ isEditable(fieldId: number): boolean {
       .set('filtername', 'tablename')
       .set('filtervalue', [id]);
   
-    this.http.post<any[]>(`${API_BASE_URL}/t/schematableattr/getall`, {}, { headers })
+    this.http.post<any[]>(`${API_BASE_URL}/v1/schematableattr/getall`, {}, { headers })
       .subscribe((data) => {
         console.log(data);
   
@@ -209,7 +209,7 @@ isEditable(fieldId: number): boolean {
     //  this.isChecked = true
     console.log(requestBody)
     
-    this.http.post(`${API_BASE_URL}/t/schematableattr/add`,requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/schematableattr/add`,requestBody).subscribe(() => {
       this.enteredDesc = '',
       this.fields.push(requestBody);
       this.enteredType = ''

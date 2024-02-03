@@ -7,7 +7,7 @@ import { Api_Base,API_BASE_URL } from '../shared/api-config';
   styleUrls: ['./company-departments.component.scss']
 })
 export class CompanyDepartmentsComponent implements OnInit {
-departments : any;
+departments : any = [];
 departmentTypeArray : any;
 departmentName :any;
 departmentType : any;
@@ -36,7 +36,7 @@ console.log(this.sendBody);
 
 
 getDepartments(){
-  this.http.post(`${API_BASE_URL}/t/department/getall`,{}).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/department/getall`,{}).subscribe((data) => {
     console.log(data)
     this.departments = data;
   })
@@ -48,7 +48,7 @@ getDepartmentType(){
   .set('filtername', 'fkreasonid')
   .set('filtervalue', '1689749905408');
 
-this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
   .subscribe(
     (data)=> {
       this.departmentTypeArray = data;
@@ -59,7 +59,7 @@ this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
 }
 
 getOfficeType(){
-  this.http.post(`${API_BASE_URL}/t/office/getall` , {}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/office/getall` , {}).subscribe((data)=>{
     console.log(data)
     this.officeType = data;
   })
@@ -75,7 +75,7 @@ addDepartment(){
     name:this.sendBody.name,
     hodfkempid:null
   }
-  this.http.post(`${API_BASE_URL}/t/department/add` , requestBody).subscribe((data)=> {
+  this.http.post(`${API_BASE_URL}/v1/department/add` , requestBody).subscribe((data)=> {
 console.log(requestBody)
 this.departments.push(data)
 this.selectedOffice = '',
@@ -95,7 +95,7 @@ deleteDepartment(depid){
   const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('id', depid.toString());
-  this.http.post(`${API_BASE_URL}/t/department/delete`,{},{ headers }).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/department/delete`,{},{ headers }).subscribe((data)=>{
     console.log(data,"department is delete")
   
     this.departments = this.departments.filter((item) => item.id !== depid);

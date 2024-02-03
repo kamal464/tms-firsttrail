@@ -40,7 +40,7 @@ export class CompanyGradesComponent implements OnInit {
     .set('filtername', 'fkreasonid')
     .set('filtervalue', '1689922248200');
 
-  this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+  this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
     .subscribe((data)=>{
 this.grades = data
 console.log(this.grades)
@@ -61,7 +61,7 @@ console.log(this.grades)
         value:this.sendBody.name, 
       }; 
   
-      this.http.post(`${API_BASE_URL}/t/reasonitem/add` , requestBody).subscribe((data)=>{
+      this.http.post(`${API_BASE_URL}/v1/reasonitem/add` , requestBody).subscribe((data)=>{
         this.grades.push(data);
         console.log('grades is added', requestBody)
       })

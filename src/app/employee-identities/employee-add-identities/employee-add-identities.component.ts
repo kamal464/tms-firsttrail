@@ -107,7 +107,7 @@ identitiesData:any=[];
 // }
 
 getIdentifications(){
-  this.http.post(`${API_BASE_URL}/t/identification/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/identification/getall`,{}).subscribe((data)=>{
     this.identificationsInfo = data;
     console.log('identifications fetched')
   })
@@ -120,7 +120,7 @@ getIdentityType(){
       .set('filtername', 'fkreasonid')
       .set('filtervalue', '1689932317339');
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data)=>{
 this.identityTypeDropdown = data
 // this.identityType = data;
@@ -133,7 +133,7 @@ getIssuedBy(){
       .set('filtername', 'fkreasonid')
       .set('filtervalue', '1689932687534');
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data)=>{
 this.identityIssuedByDropdown = data
 // this.identityissudby = data;
@@ -176,7 +176,7 @@ addIdentity(){
     smt:0
   }
   console.log(requestBody)
-  this.http.post(`${API_BASE_URL}/t/identification/add`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/identification/add`,requestBody).subscribe((data)=>{
     console.log('identity is added')
     this.identificationsInfo.push(data);
     this.idType = '',

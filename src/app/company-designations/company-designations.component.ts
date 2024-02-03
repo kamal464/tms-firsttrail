@@ -45,7 +45,7 @@ getDesignations(){
       .set('filtername', 'fkreasonid')
       .set('filtervalue', '1689917033236');
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data)=>{
 this.designations = data
 console.log(this.designations)
@@ -64,7 +64,7 @@ addDesignationType(){
       value:this.sendBody.name, 
     }; 
 
-    this.http.post(`${API_BASE_URL}/t/reasonitem/add` , requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/add` , requestBody).subscribe((data)=>{
       this.designations.push(data);
       console.log('designations is added', requestBody)
     })

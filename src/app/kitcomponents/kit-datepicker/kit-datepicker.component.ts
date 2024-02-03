@@ -1,5 +1,8 @@
 import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
 
+import { DatetointPipe } from 'src/app/shared/pipes/datetoint.pipe';
+
+
 @Component({
   selector: 'app-kit-datepicker',
   templateUrl: './kit-datepicker.component.html',
@@ -10,7 +13,7 @@ export class KitDatepickerComponent implements OnInit,OnChanges {
   @Input() placeholder: any;
   @Input() fielddata: any;
   @Output() sendData = new EventEmitter<any>();
-  constructor() { }
+  constructor(private dateToIntPipe:DatetointPipe ) { }
 
 
 
@@ -25,9 +28,11 @@ export class KitDatepickerComponent implements OnInit,OnChanges {
     console.log(this.fielddata,'datepicker component')
   }
   
-  DataToParent(value:any){
-    console.log(value.value,"datepicker")
-    this.sendData.emit(value.value)
+  DataToParent(value: any): void {
+    const formattedDate = value.value ? this.dateToIntPipe.transform(value.value) : null;
+    console.log(formattedDate, "formatted date");
+    this.sendData.emit(formattedDate);
   }
+  
 
 }

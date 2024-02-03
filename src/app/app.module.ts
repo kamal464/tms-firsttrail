@@ -139,6 +139,13 @@ import { CasualLeaveViewComponent } from './leaves/casual-leave-view/casual-leav
 import { LeaveTypesComponent } from './leaves/leave-types/leave-types.component';
 import { CasualLeavePoliciesComponent } from './leaves/casual-leave-policies/casual-leave-policies.component';
 import { EmployeeEveryMonthAttendenceComponent } from './attendence/employee-every-month-attendence/employee-every-month-attendence.component';
+import { SuperFormComponent } from './super-form/super-form.component';
+import { ReasonDataService } from './shared/services/reasondata.service';
+import { CommonService } from './shared/services/common.service';
+import { DatetointPipe } from './shared/pipes/datetoint.pipe';
+import { KitNumberInputComponent } from './kitcomponents/kit-number-input/kit-number-input.component';
+import { KitMultiSelectDropdownComponent } from './kitcomponents/kit-multi-select-dropdown/kit-multi-select-dropdown.component';
+
 @NgModule({
   declarations: [
     StringdatePipe,
@@ -266,6 +273,10 @@ import { EmployeeEveryMonthAttendenceComponent } from './attendence/employee-eve
     LeaveTypesComponent,
     CasualLeavePoliciesComponent,
     EmployeeEveryMonthAttendenceComponent,
+    SuperFormComponent,
+    DatetointPipe,
+    KitNumberInputComponent,
+    KitMultiSelectDropdownComponent,
   ],
   // schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -300,7 +311,10 @@ import { EmployeeEveryMonthAttendenceComponent } from './attendence/employee-eve
     },
     SharedServiceService,
     TabeventserviceService,
+   ReasonDataService,
     DatePipe,
+    CommonService,
+    DatetointPipe,
   ],
   bootstrap: [AppComponent],
 })

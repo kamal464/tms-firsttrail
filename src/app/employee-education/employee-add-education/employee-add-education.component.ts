@@ -109,7 +109,7 @@ educationData:any=[];
         reviewdate: null
       }
 
-      this.http.post(`${API_BASE_URL}/t/empeducation/add` , requestBody).subscribe((data)=>{
+      this.http.post(`${API_BASE_URL}/v1/empeducation/add` , requestBody).subscribe((data)=>{
         console.log(data,'data')
 this.empEducationArray.push(data);
 this.uploadVfs(data)

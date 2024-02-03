@@ -85,7 +85,7 @@ private subscription: Subscription;
         remarks:null,
       }
 
-this.http.post(`${API_BASE_URL}/t/empdependent/add`,requestBody).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/empdependent/add`,requestBody).subscribe((data)=>{
   this.dependantsArray.push(data);
 })
 

@@ -87,7 +87,7 @@ this.subscription = this.sharedService.employeeId$.subscribe((empid) => {
     }))
     }
     getAddress() {
-      this.http.post(`${API_BASE_URL}/t/address/getall`, {}).subscribe((data: any[]) => {
+      this.http.post(`${API_BASE_URL}/v1/address/getall`, {}).subscribe((data: any[]) => {
         data.forEach(item => {
           if (item.hasOwnProperty('fkempid') && item.fkempid == this.employeeId  && item.fkempid !== null && item.fkempid !== '') {
             console.log(item);
@@ -143,7 +143,7 @@ updateAddress(address){
   fkempid:this.employeeId
   }
 
-  this.http.post(`${API_BASE_URL}/t/address/update` , requestbody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/address/update` , requestbody).subscribe((data)=>{
     console.log(data)
   })
   console.log(requestbody)
@@ -164,7 +164,7 @@ this.deleteAddress(fkempid);
           .set('id', addressId.toString());
   
     
-        this.http.post(`${API_BASE_URL}/t/address/delete`, {}, { headers }).subscribe(
+        this.http.post(`${API_BASE_URL}/v1/address/delete`, {}, { headers }).subscribe(
           (data) => {
             console.log('Address is deleted', addressId);
             this.addressArray = this.addressArray.filter((item) => item.id !== addressId );

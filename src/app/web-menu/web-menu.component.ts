@@ -44,7 +44,7 @@ constructor(private http: HttpClient) {}
       
     }; 
     console.log(requestBody)
-    this.http.post(`${API_BASE_URL}/t/webmenu/add`,requestBody).subscribe((data)=> {
+    this.http.post(`${API_BASE_URL}/v1/webmenu/add`,requestBody).subscribe((data)=> {
      this.menuData.push(requestBody);
      
 
@@ -55,7 +55,7 @@ constructor(private http: HttpClient) {}
 
   getMenu() {
     this.http
-      .post(`${API_BASE_URL}/t/webmenu/getall`, {},{
+      .post(`${API_BASE_URL}/v1/webmenu/getall`, {},{
         // headers: new HttpHeaders().set('id', id)
       }).subscribe((data) =>{
 this.menuData = data;
@@ -95,7 +95,7 @@ this.menuData = data;
   
       console.log(updateData);
  
-      this.http.post(`${API_BASE_URL}/t/webmenu/update`, updateData).subscribe(() => {
+      this.http.post(`${API_BASE_URL}/v1/webmenu/update`, updateData).subscribe(() => {
         console.log('updateMenu is called');
       });
   }
@@ -114,7 +114,7 @@ deleteMenuItem() {
     .set('Content-Type', 'application/json')
     .set('id', [identity]); // Convert reason to an array
 
-  this.http.post(`${API_BASE_URL}/t/webmenu/delete`, {}, { headers })
+  this.http.post(`${API_BASE_URL}/v1/webmenu/delete`, {}, { headers })
     .subscribe();
 
   console.log('delete called',identity);

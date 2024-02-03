@@ -77,7 +77,7 @@ export class AttributeViewComponent implements OnInit {
   
     console.log();
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/delete`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/delete`, {}, { headers })
       .subscribe();
   
     console.log('delete called');
@@ -95,7 +95,7 @@ export class AttributeViewComponent implements OnInit {
 
     };
     console.log(fieldToUpdate.code, fieldToUpdate.value,this.editid,this.currentSelectedReason.id)
-    this.http.post(`${API_BASE_URL}/t/reasonitem/update`, requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/update`, requestBody).subscribe(() => {
     });
   } 
   }

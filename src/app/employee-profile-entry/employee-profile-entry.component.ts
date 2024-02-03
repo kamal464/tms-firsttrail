@@ -134,7 +134,7 @@ handleInput(inputName: string, inputValue: string): void {
     
       }
       console.log(requestBody);
-      this.http.post(`${API_BASE_URL}/t/emp/update`,requestBody).subscribe((data)=>{
+      this.http.post(`${API_BASE_URL}/v1/emp/update`,requestBody).subscribe((data)=>{
         console.log(data);
       })
     }
@@ -174,7 +174,7 @@ this.updateEmp();
     
       };
       console.log(requestBody)
-    this.http.post(`${API_BASE_URL}/t/emppersonal/update`,requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/emppersonal/update`,requestBody).subscribe((data)=>{
       console.log('updatedEmpPersonal',data);
     })
     
@@ -209,7 +209,7 @@ addEmpOfficial(){
     approvalstatus:null,
     previousfkempofficialid:null,
   }
-  this.http.post(`${API_BASE_URL}/t/empofficial/add`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empofficial/add`,requestBody).subscribe((data)=>{
     console.log(data);
   })
 this.addEmpPersonal();
@@ -248,7 +248,7 @@ addEmpPersonal(){
     website:this.empWebsite
   }
 
-this.http.post(`${API_BASE_URL}/t/emppersonal/add`,requestBody).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/emppersonal/add`,requestBody).subscribe((data)=>{
   console.log(data);
 })
 
@@ -265,13 +265,13 @@ getGenders(){
 }
 
 getEmpOfficial(){
-  this.http.post(`${API_BASE_URL}/t/empofficial/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empofficial/getall`,{}).subscribe((data)=>{
     this.fetchEmpOfficial = data;
     console.log('empOfficial',this.fetchEmpOfficial);
   })
 }
 getEmpPersonal(){
-  this.http.post(`${API_BASE_URL}/t/emppersonal/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emppersonal/getall`,{}).subscribe((data)=>{
   this.fetchEmpPersonal = data;
     console.log('empPersonal',this.fetchEmpPersonal);
   })

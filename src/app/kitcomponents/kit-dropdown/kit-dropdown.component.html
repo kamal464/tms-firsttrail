@@ -1,7 +1,14 @@
 <div class="control-label">{{label}}</div>
+
+<div *ngIf="isdropdown == true">
 <ejs-dropdownlist id='games' [dataSource]='dropdowndata' [fields]='localFields' [placeholder]='localWaterMark'
  [popupHeight]='localheight'[(ngModel)]="fielddata" (change)="DataToParent($event)"></ejs-dropdownlist>
+</div>
 
+<div *ngIf="ismultiselect == true">
+
+  <ejs-multiselect id='sample-list2' [dataSource]='dropdowndata' [mode]='box' [fields]='localFields' [placeholder]='localWaterMark' (change)="multidrop($event)" ></ejs-multiselect>
+</div>
 
  <!-- <div *ngIf="dropdownControl.invalid && dropdownControl.touched" class="error-message"> -->
     <!-- This field is required. -->

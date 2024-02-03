@@ -9,6 +9,9 @@ import { SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
+
 @NgModule({
   exports: [
     ButtonModule,
@@ -22,7 +25,10 @@ import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
     DateTimePickerModule,
     RadioButtonModule,
     CheckBoxModule,
-    TimePickerModule
+    TimePickerModule,
+    NumericTextBoxModule ,
+    MultiSelectModule
+
   ],
 })
 export class SyncModule {}

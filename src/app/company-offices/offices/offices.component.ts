@@ -123,7 +123,7 @@ handleAddress(inputName: string, inputValue: string):void {
      fkorgid:offices.fkorgid
 
     }
-    this.http.post(`${API_BASE_URL}/t/office/update`, requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/office/update`, requestBody).subscribe((data)=>{
       console.log(data)
       
     })
@@ -158,7 +158,7 @@ updateAddress(){
     isactive:1
   
   }
-  this.http.post(`${API_BASE_URL}/t/address/update` , requestbody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/address/update` , requestbody).subscribe((data)=>{
     console.log(data,'updated')
   })
 }

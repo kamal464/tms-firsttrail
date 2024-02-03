@@ -81,7 +81,7 @@ export class EmployeeProfileComponent implements OnInit {
 
 
 FetchEmployee(){
-  this.http.post(`${API_BASE_URL}/t/emp/getall` , {}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emp/getall` , {}).subscribe((data)=>{
     console.log(data,'employees')
     this.employeeArray = data;
    
@@ -90,14 +90,14 @@ FetchEmployee(){
 }
 
 FetchEmployeeOfficial(){
-  this.http.post(`${API_BASE_URL}/t/empofficial/getall` , {}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empofficial/getall` , {}).subscribe((data)=>{
     console.log(data,'officials')
     this.employeeOfficalArray = data;
    
   })
 }
 FetchEmployeePersonal(){
-  this.http.post(`${API_BASE_URL}/t/emppersonal/getall` , {}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emppersonal/getall` , {}).subscribe((data)=>{
     console.log(data,'Personals')
     this.employeePersonalArray = data;
   })

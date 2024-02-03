@@ -115,7 +115,7 @@ console.log(this.sendBody);
       .set('filtername', 'fkreasonid')
       .set('filtervalue', '1689662340365');
   
-      this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe(
         (data) => {
           this.officeTypeArray = [];
@@ -147,7 +147,7 @@ this.countrydata =data;
   }))
   }
   getOffice() {
-    this.http.post(`${API_BASE_URL}/t/office/getall`, {}).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/office/getall`, {}).subscribe(
       (data) => {
         this.officesArray = data;
         console.log(data);
@@ -160,33 +160,64 @@ this.countrydata =data;
   }
   
   getAddress() {
-    this.http.post(`${API_BASE_URL}/t/address/getall`, {}).subscribe((data) => {
+    this.http.post(`${API_BASE_URL}/v1/address/getall`, {}).subscribe((data) => {
       this.addressArray = data;
       console.log(data);
       this.combineData();
     });
   }
+  // combineData() {
+  //   if (this.officesArray) {
+  //     const combinedArray = [];
+  //     for (const address of this.addressArray) {
+  //       console.log(address.fkofficeid);
+  //       const officeId = address.fkofficeid;
+  //       const office = this.officesArray.find((office) => office.id === officeId);
+  //       const combinedObject = {
+  //         officeId,
+  //         office,
+  //         address,
+  //       };
+  //       combinedArray.push(combinedObject);
+  //     }
+  //     this.mergedArray = combinedArray
+  //     console.log(combinedArray);
+  //     // Use the combinedArray as needed
+  //   }
+  // }
+
   combineData() {
-    if (this.officesArray) {
+    if (Array.isArray(this.officesArray) && this.addressArray) {
       const combinedArray = [];
+  
       for (const address of this.addressArray) {
         console.log(address.fkofficeid);
         const officeId = address.fkofficeid;
-        const office = this.officesArray.find((office) => office.id === officeId);
-        const combinedObject = {
-          officeId,
-          office,
-          address,
-        };
-        combinedArray.push(combinedObject);
+  
+        if (Array.isArray(this.officesArray)) {
+          const office = this.officesArray.find((office) => office.id === officeId);
+  
+          if (office) {
+            const combinedObject = {
+              officeId,
+              office,
+              address,
+            };
+            combinedArray.push(combinedObject);
+          } else {
+            console.error(`No office found with id: ${officeId}`);
+            // Optionally, you can handle the case where no office is found
+          }
+        }
       }
-      this.mergedArray = combinedArray
+  
+      this.mergedArray = combinedArray;
       console.log(combinedArray);
       // Use the combinedArray as needed
     }
   }
-
-
+  
+  
   
 addOffice(){
   const timestamp = new Date().getTime(); 
@@ -199,7 +230,7 @@ addOffice(){
     
   }
 
-  this.http.post(`${API_BASE_URL}/t/office/add` , requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/office/add` , requestBody).subscribe((data)=>{
     console.log(data)
     this.officesArray.push(data)
     console.log(this.officesArray)
@@ -240,7 +271,7 @@ addOfficeAddress(fkofficeid){
     isactive:1
   
   }
-  this.http.post(`${API_BASE_URL}/t/address/add` , requestbody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/address/add` , requestbody).subscribe((data)=>{
     console.log('data' , 'address added')
  
     this.combineData();
@@ -268,7 +299,7 @@ deleteAddress(officeId: number) {
 
     console.log(addressId);
 
-    this.http.post(`${API_BASE_URL}/t/address/delete`, {}, { headers }).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/address/delete`, {}, { headers }).subscribe(
       (data) => {
         console.log('Address is deleted', addressId);
         this.deleteOffice(officeId);
@@ -288,7 +319,7 @@ deleteOffice(officeId: number) {
 
     console.log(officeId);
 
-    this.http.post(`${API_BASE_URL}/t/office/delete`, {}, { headers }).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/office/delete`, {}, { headers }).subscribe(
       (data) => {
         console.log('Office is deleted', officeId);
         this.mergedArray = this.mergedArray.filter((item) => item.office.id !== officeId);

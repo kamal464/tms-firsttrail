@@ -1,0 +1,10 @@
+
+<div class="control-label">{{label}}</div>
+<div *ngIf="amount == true">
+    <ejs-numerictextbox locale='de' [currency]='currency' [format]='format' [value]='value' [step]="step"></ejs-numerictextbox>
+</div>
+<div *ngIf="decimal == true">
+    <ejs-numerictextbox  [value]='value' [format]='format' [placeholder]='placeholder'  [step]='step'></ejs-numerictextbox>
+    <!-- <ejs-numerictextbox [value]="value"></ejs-numerictextbox> -->
+    <!-- min='0' max='1' step='0.01'  -->
+</div>

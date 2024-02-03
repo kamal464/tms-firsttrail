@@ -74,7 +74,7 @@ const requestBody = {
 }
 
 
-    this.http.post<any[]>(`${API_BASE_URL}/t/schemacolumnattr/getlist`, requestBody)
+    this.http.post<any[]>(`${API_BASE_URL}/v1/schemacolumnattr/getlist`, requestBody)
       .subscribe((data) => {
         console.log(data);
         console.log(requestBody)
@@ -127,7 +127,7 @@ const requestBody = {
     //  this.isChecked = true
     console.log(requestBody)
     
-    this.http.post(`${API_BASE_URL}/t/schemacolumnattr/add`,requestBody).subscribe((data) => {
+    this.http.post(`${API_BASE_URL}/v1/schemacolumnattr/add`,requestBody).subscribe((data) => {
       this.fields.push(data);
       this.enteredDesc = '',
       this.enteredType = ''
@@ -158,7 +158,7 @@ const requestBody = {
   
       console.log(updateData);
   
-      this.http.post(`${API_BASE_URL}/t/schemacolumnattr/update`, updateData).subscribe(() => {
+      this.http.post(`${API_BASE_URL}/v1/schemacolumnattr/update`, updateData).subscribe(() => {
         console.log('editAttribute is called');
       });
     }

@@ -32,7 +32,7 @@ export class SyncCompanyOverviewComponent implements OnInit {
   companyDetails: '';
   getRecord() {
     this.http
-      .post(`${API_BASE_URL}/t/org/getall`, {})
+      .post(`${API_BASE_URL}/v1/org/getall`, {})
       .subscribe((data: any) => {
         this.getall = data;
         console.log(data,this.getall);
@@ -157,7 +157,7 @@ smt :  this.getall[0].smt,
 
 console.log(requestbody)
     this.http
-      .post(`${API_BASE_URL}/t/org/update`, requestbody)
+      .post(`${API_BASE_URL}/v1/org/update`, requestbody)
       .subscribe();
     // console.log(myJSON);
   }

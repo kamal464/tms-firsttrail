@@ -155,7 +155,7 @@ isEditable(fieldId: number): boolean {
 
     };
     console.log(fieldToUpdate.code, fieldToUpdate.value,this.editid,this.currentSelectedReason.id)
-    this.http.post(`${API_BASE_URL}/t/reasonitem/update`, requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/update`, requestBody).subscribe(() => {
     });
   } 
   }
@@ -166,7 +166,7 @@ isEditable(fieldId: number): boolean {
       .set('filtername', 'fkreasonid')
       .set('filtervalue', id);
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data) => {
         console.log(data);
   
@@ -200,7 +200,7 @@ isEditable(fieldId: number): boolean {
       value:this.enteredText, 
     }; 
     console.log(requestBody)
-    this.http.post(`${API_BASE_URL}/t/reasonitem/add`,requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/add`,requestBody).subscribe(() => {
       this.enteredCode = '';
       this.enteredText = '';
     this.fields.push(requestBody)
@@ -226,7 +226,7 @@ isEditable(fieldId: number): boolean {
   
     console.log();
   
-    this.http.post(`${API_BASE_URL}/t/reasonitem/delete`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reasonitem/delete`, {}, { headers })
       .subscribe();
   
     console.log('delete called');

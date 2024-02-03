@@ -61,7 +61,7 @@ export class SchemaColumnAttributeTableComponent implements OnInit {
   
       console.log(updateData);
   
-      this.http.post(`${API_BASE_URL}/t/schemacolumnattr/update`, updateData).subscribe(() => {
+      this.http.post(`${API_BASE_URL}/v1/schemacolumnattr/update`, updateData).subscribe(() => {
         console.log('editAttribute is called');
       }); 
     }

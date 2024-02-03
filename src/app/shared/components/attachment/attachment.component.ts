@@ -182,7 +182,7 @@ export class AttachmentComponent implements OnInit {
     // .set('filtername', 'fkidentificationid')
     // .set('filtervalue', this.attachment.id);
 
-    // this.http.post(`${API_BASE_URL}/t/vfs/getall`,{},{headers}).subscribe((file:any) => {
+    // this.http.post(`${API_BASE_URL}/v1/vfs/getall`,{},{headers}).subscribe((file:any) => {
     //   const fileURL = window.URL.createObjectURL(file);
     //   this.attachmentThumb = this.sanitizer.bypassSecurityTrustStyle(
     //     `url(${fileURL})`

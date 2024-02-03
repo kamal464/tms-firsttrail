@@ -25,6 +25,8 @@ import { HolidaysViewComponent } from 'src/app/holidays/holidays-view/holidays-v
 import { WorkingDayViewComponent } from 'src/app/workingdays/working-day-view/working-day-view.component';
 import { LeaveRulesViewComponent } from 'src/app/leaves/leave-rules-view/leave-rules-view.component';
 import { CasualLeavePoliciesComponent } from 'src/app/leaves/casual-leave-policies/casual-leave-policies.component';
+import { EmployeeEveryMonthAttendenceComponent } from 'src/app/attendence/employee-every-month-attendence/employee-every-month-attendence.component';
+import { SuperFormComponent } from 'src/app/super-form/super-form.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -84,6 +86,15 @@ export class TopBarComponent implements OnInit {
       iconfile: '',
       name: 'reasons',
       level: 3,
+      fkparentid: 1234,
+    },
+    {
+      route: 'superform',
+      label: 'superform',
+      tooltip: 'superform',
+      iconfile: '',
+      name: 'superform',
+      level: 4,
       fkparentid: 1234,
     },
     {
@@ -194,6 +205,15 @@ export class TopBarComponent implements OnInit {
       level: 6,
       fkparentid: 444,
     },
+    {
+      route: 'every12monthattendencesummary',
+      label: 'every-12-month-attendence-summary',
+      tooltip: 'every-12-month-attendence-summary',
+      iconfile: '',
+      name: 'every-12-month-attendence-summary',
+      level: 6,
+      fkparentid: 444,
+    },
   ];
   menuItems = [];
   @Input() tabEvent;
@@ -266,6 +286,10 @@ export class TopBarComponent implements OnInit {
         return LeaveRulesViewComponent;
       case 'leavepolicies':
         return CasualLeavePoliciesComponent;
+        case 'every12monthattendencesummary':
+          return EmployeeEveryMonthAttendenceComponent;
+          case 'superform':
+            return SuperFormComponent;
       default:
         return null;
     }

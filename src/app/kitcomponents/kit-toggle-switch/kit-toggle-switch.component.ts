@@ -10,6 +10,7 @@ import { rippleMouseHandler } from '@syncfusion/ej2-buttons';
 })
 export class KitToggleSwitchComponent {
 @Input()toggle:any;
+@Input() label: any;
 @Output() sendData = new EventEmitter<any>();
 
 

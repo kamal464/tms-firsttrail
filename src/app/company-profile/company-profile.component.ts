@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReasonDataService } from '../shared/services/reasondata.service';
 
 @Component({
   selector: 'app-company-profile',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyProfileComponent implements OnInit {
   _available_options : any= ['OVERVIEW','OFFICES','DEPARTMENTS','DEPARTMENT-TYPES','DESIGNATION','GRADES','IDENTIFICATIONS'];
-  constructor() { }
+  constructor( private reason: ReasonDataService) { }
   _selected_option = 'OVERVIEW';
   ngOnInit(): void {
+  // this.reason.getReason('officetype');
+  // this.reason.getTableData('department',{fkofficeid:1695200343594});  
   }
 orgId=1;
 

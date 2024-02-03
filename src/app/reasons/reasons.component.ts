@@ -71,7 +71,7 @@ export class ReasonsComponent implements OnInit {
  
   getReasons(id: string) {
     this.http
-      .post(`${API_BASE_URL}/t/reason/getall`, {},{
+      .post(`${API_BASE_URL}/v1/reason/getall`, {},{
         // headers: new HttpHeaders().set('id', id)
       }).subscribe((data) =>{
         this.reasonData = data;
@@ -93,7 +93,7 @@ export class ReasonsComponent implements OnInit {
       isEditable:'',
     }; 
     console.log(requestBody)
-    this.http.post(`${API_BASE_URL}/t/reason/add`,requestBody).subscribe(()=> {
+    this.http.post(`${API_BASE_URL}/v1/reason/add`,requestBody).subscribe(()=> {
       this.reasonData.push(requestBody);
       this.currentSelectedReason = this.reasonData[0];
       this._selected_option = this.reasonData[0].name;
@@ -112,7 +112,7 @@ export class ReasonsComponent implements OnInit {
     
     // this.reasonData.push(requestBody)
     console.log(this.input)
-    this.http.post(`${API_BASE_URL}/t/reason/update`, requestBody).subscribe(() => {
+    this.http.post(`${API_BASE_URL}/v1/reason/update`, requestBody).subscribe(() => {
       // Handle the response or any necessary actions after successfully editing the reason
       const index = this.reasonData.findIndex((reasonitem) => reasonitem.id === this.currentSelectedReason.id);
       if (index !== -1) {
@@ -130,7 +130,7 @@ export class ReasonsComponent implements OnInit {
   
     console.log(reason);
   
-    this.http.post(`${API_BASE_URL}/t/reason/delete`, {}, { headers })
+    this.http.post(`${API_BASE_URL}/v1/reason/delete`, {}, { headers })
       .subscribe(() => {
         console.log(this.currentSelectedReason)
         const index = this.reasonData.findIndex((reasonitem) => reasonitem.id === reason );

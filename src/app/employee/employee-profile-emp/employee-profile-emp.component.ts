@@ -178,7 +178,7 @@ addEmp(){
   }
   
   console.log(requestBody,'emp body')
-  this.http.post(`${API_BASE_URL}/t/emp/add`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emp/add`,requestBody).subscribe((data)=>{
     console.log(data);
   })
   this.addEmpOfficial(requestBody.id)
@@ -221,7 +221,7 @@ addEmpOfficial(empid){
     previousfkempofficialid:null,
   }
   console.log(requestBody,'empofficial body')
-  this.http.post(`${API_BASE_URL}/t/empofficial/add`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empofficial/add`,requestBody).subscribe((data)=>{
     console.log(data);
   })
 this.addEmpPersonal(requestBody.fkempid);
@@ -257,7 +257,7 @@ addEmpPersonal(empid){
 
 
   console.log(requestBody,"emppersonalbody")
-this.http.post(`${API_BASE_URL}/t/emppersonal/add`,requestBody).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/emppersonal/add`,requestBody).subscribe((data)=>{
   console.log(data);
 })
 
@@ -292,8 +292,8 @@ loadData() {
       .set('reason', 'EmployeeType')
   });
 
-  const empOfficial = this.http.post(`${API_BASE_URL}/t/empofficial/getall`, {});
-  const empPersonal = this.http.post(`${API_BASE_URL}/t/emppersonal/getall`, {});
+  const empOfficial = this.http.post(`${API_BASE_URL}/v1/empofficial/getall`, {});
+  const empPersonal = this.http.post(`${API_BASE_URL}/v1/emppersonal/getall`, {});
 
   const designation = this.http.post(`${Api_Base}/utils/dropdown/reason`, {}, {
     headers: new HttpHeaders()
@@ -358,13 +358,13 @@ loadData() {
 }
 
 getEmpOfficial(){
-  this.http.post(`${API_BASE_URL}/t/empofficial/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empofficial/getall`,{}).subscribe((data)=>{
     this.fetchEmpOfficial = data;
     console.log('empOfficial',this.fetchEmpOfficial);
   })
 }
 getEmpPersonal(){
-  this.http.post(`${API_BASE_URL}/t/emppersonal/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emppersonal/getall`,{}).subscribe((data)=>{
   this.fetchEmpPersonal = data;
     console.log('empPersonal',this.fetchEmpPersonal);
   })

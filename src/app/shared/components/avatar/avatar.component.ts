@@ -86,7 +86,7 @@ export class AvatarComponent implements OnInit,OnChanges {
       .set('filtername', 'fkorgid')
       .set('filtervalue', '1');
   
-    this.http.post(`${API_BASE_URL}/t/vfs/getall`, {}, { headers }).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/vfs/getall`, {}, { headers }).subscribe(
       (file: any) => {
         console.log(file)
         if (file instanceof Blob) {

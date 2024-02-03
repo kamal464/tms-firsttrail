@@ -59,7 +59,7 @@ export class EmployeeWorkExperienceComponent implements OnInit {
 
 
 getWorkHistory(){
-  this.http.post(`${API_BASE_URL}/t/empworkhistory/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empworkhistory/getall`,{}).subscribe((data)=>{
     console.log(data)
     this.workExperienceArray = data;
     this.workExperienceArray.forEach((identificationInfo) => {
@@ -77,7 +77,7 @@ getAttachments(Id) {
     .set('filtername', 'fkempworkhistoryid')
     .set('filtervalue', Id.toString());
 
-  this.http.post(`${API_BASE_URL}/t/vfs/getall`, {}, { headers }).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/vfs/getall`, {}, { headers }).subscribe((data) => {
     console.log(data, 'getattachments');
     
     // Store attachments data in the map using the identificationId as the key
@@ -111,7 +111,7 @@ removeAttachment(attachment): void {
       const headers = new HttpHeaders()
       .set('id', attachment.id.toString());
     
-    this.http.post(`${API_BASE_URL}/t/vfs/delete`, {}, { headers }).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/vfs/delete`, {}, { headers }).subscribe(
       (data) => {
         console.log(data, 'vfs deleted');
       },
@@ -149,7 +149,7 @@ updateWorkExperience(item){
     remarks:this.workExperienceData.remarks?this.workExperienceData.remarks:item.remarks,
     isactive:0
   }
-  this.http.post(`${API_BASE_URL}/t/empworkhistory/update`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empworkhistory/update`,requestBody).subscribe((data)=>{
     console.log(data)
     this.uploadVfs(requestBody.id)
   })
@@ -201,7 +201,7 @@ doDelete(id){
             .set('id', addressId.toString());
     
       
-          this.http.post(`${API_BASE_URL}/t/empworkhistory/delete`, {}, { headers }).subscribe(
+          this.http.post(`${API_BASE_URL}/v1/empworkhistory/delete`, {}, { headers }).subscribe(
             (data) => {
               console.log('workhistory is deleted', addressId);
               this.workExperienceArray = this.workExperienceArray.filter((item) => item.id !== addressId );

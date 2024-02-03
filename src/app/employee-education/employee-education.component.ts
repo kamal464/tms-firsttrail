@@ -72,7 +72,7 @@ export class EmployeeEducationComponent implements OnInit {
     }
 
 getEducation(){
-  this.http.post(`${API_BASE_URL}/t/empeducation/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empeducation/getall`,{}).subscribe((data)=>{
     console.log(data,'data is fetched');
     this.educationArray = data;
     this.educationArray.forEach((education) => {
@@ -90,7 +90,7 @@ getAttachments(Id) {
     .set('filtername', 'fkempeducationid')
     .set('filtervalue', Id.toString());
 
-  this.http.post(`${API_BASE_URL}/t/vfs/getall`, {}, { headers }).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/vfs/getall`, {}, { headers }).subscribe((data) => {
     console.log(data, 'getattachments');
     
     // Store attachments data in the map using the identificationId as the key
@@ -142,7 +142,7 @@ updateEducation(item){
     reviewdate: null
   }
 
-  this.http.post(`${API_BASE_URL}/t/empeducation/update`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empeducation/update`,requestBody).subscribe((data)=>{
     console.log(data)
     this.uploadVfs(data)
   })
@@ -189,7 +189,7 @@ removeAttachment(attachment): void {
       const headers = new HttpHeaders()
       .set('id', attachment.id.toString());
     
-    this.http.post(`${API_BASE_URL}/t/vfs/delete`, {}, { headers }).subscribe(
+    this.http.post(`${API_BASE_URL}/v1/vfs/delete`, {}, { headers }).subscribe(
       (data) => {
         console.log(data, 'vfs deleted');
       },
@@ -213,7 +213,7 @@ doDelete(id){
             .set('id', addressId.toString());
     
       
-          this.http.post(`${API_BASE_URL}/t/empeducation/delete`, {}, { headers }).subscribe(
+          this.http.post(`${API_BASE_URL}/v1/empeducation/delete`, {}, { headers }).subscribe(
             (data) => {
               console.log('workhistory is deleted', addressId);
               this.educationArray = this.educationArray.filter((item) => item.id !== addressId );

@@ -124,7 +124,7 @@ addAddress(){
     }
   
 
-  this.http.post(`${API_BASE_URL}/t/address/add`, requestbody).subscribe((data)=>{console.log(data,"added address")
+  this.http.post(`${API_BASE_URL}/v1/address/add`, requestbody).subscribe((data)=>{console.log(data,"added address")
 this.addressArray.push(data);
 });
 }

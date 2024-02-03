@@ -31,12 +31,12 @@ export class CustomerOverviewComponent implements OnInit {
     companyDetails: '';
     getRecord() {
       this.http
-        .post(`${API_BASE_URL}/t/org/getall`, {})
+        .post(`${API_BASE_URL}/v1/customers/getall`, {})
         .subscribe((data: any) => {
           this.getall = data;
           this.formData = data[0];
           console.log(data,this.getall);
-         
+
         });
     }
     handleInput(inputName: string, inputValue: string): void {
@@ -61,14 +61,7 @@ export class CustomerOverviewComponent implements OnInit {
       // console.log(this.savedData)
     }
   
-    // getRecord(){
-    //   this.http.post('http://192.168.0.58:5000/org/getorg',{}).subscribe((data =>{ console.log(data)
-    // this.getData = data;
-    // console.log(this.getData)
-    // console.log(this.formData)
   
-    // }))
-    // }
   
   
   
@@ -124,7 +117,7 @@ export class CustomerOverviewComponent implements OnInit {
   
   console.log(requestbody)
       this.http
-        .post(`${API_BASE_URL}/t/org/update`, requestbody)
+        .post(`${API_BASE_URL}/v1/org/update`, requestbody)
         .subscribe((data) => {
           console.log(data)
         });

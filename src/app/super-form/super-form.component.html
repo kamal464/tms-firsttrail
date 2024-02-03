@@ -1,0 +1,255 @@
+<div class="settings-views multi-options-view has-overall-heading">
+  <div class="overall-heading">
+    <app-title
+      title="SuperForm"
+      subTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est ex modi architecto accusamus vitae laborum minima et, eaque dolore!
+             "
+    ></app-title>
+
+    <span class="spacer"></span>
+
+    <div class="action-padding"></div>
+  </div>
+  <div class="content-hold">
+    <div class="contents" style="overflow: hidden; flex-direction: column">
+      <div class="content-hold" style="width: 100%; margin-bottom: 20px">
+        <tool-bar
+          [title]="'Profile'"
+          class="content-title-hold"
+          [hasEdit]="true"
+          [hasDelete]="false"
+          [currentAction]="_currentAction"
+          (onAction)="doAction($event)"
+        ></tool-bar>
+        <div
+          class="company-overview-contents content-data-hold"
+          *ngIf="_currentAction == 'view'"
+        >
+          <ng-container *ngFor="let get of getall">
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Title</mat-label>
+              <span class="entry-data">{{ get.title }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Name</mat-label>
+              <span class="entry-data">{{ get.name }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">EmpNo</mat-label>
+              <span class="entry-data">
+                {{get.empno}}
+              </span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Email</mat-label>
+              <span class="entry-data">
+                {{get.email}}
+               </span
+              >
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Mobile</mat-label>
+              <span class="entry-data">
+                <span>+91</span>
+                {{ get.mobile }}</span
+              >
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Office</mat-label>
+              <span class="entry-data">{{ get.fkofficeid }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Department</mat-label>
+              <span class="entry-data">{{ get.fkdepartmentid }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">isActive</mat-label>
+              <span class="entry-data">
+                <span>+91</span>
+                {{'yes' }}</span
+              >
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Date of birth</mat-label>
+              <span class="entry-data">{{ get.dateofbirth }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Date of Joining</mat-label>
+              <span class="entry-data">{{ get.joiningdate }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Mothly Salary</mat-label>
+              <span class="entry-data">{{ get.mothlyctc }}</span>
+            </div>
+            <div class="view-entry-hold two-column-fields">
+              <mat-label class="entry-label">Btech-grade</mat-label>
+              <span class="entry-data">{{ get.btechgrade }}</span>
+            </div>
+            <div class="view-entry-hold">
+              <mat-label class="entry-label">Skills</mat-label>
+              <span class="entry-data">{{ get.skills }}</span>
+            </div>
+            <div class="view-entry-hold">
+              <mat-label class="entry-label">Remarks</mat-label>
+              <span class="entry-data">{{ get.remarks }}</span>
+            </div>
+          </ng-container>
+        </div>
+        <div class="setting-data-hold" style="padding-left: 20px">
+          <div
+            class="setting-data-hold content-schema-view"
+            style="padding-top: 20px"
+            *ngIf="_currentAction == 'edit'"
+          >
+            <div class="form-field-hold two-column-fields">
+              <app-kit-dropdown
+                [label]="'Title'"
+                [placeholder]="'Title'"
+                (sendData)="handleInput('title', $event)"
+                [isdropdown]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-text-component
+                [label]="'Name'"
+                [minLength]="3"
+                [maxLength]="15"
+                [placeholder]="'Name'"
+                [required]="true"
+                (sendData)="handleInput('name', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-text-component
+                [label]="'EmpNo'"
+                [placeholder]="'Empno'"
+                [required]="true"
+                [minLength]="3"
+                [maxLength]="15"
+                (sendData)="handleInput('empno', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-text-component
+                [label]="'Email'"
+                [placeholder]="'Email'"
+[customPattern]="'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'"
+                [required]="true"
+                [minLength]="3"
+                [maxLength]="30"
+                (sendData)="handleInput('email', $event)"
+              ></app-kit-text-component>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-input-mask
+                [label]="'Mobile'"
+                [placeholder]="'Mobile'"
+                [mask]="'000-000-0000'"
+                (sendData)="handleInput('mobile', $event)"
+              
+              ></app-kit-input-mask>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-dropdown
+                [label]="'Office'"
+                [placeholder]="'Office'"
+                (sendData)="handleofficedrop('fkofficeid', $event)"
+                [dropdata]="offices"
+                [textfield]="'code'"
+            [valuefield]="'id'"
+            [isdropdown]="true"
+              ></app-kit-dropdown>
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+              <app-kit-dropdown
+                [label]="'Department'"
+                [placeholder]="'Department'"
+                (sendData)="handleInput('fkdepartmentid', $event)"
+                [dropdata]="departments"
+                [textfield]="'name'"
+                [valuefield]="'id'"
+                [isdropdown]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-toggle-switch
+                [label]="'isActive'"
+                [toggle]="isChecked"
+                (sendData)="ischeckedFn($event)"
+              ></app-kit-toggle-switch>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-datepicker
+                [label]="'Date Of Joining'"
+                [placeholder]="'Date Of Joining'"
+                (sendData)="handleInput('joiningdate', $event)"
+              ></app-kit-datepicker>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-datepicker
+                [label]="'Date Of Birth'"
+                [placeholder]="' Date Of Birth'"
+                (sendData)="handleInput('dateofbirth', $event)"
+              ></app-kit-datepicker>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <app-kit-number-input
+              [label]="'Mothly-salary'"
+                [placeholder]="'Mothly-salary'"
+                (sendData)="handleInput('monthlysalary', $event)"
+                [format]="'00'"
+                [currency]="'INR'"
+                [amount]="true"
+                [value]="5000"
+                [step]="1000"
+                
+
+              ></app-kit-number-input>
+            </div>
+            <div class="form-field-hold two-column-fields">
+              <!-- <app-kit-input-mask
+                [label]="'Btech-Grade'"
+                [placeholder]="'Btech-Grade'"
+                [mask]="''"
+                (sendData)="handleInput('btechgrade', $event)"
+              ></app-kit-input-mask> -->
+              <app-kit-number-input
+              [label]="'Btech-Grade'"
+                [placeholder]="'Btech-Grade'"
+                (sendData)="handleInput('btechgrade', $event)"
+                [format]="'0.0'"
+                [decimal]="true"
+                [value]="3.5"
+                [step]="0.1"
+
+              ></app-kit-number-input>
+              
+            </div>
+
+            <div class="form-field-hold two-column-fields">
+              <app-kit-dropdown
+                [label]="'Skills'"
+                [placeholder]="'Skills'"
+                [dropdata]="skills"
+                (sendData)="handleInput('skills', $event)"
+                [ismultiselect]="true"
+              ></app-kit-dropdown>
+            </div>
+            <div class="form-field-hold two-column-fields"></div>
+            <div class="form-field-hold">
+              <app-kit-text-component
+                [label]="'Remarks'"
+                [placeholder]="'Remarks'"
+                [required]="true"
+                [minLength]="3"
+                [maxLength]="50"
+                (sendData)="handleInput('remarks', $event)"
+              ></app-kit-text-component>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

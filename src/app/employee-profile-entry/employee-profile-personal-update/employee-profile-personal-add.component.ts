@@ -83,7 +83,7 @@ empPersonalWebsite:any;
 
 //   };
 //   console.log(requestBody)
-// this.http.post(`${API_BASE_URL}/t/emppersonal/update`,requestBody).subscribe((data)=>{
+// this.http.post(`${API_BASE_URL}/v1/emppersonal/update`,requestBody).subscribe((data)=>{
 //   console.log('updatedEmpPersonal',data);
 // })
 

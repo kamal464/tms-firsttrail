@@ -168,7 +168,7 @@ ischeckedFn(bool){
   getReasons() {
     this.http
       .post(
-        `${API_BASE_URL}/t/schematable/getall`,
+        `${API_BASE_URL}/v1/schematable/getall`,
         {},
         {
           // headers: new HttpHeaders().set('id', id)
@@ -205,7 +205,7 @@ ischeckedFn(bool){
     };
     console.log(requestBody);
     this.http
-      .post(`${API_BASE_URL}/t/schematable/update`, requestBody)
+      .post(`${API_BASE_URL}/v1/schematable/update`, requestBody)
       .subscribe((data) => {
         this.module = requestBody.modulename,
         this.feature = requestBody.featurename,
@@ -228,7 +228,7 @@ ischeckedFn(bool){
     console.log(table);
     this.http
       .post(
-        `${API_BASE_URL}/t/${table}/getall`,
+        `${API_BASE_URL}/v1/${table}/getall`,
         {},
         {
           // headers: new HttpHeaders().set('id', id)

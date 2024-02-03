@@ -116,7 +116,7 @@ else if (action == 'save') {
   }
 
 getSchemaColumn(){
-  this.http.post(`${API_BASE_URL}/t/schemacolumn/getall`,{}).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/schemacolumn/getall`,{}).subscribe((data) => {
       if(data != undefined && data != null){
 this.SchemaColumn = data
 console.log(this.SchemaColumn)
@@ -152,7 +152,7 @@ editColumns() {
     isactive: this.isChecked ? '1' : '0'
   };
 console.log(requestBody)
-  this.http.post(`${API_BASE_URL}/t/schemacolumn/update`, requestBody)
+  this.http.post(`${API_BASE_URL}/v1/schemacolumn/update`, requestBody)
     .subscribe(() => {
       console.log("editColumns called");
       this.getSchemaColumn();

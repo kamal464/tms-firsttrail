@@ -31,7 +31,7 @@ closeTab(){
 }
 
 getEmployees(){
-  this.http.post(`${API_BASE_URL}/t/emp/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/emp/getall`,{}).subscribe((data)=>{
     console.log(data,"employees data fetched");
     this.empData = data;
   })

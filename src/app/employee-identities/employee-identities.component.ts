@@ -51,7 +51,7 @@ export class EmployeeIdentitiesComponent implements OnInit {
         .set('filtername', 'fkreasonid')
         .set('filtervalue', '1689932317339');
     
-      this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
         .subscribe((data)=>{
 
   this.identityType = data;
@@ -64,7 +64,7 @@ export class EmployeeIdentitiesComponent implements OnInit {
         .set('filtername', 'fkreasonid')
         .set('filtervalue', '1689932687534');
     
-      this.http.post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      this.http.post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
         .subscribe((data)=>{
 
   this.identityissudby = data;
@@ -159,7 +159,7 @@ this.countrydata = data;
 
 
 getIdentities(){
-  this.http.post(`${API_BASE_URL}/t/identification/getall`,{}).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/identification/getall`,{}).subscribe((data)=>{
     console.log(data,"getIdentites");
     if (Array.isArray(data) && data.some(item => item.fkempid === this.employeeId)) {
       // Filter the data to get items with 'fkempid' equal to 1693465985040
@@ -200,7 +200,7 @@ getIdentities(){
 //     fkorgid: 1,
 //     fkempid: item.fkempid,
 //   };
-//   this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
+//   this.http.post(`${API_BASE_URL}/v1/identification/update` , requestBody).subscribe((data)=>{
 //     console.log(data, 'data is updated')
 //   })
 // }
@@ -232,7 +232,7 @@ updateIdentification(item) {
     fkempid: item.fkempid,
   };
 
-  this.http.post(`${API_BASE_URL}/t/identification/update`, requestBody).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/identification/update`, requestBody).subscribe((data) => {
     console.log(requestBody,'data is updated')
     console.log(data, 'data is updated');
   });
@@ -246,7 +246,7 @@ deleteIdentity(deleteid:number){
   .set('Content-Type', 'application/json')
   .set('id', deletefield.id.toString());
 
-this.http.post(`${API_BASE_URL}/t/identification/delete`,{},{headers}).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/identification/delete`,{},{headers}).subscribe((data)=>{
   console.log('identity is deleted',data)
   this.empIdentitesArray.pop(data);
 })

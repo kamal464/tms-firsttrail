@@ -102,7 +102,7 @@ addWorkExperience(){
     isactive:0
   }
 
-this.http.post(`${API_BASE_URL}/t/empworkhistory/add`,requestBody).subscribe((data)=>{
+this.http.post(`${API_BASE_URL}/v1/empworkhistory/add`,requestBody).subscribe((data)=>{
   this.workExperience = data;
   this.uploadVfs(data)
 })

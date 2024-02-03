@@ -84,7 +84,7 @@ export class EmployeeDepandantsComponent implements OnInit {
 
 
     getDependents(){
-      this.http.post(`${API_BASE_URL}/t/empdependent/getall`,{}).subscribe((data)=>{
+      this.http.post(`${API_BASE_URL}/v1/empdependent/getall`,{}).subscribe((data)=>{
         console.log(data);
         this.dependantArray = data;
       })
@@ -109,7 +109,7 @@ updateDependent(dependent){
     relationtype:this.dependentData.relationtype?this.dependentData.relationtype:dependent.relationtype,
     remarks:null,
   }
-  this.http.post(`${API_BASE_URL}/t/empdependent/update`,requestBody).subscribe((data)=>{
+  this.http.post(`${API_BASE_URL}/v1/empdependent/update`,requestBody).subscribe((data)=>{
     console.log(data)
   })
   this.cdr.detectChanges();
@@ -131,7 +131,7 @@ doDelete(id){
             .set('id', dependentId.toString());
     
       
-          this.http.post(`${API_BASE_URL}/t/empdependent/delete`, {}, { headers }).subscribe(
+          this.http.post(`${API_BASE_URL}/v1/empdependent/delete`, {}, { headers }).subscribe(
             (data) => {
               console.log('Address is deleted', dependentId);
               this.dependantArray = this.dependantArray.filter((item) => item.id !== dependentId );

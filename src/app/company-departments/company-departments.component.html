@@ -11,6 +11,7 @@
     </div>
     <div class="contents">
       <div class="multiple-content-hold">
+        <ng-container *ngIf="departments">
         <ng-container *ngFor="let department of departments">
             <app-company-departments-entry [department]="department" [officeType]="officeType" [departmentTypeArray]="departmentTypeArray"  (onDelete)="_onDeleteOffice($event)"
             class="content-hold item-hold "></app-company-departments-entry>
@@ -21,6 +22,7 @@
             (onCancel)="_onCancelDepartment($event)">
           </app-company-department-entry> -->
         </ng-container>
+      </ng-container>
         <!-- <app-company-departments-entry  class="content-hold item-hold two-column-field"></app-company-departments-entry> -->
         <!-- <app-company-department-entry class="content-hold item-hold two-column-field" [companyId]="companyId"
           *ngIf="isNew" (onSave)="_onSaveDepartment($event)" (onCancel)="isNew = false;">

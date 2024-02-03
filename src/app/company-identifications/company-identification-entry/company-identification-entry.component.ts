@@ -146,7 +146,7 @@ category = 'image';
       fkorgid: 1,
       fkempid: null,
     };
-    this.http.post(`${API_BASE_URL}/t/identification/update` , requestBody).subscribe((data)=>{
+    this.http.post(`${API_BASE_URL}/v1/identification/update` , requestBody).subscribe((data)=>{
       console.log(data, 'data is updated')
       this.updateUploadVfs(requestBody.id)
     })
@@ -168,7 +168,7 @@ console.log(this.identificationsInfo);
     const headers = new HttpHeaders()
     .set('id', attachment.id.toString());
   
-  this.http.post(`${API_BASE_URL}/t/vfs/delete`, {}, { headers }).subscribe(
+  this.http.post(`${API_BASE_URL}/v1/vfs/delete`, {}, { headers }).subscribe(
     (data) => {
       console.log(data, 'vfs deleted');
     },

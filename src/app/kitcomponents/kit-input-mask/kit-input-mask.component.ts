@@ -10,6 +10,7 @@ export class KitInputMaskComponent implements OnInit {
   @Input() placeholder: any;
   @Input() fielddata: any;
   @Input() mask:string;
+  error: string;
   @Output() sendData = new EventEmitter<any>();
     public value: any;
     constructor() { 

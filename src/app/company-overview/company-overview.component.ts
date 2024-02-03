@@ -29,7 +29,7 @@ export class CompanyOverviewComponent implements OnInit {
   companyDetails: '';
   getRecord() {
     this.http
-      .post(`${API_BASE_URL}/t/org/getall`, {})
+      .post(`${API_BASE_URL}/v1/org/getall`, {})
       .subscribe((data: any) => {
         this.getall = data;
         this.formData = data[0];
@@ -122,7 +122,7 @@ smt :  this.formData.smt,
 
 console.log(requestbody)
     this.http
-      .post(`${API_BASE_URL}/t/org/update`, requestbody)
+      .post(`${API_BASE_URL}/v1/org/update`, requestbody)
       .subscribe((data) => {
         console.log(data)
       });

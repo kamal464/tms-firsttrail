@@ -114,7 +114,7 @@ export class CompanyIdentificationsComponent implements OnInit {
 
   getIdentifications() {
     this.http
-      .post(`${API_BASE_URL}/t/identification/getall`, {})
+      .post(`${API_BASE_URL}/v1/identification/getall`, {})
       .subscribe((data) => {
         this.identificationsInfo = data;
         console.log('identifications fetched', data);
@@ -139,7 +139,7 @@ getAttachments(Id) {
     .set('filtername', 'fkidentificationid')
     .set('filtervalue', Id.toString());
 
-  this.http.post(`${API_BASE_URL}/t/vfs/getall`, {}, { headers }).subscribe((data) => {
+  this.http.post(`${API_BASE_URL}/v1/vfs/getall`, {}, { headers }).subscribe((data) => {
     console.log(data, 'getattachments');
     
     // Store attachments data in the map using the identificationId as the key
@@ -169,7 +169,7 @@ getAttachments(Id) {
       .set('filtervalue', '1689932317339');
 
     this.http
-      .post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      .post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data) => {
         this.identityTypeDropdown = data;
         this.identityType = data;
@@ -183,7 +183,7 @@ getAttachments(Id) {
       .set('filtervalue', '1689932687534');
 
     this.http
-      .post(`${API_BASE_URL}/t/reasonitem/getall`, {}, { headers })
+      .post(`${API_BASE_URL}/v1/reasonitem/getall`, {}, { headers })
       .subscribe((data) => {
         this.identityIssuedByDropdown = data;
         this.identityissudby = data;
@@ -278,7 +278,7 @@ getAttachments(Id) {
 
     const thisRef = this.childComponent;
     this.http
-      .post(`${API_BASE_URL}/t/identification/add`, requestBody)
+      .post(`${API_BASE_URL}/v1/identification/add`, requestBody)
       .subscribe((data) => {
         console.log('identity is added', data);
         this.identificationsInfo.push(data);
@@ -314,7 +314,7 @@ getAttachments(Id) {
       .set('id', deletefield.id.toString());
 
     this.http
-      .post(`${API_BASE_URL}/t/identification/delete`, {}, { headers })
+      .post(`${API_BASE_URL}/v1/identification/delete`, {}, { headers })
       .subscribe((data) => {
         console.log('identity is deleted', data);
         this.identificationsInfo.pop(data);

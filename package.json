@@ -8,7 +8,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
@@ -37,6 +36,7 @@
     "@syncfusion/ej2-lists": "^22.2.9",
     "@syncfusion/ej2-navigations": "^22.2.8",
     "@syncfusion/ej2-popups": "^22.2.9",
+    "cldr-data": "^36.0.1",
     "moment": "^2.29.4",
     "ng2-pdfjs-viewer": "^13.2.2",
     "ngx-image-cropper": "^7.0.2",
